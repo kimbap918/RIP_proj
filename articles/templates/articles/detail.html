@@ -12,6 +12,16 @@
 {{ article.title }}
 {{ article.content|mark }}
 
+<!-- article.pk번 게시글의 좋아요 -->
+{% if request.user.is_authenticated %}
+{% if request.user in article.like_users.all %}
+<i id="like-btn" data-article-id="{{ article.pk }}" class="bi bi-heart-fill"></i>
+{% else %}
+<i id="like-btn" data-article-id="{{ article.pk }}" class="bi bi-heart"></i>
+{% endif %}
+{% endif %}
+<span id="like-count">{{ article.like_users.count }}</span>
+
 
 <!-- article.pk번 게시글의 댓글 -->
 <!-- 댓글 작성 폼-->
@@ -36,26 +46,18 @@
     <i class="bi bi-heart-fill" data-review-id="{{ article.pk }}" data-comment-id="{{ comment.pk }}"
         id="commentlike"></i>
     {% endif %}
-    {% if request.user == comment.user %}
-    <button class="comment-delete-btn" id="comment-delete-{{ comment.pk }}" data-reviewdel-id="{{ article.pk }}"
-        data-commentdel-id="{{ comment.pk }}">삭제</button>
-    {% endif %}
     <p> {{ comment.content }}</p>
+    {% if user.is_authenticated and comment.user == request.user %}
+    <form action="{% url 'articles:comment_delete' article.pk comment.pk %}" method="POST" class="my-0">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-outline-danger mt-2" value="삭제">
+    </form>
+    {% endif %}
     <hr>
     {% empty %}
     <p>댓글이 없어요 ㅠ_ㅠ</p>
     {% endfor %}
 </div>
-
-<!-- article.pk번 게시글의 좋아요 -->
-{% if request.user.is_authenticated %}
-{% if request.user in article.like_users.all %}
-<i id="like-btn" data-article-id="{{ article.pk }}" class="bi bi-heart-fill"></i>
-{% else %}
-<i id="like-btn" data-article-id="{{ article.pk }}" class="bi bi-heart"></i>
-{% endif %}
-{% endif %}
-<span id="like-count">{{ article.like_users.count }}</span>
 
 <!-- 댓글생성 JS -->
 
@@ -120,10 +122,6 @@
           })
         })
 
-    
-    
-    
-    
     
     // commentForm.addEventListener('submit', function (event) {
     //     event.preventDefault();

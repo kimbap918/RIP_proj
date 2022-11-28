@@ -122,13 +122,11 @@ def comment_create(request, pk):
     #return redirect("articles:detail", pk)
 
 # 댓글 삭제
-def comment_delete(request, pk, comment_pk): # 마지막에 특정 리뷰에 대한 pk가 필요함
+def comment_delete(request, comment_pk, pk): # 마지막에 특정 리뷰에 대한 pk가 필요함
     comment = Comment.objects.get(pk=comment_pk)
     if request.user.is_authenticated and request.user == comment.user:
         comment.delete()
         return redirect("articles:detail", pk)
-    else:
-        return HttpResponseForbidden()
 
 # 게시글 좋아요
 def like(request, pk):
