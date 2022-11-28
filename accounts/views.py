@@ -33,13 +33,17 @@ def login(request):
 #    return HttpResponseRedirect("")
 
 
+def logout(request):
+    auth_logout(request)
+    return redirect("accounts:login")
+
 def signup(request):
     if request.method == "POST":
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            Profile.objects.create(user=user)
-            auth_login(request, user)
+            auth_login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+
             return redirect("articles:main")
     else:
         form = CustomUserCreationForm()

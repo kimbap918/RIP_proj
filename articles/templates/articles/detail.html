@@ -1,47 +1,16 @@
-% comment %} {% extends "base.html" %} {% endcomment %}
+{% comment %} {% extends "base.html" %} {% endcomment %}
 {% load static %}
 {% load django_bootstrap5 %}
 {% load article_filter %}
 {% load widget_tweaks %}
 {% block content %}
-디테일 테스트
+<p>
+    디테일 테스트
+</p>
 
-{% for article in articles %}
+
 {{ article.title }}
-{{ article.content }}
-{% endfor %}
-
-<!-- article.pk번 게시글의 댓글 -->
-<h4 class="my-3">댓글</h4>
-{% if request.user.is_authenticated %}
-<form id="comment-form" data-article-id="{{ article.pk }}">
-    {% csrf_token %}
-    {% bootstrap_form comment_form layout='floating'%}
-    {% bootstrap_button button_type="submit" content="OK" %}
-</form>
-{% endif %}
-<hr>
-<div id="comments">
-    {% for comment in comments %}
-    <a href="{% url 'accounts:detail' comment.user.pk %}">
-        <p class="keyboard-comment-user">{{comment.user}}</p>
-    </a>
-    {% if request.user not in comment.like_users.all %}
-    <i class="bi bi-heart" data-review-id="{{ article.pk }}" data-comment-id="{{ comment.pk }}" id="commentlike"></i>
-    {% else %}
-    <i class="bi bi-heart-fill" data-review-id="{{ article.pk }}" data-comment-id="{{ comment.pk }}"
-        id="commentlike"></i>
-    {% endif %}
-    {% if request.user == comment.user %}
-    <button class="comment-delete-btn" id="comment-delete-{{ comment.pk }}" data-reviewdel-id="{{ article.pk }}"
-        data-commentdel-id="{{ comment.pk }}">삭제</button>
-    {% endif %}
-    <p> {{ comment.user.username }} | {{ comment.content }}</p>
-    <hr>
-    {% empty %}
-    <p>댓글이 없어요 ㅠ_ㅠ</p>
-    {% endfor %}
-</div>
+{{ article.content|mark }}
 
 <!-- article.pk번 게시글의 좋아요 -->
 {% if request.user.is_authenticated %}
@@ -53,7 +22,47 @@
 {% endif %}
 <span id="like-count">{{ article.like_users.count }}</span>
 
-<!-- 댓글 JS -->
+
+<!-- article.pk번 게시글의 댓글 -->
+<!-- 댓글 작성 폼-->
+<h4 class="my-3">댓글</h4>
+{% if request.user.is_authenticated %}
+<form id="comment-form" data-article-id="{{ article.pk }}">
+    {% csrf_token %}
+    {% bootstrap_form comments_form layout='floating'%}
+    {% bootstrap_button button_type="submit" content="OK" %}
+</form>
+{% endif %}
+<hr>
+<!-- 댓글 목록 -->
+<div id="comments">
+    {% for comment in comments %}
+    <a href="">
+        <p class="keyboard-comment-user">{{ comment.user }}</p>
+    </a>
+    {% if request.user not in comment.like_users.all %}
+    <i class="bi bi-heart" data-review-id="{{ article.pk }}" data-comment-id="{{ comment.pk }}" id="commentlike"></i>
+    {% else %}
+    <i class="bi bi-heart-fill" data-review-id="{{ article.pk }}" data-comment-id="{{ comment.pk }}"
+        id="commentlike"></i>
+    {% endif %}
+    <p> {{ comment.content }}</p>
+    {% if user.is_authenticated and comment.user == request.user %}
+    <form action="{% url 'articles:comment_delete' article.pk comment.pk %}" method="POST" class="my-0">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-outline-danger mt-2" value="삭제">
+    </form>
+    {% endif %}
+    <hr>
+    {% empty %}
+    <p>댓글이 없어요 ㅠ_ㅠ</p>
+    {% endfor %}
+</div>
+
+<!-- 댓글생성 JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
 
     const commentForm = document.querySelector('#comment-form')
@@ -70,7 +79,7 @@
                 console.log(response.data)
                 const comments = document.querySelector('#comments')
                 const p = document.createElement('p')
-                p.innerText = `${response.data.userName} | ${response.data.content}`
+                p.innerText = `${response.data.content}`
                 const hr = document.createElement('hr')
                 comments.append(p, hr)
                 commentForm.reset()
