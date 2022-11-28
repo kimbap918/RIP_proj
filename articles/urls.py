@@ -10,4 +10,12 @@ urlpatterns = [
     path('<int:article_pk>/',views.article_detail, name='detail'),
     path('delete/<int:article_pk>/',views.article_delete, name='delete'),
     path("main/", views.main, name="main"),
+    # 댓글 생성
+    path('<int:pk>/comments/', views.comment_create, name='comment_create'),
+    # 댓글 삭제
+    path('<int:pk>/comments/<int:comment_pk>/delete/', views.comment_delete, name ='comment_delete'),
+    # 게시글 좋아요
+    path('<int:pk>/like/', views.like, name='like'),
+    # 댓글 좋아요
+    path("<int:pk>/like/<int:comment_pk>/", views.comment_like, name="comment_like"),
 ]

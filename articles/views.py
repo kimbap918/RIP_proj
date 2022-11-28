@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from email import message
 from .forms import *
 from .models import *
+from django.http import JsonResponse
 # Create your views here.
 
 # index (test용)
@@ -74,3 +75,58 @@ def article_delete(request, pk):
     Article.objects.get(pk=pk).delete()
 
     return redirect('articles:delete')
+
+# 댓글 생성
+def comment_create(request, pk):
+    print(request.POST)
+    article = get_object_or_404(Article, pk=pk)
+    comment_form = CommentForm(request.POST)
+    if comment_form.is_valid():
+        comment = comment_form.save(commit=False)
+        comment.article = article
+        comment.user = request.user
+        comment.save()
+    return redirect("articles:detail", article.pk)
+
+# 댓글 삭제
+def comment_delete(request, comment_pk, pk): # 마지막에 특정 리뷰에 대한 pk가 필요함
+    comment = Comment.objects.get(pk=comment_pk)
+    if request.user.is_authenticated and request.user == comment.user:
+        comment.delete()
+        return redirect("articles:detail", pk)
+
+# 게시글 좋아요
+def like(request, pk):
+    article = get_object_or_404(Article, pk=pk)
+    # 만약에 로그인한 유저가 이 글을 좋아요를 눌렀다면,
+    # if article.like_users.filter(id=request.user.id).exists():
+    if request.user in article.like_users.all(): 
+        # 좋아요 삭제하고
+        article.like_users.remove(request.user)
+        is_liked = False
+    else:
+        # 좋아요 추가하고 
+        article.like_users.add(request.user)
+        is_liked = True
+    # 상세 페이지로 redirect
+    context = {'isLiked': is_liked, 'likeCount': article.like_users.count()}
+    return JsonResponse(context)
+
+# 댓글 좋아요
+def comment_like(request, review_pk, comment_pk):
+    is_like = False
+    temp = Comment.objects.filter(review_id=review_pk)
+    for i in temp:
+        if i.pk == comment_pk:
+            if request.user not in i.like_users.all():
+                i.like_users.add(request.user)
+                is_like = True
+            else:
+                i.like_users.remove(request.user)
+                is_like = False
+            data = {
+                "review.pk": review_pk,
+                "comment_pk": comment_pk,
+                "isLike": is_like,
+            }
+            return JsonResponse(data)
