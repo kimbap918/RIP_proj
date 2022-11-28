@@ -1,0 +1,13 @@
+{% comment %} {% extends 'base.html' %} {% endcomment %}
+{% load static %}
+{% load django_bootstrap5 %}
+{% load widget_tweaks %}
+{% comment %} {% block content %} {% endcomment %}
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h2>create</h2>
+    {{ form.title|add_class:"form-control" |attr:"placeholder:이름" }}
+    <div>{{ form.content|add_class:"form-control"|attr:"placeholder:내용" }}</div>
+    {% bootstrap_button content="create" button_type="submit" button_class="btn-primary" %}
+</form>
+{% comment %} {% endblock content %} {% endcomment %}

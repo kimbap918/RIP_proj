@@ -1,0 +1,17 @@
+{% comment %} {% extends "base.html" %} {% endcomment %}
+{% load static %}
+{% load django_bootstrap5 %}
+{% load article_filter %}
+{% load widget_tweaks %}
+{% block content %}
+{% if article %}
+{% for articles in article %}
+    <h1 class="">{{articles.title}}</h1>
+    <p class="">{{articles.content|mark}}</p>
+{% endfor %}
+{% else %}
+<tr>
+    <td colspan='4'>없습니다.</td>
+</tr>
+{% endif %}
+{% endblock content %}
