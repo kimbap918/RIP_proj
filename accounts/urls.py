@@ -5,5 +5,4 @@ app_name = "accounts"
 
 urlpatterns = [
     path("", views.login, name="login"),
-    
 ]
