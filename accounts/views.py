@@ -8,7 +8,7 @@ def index(request):
     return render(request, "accounts/index.html")
 
 def login(request):
-    if request.user.is_anonymous:
+    # if request.user.is_anonymous:
         if request.method == "POST":
             login_form = AuthenticationForm(request, data=request.POST)
             if login_form.is_valid():
@@ -21,5 +21,5 @@ def login(request):
              "login_form": login_form,
         }
         return render(request, "accounts/login.html", context)
-    else:
-        return HttpResponseRedirect("/")
+    # else:
+    #     return HttpResponseRedirect("")

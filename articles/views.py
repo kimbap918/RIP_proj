@@ -21,7 +21,7 @@ def article_create(request):
         form = ArticleForm(request.POST)
         if form.is_valid():
             article = form.save(commit=False)
-            article.author = request.user
+            article.user = request.user
             article.save()
             return redirect('articles:index')
     else:
@@ -43,7 +43,7 @@ def article_update(request,article_pk):
         if form.is_valid():
             article = form.save(commit=False)
             article.save()
-            return redirect('articles:index',pk=article_pk)
+            return redirect('articles:index')
     else:
         form = ArticleForm(instance=article)
     context = {
