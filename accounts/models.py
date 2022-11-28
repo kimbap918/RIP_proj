@@ -17,5 +17,10 @@ class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     intro = models.TextField(blank=True)  # 소개글
 
+
+
+    nickname = models.CharField(max_length=10, default='')
+    
     def __str__(self):
-        return self.user.email
+        return self.email
+
