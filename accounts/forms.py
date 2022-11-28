@@ -16,6 +16,7 @@ class CustomUserCreationForm(UserCreationForm):
             "email",
             "birthday",
             "agree",
+            "nickname",
         )
         widgets = {
             "birthday": DateInput()
