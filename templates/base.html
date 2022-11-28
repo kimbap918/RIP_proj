@@ -28,11 +28,7 @@
     <nav class="nav">
       <div class="container">
         <div class="logo">
-          {% if request.user.is_authenticated %}
           <a href="#"><img src="{% static 'images/logo.png' %}" height="60px" alt="네브로고"></a>
-          {% else %}
-          <a href="#"><img src="{% static 'images/logo.png' %}" height="60px" alt="네브로고"></a>
-          {% endif %}
         </div>
         <div id="mainListDiv" class="main_list">
           <ul class="navlinks">
@@ -64,7 +60,7 @@
                     정보 수정</a>
                 </li>
                 <li class="dd-list">
-                  <a class="dd-item" href="#">
+                  <a class="dd-item" href="{% url 'accounts:logout' %}">
                     <i class="bi bi-box-arrow-right"></i>
                     로그아웃</a>
                 </li>

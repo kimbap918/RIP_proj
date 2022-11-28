@@ -31,6 +31,10 @@ def login(request):
     # else:
     #    return HttpResponseRedirect("")
 
+def logout(request):
+    auth_logout(request)
+    return redirect("accounts:login")
+
 def signup(request):
     if request.method == "POST":
         form = CustomUserCreationForm(request.POST)
