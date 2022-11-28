@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
-from email import message
+from django.contrib import messages
 from .forms import *
 from .models import *
 from django.http import JsonResponse,HttpResponseForbidden
@@ -10,9 +10,12 @@ from django.http import JsonResponse
 
 # index (test용)
 def index(request):
+    page = request.GET.get('page','1')
     article = Article.objects.order_by('-created_at')
+    paginator = Paginator(article,10)
+    page_obj = paginator.get_page(page)
     context = {
-        'article': article
+        'article': page_obj
         }
     return render(request,'articles/index.html',context)
 
@@ -74,9 +77,12 @@ def article_detail(request, pk):
     return render(request, "articles/detail.html", context)
 
 # 게시물 삭제
-def article_delete(request, article_pk):
-    Article.objects.get(pk=article_pk).delete()
-
+def article_delete(request, pk):
+    if request.user.is_authenticated:
+        article = Article.objects.get(pk=pk)
+        if request.user==article.user:
+            article.delete()
+            messages.success(request,'삭제되었습니다.')
     return redirect('articles:index')
 
 # 댓글 생성

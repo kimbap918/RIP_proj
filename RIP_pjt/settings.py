@@ -146,6 +146,12 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+# summernote custom
+
+SUMMERNOTE_CONFIG = {
+    'attachment_filesize_limit': 5 * 1024 * 1024
+}
+
 # MEDIA files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media/')

@@ -28,73 +28,54 @@
 </head>
 
 <body data-spy="scroll" data-target="#scroll-spy">
-  <header>
+    
+  <header >
     <!-- place navbar here -->
-    <nav class="nav">
-      <div class="container">
-        <div class="logo">
-          <a href="#"><img src="{% static 'images/logo.png' %}" height="60px" alt="네브로고"></a>
+    <nav class="navbar navbar-expand-lg container">
+
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="{% static 'images/logo.png' %}" height="60px" alt="네브로고"></a>
+        <!-- navbar toggler a.k.a 햄버거 -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                </ul>
+                
+                <ul class="navbar-nav dropdown-center" style="margin-left:30px;">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ user.nickname }}님
+                    </a>
+                    <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#"><i class="bi bi-person-fill"></i>
+                            내 정보</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square"></i>
+                            정보 수정</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right"></i>
+                        로그아웃</a></li>
+                    </ul>
+                </ul>
+          </div>
         </div>
-        <div id="mainListDiv" class="main_list">
-          <ul class="navlinks">
-            <li>
-              <a href="#">nav1</a>
-            </li>
-            <li>
-              <a href="#">nav2</a>
-            </li>
-            <li>
-              <a href="#">nav3</a>
-            </li>
-            {% if request.user.is_authenticated %}
-            <li class="dd-toggle">
-              <a class="dd-btn" aria-hidden="true">
-                {{ user.nickname }}
-                님
-                <i class="bi bi-caret-down-fill"></i>
-              </a>
-              <ul class="arrow_box">
-                <li class="dd-list">
-                  <a class="dd-item" href="#">
-                    <i class="bi bi-person-fill"></i>
-                    내 정보</a>
-                </li>
-                <li class="dd-list">
-                  <a class="dd-item" href="#">
-                    <i class="bi bi-pencil-square"></i>
-                    정보 수정</a>
-                </li>
-                <li class="dd-list">
-                  <a class="dd-item" href="{% url 'accounts:logout' %}">
-                    <i class="bi bi-box-arrow-right"></i>
-                    로그아웃</a>
-                </li>
-              </ul>
-            </li>
-            {% endif %}
-          </ul>
-        </div>
-        <span class="navTrigger">
-          <i></i>
-          <i></i>
-          <i></i>
-        </span>
-      </div>
-      <span class="navTrigger">
-        <i></i>
-        <i></i>
-        <i></i>
-      </span>
-    </nav>
+      </nav>
+      <hr>
     <!-- /.fixed navigation -->
   </header>
-  <main>
+  <main class="container">
     {% block content %}{% endblock content %}
   </main>
-  <footer>
+  <footer class="text-center mt-5 w-100" style="bottom:0;">
     <!-- place footer here -->
     <span class="me-5">footer</span>
-    <img src="{% static 'images/logo.png' %}" alt="footerlogo">
+    <img width="50px" src="{% static 'images/logo.png' %}" alt="footerlogo">
   </footer>
   <!-- JavaScript Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"

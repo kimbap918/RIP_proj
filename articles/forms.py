@@ -12,7 +12,7 @@ class ArticleForm(forms.ModelForm):
             'content': '내용',
         }
         widgets = {
-            'content': SummernoteWidget(attrs={'summernot':{'width':'100%','height':'400px'}})
+            'content': SummernoteWidget(attrs={'summernote':{'width':'100%','height':'400px'}})
         }
 
 class CommentForm(forms.ModelForm):
