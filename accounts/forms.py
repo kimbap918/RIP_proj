@@ -9,6 +9,7 @@ from django.forms import ModelForm
 class DateInput(forms.DateInput):
     input_type = "Date"
 
+
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = get_user_model()
@@ -17,10 +18,9 @@ class CustomUserCreationForm(UserCreationForm):
             "birthday",
             "agree",
         )
-        widgets = {
-            "birthday": DateInput()
-        }
-        
+        widgets = {"birthday": DateInput()}
+
+
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = User()
@@ -29,9 +29,8 @@ class CustomUserChangeForm(UserChangeForm):
             "nickname": "닉네임",
         }
 
+
 class ProfileForm(ModelForm):
     class Meta:
         model = Profile()
         fields = ["intro"]
-
-

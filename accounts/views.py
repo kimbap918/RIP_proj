@@ -1,41 +1,44 @@
-
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Profile
-from .form import ProfileForm
+from .forms import ProfileForm
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth import get_user_model, update_session_auth_hash
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
-from .form import CustomUserChangeForm
-from .form import CustomUserCreationForm
+from .forms import CustomUserChangeForm
+from .forms import CustomUserCreationForm
 from django.http import HttpResponseRedirect
 
 
 # Create your views here.
 def login(request):
     # if request.user.is_anonymous:
-        if request.method == "POST":
-            login_form = AuthenticationForm(request, data=request.POST)
-            if login_form.is_valid():
-                auth_login(request, login_form.get_user())
-                return redirect("articles:main")
-        else:
-            login_form = AuthenticationForm()
+    if request.method == "POST":
+        login_form = AuthenticationForm(request, data=request.POST)
+        if login_form.is_valid():
+            auth_login(request, login_form.get_user())
+            return redirect("articles:main")
+    else:
+        login_form = AuthenticationForm()
 
-        context = {
-            "login_form": login_form,
-        }
-        return render(request, "accounts/login.html", context)
-    # else:
-    #    return HttpResponseRedirect("")
+    context = {
+        "login_form": login_form,
+    }
+    return render(request, "accounts/login.html", context)
+
+
+# else:
+#    return HttpResponseRedirect("")
+
 
 def signup(request):
     if request.method == "POST":
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
+            Profile.objects.create(user=user)
             auth_login(request, user)
             return redirect("articles:main")
     else:
@@ -44,8 +47,6 @@ def signup(request):
         "form": form,
     }
     return render(request, "accounts/signup.html", context)
-
-
 
 
 # 마이 페이지 (회원 정보로 이동, 비밀번호 변경, 로그아웃, 회원탈퇴)
@@ -137,4 +138,3 @@ def update(request, pk):
     }
 
     return render(request, "accounts/update.html", context)
-    
