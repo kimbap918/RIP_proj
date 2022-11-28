@@ -9,3 +9,5 @@ class User(AbstractUser):
     agree = models.BooleanField(null=False, default=False)
     nickname = models.CharField(max_length=10, default='')
     
+    def __str__(self):
+        return self.email
