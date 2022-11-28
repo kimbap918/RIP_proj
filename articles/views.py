@@ -5,6 +5,7 @@ from email import message
 from .forms import *
 from .models import *
 from django.http import JsonResponse,HttpResponseForbidden
+from django.http import JsonResponse
 # Create your views here.
 
 # index (test용)
@@ -61,13 +62,14 @@ def article_detail(request, pk):
     article = get_object_or_404(Article, pk=pk)
     article_form = ArticleForm()
     comments_form = CommentForm()
+    comments = Comment.objects.filter(article_id=pk).order_by("-created_at")
     # template에 객체 전달
     context = {
         "article": article,
         # 역참조 (articles에 포함된 comments data를 전부 불러온다.)
         "articles_form": article_form,
         "comments_form": comments_form,
-        "comments": article.comment_set.all(),
+        "comments": comments,
     }
     return render(request, "articles/detail.html", context)
 
@@ -81,13 +83,43 @@ def article_delete(request, pk):
 def comment_create(request, pk):
     print(request.POST)
     article = get_object_or_404(Article, pk=pk)
+    # 위에서 선언된 article의 pk값 저장
+    article_pk = article.pk
+    # 요청 유저의 pk값 저장
+    user = request.user.pk
+
     comment_form = CommentForm(request.POST)
     if comment_form.is_valid():
         comment = comment_form.save(commit=False)
         comment.article = article
         comment.user = request.user
         comment.save()
-    return redirect("articles:detail", pk)
+    # 맨 마지막에 생성된 댓글순으로 comment정보를 저장
+    temp = Comment.objects.filter(article_id=pk).order_by("-created_at")
+    # 저장된 comment를 담을 리스트
+    comment_data = []
+
+    # temp에서 순회하면서 유저의 id, 댓글의 pk, 내용, 생성일자, 닉네임을 각각 comment_data에 담음 
+    for t in temp:
+        t.created_at = t.created_at.strftime("%Y-%m-%d %H:%M")
+        comment_data.append(
+            {
+                "user_id": t.user_id,
+                "commentPK": t.pk,
+                "content": t.content,
+                "created_at": t.created_at,
+                "profile_name": t.user.nickname,
+            }
+        )
+    # context(data)에 commentData, article의 pk, 요청유저의 pk를 담아서
+    data = {
+        "commentData": comment_data,
+        "articlePK": article_pk,
+        "user": user
+    }
+    # json으로 리턴
+    return JsonResponse(data)
+    #return redirect("articles:detail", pk)
 
 # 댓글 삭제
 def comment_delete(request, pk, comment_pk): # 마지막에 특정 리뷰에 대한 pk가 필요함
