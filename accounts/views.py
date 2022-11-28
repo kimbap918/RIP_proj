@@ -118,9 +118,8 @@ def login(request):
             login_form = AuthenticationForm()
 
         context = {
-             "login_form": login_form,
+            "login_form": login_form,
         }
         return render(request, "accounts/login.html", context)
     # else:
-    #     return HttpResponseRedirect("")
-
+    #    return HttpResponseRedirect("")
