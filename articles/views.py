@@ -74,10 +74,10 @@ def article_detail(request, pk):
     return render(request, "articles/detail.html", context)
 
 # 게시물 삭제
-def article_delete(request, pk):
-    Article.objects.get(pk=pk).delete()
+def article_delete(request, article_pk):
+    Article.objects.get(pk=article_pk).delete()
 
-    return redirect('articles:delete')
+    return redirect('articles:index')
 
 # 댓글 생성
 def comment_create(request, pk):
@@ -163,3 +163,21 @@ def comment_like(request, review_pk, comment_pk):
                 "isLike": is_like,
             }
             return JsonResponse(data)
+
+
+# 게시물 북마크
+def bookmark(request, article_pk):
+    article = get_object_or_404(Article, pk=article_pk)
+    # 만약에 로그인한 유저가 이 글을 북마크를 눌렀다면,
+    # if answer.like_users.filter(id=request.user.id).exists():
+    if request.user in article.bookmark_users.all():
+        # 북마크 삭제하고
+        article.bookmark_users.remove(request.user)
+        is_bookmark = False
+    else:
+        # 북마크 추가하고
+        article.bookmark_users.add(request.user)
+        is_bookmark = True
+    # 상세 페이지로 redirect
+    data = {"is_bookmark": is_bookmark,}
+    return JsonResponse(data)
