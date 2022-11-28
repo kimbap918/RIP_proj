@@ -5,4 +5,8 @@
 {% load widget_tweaks %}
 {% block content %}
 디테일 테스트
+{% for article in articles %}
+{{ article.title }}
+{{ article.content }}
+{% endfor %}
 {% endblock %}
