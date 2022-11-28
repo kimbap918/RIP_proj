@@ -1,13 +1,15 @@
-{% comment %} {% extends 'base.html' %} {% endcomment %}
+{% extends 'base.html' %}
 {% load static %}
 {% load django_bootstrap5 %}
 {% load widget_tweaks %}
-{% comment %} {% block content %} {% endcomment %}
-<form action="" method="POST" enctype="multipart/form-data">
+{% block content %}
+<div class="row d-flex justify-content-center align-content-center">
+<form action="" method="POST" enctype="multipart/form-data" class="col-8">
     {% csrf_token %}
     <h2>create</h2>
-    {{ form.title|add_class:"form-control" |attr:"placeholder:이름" }}
+    <div class="my-3">{{ form.title|add_class:"form-control" |attr:"placeholder:제목" }}</div>
     <div>{{ form.content|add_class:"form-control"|attr:"placeholder:내용" }}</div>
     {% bootstrap_button content="create" button_type="submit" button_class="btn-primary" %}
 </form>
-{% comment %} {% endblock content %} {% endcomment %}
+</div>
+{% endblock content %}

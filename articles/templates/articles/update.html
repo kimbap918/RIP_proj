@@ -3,10 +3,12 @@
 {% load django_bootstrap5 %}
 {% load widget_tweaks %}
 {% comment %} {% block content %} {% endcomment %}
-<form action="" method="POST" enctype="multipart/form-data">
+<div class="row d-flex justify-content-center align-content-center">
+    <form action="" method="POST" enctype="multipart/form-data" class="col-8">
     <h2>update</h2>
-    {{ form.title| attr:"placeholde:ID" }}
+    <div class="my-3">{{ form.title|add_class:"form-control" |attr:"placeholder:제목" }}</div>
     <div>{{ form.content }}</div>
     {% bootstrap_button content="update" button_type="submit" button_class="btn-primary" %}
 </form>
+</div>
 {% comment %} {% endblock content %} {% endcomment %}
