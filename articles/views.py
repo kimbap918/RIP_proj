@@ -50,3 +50,7 @@ def article_update(request,article_pk):
         'form':form
     }
     return render(request, 'articles/create.html', context)
+
+def main(request):
+    return render(request, "articles/main.html")
+
