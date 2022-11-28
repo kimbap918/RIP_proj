@@ -20,6 +20,9 @@ class Article(models.Model):
     like_user = models.ManyToManyField(
         settings.AUTH_USER_MODEL, related_name="like_post"
     )
+    bookmark_user = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, related_name="bookmark_post"
+    )
 
 class Comment(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)

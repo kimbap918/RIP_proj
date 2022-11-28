@@ -3,5 +3,67 @@
 {% load static %}
 
 {% block content %}
-<h1 class="text-center my-5">개인정보 관리</h1>
+<h1 class="text-center my-5">
+    <span class="text-primary">{{ user.nickname }}</span>님의 페이지</h1>
+
+<!-- 프로필 이미지?(op.gg에는 뱃지 같은게 있어욜...), 닉네임, 유저네임, 소개글 -->
+<div class="container d-grid p-3 rounded-4 border border-1 mb-5" style="background-color: white;">
+    <div class="row row-cols-2 align-items-center">
+      <div class="col-3">
+        {% if user.profile.image %}
+          <img src="{{ user.profile.image.url }}" alt="" class="rounded-4 border border-1 w-100">
+        {% else %}
+          <img src="{% static 'images/dummy-image-square.jpg' %}" alt="" class="rounded-4 border border-1 w-100">
+        {% endif %}
+      </div>
+
+      <div class="col-9 p-3" style="height: 100%">
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center">
+            <h3 class="m-0 me-3">{{ user.nickname }}</h3>
+          </div>
+
+          <div>
+            <!-- 로그인 유저 == 회원 정보 페이지의 유저 -->
+            {% if request.user == user %}
+              <a href="{% url 'accounts:update' user.pk %}" class="btn btn-primary">회원 정보 수정</a>
+            <!-- 로그인 유저 -->
+            {% elif request.user.is_authenticated %}
+              <form id="follow-form" data-user-id="{{ user.pk }}">
+                {% csrf_token %}
+              
+                <!-- 로그인 한 유저가 이미 팔로잉 중일 때 -->
+                {% if request.user in user.followers.all %}
+                  <input class='btn btn-secondary' type="submit" value="언팔로우">
+                {% else %}
+                  <input class='btn btn-primary' type="submit" value="팔로우">
+                {% endif %}
+              </form>
+            {% endif %}
+          </div>
+        </div>
+        <hr>
+
+        <div class="d-flex justify-content-between mb-4">
+          <div>
+            <a id="link_user_articles" data-bs-toggle="collapse" href="#user_articles" role="button" aria-expanded="false" aria-controls="collapseExample" class="me-3">내가 쓴글</a>
+            <a id="link_like_articles" data-bs-toggle="collapse" href="#like_articles" role="button" aria-expanded="false" aria-controls="collapseExample" class="me-3">좋아요</a>
+            {% if user == request.user %}
+              <a id="link_bookmark_articles" data-bs-toggle="collapse" href="#bookmark_articles" role="button" aria-expanded="false" aria-controls="collapseExample">내 와드</a>
+            {% endif %}
+          </div>
+          
+          <p class="text-muted m-0">
+            <span class="me-3">팔로잉 <span id="followings-count">{{ user.followings.all|length }}</span>명</span>
+            <span>팔로워 <span id="followers-count">{{ user.followers.all|length }}</span>명</span>        
+          </p>
+        </div>
+
+        <div>
+          <p class="m-0">{{ user.profile.intro }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
 {% endblock content %}
