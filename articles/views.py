@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from email import message
 from .forms import *
 from .models import *
-from django.http import JsonResponse
+from django.http import JsonResponse,HttpResponseForbidden
 # Create your views here.
 
 # index (test용)
@@ -58,15 +58,16 @@ def main(request):
 # 게시물 디테일
 def article_detail(request, pk):
     # 특정 글을 가져온다.
-    articles = get_object_or_404(articles, pk=pk)
-    articles_form = ArticleForm()
-
+    article = get_object_or_404(Article, pk=pk)
+    article_form = ArticleForm()
+    comments_form = CommentForm()
     # template에 객체 전달
     context = {
-        "articles": articles,
-        # 역참조 (articles에 포함된 articles data를 전부 불러온다.)
-        "articles": articles.articles_set.all(),
-        "articles_form": articles_form,
+        "article": article,
+        # 역참조 (articles에 포함된 comments data를 전부 불러온다.)
+        "articles_form": article_form,
+        "comments_form": comments_form,
+        "comments": article.comment_set.all(),
     }
     return render(request, "articles/detail.html", context)
 
@@ -86,14 +87,16 @@ def comment_create(request, pk):
         comment.article = article
         comment.user = request.user
         comment.save()
-    return redirect("articles:detail", article.pk)
+    return redirect("articles:detail", pk)
 
 # 댓글 삭제
-def comment_delete(request, comment_pk, pk): # 마지막에 특정 리뷰에 대한 pk가 필요함
+def comment_delete(request, pk, comment_pk): # 마지막에 특정 리뷰에 대한 pk가 필요함
     comment = Comment.objects.get(pk=comment_pk)
     if request.user.is_authenticated and request.user == comment.user:
         comment.delete()
         return redirect("articles:detail", pk)
+    else:
+        return HttpResponseForbidden()
 
 # 게시글 좋아요
 def like(request, pk):
