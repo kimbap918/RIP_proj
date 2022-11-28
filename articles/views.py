@@ -54,7 +54,7 @@ def article_update(request,article_pk):
 def main(request):
     return render(request, "articles/main.html")
 
-# articles 삭제
+# 게시물 디테일
 def article_detail(request, pk):
     # 특정 글을 가져온다.
     articles = get_object_or_404(articles, pk=pk)
@@ -69,7 +69,7 @@ def article_detail(request, pk):
     }
     return render(request, "articles/detail.html", context)
 
-
+# 게시물 삭제
 def article_delete(request, pk):
     Article.objects.get(pk=pk).delete()
 
