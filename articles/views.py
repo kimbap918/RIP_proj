@@ -54,3 +54,23 @@ def article_update(request,article_pk):
 def main(request):
     return render(request, "articles/main.html")
 
+# articles 삭제
+def article_detail(request, pk):
+    # 특정 글을 가져온다.
+    articles = get_object_or_404(articles, pk=pk)
+    articles_form = ArticleForm()
+
+    # template에 객체 전달
+    context = {
+        "articles": articles,
+        # 역참조 (articles에 포함된 articles data를 전부 불러온다.)
+        "articles": articles.articles_set.all(),
+        "articles_form": articles_form,
+    }
+    return render(request, "articles/detail.html", context)
+
+
+def article_delete(request, pk):
+    Article.objects.get(pk=pk).delete()
+
+    return redirect('articles:delete')
