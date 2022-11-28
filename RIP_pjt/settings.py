@@ -57,6 +57,8 @@ INSTALLED_APPS = [
     'django_bootstrap5',
     'django_extensions',
     'widget_tweaks',
+    # django-summernote
+    'django_summernote',
     # default settings
     'django.contrib.admin',
     'django.contrib.auth',
@@ -140,7 +142,9 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
+# MEDIA files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/

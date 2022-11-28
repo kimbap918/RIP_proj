@@ -1,0 +1,12 @@
+{% comment %} {% extends 'base.html' %} {% endcomment %}
+{% load static %}
+{% load django_bootstrap5 %}
+{% load widget_tweaks %}
+{% comment %} {% block content %} {% endcomment %}
+<form action="" method="POST" enctype="multipart/form-data">
+    <h2>update</h2>
+    {{ form.title| attr:"placeholde:ID" }}
+    <div>{{ form.content }}</div>
+    {% bootstrap_button content="update" button_type="submit" button_class="btn-primary" %}
+</form>
+{% comment %} {% endblock content %} {% endcomment %}
