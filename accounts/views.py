@@ -1,15 +1,15 @@
 
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Profile
-from .form import ProfileForm
+from .forms import ProfileForm
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth import get_user_model, update_session_auth_hash
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
-from .form import CustomUserChangeForm
-from .form import CustomUserCreationForm
+from .forms import CustomUserChangeForm
+from .forms import CustomUserCreationForm
 from django.http import HttpResponseRedirect
 
 
@@ -36,7 +36,7 @@ def signup(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            auth_login(request, user)
+            auth_login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect("articles:main")
     else:
         form = CustomUserCreationForm()
