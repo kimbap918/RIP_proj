@@ -1,4 +1,3 @@
-
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Profile
 from .forms import ProfileForm
@@ -16,20 +15,23 @@ from django.http import HttpResponseRedirect
 # Create your views here.
 def login(request):
     # if request.user.is_anonymous:
-        if request.method == "POST":
-            login_form = AuthenticationForm(request, data=request.POST)
-            if login_form.is_valid():
-                auth_login(request, login_form.get_user())
-                return redirect("articles:main")
-        else:
-            login_form = AuthenticationForm()
+    if request.method == "POST":
+        login_form = AuthenticationForm(request, data=request.POST)
+        if login_form.is_valid():
+            auth_login(request, login_form.get_user())
+            return redirect("articles:main")
+    else:
+        login_form = AuthenticationForm()
 
-        context = {
-            "login_form": login_form,
-        }
-        return render(request, "accounts/login.html", context)
-    # else:
-    #    return HttpResponseRedirect("")
+    context = {
+        "login_form": login_form,
+    }
+    return render(request, "accounts/login.html", context)
+
+
+# else:
+#    return HttpResponseRedirect("")
+
 
 def logout(request):
     auth_logout(request)
@@ -41,6 +43,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             auth_login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+
             return redirect("articles:main")
     else:
         form = CustomUserCreationForm()
@@ -48,8 +51,6 @@ def signup(request):
         "form": form,
     }
     return render(request, "accounts/signup.html", context)
-
-
 
 
 # 마이 페이지 (회원 정보로 이동, 비밀번호 변경, 로그아웃, 회원탈퇴)
@@ -141,4 +142,3 @@ def update(request, pk):
     }
 
     return render(request, "accounts/update.html", context)
-    
