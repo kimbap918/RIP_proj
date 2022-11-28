@@ -97,20 +97,18 @@ def comment_delete(request, comment_pk, pk): # 마지막에 특정 리뷰에 대
         return redirect("articles:detail", pk)
 
 # 게시글 좋아요
-def like(request, pk):
-    article = get_object_or_404(Article, pk=pk)
-    # 만약에 로그인한 유저가 이 글을 좋아요를 눌렀다면,
-    # if article.like_users.filter(id=request.user.id).exists():
+def like(request, article_pk):
+    article = get_object_or_404(Article, pk=article_pk)
     if request.user in article.like_users.all(): 
-        # 좋아요 삭제하고
         article.like_users.remove(request.user)
         is_liked = False
     else:
-        # 좋아요 추가하고 
         article.like_users.add(request.user)
         is_liked = True
-    # 상세 페이지로 redirect
-    context = {'isLiked': is_liked, 'likeCount': article.like_users.count()}
+    context = {
+        'isLiked': is_liked, 
+        'likeCount': article.like_users.count()
+    }
     return JsonResponse(context)
 
 # 댓글 좋아요
