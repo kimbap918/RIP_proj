@@ -4,33 +4,57 @@
 {% load article_filter %}
 {% load widget_tweaks %}
 {% block content %}
+<style>
+    a{
+        text-decoration:none;
+    }
+</style>
 <!-- 게시판 -->
-<div class="container my-3">
+<div class="row my-3">
+    <div class="col-3">
+
+    </div>
+    <div class="col-9">
+        <div class="border border-3 d-flex flex-column my-3">
+            <h6 class="mx-3 mt-3"><a href="">전체</a>
+                <a href="{% url 'articles:create' %}" class="text-info" style="float:right;"><i class="bi bi-pencil-square"></i></a>
+            </h6>
+    
+            
+            <div class="d-flex my-3">
+            <a href="" class="small col-2 mx-3"><i class="bi bi-fire"></i>인기</a>
+            <a href="" class="small col-2 mx-3"><i class="bi bi-hand-thumbs-up"></i>최신</a>
+            <a href="" class="small col-2 mx-3">뭘넣냐</a>
+            <div class="col-4">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-sm btn-outline-success" type="submit">
+                        <i class="bi bi-search"></i></button>
+                </form>
+            </div>
+            </div>
+        </div>
     <table class="table">
-        <thead>
-            <tr class="text-center table-primary">
-                <th>번호</th>
-                <th>제목</th>
-                <th>글쓴이</th>
-                <th>작성일시</th>
-            </tr>
-        </thead>
         <tbody>
             {% if article %}
             {% for articles in article %}
-        <tr class="text-center list">
-            <td>
-                {{ article.paginator.count|sub:article.start_index|sub:forloop.counter0|add:1 }}
-            </td>
-            <td class="text-start text-truncate" style="max-width: 40px;">
-                <a href="{% url 'articles:detail' articles.pk %}" class="" >{{ articles.title }}</a>
-            
-            {% if question.answer_set.count > 0 %}
-            <span class="text-danger small mx-2">{{ article.comment_set.count }}</span>
-            </td>
-            {% endif %}
-            <td>{{ articles.user.username }}</td>
-            <td>{{ articles.created_at }}</td>
+        <tr class=" border">
+                <td class="d-flex">
+                    <p class="mx-3 d-flex flex-column text-center"><span style="font-size: 8px;">추천</span>{{ articles.like_user.count }}</p>
+                    <div class="d-flex flex-column mx-3">
+                        <a href="{% url 'articles:detail' articles.pk %}" class="" >{{ articles.title }}
+                            {% if articles.comment_set.count > 0 %}
+                            <span class="text-success small mx-2">[{{ articles.comment_set.count }}]</span></a>
+                        <p style="font-size:12px;">{{ articles.user.username }} |
+                        {% if articles.created_string == False %}
+                        <span style="font-size:12px;">{{ articles.created_at|date:'m월 d일' }}</span>
+                        {% else %}
+                        <span style="font-size:12px;">{{ articles.created_string }}</span>
+                        {% endif %}
+                        </p>
+                    </div>
+                </td>
+                {% endif %}
         </tr>
         {% endfor %}
         {% else %}
@@ -39,7 +63,8 @@
         </tr>
         {% endif %}
         </tbody>
-    </table>
+    </table>    
+    
     <ul class="pagination justify-content-center">
         <!-- 이전페이지 -->
         {% if article.has_previous %}
@@ -76,7 +101,8 @@
         {% endif %}
     </ul>
     <!-- 페이징처리 end-->
-    <a href="{% url 'articles:create' %}" class="btn btn-primary">질문 등록하기</a>
+    
+</div>
 </div>
 
 {% endblock content %}

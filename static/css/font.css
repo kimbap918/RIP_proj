@@ -1,0 +1,81 @@
+  @font-face {
+      font-family: 'B-bold';
+      src: url('/static/font/AnyConv.com__BeaufortforLOL-Bold.woff');
+  }
+
+  @font-face {
+      font-family: 'B-bolditalic';
+      src: url('/static/font/AnyConv.com__BeaufortforLOL-BoldItalic.woff');
+  }
+
+  @font-face {
+      font-family: 'B-heavy';
+      src: url('/static/font/AnyConv.com__BeaufortforLOL-Heavy.woff');
+  }
+
+  @font-face {
+      font-family: 'B-heavyitalic';
+      src: url('/static/font/AnyConv.com__BeaufortforLOL-HeavyItalic.woff');
+  }
+
+  @font-face {
+      font-family: 'B-light';
+      src: url('/static/font/AnyConv.com__BeaufortforLOL-Light.woff');
+  }
+
+  @font-face {
+      font-family: 'B-lightitalic';
+      src: url('/static/font/AnyConv.com__BeaufortforLOL-LightItalic.woff');
+  }
+
+  @font-face {
+      font-family: 'B-medium';
+      src: url('/static/font/AnyConv.com__BeaufortforLOL-Medium.woff');
+  }
+
+  @font-face {
+      font-family: 'B-mediumitalic';
+      src: url('/static/font/BeaufortforLOL-MediumItalic.woff');
+  }
+
+  @font-face {
+      font-family: 'B-regular';
+      src: url('/static/font/BeaufortforLOL-Regular.woff');
+  }
+
+  @font-face {
+      font-family: 'S-bold';
+      src: url('/static/font/Spiegel_TT_Bold.woff');
+  }
+
+  @font-face {
+      font-family: 'S-bolditalic';
+      src: url('/static/font/Spiegel_TT_Bold_Italic.woff');
+  }
+
+  @font-face {
+      font-family: 'S-semibold';
+      src: url('/static/font/Spiegel_TT_SemiBold.woff');
+  }
+
+  @font-face {
+      font-family: 'S-semibolditalic';
+      src: url('/static/font/Spiegel_TT_SemiBold_Italic.woff');
+  }
+
+  @font-face {
+      font-family: 'S-regular';
+      src: url('/static/font/Spiegel_TT_Regular.woff');
+  }
+
+  @font-face {
+      font-family: 'S-regularitalic';
+      src: url('/static/font/Spiegel_TT_Regular_Italic.woff');
+  }
+
+  @font-face {
+      font-family: 'basic-ko';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Medium.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+  }
