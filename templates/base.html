@@ -40,9 +40,9 @@ body{
 	margin: 0;
 	padding: 0;
 }
-i {
+/* i {
 	margin-right: 10px;
-}
+} */
 /*----------bootstrap-navbar-css------------*/
 .navbar-logo{
 	padding: 15px;
@@ -69,13 +69,13 @@ i {
 }
 #navbarSupportedContent ul li a{
 	color: rgba(255,255,255,0.5);
-    text-decoration: none;
-    font-size: 15px;
-    display: block;
-    padding: 20px 20px;
-    transition-duration:0.6s;
+  text-decoration: none;
+  font-size: 15px;
+  display: block;
+  padding: 20px 20px;
+  transition-duration:0.6s;
 	transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    position: relative;
+  position: relative;
 }
 #navbarSupportedContent>ul>li.active>a{
 	color: #5161ce;
@@ -90,7 +90,7 @@ i {
 	font-size: 14px;
 	font-family: "Font Awesome 5 Free";
 	display: inline-block;
-	padding-right: 3px;
+	padding-right: 0px;
 	vertical-align: middle;
 	font-weight: 900;
 	transition: 0.5s;
@@ -146,23 +146,23 @@ i {
 
 @media(min-width: 992px){
 	.navbar-expand-custom {
-	    -ms-flex-flow: row nowrap;
-	    flex-flow: row nowrap;
-	    -ms-flex-pack: start;
-	    justify-content: flex-start;
+	  -ms-flex-flow: row nowrap;
+	  flex-flow: row nowrap;
+	  -ms-flex-pack: start;
+	  justify-content: flex-start;
 	}
 	.navbar-expand-custom .navbar-nav {
-	    -ms-flex-direction: row;
-	    flex-direction: row;
+	  -ms-flex-direction: row;
+	  flex-direction: row;
 	}
 	.navbar-expand-custom .navbar-toggler {
-	    display: none;
+	  display: none;
 	}
 	.navbar-expand-custom .navbar-collapse {
-	    display: -ms-flexbox!important;
-	    display: flex!important;
-	    -ms-flex-preferred-size: auto;
-	    flex-basis: auto;
+	  display: -ms-flexbox!important;
+	  display: flex!important;
+	  -ms-flex-preferred-size: auto;
+	  flex-basis: auto;
 	}
 }
 
@@ -222,6 +222,7 @@ i {
 	}
 }
 
+/* 네브바 login */
 .login {
   list-style: none;
 
@@ -237,10 +238,11 @@ i {
   color: #2e397c;
 }
 
+/* 네브바 드롭다운 */
 .dropbtn {
   background-color: #5161ce;
   color: white;
-  width: 80px;
+  width: auto;
   height: 40px;
   font-size: 16px;
   border: none;
@@ -249,14 +251,15 @@ i {
 
 .dropdown {
   position: relative;
-  /* display: inline-block; */
+  display: inline-block;
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
+  left: 0px;
   background-color: #fff9f9;
-  min-width: 100px;
+  min-width: 125px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 10;
   border-radius: 5px;
@@ -267,6 +270,7 @@ i {
   padding: 12px 16px;
   text-decoration: none;
   display: block;
+  font-size: small;
 }
 
 .dropdown-content a:hover {
@@ -300,44 +304,41 @@ i {
           <ul class="navbar-nav ml-auto">
             <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
               <!-- 링크 추가 예정 -->
-              <!-- <li class="nav-item">
-                  <a class="nav-link" href="javascript:void(0);"><i class="fas fa-tachometer-alt"></i>1</a>
-              </li> -->
               <li class="nav-item active">
-                  <a class="nav-link" href="/"><i class="far fa-address-book"></i>홈</a>
+                  <a class="nav-link" href="/home">홈</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="/articles/"><i class="far fa-clone"></i>커뮤니티</a>
+                  <a class="nav-link" href="{% url 'articles:index' %}">커뮤니티</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="javascript:void(0);"><i class="far fa-calendar-alt"></i>3</a>
+                  <a class="nav-link" href="{% url 'accounts:signup' %}">챔피언</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="javascript:void(0);"><i class="far fa-chart-bar"></i>Documents</a>
+                  <a class="nav-link" href="javascript:void(0);">Documents</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="javascript:void(0);"><i class="far fa-copy"></i>챔피언</a>
+                  <a class="nav-link" href="javascript:void(0);">Documents</a>
               </li>
             </div>
           </ul>
-        </div>
-        <!-- 로그인과 로그아웃시 변경 -->
-        {% if request.user.is_authenticated %}
-        <div class="dropdown sm:display md:display lg:display">
-          <button class="dropbtn">
-            {{ user.username }}
-            <i class="px-1 fa-solid fa-chevron-down"></i>
-          </button>
-          <div class="dropdown-content">
-            <a href="{% url 'accounts:detail' user.pk %}">settings</a>
-            <a href="{% url 'accounts:logout' %}">logout</a>
+          <!-- 로그인과 로그아웃시 변경 -->
+          {% if request.user.is_authenticated %}
+          <div class="dropdown sm:display md:display lg:display">
+            <button class="dropbtn">
+              {{ user.username }}님
+              <i class="px-1 fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a href="{% url 'accounts:detail' user.pk %}">settings</a>
+              <a href="{% url 'accounts:logout' %}">logout</a>
+            </div>
           </div>
+          {% else %}
+          <div class="login sm:display md:display lg:display">
+              <a href="{% url 'accounts:login' %}">로그인</a>
+          </div>
+          {% endif %}
         </div>
-        {% else %}
-        <ul class="login m-0">
-          <li class="py-2  sm:display md:display lg:display"><a href="{% url 'accounts:login' %}">로그인</a></li>
-        </ul>
-        {% endif %}
       </div>
     </div>
   </nav>
@@ -401,7 +402,6 @@ i {
         </div>
       </div>
     </nav> -->
-    <hr>
     <!-- /.fixed navigation -->
   </header>
   <h1 style="font-family: 'B-bold';">안녕hello</h1>
@@ -467,21 +467,6 @@ $(".navbar-toggler").click(function(){
 });
 
 
-// 김나형 url 제이쿼리 코드
-// --------------add active class-on another-page move----------
-// $(document).ready(function(){
-
-// $("#btn-community").click(function(){
-//   $(location).attr("href", "{% url 'articles:index' %}")
-// })
-
-// $("#btn-accounts").click(function(){
-//   $(location).attr("href", "{% url 'accounts:signup' %}")
-// })
-
-// })
-
-// 기존 코드 이해 못함
 jQuery(document).ready(function($){
 	// Get current path and find target link
 	var path = window.location.pathname.split("/").pop();  // 현재 실행 파일명
@@ -501,21 +486,21 @@ jQuery(document).ready(function($){
 
 // Add active class on another page linked
 // ==========================================
-// $(window).on('load',function () {
-//     var current = location.pathname;
-//     console.log(current);
-//     $('#navbarSupportedContent ul li a').each(function(){
-//         var $this = $(this);
-//         // if the current path is like this link, make it active
-//         if($this.attr('href').indexOf(current) !== -1){
-//             $this.parent().addClass('active');
-//             $this.parents('.menu-submenu').addClass('show-dropdown');
-//             $this.parents('.menu-submenu').parent().addClass('active');
-//         }else{
-//             $this.parent().removeClass('active');
-//         }
-//     })
-// });
+$(window).on('load',function () {
+    var current = location.pathname;
+    console.log(current);
+    $('#navbarSupportedContent ul li a').each(function(){
+        var $this = $(this);
+        // if the current path is like this link, make it active
+        if($this.attr('href').indexOf(current) !== -1){
+            $this.parent().addClass('active');
+            $this.parents('.menu-submenu').addClass('show-dropdown');
+            $this.parents('.menu-submenu').parent().addClass('active');
+        }else{
+            $this.parent().removeClass('active');
+        }
+    })
+});
   </script>
   <script>
     // nav scroll
