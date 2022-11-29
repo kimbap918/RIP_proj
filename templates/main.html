@@ -1,13 +1,89 @@
-{% extends 'base.html' %}
-
 {% load static %}
 {% load widget_tweaks %}
 {% load django_bootstrap5 %}
 
-{% block title %}{% endblock title %}
+<!doctype html>
+<html lang="kr">
 
-{% block content %}
-  <section class="login-container">
-    <h1 class="text-center my-2">메인</h1> 
-  </section>
-{% endblock content %}
+<head>
+  <link rel="shortcut icon" type="image/x-icon" href="#">
+  <title>RIP.gg
+  </title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+  <!-- 부트스트랩 icon -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css%22%3E">
+  <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"> -->
+  <!-- 파비콘 -->
+  <link rel="icon" type="image/png" href="/static/images/logo.png" sizes="16x16">
+  <!-- 폰트어썸 -->
+  <script src="https://kit.fontawesome.com/9dfbf66130.js" crossorigin="anonymous"></script>
+
+  {% block style %}{% endblock style %}
+</head>
+
+<style>
+  .letter {
+    position: absolute;
+  }
+
+  body {
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .jb-box {
+    width: 100%;
+    height: 500px;
+    /* overflow: hidden; */
+    margin: 0px auto;
+    position: relative;
+  }
+
+  video {
+    width: 100%;
+  }
+
+  .jb-text {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+  }
+
+  .jb-text p {
+    margin-top: -24px;
+    text-align: center;
+    font-size: 48px;
+    color: #ffffff;
+  }
+</style>
+
+<body>
+
+
+
+  <!-- <section class="login-container"> -->
+  <!-- <div> -->
+  <!-- <a href="{% url 'articles:index' %}" class="letter" style="color: white;">메인</a> -->
+  <!-- </div> -->
+  <!-- <video class="w-100 h-100" src="/static/images/Crystal-1.mp4" autoplay loop muted -->
+  <!-- style="position: relative;"></video> -->
+  <!-- </section> -->
+
+  <div class="jb-box">
+    <video muted autoplay loop>
+      <source src="/static/images/Crystal-1.mp4" type="video/mp4">
+      <strong>Your browser does not support the video tag.</strong>
+    </video>
+    <div class="jb-text">
+      <p><a href="{% url 'articles:index' %}"><img src="/static/images/흰로고.png" alt="" style="width: 50vh;"></a></p>
+      
+    </div>
+  </div>
+
+</body>
