@@ -6,15 +6,34 @@
 {% block content %}
 
 <div class="row">
-    {{ article.title }}
-    {{ article.content|safe|linebreaks }}
-    {% if request.user == article.user %}
-    <a href="{% url 'articles:update' article.pk %}">수정</a>
-    <!-- 삭제 모달 버튼 -->
-    <div>
-        <a class="btn btn-secondary btn-sm" href="{% url 'articles:delete' article.pk %">삭제하기</a>
-    </div>
+    <div class="col-3"></div>
+    <div class="col-9 border">
+        <div class="d-flex flex-column">
+            <h4>
+                {{ article.title }}
+                {% if request.user == article.user %}
+                <div style="float:right">
+                <a class="btn btn-primary btn-sm" href="{% url 'articles:update' article.pk %}">수정</a>
+                <!-- 삭제 모달 버튼 -->
+                <a class="btn btn-secondary btn-sm" href="{% url 'articles:delete' article.pk %">삭제</a>
+                </div>
     {% endif %}
+            </h4>
+            <p style="font-size:12px;">{{ article.user.username }} | 
+                {% if article.created_string == False %}
+                <span style="font-size:12px;">{{ article.created_at|date:'m월 d일' }}</span>
+                {% else %}
+                <span style="font-size:12px;">{{ article.created_string }}</span>
+                {% endif %}
+                <span class="me-3" style="float:right;">
+                    댓글 {{ article.comment_set.count }} |
+                    <span>추천 {{ article.like_user.count }}</span>
+                </span>
+                
+            </p>
+        </div>
+    <hr>
+    {{ article.content|safe|linebreaks }}
     <!-- 비동기 북마크 -->
     <div class=" my-2 d-flex justify-content-center">
         <!-- 로그인 했다면 -->
@@ -43,6 +62,13 @@
 
     <!-- article.pk번 게시글의 댓글 -->
     <!-- 댓글 작성 폼-->
+    
+    </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-3"></div>
+<div class="border col-9 my-5">
     <h4 class="my-3">댓글</h4>
     {% if request.user.is_authenticated %}
     <form action="{% url 'articles:comment_create' article.pk %}" method="POST" id="comment-form"
@@ -73,7 +99,11 @@
     {% endif %}
     <hr>
     {% empty %}
-    <p>댓글이 없어요 ㅠ_ㅠ</p>
+    <div class="text-center">
+        <p class="d-flex flex-column">
+            <i class="bi bi-chat-left-dots"></i>
+            등록된 댓글이 없습니다.</p>
+    </div>
     {% endfor %}
     </div>
 </div>
