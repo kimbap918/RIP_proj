@@ -56,41 +56,38 @@
     <!-- 댓글 목록 -->
     <div id="comments">
         {% for comment in comments %}
-        <a href="">
-            <p class="keyboard-comment-user">{{ comment.user }}</p>
-        </a>
+        <a class="keyboard-comment-user" href="#" style="text-decoration: none;">{{ comment.user }} </a> 
         {% if request.user not in comment.like_users.all %}
-        <i class="bi bi-heart" data-review-id="{{ article.pk }}" data-comment-id="{{ comment.pk }}"
-            id="commentlike"></i>
+        <i class="bi bi-heart" data-review-id="{{ article.pk }}" data-comment-id="{{ comment.pk }}" id="commentlike"></i>
         {% else %}
         <i id="like-btn" data-article-id="{{ article.pk }}" class="bi bi-heart"></i>
         {% endif %}
         <span id="like-count">{{ article.like_users.count }}</span>
-    </div>
-
-    <p> {{ comment.content }}</p>
+    <p>{{ comment.content }}</p>
     {% if user.is_authenticated and comment.user == request.user %}
-    <form action="{% url 'articles:comment_delete' article.pk comment.pk %}" method="POST" class="my-0">
+    <form action="{% url 'articles:comment_delete' article.pk comment.pk %}" method="POST">
         {% csrf_token %}
-        <input type="submit" class="btn btn-outline-danger mt-2" value="삭제">
+        <input type="submit" class="btn btn-outline-danger mb-2" value="삭제">
     </form>
     {% endif %}
     <hr>
     {% empty %}
     <p>댓글이 없어요 ㅠ_ㅠ</p>
     {% endfor %}
+    </div>
 </div>
+{% endblock %}
 
-
-<!-- 댓글생성 JS -->
-
+{% block script %}
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-<!--코멘트 생성-->
+<!-- 댓글 생성 -->
 <script src="{% static 'js/comment_create.js' %}"></script>
+<!-- 게시글 좋아요 -->
 <script src="{% static 'js/article_like.js' %}"></script>
+<!-- 북마크 -->
 <script src="{% static 'js/article_bookmark.js' %}"></script>
-<script src="{% static 'js/comment_like.js' %}"></script>
-{% comment %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> {% endcomment %}
-{% endblock %}
+<!-- 댓글 좋아요 -->
+<!-- <script src="{% static 'js/comment_like.js' %}"></script> -->
+
+{% endblock script %}

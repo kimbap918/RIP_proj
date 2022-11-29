@@ -24,10 +24,13 @@
                     comments.insertAdjacentHTML('beforeend', `
             <div class="comment" data-comment-id="${commentData[i].commentPk}">
               <div class="comment-detail">
-                <p class="comment-profile-name"><a class="comment-profile-name" href="#">${commentData[i].profile_name}</a></p>
+                <span class="comment-profile-name"><a class="comment-profile-name" href="#">${commentData[i].profile_name}</a></span>
+                <i class="bi bi-heart" data-review-id="{{ article.pk }}" data-comment-id="{{ comment.pk }}" id="commentlike"></i>
                 <p id="comment-update-${commentData[i].commentPk}-content" class="comment-content">${commentData[i].content}</p>
                 <div class="comment-control" id="control-comment-update-${commentData[i].commentPk}">
-                    <button class="comment-delete-btn" id="comment-delete-{{ comment.pk }}" data-reviewdel-id="{{ article.pk }}"data-commentdel-id="{{ comment.pk }}">삭제</button>
+                  <form action="{% url 'articles:comment_delete' article.pk comment.pk %}" method="POST">
+                  <input type="submit" class="btn btn-outline-danger mb-2" value="삭제">
+                  </form>
                 </div>
                 <hr>
               </div>
@@ -37,7 +40,7 @@
                     comments.insertAdjacentHTML('beforeend', `
             <div class="comment">
               <div class="comment-detail">
-                <p class="comment-profile-name"><a class="comment-profile-name" href="#">${commentData[i].profile_name}</a></p>
+                <span class="comment-profile-name"><a class="comment-profile-name" href="#">${commentData[i].profile_name}</a></span>
                 <p class="comment-content">${commentData[i].content}</p>
               </div>
             </div>
