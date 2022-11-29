@@ -27,9 +27,7 @@
                 <span class="comment-profile-name"><a class="comment-profile-name" href="#">${commentData[i].profile_name}</a></span>
                 <i class="bi bi-heart" data-review-id="{{ article.pk }}" data-comment-id="{{ comment.pk }}" id="commentlike"></i>
                 <p id="comment-update-${commentData[i].commentPk}-content" class="comment-content">${commentData[i].content}</p>
-                <div class="comment-control" id="control-comment-update-${commentData[i].commentPk}">
-                  <p class="comment-control-delete btn btn-outline-danger mb-2" onclick="comment_delete(this)" id="comment-delete-${commentData[i].commentPk}" data-postdel-id="${response.data.articlePk}" data-commentdel-id="${commentData[i].commentPk}">삭제</p>
-                </div>
+                <p class="comment-control-delete btn btn-outline-danger mb-2" onclick="comment_delete(this)" id="comment-delete-${commentData[i].commentPk}" data-postdel-id="${response.data.articlePk}" data-commentdel-id="${commentData[i].commentPk}">삭제</p>
                 <hr>
               </div>
             </div>
