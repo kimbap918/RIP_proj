@@ -62,10 +62,14 @@ def signup(request):
 def detail(request, pk):
     user = get_user_model().objects.get(pk=pk)
     articles = user.article_set.all()
+    like_articles = user.like_post.all()
+    bookmark_articles = user.bookmark_post.all()
 
     context = {
         "user": user,
         "articles": articles,
+        "like_articles": like_articles,
+        "bookmark_articles": bookmark_articles,
     }
     return render(request, "accounts/detail.html", context)
 
