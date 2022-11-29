@@ -19,8 +19,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 from . import views
 urlpatterns = [
+    path('base/', views.base, name='base'),
     path('admin/', admin.site.urls),
-    path('', views.main,name='main'),
+    path('', views.main, name='main'),
+    path('home/', views.home, name='home'),
     path('accounts/', include("accounts.urls")),
     path('articles/', include("articles.urls")),
     path('champions/', include("champions.urls")),
