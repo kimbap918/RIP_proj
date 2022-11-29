@@ -1,10 +1,14 @@
-const likeBtn1 = document.querySelector('#commentlike')
-likeBtn1.addEventListener('click', function (event) {
+const likeBtnComment = document.querySelector('#like-btn-comment')
+    const csrftoken_comment = document.querySelector('[name=csrfmiddlewaretoken]').value
 
+console.log(likeBtnComment)
+
+    likeBtnComment.addEventListener('click', function (event) {
     console.log(event.target.dataset)
     axios({
-        method: 'get',
-        url: `/articles/${event.target.dataset.articleId}/like/`
+        method: 'post',
+        url: `/articles/${event.target.dataset.articleId}/like/${event.target.dataset.commentId}/`,
+        headers: { 'X-CSRFToken': csrftoken_comment }
     })
         .then(response => {
             console.log(response)
@@ -17,7 +21,7 @@ likeBtn1.addEventListener('click', function (event) {
                 event.target.classList.add('bi-heart')
                 event.target.classList.remove('bi-heart-fill')
             }
-            const likeCount = document.querySelector('#like-count')
-            likeCount.innerText = response.data.likeCount
+            const likeCountComment = document.querySelector('#like-count-comment')
+            likeCountComment.innerText = response.data.likeCount
         })
 })

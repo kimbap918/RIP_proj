@@ -1,10 +1,11 @@
 // 댓글 삭제 비동기
 const comment_delete = (e) => {
   const comment_id = document.querySelector(`#${e.id}`).id
+  console.log(event.target.dataset)
   console.log(comment_id)
   axios({
     method: 'post',
-    url: `/articles/${event.target.dataset.articledelId}/comment_delete/${event.target.dataset.commentdelId}`,
+    url: `/articles/${event.target.dataset.postdelId}/comment_delete/${event.target.dataset.commentdelId}`,
     headers: {
       'X-CSRFToken': csrftoken
     }
@@ -21,9 +22,7 @@ const comment_delete = (e) => {
           <div class="comment-detail">
             <p class="comment-profile-name"><a class="comment-profile-name" href="#">${commentData[i].profile_name}</a></p>
             <p id="comment-update-${commentData[i].commentPk}-content" class="comment-content">${commentData[i].content}</p>
-            <div class="comment-control" id="control-comment-update-${commentData[i].commentPk}">
-              <p class="comment-control-delete btn btn-outline-danger mb-2" onclick="comment_delete(this)" id="comment-delete-${commentData[i].commentPk}" data-articledel-id="${response.data.articlePk}" data-commentdel-id="${commentData[i].commentPk}">삭제</p>
-            </div>
+            <p class="comment-control-delete btn btn-outline-danger mb-2" onclick="comment_delete(this)" id="comment-delete-${commentData[i].commentPk}" data-postdel-id="${response.data.articlePk}" data-commentdel-id="${commentData[i].commentPk}">삭제</p>
           </div>
         </div>
         `)

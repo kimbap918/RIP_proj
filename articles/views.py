@@ -186,22 +186,23 @@ def like(request, pk):
     return JsonResponse(context)
 
 # 댓글 좋아요
-def comment_like(request, review_pk, comment_pk):
-    is_like = False
-    temp = Comment.objects.filter(review_id=review_pk)
+def comment_like(request, article_pk, comment_pk):
+    temp = Comment.objects.filter(article_id=article_pk)
     for i in temp:
         if i.pk == comment_pk:
-            if request.user not in i.like_users.all():
-                i.like_users.add(request.user)
+            if request.user not in i.like_user.all():
+                i.like_user.add(request.user)
                 is_like = True
             else:
-                i.like_users.remove(request.user)
+                i.like_user.remove(request.user)
                 is_like = False
             data = {
-                "review.pk": review_pk,
+                "article_pk": article_pk,
                 "comment_pk": comment_pk,
                 "isLike": is_like,
+                'likeCount': i.like_user.count()
             }
+            # print(data)
             return JsonResponse(data)
 
 
