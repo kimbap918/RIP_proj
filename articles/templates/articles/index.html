@@ -29,7 +29,7 @@
             <span class="text-danger small mx-2">{{ article.comment_set.count }}</span>
             </td>
             {% endif %}
-            <td>{{ articles.user.nickname }}</td>
+            <td>{{ articles.user.username }}</td>
             <td>{{ articles.created_at }}</td>
         </tr>
         {% endfor %}

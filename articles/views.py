@@ -56,8 +56,8 @@ def article_update(request,article_pk):
     }
     return render(request, 'articles/create.html', context)
 
-def main(request):
-    return render(request, "articles/main.html")
+# def main(request):
+#     return render(request, "articles/main.html")
 
 # 게시물 디테일
 def article_detail(request, pk):
@@ -114,7 +114,7 @@ def comment_create(request, pk):
                 "commentPK": t.pk,
                 "content": t.content,
                 "created_at": t.created_at,
-                "profile_name": t.user.nickname,
+                "profile_name": t.user.username,
             }
         )
     # context(data)에 commentData, article의 pk, 요청유저의 pk를 담아서
