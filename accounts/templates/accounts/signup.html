@@ -13,6 +13,7 @@
     {% comment %} {% bootstrap_form form %} {% endcomment %}
     <div class="my-3">
         {{ form.email|add_class:"form-control"|attr:"placeholder:이메일" }}</div>
+    <div class="my-3">{{ form.birthday|add_class:"form-control"|attr:"placeholder:생년월일" }}</div>
     <div class="my-3">{{ form.username|add_class:"form-control"|attr:"placeholder:닉네임" }}</div>
     <div class="my-3">{{ form.password1|add_class:"form-control"|attr:"placeholder:비밀번호"|attr:"type:password" }}</div>
     <div class="my-3">{{ form.password2|add_class:"form-control"|attr:"placeholder:비밀번호확인"|attr:"type:password"|add_error_class:"error" }}</div>
