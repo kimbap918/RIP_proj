@@ -135,17 +135,17 @@ def comment_delete(request, comment_pk, pk): # 마지막에 특정 리뷰에 대
         return redirect("articles:detail", pk)
 
 # 게시글 좋아요
-def like(request, article_pk):
-    article = get_object_or_404(Article, pk=article_pk)
-    if request.user in article.like_users.all(): 
-        article.like_users.remove(request.user)
+def like(request, pk):
+    article = get_object_or_404(Article, pk=pk)
+    if request.user in article.like_user.all(): 
+        article.like_user.remove(request.user)
         is_liked = False
     else:
-        article.like_users.add(request.user)
+        article.like_user.add(request.user)
         is_liked = True
     context = {
         'isLiked': is_liked, 
-        'likeCount': article.like_users.count()
+        'likeCount': article.like_user.count()
     }
     return JsonResponse(context)
 
