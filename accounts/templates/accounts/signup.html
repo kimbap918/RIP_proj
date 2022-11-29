@@ -7,11 +7,16 @@
 {% block title %}{% endblock title %}
 
 {% block content %}
-<div class="container">
-  <form action="" method="POST">
+<div class="row justify-content-center">
+  <form action="" method="POST" class="col-6 border border-3 rounded-3 ">
     {% csrf_token %}
-    {% bootstrap_form form %}
-    <div class="textBox" name="약관" value="">
+    {% comment %} {% bootstrap_form form %} {% endcomment %}
+    <div class="my-3">
+        {{ form.email|add_class:"form-control"|attr:"placeholder:이메일" }}</div>
+    <div class="my-3">{{ form.username|add_class:"form-control"|attr:"placeholder:닉네임" }}</div>
+    <div class="my-3">{{ form.password1|add_class:"form-control"|attr:"placeholder:비밀번호"|attr:"type:password" }}</div>
+    <div class="my-3">{{ form.password2|add_class:"form-control"|attr:"placeholder:비밀번호확인"|attr:"type:password"|add_error_class:"error" }}</div>
+    <div class="border border-4 overflow-auto" style="max-height:400px;" name="약관" value="">
       <h5>제1장 총칙</h5>
       <h6>제1조 (본 약관의 목적)</h6>
       <p>본 서비스 이용약관(이하 “본 약관”이라 합니다)은 프로젝트 RIP(이하 “팀”이라 합니다) 가 제공하는 RIP 서비스 및 관련 제반 서비스(이하 “서비스”라 합니다)의 이용에 대 한 팀과 회원 간의 권리 · 의무, 책임사항 및 기타 필요한 사항을 규정함으로써 상호 간의 이 해 관계를 합리적으로 조정하고, 이에 대한 원활한 서비스 시스템이 운영 및 유지될 수 있도록 하는 것을 목적으로 합니다.</p>
@@ -26,11 +31,12 @@
       </p>
       <h6>제3조 (본 약관의 게시와 개정)</h6>
       <p>어쩌구저쩌구···생략···</p>
+      <div class="agreement">
+        {% render_field form.agree %}
+        <span class="mx-2 pt-2">약관에 동의합니다.</span>
+      </div>
     </div>
-    <div class="agreement">
-      {% render_field form.agree %}
-      <p class="mx-2 pt-2">약관에 동의합니다.</p>
-    </div>
+    
     {% bootstrap_button button_type="submit" content="OK" %}
   </form>
 </div>
