@@ -9,7 +9,6 @@ urlpatterns = [
     path('<int:article_pk>/update', views.article_update, name="update"),
     path('<int:pk>/',views.article_detail, name='detail'),
     path('<int:pk>/delete',views.article_delete, name='delete'),
-    path("main/", views.main, name="main"),
     # 댓글 생성
     path('<int:pk>/comments/', views.comment_create, name='comment_create'),
     # 댓글 삭제
