@@ -42,7 +42,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'articles:index' %}">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Link</a>
@@ -54,10 +54,10 @@
                             {{ user.nickname }}님
                     </a>
                     <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#"><i class="bi bi-person-fill"></i>
+                    <li><a class="dropdown-item" href=""><i class="bi bi-person-fill"></i>
                             내 정보</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square"></i>
-                            정보 수정</a></li>
+                    {% comment %} <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square"></i>
+                            정보 수정</a></li> {% endcomment %}
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right"></i>
                         로그아웃</a></li>

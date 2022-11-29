@@ -1,4 +1,4 @@
-{% comment %} {% extends "base.html" %} {% endcomment %}
+{% extends "base.html" %}
 {% load static %}
 {% load django_bootstrap5 %}
 {% load article_filter %}
@@ -16,12 +16,12 @@
 
 <div class="container">
 {{ article.title }}
-{{ articles.content| safe |linebreaks}}
+{{ article.content|safe|linebreaks }}
 {% if request.user == article.user %}
 <a href="{% url 'articles:update' article.pk %}">수정</a>
 <!-- 삭제 모달 버튼 -->
 <div>
-    <a class="btn btn-secondary btn-sm" href="{% url 'articles:delete' article.pk %}">삭제하기</a>
+    <a class="btn btn-secondary btn-sm" href="{% url 'articles:delete' article.pk %">삭제하기</a>
 </div>
 {% endif %}
     <!-- 비동기 북마크 -->
