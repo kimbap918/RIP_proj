@@ -14,20 +14,23 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = get_user_model()
         fields = (
+            "username",
             "email",
             "birthday",
             "agree",
-            "nickname",
         )
         widgets = {"birthday": DateInput()}
+        labels = {
+            "username":"닉네임",
+        }
 
 
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = User()
-        fields = ["nickname"]
+        fields = ["username"]
         labels = {
-            "nickname": "닉네임",
+            "username": "닉네임",
         }
 
 

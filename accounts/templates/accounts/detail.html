@@ -4,7 +4,7 @@
 
 {% block content %}
 <h1 class="text-center my-5">
-    <span class="text-primary">{{ user.nickname }}</span>님의 페이지</h1>
+    <span class="text-primary">{{ user.username }}</span>님의 페이지</h1>
 
 <!-- 프로필 이미지?(op.gg에는 뱃지 같은게 있어욜...), 닉네임, 유저네임, 소개글 -->
 <div class="container d-grid p-3 rounded-4 border border-1 mb-5" style="background-color: white;">
@@ -20,7 +20,7 @@
       <div class="col-9 p-3" style="height: 100%">
         <div class="d-flex align-items-center justify-content-between">
           <div class="d-flex align-items-center">
-            <h3 class="m-0 me-3">{{ user.nickname }}</h3>
+            <h3 class="m-0 me-3">{{ user.username }}</h3>
           </div>
 
           <div>
