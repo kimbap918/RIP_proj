@@ -23,15 +23,12 @@
   <link rel="icon" type="image/png" href="/static/images/logo.png" sizes="16x16">
   <!-- 폰트어썸 -->
   <script src="https://kit.fontawesome.com/9dfbf66130.js" crossorigin="anonymous"></script>
-
+  <!-- 폰트 CSS -->
+  <link rel="stylesheet" href="{% static 'css/font.css' %}" type="text/css">
   {% block style %}{% endblock style %}
 
-  <style>
-    @font-face {
-      font-family: 'B-bold';
-      src: url('/static/font/AnyConv.com__BeaufortforLOL-Bold.woff');
-    }
-    @import url('https://fonts.googleapis.com/css?family=Roboto');
+<style>
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 body{
 	font-family: 'Roboto', sans-serif;
@@ -198,7 +195,7 @@ i {
 		left: -25px;
 	}
 }
-  </style>
+</style>
 
 </head>
 
@@ -298,9 +295,10 @@ i {
       </div>
     </nav>
     <hr>
+    <h1 style="font-family: B-bolditalic;">안녕 HELLO</h1>
+    <h1 style="font-family: basic-ko;">안녕</h1>
     <!-- /.fixed navigation -->
   </header>
-  <h1 style="font-family: 'B-bold';">안녕hello</h1>
   <main class="container">
     {% block content %}{% endblock content %}
   </main>
