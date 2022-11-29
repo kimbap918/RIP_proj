@@ -19,6 +19,7 @@ def login(request):
         if login_form.is_valid():
             auth_login(request, login_form.get_user())
             return redirect("main")
+
     else:
         login_form = AuthenticationForm()
 
@@ -36,20 +37,35 @@ def logout(request):
     auth_logout(request)
     return redirect("accounts:login")
 
+
 def signup(request):
     if request.method == "POST":
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             
             user = form.save()
+
+            Profile.objects.create(user=user)  # 프로필 생성
             auth_login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect("main")
+
     else:
         form = CustomUserCreationForm()
     context = {
         "form": form,
     }
     return render(request, "accounts/signup.html", context)
+
+
+def detail(request, pk):
+    user = get_user_model().objects.get(pk=pk)
+    articles = user.article_set.all()
+
+    context = {
+        "user": user,
+        "articles": articles,
+    }
+    return render(request, "accounts/detail.html", context)
 
 
 # 마이 페이지 (회원 정보로 이동, 비밀번호 변경, 로그아웃, 회원탈퇴)

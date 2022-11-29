@@ -3,7 +3,8 @@
 
 {% block content %}
   <div class="list-group">
-    <a href="" class="list-group-item list-group-item-action">
+
+    <a href="{% url 'accounts:detail' user.pk %}" class="list-group-item list-group-item-action">
         <div class="ms-3">{{ user.username }}</div>
       </div>
     </a>
