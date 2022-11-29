@@ -64,11 +64,12 @@
         {% endif %}
         <span id="like-count">{{ article.like_users.count }}</span>
     <p>{{ comment.content }}</p>
-    {% if user.is_authenticated and comment.user == request.user %}
-    <form action="{% url 'articles:comment_delete' article.pk comment.pk %}" method="POST">
+    <p class="comment-control-delete btn btn-outline-danger mb-2" onclick="comment_delete(this)" id="comment-delete-${commentData[i].commentPk}" data-postdel-id="${response.data.articlePk}" data-commentdel-id="${commentData[i].commentPk}">삭제</p>
+    <!-- {% if user.is_authenticated and comment.user == request.user %} -->
+    <!-- <form action="{% url 'articles:comment_delete' article.pk comment.pk %}" method="POST">
         {% csrf_token %}
         <input type="submit" class="btn btn-outline-danger mb-2" value="삭제">
-    </form>
+    </form> -->
     {% endif %}
     <hr>
     {% empty %}
@@ -83,6 +84,8 @@
 
 <!-- 댓글 생성 -->
 <script src="{% static 'js/comment_create.js' %}"></script>
+<!-- 댓글 삭제 -->
+<script src="{% static 'js/comment_delete.js' %}"></script>
 <!-- 게시글 좋아요 -->
 <script src="{% static 'js/article_like.js' %}"></script>
 <!-- 북마크 -->
