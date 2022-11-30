@@ -66,6 +66,8 @@ def article_detail(request, pk):
     article_form = ArticleForm()
     comments_form = CommentForm()
     comments = Comment.objects.filter(article_id=pk).order_by("-created_at")
+    for i in comments:
+        print(i.article_id)
     # template에 객체 전달
     context = {
         "article": article,
