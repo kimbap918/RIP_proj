@@ -89,17 +89,18 @@
 </div>
 <div class="row">
     <div class="col-3"></div>
-    <div class="border col-9 my-5">
-        <h4 class="my-3">댓글</h4>
-        {% if request.user.is_authenticated %}
-        <form action="{% url 'articles:comment_create' article.pk %}" method="POST" id="comment-form"
-            data-article-id="{{ article.pk }}">
-            {% csrf_token %}
-            {% bootstrap_form comments_form layout='floating'%}
-            {% bootstrap_button button_type="submit" content="OK" %}
-        </form>
-        {% endif %}
-        <hr>
+
+<div class="border col-9 my-5">
+    <h4 class="my-3">댓글</h4>
+    {% if request.user.is_authenticated %}
+    <form action="{% url 'articles:comment_create' article.pk %}" method="POST" id="comment-form"
+        data-article-id="{{ article.pk }}">
+        {% csrf_token %}
+        {% bootstrap_form comments_form layout='floating'%}
+        {% bootstrap_button button_type="submit" content="OK" %}
+    </form>
+    {% endif %}
+    <hr>
         <!-- 댓글 목록 -->
         <div id="comments">  
             {% for comment in comments %}
@@ -117,12 +118,19 @@
                 {% endif %}        
                 <span id="like-count-comment">{{ comment.like_user.count }}</span>
                 <p>{{ comment.content }}</p>
-                <p class="comment-control-delete btn btn-outline-danger mb-2" onclick="comment_delete(this)" id="comment-delete-${commentData[i].commentPk}" data-postdel-id="{ article.pk }" data-commentdel-id="{ comment.pk }}">삭제</p>
+                <p class="comment-control-delete btn btn-outline-danger mb-2" onclick="comment_delete(this)" id="comment-delete-{{ comment.pk }}" data-postdel-id="{{ article.pk }}" data-commentdel-id="{{ comment.pk }}">삭제</p>
             </div>
             <!-- <p class="comment-control-delete btn btn-outline-danger mb-2" onclick="comment_delete(this)" id="comment-delete-${commentData[i].commentPk}" data-postdel-id="${response.data.articlePk}" data-commentdel-id="${commentData[i].commentPk}">삭제</p> -->
             <hr>
-            {% endfor %}
+            {% empty %}
+              <div class="text-center">
+                  <p class="d-flex flex-column">
+                      <i class="bi bi-chat-left-dots"></i>
+                      등록된 댓글이 없습니다.</p>
+              </div>
+              {% endfor %}
         </div>
+
     </div>
  </div>   
  {% endblock content %}

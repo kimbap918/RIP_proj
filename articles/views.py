@@ -23,7 +23,7 @@ def index(request):
 # @login_required(login_url='accounts:login')
 def article_create(request):
     if request.method == "POST":
-        form = ArticleForm(request.POST)
+        form = ArticleForm(request.POST, request.FILES)
         if form.is_valid():
             article = form.save(commit=False)
             article.user = request.user
@@ -45,7 +45,7 @@ def article_update(request, article_pk):
     #     message.error(request,'수정권한이 없습니다.')
     #     return redirect('articles:detail',pk=article_pk)
     if request.method == "POST":
-        form = ArticleForm(request.POST, instance=article)
+        form = ArticleForm(request.POST,request.FILES,  instance=article)
         if form.is_valid():
             article = form.save(commit=False)
             article.save()
