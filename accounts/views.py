@@ -18,7 +18,7 @@ def login(request):
         login_form = AuthenticationForm(request, data=request.POST)
         if login_form.is_valid():
             auth_login(request, login_form.get_user())
-            return redirect("main")
+            return redirect("home")
 
     else:
         login_form = AuthenticationForm()

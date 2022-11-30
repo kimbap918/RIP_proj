@@ -8,8 +8,8 @@
     {% if lately_a %}
     {% for article in lately_a %}
     <div>
-        {{ article.title }}
-        {{ article.content }}
+        {{ article.title|safe }}
+        {{ article.content|safe }}
     </div>
     {% endfor %}
     {% else %}
