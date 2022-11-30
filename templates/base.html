@@ -302,8 +302,8 @@ body{
           <ul class="navbar-nav ml-auto">
             <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
               <!-- 링크 추가 예정 -->
-              <li class="nav-item active">
-                  <a class="nav-link" href="/home">홈</a>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'home' %}">홈</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" href="{% url 'articles:index' %}">커뮤니티</a>
@@ -320,15 +320,17 @@ body{
             </div>
           </ul>
           <!-- 로그인과 로그아웃시 변경 -->
-          {% if request.user.is_authenticated %}
-          <div class="dropdown sm:display md:display lg:display">
-            <button class="dropbtn">
-              {{ user.username }}님
-              <i class="px-1 fa-solid fa-chevron-down"></i>
-            </button>
-            <div class="dropdown-content">
-              <a href="{% url 'accounts:detail' user.pk %}">settings</a>
-              <a href="{% url 'accounts:logout' %}">logout</a>
+          <div class="sm:display md:display lg:display">
+            {% if request.user.is_authenticated %}
+            <div class="dropdown">
+              <button class="dropbtn">
+                {{ user.username }}님
+                <i class="px-1 fa-solid fa-chevron-down"></i>
+              </button>
+              <div class="dropdown-content">
+                <a href="{% url 'accounts:detail' user.pk %}">settings</a>
+                <a href="{% url 'accounts:logout' %}">logout</a>
+              </div>
             </div>
           </div>
           {% else %}
@@ -341,66 +343,6 @@ body{
     </div>
   </nav>
   <header>
-    <!-- place navbar here
-    <nav class="navbar navbar-expand-lg container">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'main' %}"><img src="{% static 'images/logo.png' %}" height="60px"
-            alt="네브로고"></a>
-        navbar toggler a.k.a 햄버거
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{% url 'articles:index' %}">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="">Link</a>
-            </li>
-          </ul>
-          로그인상태 와 안 된 상태
-          {% if request.user.is_authenticated %}
-          <ul class="navbar-nav dropdown-center" style="margin-left:30px;">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              {{ user.username }}님
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{% url 'accounts:mypage' request.user.pk %}"><i
-                    class="bi bi-person-fill"></i>
-                  내 정보</a></li>
-              {% comment %} <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square"></i>
-                            정보 수정</a></li> {% endcomment %}
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="{% url 'accounts:logout' %}"><i class="bi bi-box-arrow-right"></i>
-                  로그아웃</a></li>
-            </ul>
-          </ul>
-          {% else %}
-          <ul class="navbar-nav dropdown-center" style="margin-left:30px;">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              소환사님
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{% url 'accounts:login' %}"><i class="bi bi-person-fill"></i>
-                  로그인</a></li>
-              {% comment %} <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square"></i>
-                  정보 수정</a></li> {% endcomment %}
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="{% url 'accounts:signup' %}"><i class="bi bi-box-arrow-right"></i>
-                  회원가입</a></li>
-            </ul>
-          </ul>
-          {% endif %}
-        </div>
-      </div>
-
-    </nav> -->
     <!-- /.fixed navigation -->
   </header>
   <main class="container">
