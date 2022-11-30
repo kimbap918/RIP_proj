@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+{% load widget_tweaks %}
+{% block content %}
+<h1>테스트 페이지</h1>
+
+{% for champ in champs %}
+<div>
+    <a href="{{ champ.detail }}">
+        <img src="{{ champ.img }}" alt="">
+        <p>{{ champ.name }}</p>
+    </a>
+</div>
+{% endfor %}
+{% endblock content %}
