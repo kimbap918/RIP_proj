@@ -20,3 +20,6 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['content',]
+        labels = {
+            'content': '바르고 고운 말을 사용하세요! 댓글은 당신의 얼굴입니다.'
+        }

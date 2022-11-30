@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% load django_bootstrap5 %}
+{% load article_filter %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="row d-flex justify-content-center align-content-center">
+    {% if lately_a %}
+    {% for article in lately_a %}
+    <div>
+        {{ article.title }}
+        {{ article.content }}
+    </div>
+    {% endfor %}
+    {% else %}
+    <div>
+        게시물이 없습니다.
+    </div>
+    {% endif %}
+
+<!-- like_user 오류 -->
+<!-- {% for like_a in best_a %}
+{{article.title}}
+{{article.content}}
+{% endfor %} -->
+
+</div>
+{% endblock %}

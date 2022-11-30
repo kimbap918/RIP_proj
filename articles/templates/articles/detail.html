@@ -3,29 +3,49 @@
 {% load django_bootstrap5 %}
 {% load article_filter %}
 {% load widget_tweaks %}
-{% block content %}
 
+{% block content %}
 <div class="row">
-    {{ article.title }}
+    <div class="col-3"></div>
+    <div class="col-9 border">
+        <div class="d-flex flex-column">
+            <h4>
+                {{ article.title }}
+                {% if request.user == article.user %}
+                <div style="float:right">
+                <a class="btn btn-primary btn-sm" href="{% url 'articles:update' article.pk %}">수정</a>
+                <!-- 삭제 모달 버튼 -->
+                <a class="btn btn-secondary btn-sm" href="{% url 'articles:delete' article.pk %">삭제</a>
+                </div>
+                {% endif %}
+            </h4>
+            <p style="font-size:12px;">{{ article.user.username }} | 
+                {% if article.created_string == False %}
+                <span style="font-size:12px;">{{ article.created_at|date:'m월 d일' }}</span>
+                {% else %}
+                <span style="font-size:12px;">{{ article.created_string }}</span>
+                {% endif %}
+                <span class="me-3" style="float:right;">
+                    댓글 {{ article.comment_set.count }} |
+                    <span>추천 {{ article.like_user.count }}</span>
+                </span>
+                
+            </p>
+        </div>
+    <hr>
     {{ article.content|safe|linebreaks }}
-    {% if request.user == article.user %}
-    <a href="{% url 'articles:update' article.pk %}">수정</a>
-    <!-- 삭제 모달 버튼 -->
-    <div>
-        <a class="btn btn-secondary btn-sm" href="{% url 'articles:delete' article.pk %">삭제하기</a>
-    </div>
-    {% endif %}
     <!-- 비동기 북마크 -->
     <div class=" my-2 d-flex justify-content-center">
         <!-- 로그인 했다면 -->
         {% if request.user.is_authenticated %}
-        {% if request.user in article.bookmark_users.all %}
-        <i id="bookmark-btn" data-bookmark-id="{{ article.pk }}" class="fa-solid fa-heart"></i>
+        {% if request.user in article.bookmark_user.all %}
+        <!-- {% csrf_token %} -->
+        <i id="bookmark-btn" data-article-id="{{ article.pk }}" class="bi bi-bookmark-star-fill"></i>
         {% else %}
-        <i id="bookmark-btn" data-bookmark-id="{{ article.pk }}" class="fa-regular fa-heart"></i>
+        <i id="bookmark-btn" data-article-id="{{ article.pk }}" class="bi bi-bookmark-star"></i>
         {% endif %}
-        <span id="bookmark-count">{{ article.bookmark_users.count }}</span>
         {% endif %}
+        <span id="bookmark-count">{{ article.bookmark_user.count }}</span>
     </div>
 
     <p>좋아요 버튼</p>
@@ -43,6 +63,13 @@
 
     <!-- article.pk번 게시글의 댓글 -->
     <!-- 댓글 작성 폼-->
+    
+    </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-3"></div>
+<div class="border col-9 my-5">
     <h4 class="my-3">댓글</h4>
     {% if request.user.is_authenticated %}
     <form action="{% url 'articles:comment_create' article.pk %}" method="POST" id="comment-form"
@@ -53,42 +80,45 @@
     </form>
     {% endif %}
     <hr>
+
     <!-- 댓글 목록 -->
-    <div id="comments">
+    <div id="comments">  
         {% for comment in comments %}
-        <a class="keyboard-comment-user" href="#" style="text-decoration: none;">{{ comment.user }} </a>
-        {% if request.user not in comment.like_users.all %}
-        <i class="bi bi-heart" data-review-id="{{ article.pk }}" data-comment-id="{{ comment.pk }}"
-            id="commentlike"></i>
+        <a class="keyboard-comment-user" href="#" style="text-decoration: none;">{{ comment.user }}</a> 
+
+        {% if request.user.is_authenticated %}
+        {% if request.user in comment.like_user.all %}
+        {% csrf_token %}
+        <i id="like-btn-comment" data-article-id="{{ article.pk }}" data-comment-id="{{ comment.pk }}" class="bi bi-hand-thumbs-up-fill"></i>
         {% else %}
-        <i id="like-btn" data-article-id="{{ article.pk }}" class="bi bi-heart"></i>
+        <i id="like-btn-comment" data-article-id="{{ article.pk }}" data-comment-id="{{ comment.pk }}" class="bi bi-hand-thumbs-up"></i>
         {% endif %}
-        <span id="like-count">{{ article.like_users.count }}</span>
-        <p>{{ comment.content }}</p>
-        {% if user.is_authenticated and comment.user == request.user %}
-        <form action="{% url 'articles:comment_delete' article.pk comment.pk %}" method="POST">
-            {% csrf_token %}
-            <input type="submit" class="btn btn-outline-danger mb-2" value="삭제">
-        </form>
-        {% endif %}
-        <hr>
-        {% empty %}
-        <p>댓글이 없어요 ㅠ_ㅠ</p>
-        {% endfor %}
+        {% endif %}        
+        <span id="like-count-comment">{{ comment.like_user.count }}</span>
+    <p>{{ comment.content }}</p>
+    <p class="comment-control-delete btn btn-outline-danger mb-2" onclick="comment_delete(this)" id="comment-delete-${commentData[i].commentPk}" data-postdel-id="${response.data.articlePk}" data-commentdel-id="${commentData[i].commentPk}">삭제</p>
+    <hr>
+    {% empty %}
+    <div class="text-center">
+        <p class="d-flex flex-column">
+            <i class="bi bi-chat-left-dots"></i>
+            등록된 댓글이 없습니다.</p>
+    </div>
+    {% endfor %}
     </div>
 </div>
-{% endblock %}
+{% endblock content %}
 
 {% block script %}
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
 <!-- 댓글 생성 -->
 <script src="{% static 'js/comment_create.js' %}"></script>
+<!-- 댓글 삭제 -->
+<script src="{% static 'js/comment_delete.js' %}"></script>
 <!-- 게시글 좋아요 -->
 <script src="{% static 'js/article_like.js' %}"></script>
 <!-- 북마크 -->
 <script src="{% static 'js/article_bookmark.js' %}"></script>
 <!-- 댓글 좋아요 -->
-<!-- <script src="{% static 'js/comment_like.js' %}"></script> -->
-
+<script src="{% static 'js/comment_like.js' %}"></script>
 {% endblock script %}
