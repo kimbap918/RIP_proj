@@ -6,10 +6,11 @@ class ArticleForm(forms.ModelForm):
 
     class Meta:
         model = Article
-        fields = ['title', 'content']
+        fields = ['title', 'content','photo']
         labels = {
             'title': '제목',
             'content': '내용',
+            'photo': '이미지',
         }
         widgets = {
             'content': SummernoteWidget(attrs={'summernote':{'width':'100%','height':'400px'}})

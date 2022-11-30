@@ -23,7 +23,7 @@ def index(request):
 # @login_required(login_url='accounts:login')
 def article_create(request):
     if request.method == "POST":
-        form = ArticleForm(request.POST)
+        form = ArticleForm(request.POST, request.FILES)
         if form.is_valid():
             article = form.save(commit=False)
             article.user = request.user
@@ -45,7 +45,7 @@ def article_update(request, article_pk):
     #     message.error(request,'수정권한이 없습니다.')
     #     return redirect('articles:detail',pk=article_pk)
     if request.method == "POST":
-        form = ArticleForm(request.POST, instance=article)
+        form = ArticleForm(request.POST,request.FILES,  instance=article)
         if form.is_valid():
             article = form.save(commit=False)
             article.save()
@@ -66,6 +66,8 @@ def article_detail(request, pk):
     article_form = ArticleForm()
     comments_form = CommentForm()
     comments = Comment.objects.filter(article_id=pk).order_by("-created_at")
+    for i in comments:
+        print(i.article_id)
     # template에 객체 전달
     context = {
         "article": article,
@@ -198,20 +200,22 @@ def comment_like(request, article_pk, comment_pk):
 
 
 # 게시물 북마크
-def bookmark(request, article_pk):
-    article = get_object_or_404(Article, pk=article_pk)
+def bookmark(request, pk):
+    article = get_object_or_404(Article, pk=pk)
     # 만약에 로그인한 유저가 이 글을 북마크를 눌렀다면,
     # if answer.like_users.filter(id=request.user.id).exists():
-    if request.user in article.bookmark_users.all():
+    if request.user in article.bookmark_user.all():
         # 북마크 삭제하고
-        article.bookmark_users.remove(request.user)
-        is_bookmark = False
+        article.bookmark_user.remove(request.user)
+        isBookmark = False
     else:
         # 북마크 추가하고
-        article.bookmark_users.add(request.user)
-        is_bookmark = True
+        article.bookmark_user.add(request.user)
+        isBookmark = True
     # 상세 페이지로 redirect
-    data = {
-        "is_bookmark": is_bookmark,
+    context = {
+        "isBookmark": isBookmark,
+        "bookMarkCount": article.bookmark_user.count()
     }
-    return JsonResponse(data)
+    print(context)
+    return JsonResponse(context)

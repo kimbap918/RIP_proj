@@ -8,6 +8,7 @@
     {% if lately_a %}
     {% for article in lately_a %}
     <div>
+
         {{ article.title|safe }}
         {{ article.content|safe }}
     </div>

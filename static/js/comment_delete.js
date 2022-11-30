@@ -1,6 +1,6 @@
 // 댓글 삭제 비동기
 const comment_delete = (e) => {
-  const comment_id = document.querySelector(`#${e.id}`).id
+  const comment_id = document.querySelector(`#${e.id}`).id;
   console.log(event.target.dataset)
   console.log(comment_id)
   axios({
