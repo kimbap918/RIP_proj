@@ -15,11 +15,11 @@ console.log(likeBtnComment)
             console.log(response.data)
 
             if (response.data.isLiked === true) {
-                event.target.classList.add('bi-heart-fill')
-                event.target.classList.remove('bi-heart')
+                event.target.classList.add('bi-hand-thumbs-up-fill')
+                event.target.classList.remove('bi-hand-thumbs-up')
             } else {
-                event.target.classList.add('bi-heart')
-                event.target.classList.remove('bi-heart-fill')
+                event.target.classList.add('bi-hand-thumbs-up')
+                event.target.classList.remove('bi-hand-thumbs-up-fill')
             }
             const likeCountComment = document.querySelector('#like-count-comment')
             likeCountComment.innerText = response.data.likeCount
