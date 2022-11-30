@@ -117,7 +117,7 @@
         {% endif %}        
         <span id="like-count-comment">{{ comment.like_user.count }}</span>
     <p>{{ comment.content }}</p>
-    <p class="comment-control-delete btn btn-outline-danger mb-2" onclick="comment_delete(this)" id="comment-delete-${commentData[i].commentPk}" data-postdel-id="${response.data.articlePk}" data-commentdel-id="${commentData[i].commentPk}">삭제</p>
+    <p class="comment-control-delete btn btn-outline-danger mb-2" onclick="comment_delete(this)" id="comment-delete-{{ comment.pk }}" data-postdel-id="{{ article.pk }}" data-commentdel-id="{{ comment.pk }}">삭제</p>
     <hr>
     {% empty %}
     <div class="text-center">
