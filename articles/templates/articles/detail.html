@@ -41,7 +41,7 @@
                 </div>
                 {% endif %}
             </h4>
-            <p style="font-size:12px;">{{ article.user.username }} | 
+            <p style="font-size:12px;">{{ article.user.username }} |
                 {% if article.created_string == False %}
                 <span style="font-size:12px;">{{ article.created_at|date:'m월 d일' }}</span>
                 {% else %}
@@ -51,96 +51,101 @@
                     댓글 {{ article.comment_set.count }} |
                     <span>추천 {{ article.like_user.count }}</span>
                 </span>
-                
+
             </p>
         </div>
-    <hr>
-    {{ article.content|safe|linebreaks }}
-    <!-- 비동기 북마크 -->
-    <div class=" my-2 d-flex justify-content-center">
-        <!-- 로그인 했다면 -->
+        <hr>
+        {{ article.content|safe|linebreaks }}
+        <!-- 비동기 북마크 -->
+        <div class=" my-2 d-flex justify-content-center">
+            <!-- 로그인 했다면 -->
+            {% if request.user.is_authenticated %}
+            {% if request.user in article.bookmark_user.all %}
+            <!-- {% csrf_token %} -->
+            <i id="bookmark-btn" data-article-id="{{ article.pk }}" class="bi bi-bookmark-star-fill"></i>
+            {% else %}
+            <i id="bookmark-btn" data-article-id="{{ article.pk }}" class="bi bi-bookmark-star"></i>
+            {% endif %}
+            {% endif %}
+            <span id="bookmark-count">{{ article.bookmark_user.count }}</span>
+        </div>
+
+        <p>좋아요 버튼</p>
+        <!-- article.pk번 게시글의 좋아요 -->
         {% if request.user.is_authenticated %}
-        {% if request.user in article.bookmark_user.all %}
-        <!-- {% csrf_token %} -->
-        <i id="bookmark-btn" data-article-id="{{ article.pk }}" class="bi bi-bookmark-star-fill"></i>
+        {% if request.user in article.like_user.all %}
+        {% csrf_token %}
+        <i id="like-btn" data-article-id="{{ article.pk }}" class="bi bi-heart-fill"></i>
         {% else %}
-        <i id="bookmark-btn" data-article-id="{{ article.pk }}" class="bi bi-bookmark-star"></i>
+        <i id="like-btn" data-article-id="{{ article.pk }}" class="bi bi-heart"></i>
         {% endif %}
         {% endif %}
-        <span id="bookmark-count">{{ article.bookmark_user.count }}</span>
-    </div>
-
-    <p>좋아요 버튼</p>
-    <!-- article.pk번 게시글의 좋아요 -->
-    {% if request.user.is_authenticated %}
-    {% if request.user in article.like_user.all %}
-    {% csrf_token %}
-    <i id="like-btn" data-article-id="{{ article.pk }}" class="bi bi-heart-fill"></i>
-    {% else %}
-    <i id="like-btn" data-article-id="{{ article.pk }}" class="bi bi-heart"></i>
-    {% endif %}
-    {% endif %}
-    <span id="like-count">{{ article.like_user.count }}</span>
+        <span id="like-count">{{ article.like_user.count }}</span>
 
 
-    <!-- article.pk번 게시글의 댓글 -->
-    <!-- 댓글 작성 폼-->
-    
+        <!-- article.pk번 게시글의 댓글 -->
+        <!-- 댓글 작성 폼-->
+
     </div>
-    </div>
+</div>
 </div>
 <div class="row">
     <div class="col-3"></div>
-<div class="border col-9 my-5">
-    <h4 class="my-3">댓글</h4>
-    {% if request.user.is_authenticated %}
-    <form action="{% url 'articles:comment_create' article.pk %}" method="POST" id="comment-form"
-        data-article-id="{{ article.pk }}">
-        {% csrf_token %}
-        {% bootstrap_form comments_form layout='floating'%}
-        {% bootstrap_button button_type="submit" content="OK" %}
-    </form>
-    {% endif %}
-    <hr>
-
-    <!-- 댓글 목록 -->
-    <div id="comments">  
-        {% for comment in comments %}
-        <a class="keyboard-comment-user" href="#" style="text-decoration: none;">{{ comment.user }}</a> 
-
+    <div class="border col-9 my-5">
+        <h4 class="my-3">댓글</h4>
         {% if request.user.is_authenticated %}
-        {% if request.user in comment.like_user.all %}
-        {% csrf_token %}
-        <i id="like-btn-comment" data-article-id="{{ article.pk }}" data-comment-id="{{ comment.pk }}" class="bi bi-hand-thumbs-up-fill"></i>
-        {% else %}
-        <i id="like-btn-comment" data-article-id="{{ article.pk }}" data-comment-id="{{ comment.pk }}" class="bi bi-hand-thumbs-up"></i>
+        <form action="{% url 'articles:comment_create' article.pk %}" method="POST" id="comment-form"
+            data-article-id="{{ article.pk }}">
+            {% csrf_token %}
+            {% bootstrap_form comments_form layout='floating'%}
+            {% bootstrap_button button_type="submit" content="OK" %}
+        </form>
         {% endif %}
-        {% endif %}        
-        <span id="like-count-comment">{{ comment.like_user.count }}</span>
-    <p>{{ comment.content }}</p>
-    <p class="comment-control-delete btn btn-outline-danger mb-2" onclick="comment_delete(this)" id="comment-delete-${commentData[i].commentPk}" data-postdel-id="${response.data.articlePk}" data-commentdel-id="${commentData[i].commentPk}">삭제</p>
-    <hr>
-    {% empty %}
-    <div class="text-center">
-        <p class="d-flex flex-column">
-            <i class="bi bi-chat-left-dots"></i>
-            등록된 댓글이 없습니다.</p>
-    </div>
-    {% endfor %}
-    </div>
-</div>
-{% endblock content %}
+        <hr>
 
-{% block script %}
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<!-- 댓글 생성 -->
-<script src="{% static 'js/comment_create.js' %}"></script>
-<!-- 댓글 삭제 -->
-<script src="{% static 'js/comment_delete.js' %}"></script>
-<!-- 게시글 좋아요 -->
-<script src="{% static 'js/article_like.js' %}"></script>
-<!-- 북마크 -->
-<script src="{% static 'js/article_bookmark.js' %}"></script>
-<!-- 댓글 좋아요 -->
-<script src="{% static 'js/comment_like.js' %}"></script>
-{% endblock script %}
+        <!-- 댓글 목록 -->
+        <div id="comments">
+            {% for comment in comments %}
+            <a class="keyboard-comment-user" href="#" style="text-decoration: none;">{{ comment.user }}</a>
+
+            {% if request.user.is_authenticated %}
+            {% if request.user in comment.like_user.all %}
+            {% csrf_token %}
+            <i id="like-btn-comment" data-article-id="{{ article.pk }}" data-comment-id="{{ comment.pk }}"
+                class="bi bi-hand-thumbs-up-fill"></i>
+            {% else %}
+            <i id="like-btn-comment" data-article-id="{{ article.pk }}" data-comment-id="{{ comment.pk }}"
+                class="bi bi-hand-thumbs-up"></i>
+            {% endif %}
+            {% endif %}
+            <span id="like-count-comment">{{ comment.like_user.count }}</span>
+            <p>{{ comment.content }}</p>
+            <p class="comment-control-delete btn btn-outline-danger mb-2" onclick="comment_delete(this)"
+                id="comment-delete-${commentData[i].commentPk}" data-postdel-id="${response.data.articlePk}"
+                data-commentdel-id="${commentData[i].commentPk}">삭제</p>
+            <hr>
+            {% empty %}
+            <div class="text-center">
+                <p class="d-flex flex-column">
+                    <i class="bi bi-chat-left-dots"></i>
+                    등록된 댓글이 없습니다.
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endblock content %}
+
+    {% block script %}
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- 댓글 생성 -->
+    <script src="{% static 'js/comment_create.js' %}"></script>
+    <!-- 댓글 삭제 -->
+    <script src="{% static 'js/comment_delete.js' %}"></script>
+    <!-- 게시글 좋아요 -->
+    <script src="{% static 'js/article_like.js' %}"></script>
+    <!-- 북마크 -->
+    <script src="{% static 'js/article_bookmark.js' %}"></script>
+    <!-- 댓글 좋아요 -->
+    <!-- <script src="{% static 'js/comment_like.js' %}"></script> -->
+    {% endblock script %}
