@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from .models import Profile
+from .forms import CustomUserCreationForm, ProfileForm
 from .models import *
 from .forms import *
 from django.contrib import messages
@@ -42,9 +44,7 @@ def signup(request):
     if request.method == "POST":
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-
             user = form.save()
-
             Profile.objects.create(user=user)  # 프로필 생성
             auth_login(
                 request, user, backend="django.contrib.auth.backends.ModelBackend"
@@ -119,29 +119,42 @@ def delete(request):
 
 
 # 회원 프로필 (프로필 사진, 소개글) (+ 닉네임?)
-
-
 @login_required
 def update(request, pk):
     user = get_object_or_404(get_user_model(), pk=pk)
 
     # 업데이트
-    # if request.user.profile:
-    #     profile = request.user.profile
+    if request.user.profile:
+        profile = request.user.profile
 
-    if request.method == "POST":
-        profile_form = ProfileForm(request.POST, request.FILES, instance=user)
-        change_form = CustomUserChangeForm(request.POST, instance=user)
+        if request.method == "POST":
+            profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
+            change_form = CustomUserChangeForm(request.POST, instance=user)
 
-        if profile_form.is_valid() and change_form.is_valid():
-            profile_form.save()
-            change_form.save()
-            # return redirect('accounts:detail', request.user.pk)
-            return redirect("accounts:mypage", request.user.pk)
+            if profile_form.is_valid() and change_form.is_valid():
+                profile_form.save()
+                change_form.save()
+                # return redirect('accounts:detail', request.user.pk)
+                return redirect("accounts:mypage", request.user.pk)
+        else:
+            profile_form = ProfileForm(instance=profile)
+            change_form = CustomUserChangeForm(instance=user)
 
+    # 최초 생성
     else:
-        profile_form = ProfileForm(instance=user)
-        change_form = CustomUserChangeForm(instance=user)
+        if request.method == "POST":
+            profile_form = ProfileForm(request.POST, request.FILES)
+            change_form = CustomUserChangeForm(request.POST, instance=user)
+
+            if profile_form.is_valid() and change_form.is_valid():
+                profile_form.save()
+                change_form.save()
+                # return redirect('accounts:detail', request.user.pk)
+                return redirect("accounts:mypage", request.user.pk)
+
+        else:
+            profile_form = ProfileForm
+            change_form = CustomUserChangeForm(instance=user)
 
     context = {
         "profile_form": profile_form,
@@ -165,3 +178,12 @@ def update(request, pk):
     # else:
     #     profile_form = ProfileForm()
     #     change_form = CustomUserChangeForm(instance=user)
+
+
+@login_required
+def articles(request, pk):
+    articles = all.Articles.objects.filter(user=request.user).order_by("-pk")
+    context = {
+        "articles": articles,
+    }
+    return render(request, "accounts/articles.html", context)
