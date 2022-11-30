@@ -40,6 +40,10 @@ body{
 /* i {
 	margin-right: 10px;
 } */
+
+a, button {
+    cursor: pointer;
+}
 /*----------bootstrap-navbar-css------------*/
 .navbar-logo{
 	padding: 15px;
@@ -163,6 +167,44 @@ body{
 	}
 }
 
+
+/* 네브바 반응형 */
+/* 네브바 로그인&검색창 */
+/* 991px 이하 로그인&검색창 네브바에서 출력 */
+
+@media (min-width: 1280px) {
+  .lg\:nav {
+    display: none;
+  }
+}
+
+@media (min-width: 991px) {
+  .md\:nav {
+    display: none;
+  }
+}
+
+/* 네브바 검색창 */
+.search_nav {
+  display: flex;
+  justify-content: center;
+}
+
+.search_inp {
+  width: 100%;
+  border-radius: 50px;
+  border: none;
+  padding: 12px 30px;
+  margin: 10px;
+  font-size: 14px;
+}
+
+.search_nav:focus {
+  border: none;
+}
+
+/* 반응형 css */
+
 @media (min-width: 320px) {
   .sm\:display {
     display: none;
@@ -221,8 +263,10 @@ body{
 
 /* 네브바 login */
 .login {
+  display: flex;
+  justify-content: end;
   list-style: none;
-
+  margin: 10px;
 }
 
 .login a{
@@ -301,7 +345,8 @@ body{
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
             <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
-              <!-- 링크 추가 예정 -->
+
+              <!-- 사이트 추가 예정 -->
               <li class="nav-item">
                   <a class="nav-link" href="{% url 'home' %}">홈</a>
               </li>
@@ -317,6 +362,19 @@ body{
               <li class="nav-item">
                   <a class="nav-link" href="javascript:void(0);">Documents</a>
               </li>
+              <!-- 검색창 -->
+              <div class="lg:nav md:nav">
+                <div class="search_nav">
+                  <input class="search_inp" type="text" placeholder="소환사명,소환사명.." name="kw">
+                </div>
+                <div class="login">
+                  {% if request.user.is_authenticated %}
+                  <a href="{% url 'accounts:detail' user.pk %}" style="padding-right: 5px;">{{ user.username }}님의 페이지</a>
+                  {% else %}
+                  <a href="{% url 'accounts:login' %}">로그인</a>
+                  {% endif %}
+                </div>
+              </div>
             </div>
           </ul>
           <!-- 로그인과 로그아웃시 변경 -->
@@ -334,7 +392,7 @@ body{
             </div>
           </div>
           {% else %}
-          <div class="login sm:display md:display lg:display">
+          <div class="login">
               <a href="{% url 'accounts:login' %}">로그인</a>
           </div>
           {% endif %}
