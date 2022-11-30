@@ -9,7 +9,7 @@
     {% for article in lately_a %}
     <div>
         {{ article.title }}
-        {{ article.content }}
+        {{ article.content|safe }}
     </div>
     {% endfor %}
     {% else %}
