@@ -28,6 +28,7 @@
 </head>
 
 <style>
+
   .letter {
     position: absolute;
   }
@@ -38,21 +39,22 @@
   }
 
   .jb-box {
-    width: 100%;
-    height: 500px;
-    /* overflow: hidden; */
-    margin: 0px auto;
+    width: 2560px;
+    height: 1299px;
+    overflow: hidden;
+    /* margin: 0px auto; */
     position: relative;
   }
 
-  video {
+  /* video {
     width: 100%;
-  }
+  } */
 
   .jb-text {
     position: absolute;
-    top: 50%;
-    width: 100%;
+    top: 30%;
+    left: 25.5%;
+    /* width: 100%; */
   }
 
   .jb-text p {
@@ -61,12 +63,56 @@
     font-size: 48px;
     color: #ffffff;
   }
+
+.jb_loginBox {
+  position: absolute;
+  top: 35%;
+  left: 22%;
+  margin-top: 20px;
+  padding: 100px;
+  border: 3px solid #fff;
+  border-radius: 50px;
+}
+
+.login__email-title {
+    /* margin-top: 42px; */
+    margin-bottom: 42px;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 19px;
+    color: #fff;
+
+}
+
+.signup_link {
+  color: rgb(160, 160, 160);
+  font-size: 14px;
+}
+
+.signup_link:hover {
+  color: #fff;
+}
+
+
+/* 로그인 폼 스타일 */
+p { position:relative; width:100%; height:50px;  color:#ffffff;} /* 기본세팅 */
+p input { 
+  box-sizing:border-box; padding-bottom: 20px; width:100%; height:100%; border:0 none; color:#fff;  background-color: transparent; outline:none; margin-top: 20px;}
+p label { position:absolute; left:0%; bottom:0; width:100%; height:100%; border-bottom:1px solid #000; text-align:left; pointer-events:none; margin-top: 20px;}
+p label:after { content:""; position:absolute; left:0; bottom:-1px; width:0; height:100%; border-bottom:3px solid #5fa8d3; transition:all .3s ease; } /* 파란색 가로줄 */
+p label span { position:absolute; left:0; bottom:5px; transition:all .3s ease; }
+p input:focus + label span, 
+p input:valid + label span { transform:translateY(-150%); font-size:14px; color:#5fa8d3; }  /* input에 글을 입력하고 포커스가 지나간 상태에서 제어하려면 valid 선택자를 써야한다. */
+/* 포커스 될 때 label span(name)이 위로 올라감 */
+p input:focus + label::after,
+p input:valid + label::after { width:100%; transform:translateX(0); } 
+/* 포커스 될 때 파란색 가로줄이 생김 */
+
+
 </style>
 
+
 <body>
-
-
-
   <!-- <section class="login-container"> -->
   <!-- <div> -->
   <!-- <a href="{% url 'articles:index' %}" class="letter" style="color: white;">메인</a> -->
@@ -76,13 +122,38 @@
   <!-- </section> -->
 
   <div class="jb-box">
-    <video muted autoplay loop>
+    <video style="width: 100%;" muted autoplay loop>
       <source src="/static/images/Crystal-1.mp4" type="video/mp4">
       <strong>Your browser does not support the video tag.</strong>
     </video>
     <div class="jb-text">
-      <p><a href="{% url 'home' %}"><img src="/static/images/흰로고.png" alt="" style="width: 50vh;"></a></p>
-      
+      <p><a href="{% url 'home' %}"><img src="/static/images/흰로고.png" alt="" style="width: 200px;"></a></p>
+    </div>
+    <div class="jb_loginBox">
+      <form action="" method='POST'>
+        {% csrf_token %}
+        <H2 class="login__email-title" style="font-weight: 900;">이메일 로그인</H2>
+        <div class="member-input">
+          <!-- 이메일 -->
+          <p>
+            <input type="text" id="user_name" autocomplete="off" name="username" required>
+            <label for="user_name"><span>이메일</span></label>
+          </p>
+          <!-- 비밀번호 -->
+          <p>
+            <input type="password" id="user_password" autocomplete="off" name="password" required>
+            <label for="user_password"><span>비밀번호</span></label>
+          </p>
+          <input type="submit" class="btn py-2 form-control text-center" style="font-size:15px; font-weight: 900; height: 40px; background-color: #fff; color: black"
+                value="LOGIN" />
+          <p class="d-flex justify-content-center" style="padding-top: 20px; margin-bottom: 0;"><a class="signup_link text-decoration-none" href="{% url 'accounts:signup' %}">계정생성</a>
+          </p>
+          <p class="d-flex justify-content-center"><a class="signup_link text-decoration-none"
+              href="{% url 'home' %}">비회원으로 이용하기</a>
+          </p>
+        </div>
+        <!-- <input type="password"> -->
+      </form>
     </div>
   </div>
 
