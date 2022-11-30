@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+{% load widget_tweaks %}
+{% block content %}
+<h1>테스트 페이지</h1>
+
+<div class="d-flex">
+    <div class="d-flex">
+        {% for champ in champs %}
+        <div style="flex-direction: row;">
+            <a href="{{ champ.detail }}">
+                <img src="{{ champ.img }}" alt="">
+                <p>{{ champ.name }}</p>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<table class="table table-dark">
+    <thead class="text-center">
+        <tr>
+            <th scope="col">순위</th>
+            <th scope="col">챔피언</th>
+            <th scope="col">티어</th>
+            <th scope="col">승률</th>
+            <th scope="col">픽률</th>
+            <th scope="col">밴률</th>
+            <th scope="col">상대하기 어려운 챔피언</th>
+        </tr>
+    </thead>
+    <tbody class="text-center">
+        {% for r in ranking %}
+        <tr>
+            <td scope="col">{{ r.rank }}</td>
+            <td scope="col"><img src="{{ r.img }}" alt="" style="width: 20px; height: 20px;">{{ r.name }}</td>
+            <td scope="col">{{ r.tier }}</td>
+            <td scope="col">{{ r.win }}</td>
+            <td scope="col">{{ r.pick }}</td>
+            <td scope="col">{{ r.ben }}</td>
+            <td scope="col"></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock content %}
