@@ -36,6 +36,7 @@ def comment_create(request, pk):
                 "content": t.content,
                 "created_at": t.created_at,
                 "profile_name": t.user.username,
+                "count": t.like_user.count()
             }
         )
     # context(data)에 commentData, article의 pk, 요청유저의 pk를 담아서
@@ -71,6 +72,7 @@ def comment_delete(request, pk, comment_pk):
                 "content": t.content,
                 "created_at": t.created_at,
                 "profile_name": t.user.username,
+                "count": t.like_user.count()
             }
         )
     # context(data)에 commentData, article의 pk, 요청유저의 pk를 담아서
@@ -81,6 +83,8 @@ def comment_delete(request, pk, comment_pk):
     }
     # json으로 리턴
     return JsonResponse(data)
+
+
 
 
 
