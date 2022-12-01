@@ -101,7 +101,7 @@
             <!-- 댓글 목록 -->
             <div id="comments">  
                 {% for comment in comments %}
-                <p class="div_comment">
+                <div class="div_comment">
                     <a class="keyboard-comment-user" href="{% url 'accounts:detail' comment.user.pk %}" style="text-decoration: none;">{{ comment.user }}</a> 
 
                     {% if request.user.is_authenticated %}

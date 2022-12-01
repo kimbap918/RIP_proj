@@ -1,4 +1,5 @@
-    const commentForm = document.querySelector('#comment-form')
+
+const commentForm = document.querySelector('#comment-form')
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
     // 기존 코드와 비교해서 딱히 바뀐것 없음 
     commentForm.addEventListener('submit', function (event) {
@@ -16,32 +17,33 @@
             // views 에서 리턴한 commentData, user값 가져옴
             const commentData = response.data.commentData
             const user = response.data.user
+            const articlePK = response.data.articlePK
             // commentData에 저장된 값을 순회하면서 값을꺼냄
             // 댓글들을 모두 출력(비동기)
+            console.log("commentData", commentData)
             for (let i = 0; i < commentData.length; i++) {
-
+                console.log("commentData_commentPk", commentData[0].commentPk)
                 if (user === commentData[i].user_id) {
-                    comments.insertAdjacentHTML('beforeend', `
-            <div class="comment" data-comment-id="${commentData[i].commentPk}">
-              <div class="comment-detail">
-                <span class="comment-profile-name"><a class="comment-profile-name" href="#" style="text-decoration: none;">${commentData[i].profile_name}</a></span>
-                <i id="like-btn-comment" class="bi bi-hand-thumb-up" data-article-id="{{ article.pk }}" data-comment-id="${commentData[i].commentPk}"></i>
-                <p id="comment-update-${commentData[i].commentPk}-content" class="comment-content">${commentData[i].content}</p>
-                <p class="comment-control-delete btn btn-outline-danger mb-2" onclick="comment_delete(this)" id="comment-delete-${commentData[i].commentPk}" data-postdel-id="${response.data.articlePk}" data-commentdel-id="${commentData[i].commentPk}">삭제</p>
-              </div>
-              <hr>
-            </div>
+                  comments.insertAdjacentHTML('beforeend', `
+                  <div class="comment">
+                    <span class="comment-profile-name"><a class="comment-profile-name" href="{% url 'accounts:detail' commentData[i].commentPk %}" style="text-decoration: none;">${commentData[i].profile_name}</a></span>
+                    <i class="like-btn-comment bi bi-hand-thumbs-up" data-article-id="${articlePK}" data-comment-id="${commentData[i].commentPK}"></i>
+                    <span class="like-count-comment">${commentData[i].count}</span>
+                    <p class="comment-content">${commentData[i].content}</p>
+                    <p class="comment-control-delete btn btn-outline-danger mb-2" onclick="comment_delete(this)" id="comment-delete-${commentData[i].commentPK}" data-postdel-id="${articlePK}" data-commentdel-id="${commentData[i].commentPK}">삭제</p>
+                    <hr>
+                  </div>
             `)
                 } else {
                     comments.insertAdjacentHTML('beforeend', `
-            <div class="comment">
-              <div class="comment-detail">
-                <span class="comment-profile-name"><a class="comment-profile-name" href="#" style="text-decoration: none;>${commentData[i].profile_name}</a></span>
-                <i id="like-btn-comment" class="bi bi-hand-thumb-up" data-article-id="{{ article.pk }}" data-comment-id="${commentData[i].commentPk}"></i>
-                <p class="comment-content">${commentData[i].content}</p>
-              </div>
-              <hr>
-            </div>
+                    <div class="comment">
+                    <span class="comment-profile-name"><a class="comment-profile-name" href="#" style="text-decoration: none;">${commentData[i].profile_name}</a></span>
+                    <i class="like-btn-comment bi bi-hand-thumbs-up" data-article-id="${articlePK}" data-comment-id="${commentData[i].commentPK}"></i>
+                    <span class="like-count-comment">${commentData[i].count}</span>
+                    <p class="comment-content">${commentData[i].content}</p>
+                    <p class="comment-control-delete btn btn-outline-danger mb-2" onclick="comment_delete(this)" id="comment-delete-${commentData[i].commentPK}" data-postdel-id="${articlePK}" data-commentdel-id="${commentData[i].commentPK}">삭제</p>
+                    <hr>
+                  </div>
             `)
                 }
             }
