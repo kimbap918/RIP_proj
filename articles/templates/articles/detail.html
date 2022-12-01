@@ -15,8 +15,8 @@
                 <div style="float:right">
                 <a class="btn btn-primary btn-sm" href="{% url 'articles:update' article.pk %}">수정</a>
                 <!-- 삭제 모달 버튼 -->
-                 <!-- Button trigger modal -->
-                 <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     삭제
                 </button>
 
@@ -81,10 +81,8 @@
         {% endif %}
         {% endif %}
         <span id="like-count">{{ article.like_user.count }}</span>
-
     <!-- article.pk번 게시글의 댓글 -->
     <!-- 댓글 작성 폼-->
-    </div>
     </div>
 </div>
 <div class="row">
@@ -100,32 +98,39 @@
         </form>
         {% endif %}
         <hr>
-        <!-- 댓글 목록 -->
-        <div id="comments">  
-            {% for comment in comments %}
-            <div class="div_comment">
-                <a class="keyboard-comment-user" href="#" style="text-decoration: none;">{{ comment.user }}</a> 
-                {% if request.user.is_authenticated %}
-                {% if request.user in comment.like_user.all %}
-                <!-- {% csrf_token %} -->
-                <!-- <p>{{ article.pk }}</p> <p>{{ comment.pk }}</p> -->
-                <i class="like-btn-comment bi bi-hand-thumbs-up-fill" data-article-id="{{ article.pk }}" data-comment-id="{{ comment.pk }}"></i>
-                {% else %}
-                <!-- <p>{{ article.pk }}</p> <p>{{ comment.pk }}</p> -->
-                <i id="like-btn-comment" data-article-id="{{ article.pk }}" data-comment-id="{{ comment.pk }}" class="bi bi-hand-thumbs-up"></i>
-                {% endif %}
-                {% endif %}        
-                <span id="like-count-comment">{{ comment.like_user.count }}</span>
-                <p>{{ comment.content }}</p>
-                <p class="comment-control-delete btn btn-outline-danger mb-2" onclick="comment_delete(this)" id="comment-delete-${commentData[i].commentPk}" data-postdel-id="{ article.pk }" data-commentdel-id="{ comment.pk }}">삭제</p>
+            <!-- 댓글 목록 -->
+            <div id="comments">  
+                {% for comment in comments %}
+                <p class="div_comment">
+                    <a class="keyboard-comment-user" href="{% url 'accounts:detail' comment.user.pk %}" style="text-decoration: none;">{{ comment.user }}</a> 
+
+                    {% if request.user.is_authenticated %}
+                    {% if request.user in comment.like_user.all %} <!-- 따봉을 하는 유저가 comment.like_user에 포함되어있을 경우 따봉업 가능-->
+                    <!-- <p>{{ comment.id }}</p> -->
+                    <i class="like-btn-comment bi bi-hand-thumbs-up-fill" data-article-id="{{ comment.article.id }}" data-comment-id="{{ comment.id }}"></i>
+                    {% else %} <!-- 따봉을 하는 유저가 comment.like_user에 포함되어있지 않을경우 따봉업 불가능-->
+                    <!-- <p>{{ comment.id }}</p>
+                    <p>{{ comment.article.id }}</p> -->
+                    <i class="like-btn-comment bi bi-hand-thumbs-up" data-article-id="{{ comment.article.id }}" data-comment-id="{{ comment.id }}"></i>
+                    {% endif %}
+                    {% endif %}        
+                    <span class="like-count-comment">{{ comment.like_user.count }}</span>
+                    <p>{{ comment.content }}</p>
+                    <p class="comment-control-delete btn btn-outline-danger mb-2" onclick="comment_delete(this)" id="comment-delete-{{ comment.pk }}" data-postdel-id="{{ article.pk }}" data-commentdel-id="{{ comment.pk }}">삭제</p>
+                </div>
+                <!-- <p class="comment-control-delete btn btn-outline-danger mb-2" onclick="comment_delete(this)" id="comment-delete-${commentData[i].commentPk}" data-postdel-id="${response.data.articlePk}" data-commentdel-id="${commentData[i].commentPk}">삭제</p> -->
+                <hr>
+                {% empty %}
+                <div class="text-center">
+                    <p class="d-flex flex-column">
+                    <i class="bi bi-chat-left-dots"></i>
+                    등록된 댓글이 없습니다.</p>
+                </div>
+                {% endfor %}
             </div>
-            <!-- <p class="comment-control-delete btn btn-outline-danger mb-2" onclick="comment_delete(this)" id="comment-delete-${commentData[i].commentPk}" data-postdel-id="${response.data.articlePk}" data-commentdel-id="${commentData[i].commentPk}">삭제</p> -->
-            <hr>
-            {% endfor %}
-        </div>
-    </div>
- </div>   
- {% endblock content %}
+    </div> 
+</div>  
+{% endblock content %}
 
     {% block script %}
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -138,5 +143,5 @@
     <!-- 북마크 -->
     <script src="{% static 'js/article_bookmark.js' %}"></script>
     <!-- 댓글 좋아요 -->
-    <!-- <script src="{% static 'js/comment_like.js' %}"></script> -->
+    <script src="{% static 'js/comment_like.js' %}"></script>
     {% endblock script %}

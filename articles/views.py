@@ -1,29 +1,74 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import get_user_model
 from django.contrib import messages
 from .forms import *
 from .models import *
+from accounts.models import *
 from django.http import JsonResponse, HttpResponseForbidden
-from django.http import JsonResponse
-
+from django.db.models import Q, Avg, Count
 # Create your views here.
 
 # index (test용)
 def index(request):
-    page = request.GET.get("page", "1")
-    article = Article.objects.order_by("-created_at")
-    paginator = Paginator(article, 10)
-    page_obj = paginator.get_page(page)
-    context = {"article": page_obj}
-    return render(request, "articles/index.html", context)
+    # 추천순
+    sort = request.GET.get('sort','')
+    if sort == '1':
+        page = request.GET.get("page", "1")
+        article = Article.objects.all().annotate(like_cnt=Count('like_user')).order_by('-like_cnt')
+        paginator = Paginator(article, 10)
+        page_obj = paginator.get_page(page)
+        context = {"article": page_obj}
+        return render(request,"articles/index.html",context)
+    # 답글많은 순
+    elif sort == '2':
+        page = request.GET.get("page", "1")
+        article = Article.objects.all().annotate(comments=Count('comment')).order_by('-comments')
+        paginator = Paginator(article, 10)
+        page_obj = paginator.get_page(page)
+        context = {"article": page_obj}
+        return render(request,"articles/index.html",context)
+    # 내가 쓴 글
+    elif sort == '3':
+        user = get_user_model().objects.get(pk=request.user.pk)
+        page = request.GET.get("page", "1")
+        article = user.article_set.all()
+        paginator = Paginator(article, 10)
+        page_obj = paginator.get_page(page)
+        context = {"article": page_obj}
+        return render(request,"articles/index.html",context)
+    # 내가 와드한 글
+    elif sort == '4':
+        user = get_user_model().objects.get(pk=request.user.pk)
+        page = request.GET.get("page", "1")
+        article = user.bookmark_post.all()
+        paginator = Paginator(article, 10)
+        page_obj = paginator.get_page(page)
+        context = {"article": page_obj}
+        return render(request,"articles/index.html",context)
+    elif sort == '5':
+        user = get_user_model().objects.get(pk=request.user.pk)
+        page = request.GET.get("page", "1")
+        article = user.like_post.all()
+        paginator = Paginator(article, 10)
+        page_obj = paginator.get_page(page)
+        context = {"article": page_obj}
+        return render(request,"articles/index.html",context)
+    else:
+        page = request.GET.get("page", "1")
+        article = Article.objects.order_by("-created_at")
+        paginator = Paginator(article, 10)
+        page_obj = paginator.get_page(page)
+        context = {"article": page_obj}
+        return render(request, "articles/index.html", context)
 
 
 # 게시물 생성
 # @login_required(login_url='accounts:login')
 def article_create(request):
     if request.method == "POST":
-        form = ArticleForm(request.POST)
+        form = ArticleForm(request.POST, request.FILES)
         if form.is_valid():
             article = form.save(commit=False)
             article.user = request.user
@@ -45,7 +90,7 @@ def article_update(request, article_pk):
     #     message.error(request,'수정권한이 없습니다.')
     #     return redirect('articles:detail',pk=article_pk)
     if request.method == "POST":
-        form = ArticleForm(request.POST, instance=article)
+        form = ArticleForm(request.POST,request.FILES,  instance=article)
         if form.is_valid():
             article = form.save(commit=False)
             article.save()
@@ -53,7 +98,7 @@ def article_update(request, article_pk):
     else:
         form = ArticleForm(instance=article)
     context = {"form": form}
-    return render(request, "articles/create.html", context)
+    return render(request, "articles/update.html", context)
 
 
 # def main(request):
@@ -63,11 +108,11 @@ def article_update(request, article_pk):
 def article_detail(request, pk):
     # 특정 글을 가져온다.
     article = get_object_or_404(Article, pk=pk)
+    user = User.objects.get(pk=request.user.id)
+    user_articles = user.article_set.all()
     article_form = ArticleForm()
     comments_form = CommentForm()
     comments = Comment.objects.filter(article_id=pk).order_by("-created_at")
-    for i in comments:
-        print(i.article_id)
     # template에 객체 전달
     context = {
         "article": article,
@@ -75,6 +120,8 @@ def article_detail(request, pk):
         "articles_form": article_form,
         "comments_form": comments_form,
         "comments": comments,
+        "user_articles":user_articles,
+        "user":user,
     }
     return render(request, "articles/detail.html", context)
 

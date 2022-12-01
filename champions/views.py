@@ -156,7 +156,7 @@ def detail(request, c_name):
     for champ in champs:
         detail = champ['detail']
     
-    context = {
-        'detail' : detail,
-    }
-    return render(request, 'champions/detail.html', context)
+#     context = {
+#         'detail' : detail,
+#     }
+#     return render(request, 'champions/detail.html', context)
