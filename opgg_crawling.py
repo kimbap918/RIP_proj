@@ -11,7 +11,7 @@ driver = webdriver.Chrome(path, chrome_options=options)
 
 driver.implicitly_wait(3)
 
-driver.get('https://www.op.gg/champions?region=tr') 
+driver.get('https://www.op.gg/champions?region=global') 
 html = driver.page_source
 soup = BeautifulSoup(html, 'html.parser') 
 
@@ -70,7 +70,7 @@ picks = soup.select('#content-container > div.css-1fcwcq0.e2v0byd0 > main > div 
 # 탑 밴률
 bens = soup.select('#content-container > div.css-1fcwcq0.e2v0byd0 > main > div > table > tbody > tr > td:nth-child(6)')
 # 탑 상대하기 어려운 챔피언
-hard_c = driver.find_elements(By.CSS_SELECTOR, '#content-container > div.css-1fcwcq0.e2v0byd0 > main > div > table > tbody > tr > td.css-8jdpx8.e1oulx2j2')
+hard_c = driver.find_elements(By.CSS_SELECTOR, '#content-container > div.css-1fcwcq0.e2v0byd0 > main > div > table > tbody > tr > td.css-8jdpx8.e1oulx2j2 > a > div > img')
 
 # 랭킹
 t_rank = []
@@ -108,9 +108,18 @@ for r in bens:
   t_ben.append(r.text.strip())
 
 # 어려운 챔피언
-# t_champ = []
-# for c in hard_c:
-#   t_champ.append(c.get_attribute('alt'))
+t_champ = []
+for c in hard_c:
+  t_champ.append(c.get_attribute('alt'))
+
+# print(len(t_champ))
+
+t_3champ = []
+for i in range(60):
+  t_3champ.append(t_champ[i * 3 : (i * 3) + 3])
+
+# print(t_3champ)
+
 
 
 ranking = []
@@ -124,7 +133,7 @@ for i in range(len(t_rank)):
       'win' : t_win[i],
       'pick' : t_pick[i],
       'ben' : t_ben[i],
-      # 'hard' : t_champ[i]
+      'hard' : t_3champ[i]
     }
   )
 

@@ -12,4 +12,5 @@ urlpatterns = [
     path("password/", views.password, name="password"),  # 비밀번호 변경
     path("delete/", views.delete, name="delete"),  # 회원탈퇴
     path("<int:pk>/update/", views.update, name="update"),  # 회원정보수정
+    path("member/",views.member, name="member"), # 프로그래스바
 ]
