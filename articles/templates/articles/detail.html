@@ -101,13 +101,16 @@
             <!-- 댓글 목록 -->
             <div id="comments">  
                 {% for comment in comments %}
-                <p class="div_comment">
+                <div class="div_comment">
                     <a class="keyboard-comment-user" href="#" style="text-decoration: none;">{{ comment.user }}</a> 
                     {% if request.user.is_authenticated %}
-                    {% if request.user in comment.like_user %} <!-- 따봉을 하는 유저가 comment.like_user에 포함되어있을 경우 따봉업 가능-->
-                    <i class="like-btn-comment bi bi-hand-thumbs-up-fill" data-article-id="{{ article.pk }}" data-comment-id="{{ comment.pk }}"></i>
+                    {% if request.user in comment.like_user.all %} <!-- 따봉을 하는 유저가 comment.like_user에 포함되어있을 경우 따봉업 가능-->
+                    <!-- <p>{{ comment.id }}</p> -->
+                    <i class="like-btn-comment bi bi-hand-thumbs-up-fill" data-article-id="{{ comment.article.id }}" data-comment-id="{{ comment.id }}"></i>
                     {% else %} <!-- 따봉을 하는 유저가 comment.like_user에 포함되어있지 않을경우 따봉업 불가능-->
-                    <i class="like-btn-comment bi bi-hand-thumbs-up" data-article-id="{{ article.pk }}" data-comment-id="{{ comment.pk }}"></i>
+                    <!-- <p>{{ comment.id }}</p>
+                    <p>{{ comment.article.id }}</p> -->
+                    <i class="like-btn-comment bi bi-hand-thumbs-up" data-article-id="{{ comment.article.id }}" data-comment-id="{{ comment.id }}"></i>
                     {% endif %}
                     {% endif %}        
                     <span class="like-count-comment">{{ comment.like_user.count }}</span>
