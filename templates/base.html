@@ -25,379 +25,417 @@
   <script src="https://kit.fontawesome.com/9dfbf66130.js" crossorigin="anonymous"></script>
   <!-- 폰트 CSS -->
   <link rel="stylesheet" href="{% static 'css/font.css' %}" type="text/css">
+  <!-- 로고 폰트 -->
+  <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans:400" rel="stylesheet">
   {% block style %}{% endblock style %}
 
-<style>
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Roboto');
 
-body{
-	font-family: 'Roboto', sans-serif;
-}
-* {
-	margin: 0;
-	padding: 0;
-}
-/* i {
-	margin-right: 10px;
-} */
+    /* 로고 폰트 적용하기 */
+    .logo-font {
+      font-family: "Black Han Sans", sans-serif;
+    }
 
-a, button {
-    cursor: pointer;
-}
-/*----------bootstrap-navbar-css------------*/
-.navbar-logo{
-	padding: 15px;
-	color: #fff;
-}
-.navbar-mainbg{
-	background-color: #5161ce;
-	padding: 0px;
-}
-#navbarSupportedContent{
-	overflow: hidden;
-	position: relative;
-}
-#navbarSupportedContent ul{
-	padding: 0px;
-	margin: 0px;
-}
-#navbarSupportedContent ul li a i{
-	margin-right: 10px;
-}
-#navbarSupportedContent li {
-	list-style-type: none;
-	float: left;
-}
-#navbarSupportedContent ul li a{
-	color: rgba(255,255,255,0.5);
-  text-decoration: none;
-  font-size: 15px;
-  display: block;
-  padding: 20px 20px;
-  transition-duration:0.6s;
-	transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  position: relative;
-}
-#navbarSupportedContent>ul>li.active>a{
-	color: #5161ce;
-	background-color: transparent;
-	transition: all 0.7s;
-}
-#navbarSupportedContent a:not(:only-child):after {
-	content: "\f105";
-	position: absolute;
-	right: 20px;
-	top: 10px;
-	font-size: 14px;
-	font-family: "Font Awesome 5 Free";
-	display: inline-block;
-	padding-right: 0px;
-	vertical-align: middle;
-	font-weight: 900;
-	transition: 0.5s;
-}
-#navbarSupportedContent .active>a:not(:only-child):after {
-	transform: rotate(90deg);
-}
-.hori-selector{
-	display:inline-block;
-	position:absolute;
-	height: 100%;
-	top: 0px;
-	left: 0px;
-	transition-duration:0.6s;
-	transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-	background-color: #fff;
-	border-top-left-radius: 15px;
-	border-top-right-radius: 15px;
-	margin-top: 10px;
-}
-.hori-selector .right,
-.hori-selector .left{
-	position: absolute;
-	width: 25px;
-	height: 25px;
-	background-color: #fff;
-	bottom: 10px;
-}
-.hori-selector .right{
-	right: -25px;
-}
-.hori-selector .left{
-	left: -25px;
-}
-.hori-selector .right:before,
-.hori-selector .left:before{
-	content: '';
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: #5161ce;
-}
-.hori-selector .right:before{
-	bottom: 0;
-    right: -25px;
-}
-.hori-selector .left:before{
-	bottom: 0;
-    left: -25px;
-}
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    /* i {
+	    margin-right: 10px;
+    } */
+
+    a,
+    button {
+      cursor: pointer;
+    }
+
+    /*----------bootstrap-navbar-css------------*/
+    .navbar-logo {
+      padding: 15px;
+      color: #fff;
+    }
+
+    .navbar-mainbg {
+      background-color: #5161ce;
+      padding: 0px;
+    }
+
+    #navbarSupportedContent {
+      overflow: hidden;
+      position: relative;
+    }
+
+    #navbarSupportedContent ul {
+      padding: 0px;
+      margin: 0px;
+    }
+
+    #navbarSupportedContent ul li a i {
+      margin-right: 10px;
+    }
+
+    #navbarSupportedContent li {
+      list-style-type: none;
+      float: left;
+    }
+
+    #navbarSupportedContent ul li a {
+      color: rgba(255, 255, 255, 0.5);
+      text-decoration: none;
+      font-size: 15px;
+      display: block;
+      padding: 20px 20px;
+      transition-duration: 0.6s;
+      transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      position: relative;
+    }
+
+    #navbarSupportedContent>ul>li.active>a {
+      color: #5161ce;
+      background-color: transparent;
+      transition: all 0.7s;
+    }
+
+    #navbarSupportedContent a:not(:only-child):after {
+      content: "\f105";
+      position: absolute;
+      right: 20px;
+      top: 10px;
+      font-size: 14px;
+      font-family: "Font Awesome 5 Free";
+      display: inline-block;
+      padding-right: 0px;
+      vertical-align: middle;
+      font-weight: 900;
+      transition: 0.5s;
+    }
+
+    #navbarSupportedContent .active>a:not(:only-child):after {
+      transform: rotate(90deg);
+    }
+
+    .hori-selector {
+      display: inline-block;
+      position: absolute;
+      height: 100%;
+      top: 0px;
+      left: 0px;
+      transition-duration: 0.6s;
+      transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      background-color: #fff;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      margin-top: 10px;
+    }
+
+    .hori-selector .right,
+    .hori-selector .left {
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      background-color: #fff;
+      bottom: 10px;
+    }
+
+    .hori-selector .right {
+      right: -25px;
+    }
+
+    .hori-selector .left {
+      left: -25px;
+    }
+
+    .hori-selector .right:before,
+    .hori-selector .left:before {
+      content: '';
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #5161ce;
+    }
+
+    .hori-selector .right:before {
+      bottom: 0;
+      right: -25px;
+    }
+
+    .hori-selector .left:before {
+      bottom: 0;
+      left: -25px;
+    }
 
 
-@media(min-width: 992px){
-	.navbar-expand-custom {
-	  -ms-flex-flow: row nowrap;
-	  flex-flow: row nowrap;
-	  -ms-flex-pack: start;
-	  justify-content: flex-start;
-	}
-	.navbar-expand-custom .navbar-nav {
-	  -ms-flex-direction: row;
-	  flex-direction: row;
-	}
-	.navbar-expand-custom .navbar-toggler {
-	  display: none;
-	}
-	.navbar-expand-custom .navbar-collapse {
-	  display: -ms-flexbox!important;
-	  display: flex!important;
-	  -ms-flex-preferred-size: auto;
-	  flex-basis: auto;
-	}
-}
+    @media(min-width: 992px) {
+      .navbar-expand-custom {
+        -ms-flex-flow: row nowrap;
+        flex-flow: row nowrap;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+      }
+
+      .navbar-expand-custom .navbar-nav {
+        -ms-flex-direction: row;
+        flex-direction: row;
+      }
+
+      .navbar-expand-custom .navbar-toggler {
+        display: none;
+      }
+
+      .navbar-expand-custom .navbar-collapse {
+        display: -ms-flexbox !important;
+        display: flex !important;
+        -ms-flex-preferred-size: auto;
+        flex-basis: auto;
+      }
+    }
 
 
-/* 네브바 반응형 */
-/* 네브바 로그인&검색창 */
-/* 991px 이하 로그인&검색창 네브바에서 출력 */
+    /* 네브바 반응형 */
+    /* 네브바 로그인&검색창 */
+    /* 991px 이하 로그인&검색창 네브바에서 출력 */
 
-@media (min-width: 1280px) {
-  .lg\:nav {
-    display: none;
-  }
-}
+    @media (min-width: 1280px) {
+      .lg\:nav {
+        display: none;
+      }
+    }
 
-@media (min-width: 991px) {
-  .md\:nav {
-    display: none;
-  }
-}
+    @media (min-width: 991px) {
+      .md\:nav {
+        display: none;
+      }
+    }
 
-/* 네브바 검색창 */
-.search_nav {
-  display: flex;
-  justify-content: center;
-}
+    /* 네브바 검색창 */
+    .search_nav {
+      display: flex;
+      justify-content: center;
+    }
 
-.search_inp {
-  width: 100%;
-  border-radius: 50px;
-  border: none;
-  padding: 12px 30px;
-  margin: 10px;
-  font-size: 14px;
-}
+    .search_inp {
+      width: 100%;
+      border-radius: 50px;
+      border: none;
+      padding: 12px 30px;
+      margin: 10px;
+      font-size: 14px;
+    }
 
-.search_nav:focus {
-  border: none;
-}
+    .search_nav:focus {
+      border: none;
+    }
 
-/* 반응형 css */
+    /* 반응형 css */
 
-@media (min-width: 320px) {
-  .sm\:display {
-    display: none;
-  }
-}
+    @media (min-width: 320px) {
+      .sm\:display {
+        display: none;
+      }
+    }
 
-@media (min-width: 991px) {
-  .md\:display {
-    display: none;
-  }
-}
+    @media (min-width: 991px) {
+      .md\:display {
+        display: none;
+      }
+    }
 
-@media (min-width: 991px) {
-  .md\:display2 {
-    display: block;
-  }
-}
+    @media (min-width: 991px) {
+      .md\:display2 {
+        display: block;
+      }
+    }
 
-@media (min-width: 1280px) {
-  .lg\:display {
-    display: block;
-  }
-}
+    @media (min-width: 1280px) {
+      .lg\:display {
+        display: block;
+      }
+    }
 
-@media (max-width: 991px){
-	#navbarSupportedContent ul li a{
-		padding: 12px 30px;
-	}
-	.hori-selector{
-		margin-top: 0px;
-		margin-left: 10px;
-		border-radius: 0;
-		border-top-left-radius: 25px;
-		border-bottom-left-radius: 25px;
-	}
-	.hori-selector .left,
-	.hori-selector .right{
-		right: 10px;
-	}
-	.hori-selector .left{
-		top: -25px;
-		left: auto;
-	}
-	.hori-selector .right{
-		bottom: -25px;
-	}
-	.hori-selector .left:before{
-		left: -25px;
-		top: -25px;
-	}
-	.hori-selector .right:before{
-		bottom: -25px;
-		left: -25px;
-	}
-}
+    @media (max-width: 991px) {
+      #navbarSupportedContent ul li a {
+        padding: 12px 30px;
+      }
 
-/* 네브바 login */
-.login {
-  display: flex;
-  justify-content: end;
-  list-style: none;
-  margin: 10px;
-}
+      .hori-selector {
+        margin-top: 0px;
+        margin-left: 10px;
+        border-radius: 0;
+        border-top-left-radius: 25px;
+        border-bottom-left-radius: 25px;
+      }
 
-.login a{
-  color: #fff;
-  text-decoration: none;
-  font-size: small;
-}
+      .hori-selector .left,
+      .hori-selector .right {
+        right: 10px;
+      }
 
-.login a:hover{
-  color: #2e397c;
-}
+      .hori-selector .left {
+        top: -25px;
+        left: auto;
+      }
 
-/* 네브바 드롭다운 */
-.dropbtn {
-  background-color: #5161ce;
-  color: white;
-  width: auto;
-  height: 40px;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-}
+      .hori-selector .right {
+        bottom: -25px;
+      }
 
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
+      .hori-selector .left:before {
+        left: -25px;
+        top: -25px;
+      }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  left: 0px;
-  background-color: #fff9f9;
-  min-width: 125px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 10;
-  border-radius: 5px;
-}
+      .hori-selector .right:before {
+        bottom: -25px;
+        left: -25px;
+      }
+    }
 
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  font-size: small;
-}
+    /* 네브바 login */
+    .login {
+      display: flex;
+      justify-content: end;
+      list-style: none;
+      margin: 10px;
+    }
 
-.dropdown-content a:hover {
-  background-color: #ddd;
-  color: black;
-  font-weight: bold;
-  border-radius: 5px;
-}
+    .login a {
+      color: #fff;
+      text-decoration: none;
+      font-size: small;
+    }
 
-.dropdown:hover .dropdown-content {
-  display: block;
-}
+    .login a:hover {
+      color: #2e397c;
+    }
 
-/* .dropdown:hover .dropbtn {
+    /* 네브바 드롭다운 */
+    .dropbtn {
+      background-color: #5161ce;
+      color: white;
+      width: auto;
+      height: 40px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      left: 0px;
+      background-color: #fff9f9;
+      min-width: 125px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 10;
+      border-radius: 5px;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      font-size: small;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+      color: black;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* .dropdown:hover .dropbtn {
   background-color: #3e8e41;
 } */
-
-
-</style>
+  </style>
 
 </head>
 
 <body data-spy="scroll" data-target="#scroll-spy">
-    <nav class="navbar navbar-expand-custom navbar-mainbg ">
-        <div class="container flex-wrap align-items-center justify-content-sm-between justify-content-lg-start">
-        <a class="navbar-brand" href="{% url 'main' %}"><img src="{% static 'images/흰로고.png' %}" height="20vw"
-            alt="네브로고"></a>
-        <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <nav class="navbar navbar-expand-custom navbar-mainbg ">
+    <div class="container flex-wrap align-items-center justify-content-sm-between justify-content-lg-start">
+      <a class="navbar-brand" href="{% url 'main' %}"><img src="{% static 'images/흰로고.png' %}" height="20vw"
+          alt="네브로고"></a>
+      <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
         <i class="fas fa-bars text-white"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
-            <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <div class="hori-selector">
+            <div class="left"></div>
+            <div class="right"></div>
+          </div>
 
-              <!-- 사이트 추가 예정 -->
-              <li class="nav-item">
-                  <a class="nav-link" href="{% url 'home' %}">홈</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="{% url 'articles:index' %}">커뮤니티</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="{% url 'accounts:signup' %}">챔피언</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="javascript:void(0);">Documents</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="javascript:void(0);">Documents</a>
-              </li>
-              <!-- 검색창 -->
-              <div class="lg:nav md:nav">
-                <div class="search_nav">
-                  <input class="search_inp" type="text" placeholder="소환사명,소환사명.." name="kw">
-                </div>
-                <div class="login">
-                  {% if request.user.is_authenticated %}
-                  <a href="{% url 'accounts:detail' user.pk %}" style="padding-right: 5px;">{{ user.username }}님의 페이지</a>
-                  {% else %}
-                  <a href="{% url 'accounts:login' %}">로그인</a>
-                  {% endif %}
-                </div>
-              </div>
+          <!-- 사이트 추가 예정 -->
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}">홈</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'articles:index' %}">커뮤니티</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'accounts:signup' %}">챔피언</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0);">Documents</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0);">Documents</a>
+          </li>
+          <!-- 검색창 -->
+          <div class="lg:nav md:nav">
+            <div class="search_nav">
+              <input class="search_inp" type="text" placeholder="소환사명,소환사명.." name="kw">
             </div>
-          </ul>
-          <!-- 로그인과 로그아웃시 변경 -->
-          <div class="sm:display md:display lg:display">
-            {% if request.user.is_authenticated %}
-            <div class="dropdown">
-              <button class="dropbtn">
-                {{ user.username }}님
-                <i class="px-1 fa-solid fa-chevron-down"></i>
-              </button>
-              <div class="dropdown-content">
-                <a href="{% url 'accounts:detail' user.pk %}">settings</a>
-                <a href="{% url 'accounts:logout' %}">logout</a>
-              </div>
-            </div>
-          </div>
-          {% else %}
-          <div class="login">
+            <div class="login">
+              {% if request.user.is_authenticated %}
+              <a href="{% url 'accounts:detail' user.pk %}" style="padding-right: 5px;">{{ user.username }}님의 페이지</a>
+              {% else %}
               <a href="{% url 'accounts:login' %}">로그인</a>
+              {% endif %}
+            </div>
           </div>
-          {% endif %}
+      </div>
+      </ul>
+      <!-- 로그인과 로그아웃시 변경 -->
+      <div class="sm:display md:display lg:display">
+        {% if request.user.is_authenticated %}
+        <div class="dropdown">
+          <button class="dropbtn">
+            {{ user.username }}님
+            <i class="px-1 fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="{% url 'accounts:detail' user.pk %}">settings</a>
+            <a href="{% url 'accounts:logout' %}">logout</a>
+          </div>
         </div>
       </div>
+      {% else %}
+      <div class="login">
+        <a href="{% url 'accounts:login' %}">로그인</a>
+      </div>
+      {% endif %}
+    </div>
+    </div>
     </div>
   </nav>
   <header>
@@ -419,86 +457,86 @@ a, button {
     crossorigin="anonymous"></script>
   <!-- Jquery needed -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://code.jquery.com/jquery-2.2.4.min.js" ></script>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
   <script type="text/javascript"></script>
   <!-- Function used to shrink nav bar removing paddings and adding black background -->
   <script>
     // ---------Responsive-navbar-active-animation-----------
-function test(){
-	var tabsNewAnim = $('#navbarSupportedContent');
-	var selectorNewAnim = $('#navbarSupportedContent').find('li').length;
-	var activeItemNewAnim = tabsNewAnim.find('.active');
-	var activeWidthNewAnimHeight = activeItemNewAnim.innerHeight();
-	var activeWidthNewAnimWidth = activeItemNewAnim.innerWidth();
-	var itemPosNewAnimTop = activeItemNewAnim.position();
-	var itemPosNewAnimLeft = activeItemNewAnim.position();
-	$(".hori-selector").css({
-		"top":itemPosNewAnimTop.top + "px", 
-		"left":itemPosNewAnimLeft.left + "px",
-		"height": activeWidthNewAnimHeight + "px",
-		"width": activeWidthNewAnimWidth + "px"
-	});
-	$("#navbarSupportedContent").on("click","li",function(e){
-		$('#navbarSupportedContent ul li').removeClass("active");
-		$(this).addClass('active');
-		var activeWidthNewAnimHeight = $(this).innerHeight();
-		var activeWidthNewAnimWidth = $(this).innerWidth();
-		var itemPosNewAnimTop = $(this).position();
-		var itemPosNewAnimLeft = $(this).position();
-		$(".hori-selector").css({
-			"top":itemPosNewAnimTop.top + "px", 
-			"left":itemPosNewAnimLeft.left + "px",
-			"height": activeWidthNewAnimHeight + "px",
-			"width": activeWidthNewAnimWidth + "px"
-		});
-	});
-}
-$(document).ready(function(){
-	setTimeout(function(){ test(); });
-});
-$(window).on('resize', function(){
-	setTimeout(function(){ test(); }, 500);
-});
-$(".navbar-toggler").click(function(){
-	$(".navbar-collapse").slideToggle(300);
-	setTimeout(function(){ test(); });
-});
+    function test() {
+      var tabsNewAnim = $('#navbarSupportedContent');
+      var selectorNewAnim = $('#navbarSupportedContent').find('li').length;
+      var activeItemNewAnim = tabsNewAnim.find('.active');
+      var activeWidthNewAnimHeight = activeItemNewAnim.innerHeight();
+      var activeWidthNewAnimWidth = activeItemNewAnim.innerWidth();
+      var itemPosNewAnimTop = activeItemNewAnim.position();
+      var itemPosNewAnimLeft = activeItemNewAnim.position();
+      $(".hori-selector").css({
+        "top": itemPosNewAnimTop.top + "px",
+        "left": itemPosNewAnimLeft.left + "px",
+        "height": activeWidthNewAnimHeight + "px",
+        "width": activeWidthNewAnimWidth + "px"
+      });
+      $("#navbarSupportedContent").on("click", "li", function (e) {
+        $('#navbarSupportedContent ul li').removeClass("active");
+        $(this).addClass('active');
+        var activeWidthNewAnimHeight = $(this).innerHeight();
+        var activeWidthNewAnimWidth = $(this).innerWidth();
+        var itemPosNewAnimTop = $(this).position();
+        var itemPosNewAnimLeft = $(this).position();
+        $(".hori-selector").css({
+          "top": itemPosNewAnimTop.top + "px",
+          "left": itemPosNewAnimLeft.left + "px",
+          "height": activeWidthNewAnimHeight + "px",
+          "width": activeWidthNewAnimWidth + "px"
+        });
+      });
+    }
+    $(document).ready(function () {
+      setTimeout(function () { test(); });
+    });
+    $(window).on('resize', function () {
+      setTimeout(function () { test(); }, 500);
+    });
+    $(".navbar-toggler").click(function () {
+      $(".navbar-collapse").slideToggle(300);
+      setTimeout(function () { test(); });
+    });
 
 
-jQuery(document).ready(function($){
-	// Get current path and find target link
-	var path = window.location.pathname.split("/").pop();  // 현재 실행 파일명
+    jQuery(document).ready(function ($) {
+      // Get current path and find target link
+      var path = window.location.pathname.split("/").pop();  // 현재 실행 파일명
 
-	// Account for home page with empty path
-	if ( path == '' ) {
-		path = '';
-	}
+      // Account for home page with empty path
+      if (path == '') {
+        path = '';
+      }
 
-	var target = $('#navbarSupportedContent ul li a[href="'+path+'"]');
-	// Add active class to target link
-	target.parent().addClass('active');
-});
-
-
+      var target = $('#navbarSupportedContent ul li a[href="' + path + '"]');
+      // Add active class to target link
+      target.parent().addClass('active');
+    });
 
 
-// Add active class on another page linked
-// ==========================================
-$(window).on('load',function () {
-    var current = location.pathname;
-    console.log(current);
-    $('#navbarSupportedContent ul li a').each(function(){
+
+
+    // Add active class on another page linked
+    // ==========================================
+    $(window).on('load', function () {
+      var current = location.pathname;
+      console.log(current);
+      $('#navbarSupportedContent ul li a').each(function () {
         var $this = $(this);
         // if the current path is like this link, make it active
-        if($this.attr('href').indexOf(current) !== -1){
-            $this.parent().addClass('active');
-            $this.parents('.menu-submenu').addClass('show-dropdown');
-            $this.parents('.menu-submenu').parent().addClass('active');
-        }else{
-            $this.parent().removeClass('active');
+        if ($this.attr('href').indexOf(current) !== -1) {
+          $this.parent().addClass('active');
+          $this.parents('.menu-submenu').addClass('show-dropdown');
+          $this.parents('.menu-submenu').parent().addClass('active');
+        } else {
+          $this.parent().removeClass('active');
         }
-    })
-});
+      })
+    });
   </script>
   <script>
     // nav scroll
