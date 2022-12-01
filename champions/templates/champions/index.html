@@ -39,7 +39,10 @@
             <td scope="col">{{ r.win }}</td>
             <td scope="col">{{ r.pick }}</td>
             <td scope="col">{{ r.ben }}</td>
-            <td scope="col"></td>
+            <td scope="col"><img src="{{ r.hard.0 }}" alt="" style="border-radius: 100%;"><img src="{{ r.hard.1 }}"
+                    alt="" style="border-radius: 100%; margin-left: 5px; margin-right: 5px;"><img src="{{ r.hard.2 }}"
+                    alt="" style="border-radius: 100%;">
+            </td>
         </tr>
         {% endfor %}
     </tbody>
