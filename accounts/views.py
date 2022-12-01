@@ -180,6 +180,24 @@ def update(request, pk):
     #     change_form = CustomUserChangeForm(instance=user)
 
 
+def member(request):
+    if request.method == "POST":
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            Profile.objects.create(user=user)  # 프로필 생성
+            auth_login(
+                request, user, backend="django.contrib.auth.backends.ModelBackend"
+            )
+            return redirect("main")
+
+    else:
+        form = CustomUserCreationForm()
+    context = {
+        "form": form,
+    }
+    return render(request, "accounts/member.html", context)
+
 @login_required
 def articles(request, pk):
     articles = all.Articles.objects.filter(user=request.user).order_by("-pk")
