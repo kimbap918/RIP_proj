@@ -6,7 +6,7 @@ class ArticleForm(forms.ModelForm):
 
     class Meta:
         model = Article
-        fields = ['title', 'content','photo']
+        fields = ['title', 'content','photo','category']
         labels = {
             'title': '제목',
             'content': '내용',
