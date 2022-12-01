@@ -23,6 +23,7 @@ const comment_delete = (e) => {
             <p class="comment-profile-name"><a class="comment-profile-name" href="#">${commentData[i].profile_name}</a></p>
             <i id="like-btn-comment" class="bi bi-hand-thumb-up" data-article-id="{{ article.pk }}" data-comment-id="${commentData[i].commentPk}"></i>
             <p class="comment-content">${commentData[i].content}</p>
+            
             <p class="comment-control-delete btn btn-outline-danger mb-2" onclick="comment_delete(this)" id="comment-delete-${commentData[i].commentPk}" data-postdel-id="${response.data.articlePk}" data-commentdel-id="${commentData[i].commentPk}">삭제</p>
           </div>
           <hr>
