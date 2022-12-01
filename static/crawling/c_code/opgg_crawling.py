@@ -10,42 +10,54 @@ path = "./chromedriver.exe"
 driver = webdriver.Chrome(path, chrome_options=options)
 
 driver.implicitly_wait(3)
-url = 'https://www.op.gg/champions?region=global'
-l = input()
-lanes = f'&tier=platinum_plus&position={l}'
+url = 'https://www.op.gg/champions?region=global&tier=platinum_plus&position=support'
+# l = input()
+# lanes = f'&tier=platinum_plus&position={l}'
 
-driver.get(url + lanes) 
+driver.get(url)
 html = driver.page_source
 soup = BeautifulSoup(html, 'html.parser') 
 
-# aside 캐릭터
+# # aside 캐릭터
 # name = soup.select('#content-container > div.css-1fcwcq0.e2v0byd0 > aside > nav > ul > li > a > span')
 # imgs = driver.find_elements(By.CSS_SELECTOR, '#content-container > div.css-1fcwcq0.e2v0byd0 > aside > nav > ul > li > a > img')
 # details = driver.find_elements(By.CSS_SELECTOR, '#content-container > div.css-1fcwcq0.e2v0byd0 > aside > nav > ul > li > a')
-# 챔피언 이름 담을 리스트
-c_name = []
-# 챔피언 이미지 담을 리스트
-c_img = []
-# 챔피언 디테일 주소 담을 리스트
-c_detail = []
+# # 챔피언 이름 담을 리스트
+# c_name = []
+# # 챔피언 이미지 담을 리스트
+# c_img = []
+# # 챔피언 디테일 주소 담을 리스트
+# c_detail = []
 
-# len(name) = 162
+# # len(name) = 162
 # for n in name:
-  # c_name.append(n.text.strip())
+#   c_name.append(n.text.strip())
 
-# c_name.remove('아이번')
-# c_name.remove('스카너')
-
-# # len(imgs) = 160
+# # # len(imgs) = 160
 # for i in imgs:
 #   c_img.append(i.get_attribute('src'))
 
-# # len(details) = 162
+# # # len(details) = 162
 # for d in details:
 #   c_detail.append(d.get_attribute('href'))
 
-# c_detail.remove('https://www.op.gg/champions/ivern?region=tr&tier=platinum_plus')
-# c_detail.remove('https://www.op.gg/champions/skarner?region=tr&tier=platinum_plus')
+# # Json 영역
+import json
+# from collections import OrderedDict
+
+# infos = []
+# json 형태 저장하는걸 바꾸려면 여기수정
+# for idx in range(len(c_name)):
+#     infos.append({
+#       'name' : c_name[idx],
+#       'img' : c_img[idx],
+#       'detail' : c_detail[idx]
+#         })
+
+# file_path = 'infos.json'
+# # json 저장
+# with open(file_path, 'w', encoding='utf-8') as f:
+#     json.dump(infos, f, ensure_ascii=False, indent="\t")
 
 # champs = []
 # for i in range(len(c_name)):
@@ -57,7 +69,7 @@ c_detail = []
 #     }
 #   )
 
-# main 탑
+# # main 탑
 # 탑 랭킹
 ranks = soup.select('#content-container > div.css-1fcwcq0.e2v0byd0 > main > div > table > tbody > tr > td.css-3bfwic.e1oulx2j4 > span:nth-child(1)')
 # 탑 챔피언 이미지
@@ -113,7 +125,7 @@ for r in bens:
 # 어려운 챔피언
 t_champ = []
 for c in hard_c:
-  t_champ.append(c.get_attribute('alt'))
+  t_champ.append(c.get_attribute('src'))
 
 # print(len(t_champ))
 
@@ -123,9 +135,9 @@ for i in range(60):
 
 # print(t_3champ)
 
-ranking = []
+top = []
 for i in range(len(t_rank)):
-  ranking.append(
+  top.append(
     {
       'rank' : t_rank[i],
       'img' : t_img[i],
@@ -138,4 +150,7 @@ for i in range(len(t_rank)):
     }
   )
 
-print(ranking)
+file_path = 'support.json'
+# json 저장
+with open(file_path, 'w', encoding='utf-8') as f:
+    json.dump(top, f, ensure_ascii=False, indent="\t")
