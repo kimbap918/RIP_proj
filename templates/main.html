@@ -29,10 +29,6 @@
 
 <style>
 
-@font-face {
-  font-family: ;
-  src: url();
-}
   .letter {
     position: absolute;
   }
@@ -237,7 +233,7 @@ body{
           </p>
           <input type="submit" class="btn py-2 form-control text-center" style="font-size:15px; font-weight: 900; height: 40px; background-color: #fff; color: black"
                 value="LOGIN" />
-          <p class="d-flex justify-content-center" style="padding-top: 20px; margin-bottom: 0;"><a class="signup_link text-decoration-none" href="{% url 'accounts:signup' %}">계정생성</a>
+          <p class="d-flex justify-content-center" style="padding-top: 20px; margin-bottom: 0;"><a class="signup_link text-decoration-none" href="{% url 'accounts:member' %}">계정생성</a>
           </p>
           <p class="d-flex justify-content-center"><a class="signup_link text-decoration-none"
               href="{% url 'home' %}">비회원으로 이용하기</a>
