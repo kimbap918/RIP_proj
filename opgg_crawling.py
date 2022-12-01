@@ -10,8 +10,11 @@ path = "./chromedriver.exe"
 driver = webdriver.Chrome(path, chrome_options=options)
 
 driver.implicitly_wait(3)
+url = 'https://www.op.gg/champions?region=global'
+l = input()
+lanes = f'&tier=platinum_plus&position={l}'
 
-driver.get('https://www.op.gg/champions?region=global') 
+driver.get(url + lanes) 
 html = driver.page_source
 soup = BeautifulSoup(html, 'html.parser') 
 
@@ -120,8 +123,6 @@ for i in range(60):
 
 # print(t_3champ)
 
-
-
 ranking = []
 for i in range(len(t_rank)):
   ranking.append(
@@ -137,4 +138,4 @@ for i in range(len(t_rank)):
     }
   )
 
-  print(ranking)
+print(ranking)

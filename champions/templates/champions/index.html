@@ -48,5 +48,49 @@
     </tbody>
 </table>
 
+<div class="wrap">
+    <div class="tab_menu">
+        <ul class="list">
+            <li class="is_on">
+                <a href="#top" class="btn">탑</a>
+            </li>
+            <li>
+                <a href="#jungle" class="btn">정글</a>
+            </li>
+            <li>
+                <a href="#mid" class="btn">미드</a>
+            </li>
+            <li>
+                <a href="#adc" class="btn">바텀</a>
+            </li>
+            <li>
+                <a href="#support" class="btn">서포터</a>
+            </li>
+        </ul>
+
+        <div class="cont_area">
+            <div id="top" class="cont" style="display:block;">
+                탑
+            </div>
+            <div id="jungle" class="cont">
+                정글
+            </div>
+            <div id="mid" class="cont">
+                미드
+            </div>
+            <div id="adc" class="cont">
+                바텀
+            </div>
+            <div id="support" class="cont">
+                서포터
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 랭킹 탭 메뉴 JS -->
+<script src="{% static 'js/champions_index.js' %}"></script>
+<!-- 랭킹 탭 메뉴 CSS -->
+<link rel="stylesheet" href="{% static 'css/champions_index.css' %}">
 
 {% endblock content %}
