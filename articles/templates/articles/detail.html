@@ -101,8 +101,9 @@
             <!-- 댓글 목록 -->
             <div id="comments">  
                 {% for comment in comments %}
-                <div class="div_comment">
-                    <a class="keyboard-comment-user" href="#" style="text-decoration: none;">{{ comment.user }}</a> 
+                <p class="div_comment">
+                    <a class="keyboard-comment-user" href="{% url 'accounts:detail' comment.user.pk %}" style="text-decoration: none;">{{ comment.user }}</a> 
+
                     {% if request.user.is_authenticated %}
                     {% if request.user in comment.like_user.all %} <!-- 따봉을 하는 유저가 comment.like_user에 포함되어있을 경우 따봉업 가능-->
                     <!-- <p>{{ comment.id }}</p> -->
