@@ -1,8 +1,18 @@
-const likeBtnComment = document.querySelector('.like-btn-comment')
+const likeBtnComment = document.querySelectorAll('.like-btn-comment')
 console.log("likeBtn", likeBtnComment)    
 // const csrftoken_comment = document.querySelector('[name=csrfmiddlewaretoken]').value
+// const x = document.getElementsByClassName('like-btn-comment')
+// console.log("x", x)
 
-    likeBtnComment.addEventListener('click', function (event) {
+// 누르는 위치에 따라서 배열의 인덱스를 반환해 저장할 수 있다면?
+console.log(likeBtnComment[0]);
+
+likeBtnComment.forEach((el, index) => {
+el.onclick = () => {
+    x = index
+    console.log("click-index", index);
+
+    likeBtnComment[x].addEventListener('click', function (event) {
     console.log("dataset", event.target.dataset)
     axios({
         method: 'get',
@@ -20,7 +30,9 @@ console.log("likeBtn", likeBtnComment)
                 event.target.classList.add('bi-hand-thumbs-up')
                 event.target.classList.remove('bi-hand-thumbs-up-fill')
             }
-            const likeCountComment = document.querySelector('.like-count-comment')
-            likeCountComment.innerText = response.data.likeCount
+            const likeCountComment = document.querySelectorAll('.like-count-comment')
+            likeCountComment[x].innerText = response.data.likeCount
         })
 })
+}
+});
