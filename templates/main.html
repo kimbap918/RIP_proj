@@ -29,46 +29,124 @@
 
 <style>
 
+@font-face {
+  font-family: ;
+  src: url();
+}
   .letter {
     position: absolute;
   }
 
   body {
     padding: 0px;
-    margin: 0px;
+    margin: px;
   }
 
   .jb-box {
-    width: 2560px;
-    height: 1299px;
+    width: 100%;
+    height: auto;
     overflow: hidden;
     /* margin: 0px auto; */
     position: relative;
   }
 
-  /* video {
-    width: 100%;
-  } */
+/* 비디오 전체 화면 처리 */
 
+video#bgvid {
+    position: fixed;
+    right: 0;
+    bottom: 50;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    background-size: cover;
+}
+
+/* 메인 텍스트 */
   .jb-text {
     position: absolute;
     top: 30%;
-    left: 25.5%;
-    /* width: 100%; */
+    left: 20%;
+    display: flex;
+    text-align: center;
   }
 
   .jb-text p {
-    margin-top: -24px;
     text-align: center;
     font-size: 48px;
     color: #ffffff;
   }
 
+@media (max-width: 991px) {
+  .md\:title {
+    display: none;
+  }
+}
+
+.main_title {
+    animation: fadein 2s;
+    -moz-animation: fadein 2s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+}
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-moz-keyframes fadein { /* Firefox */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-o-keyframes fadein { /* Opera */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* 메인 로그인 */
+
+@media (max-width: 991px) {
+  .md\:login1 {
+    display: none;
+  }
+}
+
+/* 991이하 일 때 폼 따로 만들기 (center) */
+@media (max-width: 991px) {
+  .md\:login2 {
+    display:block;
+  }
+}
+
+
+
 .jb_loginBox {
   position: absolute;
   top: 35%;
   left: 22%;
-  margin-top: 20px;
+  margin-top: 30px;
   padding: 100px;
   border: 3px solid #fff;
   border-radius: 50px;
@@ -93,6 +171,14 @@
   color: #fff;
 }
 
+.video-main {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
 
 /* 로그인 폼 스타일 */
 p { position:relative; width:100%; height:50px;  color:#ffffff;} /* 기본세팅 */
@@ -108,6 +194,9 @@ p input:focus + label::after,
 p input:valid + label::after { width:100%; transform:translateX(0); } 
 /* 포커스 될 때 파란색 가로줄이 생김 */
 
+body{
+  font-family: ""
+}
 
 </style>
 
@@ -121,15 +210,17 @@ p input:valid + label::after { width:100%; transform:translateX(0); }
   <!-- style="position: relative;"></video> -->
   <!-- </section> -->
 
-  <div class="jb-box">
-    <video style="width: 100%;" muted autoplay loop>
+  <div class="container">
+    <video id="bgvid" muted autoplay loop>
       <source src="/static/images/Crystal-1.mp4" type="video/mp4">
       <strong>Your browser does not support the video tag.</strong>
     </video>
-    <div class="jb-text">
-      <p><a href="{% url 'home' %}"><img src="/static/images/흰로고.png" alt="" style="width: 200px;"></a></p>
+    <div class="md:title jb-text main_title">
+      <p><span class="" style="font-weight: 900;">Welcome to</span>
+        <a href="{% url 'home' %}"><img src="/static/images/흰로고.png" alt="" style="width: 200px; padding-bottom: 15px;"></a>
+      </p>
     </div>
-    <div class="jb_loginBox">
+    <div class="md:login1 jb_loginBox">
       <form action="" method='POST'>
         {% csrf_token %}
         <H2 class="login__email-title" style="font-weight: 900;">이메일 로그인</H2>
