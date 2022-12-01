@@ -1,6 +1,6 @@
 // 댓글 삭제 비동기
 const comment_delete = (e) => {
-  const comment_id = document.querySelector(`#${e.id}`).id
+  const comment_id = document.querySelector(`#${e.id}`).id;
   console.log(event.target.dataset)
   console.log(comment_id)
   axios({
@@ -14,25 +14,31 @@ const comment_delete = (e) => {
     comments.textContent = ""
     const commentData = response.data.commentData
     const user = response.data.user
+    const articlePK = response.data.articlePK
 
     for (let i = 0; i < commentData.length; i++) {
       if (user === commentData[i].user_id) {
+        console.log("commentData", commentData)
+        console.log("commentData_PK", commentData[i].commentPK)
         comments.insertAdjacentHTML('beforeend', `
-        <div class="comment" data-comment-id="${commentData[i].commentPk}">
-          <div class="comment-detail">
-            <p class="comment-profile-name"><a class="comment-profile-name" href="#">${commentData[i].profile_name}</a></p>
-            <p id="comment-update-${commentData[i].commentPk}-content" class="comment-content">${commentData[i].content}</p>
-            <p class="comment-control-delete btn btn-outline-danger mb-2" onclick="comment_delete(this)" id="comment-delete-${commentData[i].commentPk}" data-postdel-id="${response.data.articlePk}" data-commentdel-id="${commentData[i].commentPk}">삭제</p>
-          </div>
+        <div class="comment">
+          <span class="comment-profile-name"><a class="comment-profile-name" href="{% url 'accounts:detail' commentData[i].commentPk %}" style="text-decoration: none;">${commentData[i].profile_name}</a></span>
+          <i class="like-btn-comment bi bi-hand-thumbs-up" data-article-id="${articlePK}" data-comment-id="${commentData[i].commentPK}"></i>
+          <span class="like-count-comment">${commentData[i].count}</span>
+          <p class="comment-content">${commentData[i].content}</p>
+          <p class="comment-control-delete btn btn-outline-danger mb-2" onclick="comment_delete(this)" id="comment-delete-${commentData[i].commentPK}" data-postdel-id="${articlePK}" data-commentdel-id="${commentData[i].commentPK}">삭제</p>
+          <hr>
         </div>
         `)
       } else {
         comments.insertAdjacentHTML('beforeend', `
         <div class="comment">
-          <div class="comment-detail">
-            <p class="comment-profile-name"><a class="comment-profile-name" href="#">${commentData[i].profile_name}</a></p>
-            <p class="comment-content">${commentData[i].content}</p>
-          </div>
+          <span class="comment-profile-name"><a class="comment-profile-name" href="#" style="text-decoration: none;">${commentData[i].profile_name}</a></span>
+          <i class="like-btn-comment bi bi-hand-thumbs-up" data-article-id="${articlePK}" data-comment-id="${commentData[i].commentPK}"></i>
+          <span class="like-count-comment">${commentData[i].count}</span>
+          <p class="comment-content">${commentData[i].content}</p>
+          <p class="comment-control-delete btn btn-outline-danger mb-2" onclick="comment_delete(this)" id="comment-delete-${commentData[i].commentPK}" data-postdel-id="${articlePK}" data-commentdel-id="${commentData[i].commentPK}">삭제</p>
+          <hr>
         </div>
         `)
       }
