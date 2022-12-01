@@ -53,7 +53,7 @@ def article_update(request, article_pk):
     else:
         form = ArticleForm(instance=article)
     context = {"form": form}
-    return render(request, "articles/create.html", context)
+    return render(request, "articles/update.html", context)
 
 
 # def main(request):
