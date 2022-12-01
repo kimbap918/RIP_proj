@@ -5,4 +5,5 @@ app_name = "champions"
 
 urlpatterns = [
     path('index/', views.index, name='index'),
+    # path('index/<str:lane_name>', views.lane_name, name='lane_name'),
 ]

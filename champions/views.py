@@ -14,7 +14,7 @@ driver = webdriver.Chrome(path, chrome_options=options)
 # 3초 타이머
 driver.implicitly_wait(3)
 # OP.GG 챔피언 정보 페이지 주소
-driver.get('https://www.op.gg/champions?region=global') 
+driver.get('https://www.op.gg/champions?region=global&tier=platinum_plus&position=support') 
 # 페이지의 요소
 html = driver.page_source
 # 페이지 요소 요청하기
@@ -140,23 +140,24 @@ for i in range(len(t_rank)):
 # Create your views here.
 def index(request):
 
-    # for champ in champs:
-    #     name = champ['name']
-    #     img = champ['img']
-
     context = {
-        # 'name' : name,
-        # 'img' : img,
         'champs' : champs,
         'ranking' : ranking,
     }
     return render(request, 'champions/index.html', context)
 
-def detail(request, c_name):
-    for champ in champs:
-        detail = champ['detail']
+# def lane_name(request, lane):
+
+#     context = {
+#         'lane' : lane,
+#     }
+#     return render(request, 'champions/index.html', context)
+
+# def detail(request, c_name):
+#     for champ in champs:
+#         detail = champ['detail']
     
-    context = {
-        'detail' : detail,
-    }
-    return render(request, 'champions/detail.html', context)
+#     context = {
+#         'detail' : detail,
+#     }
+#     return render(request, 'champions/detail.html', context)
