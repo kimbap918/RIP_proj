@@ -7,6 +7,7 @@
 <form action="" method="POST" enctype="multipart/form-data" class="col-8">
     {% csrf_token %}
     <h2>create</h2>
+    <div class="my-2"style="max-width:100px;">{{ form.category|add_class:"form-control"|attr:"placeholder:카테고리" }}</div>
     <div class="my-3">{{ form.title|add_class:"form-control" |attr:"placeholder:제목" }}</div>
     <div><label class="small" for="id_content">내용</label>{{ form.content|add_class:"form-control"|attr:"placeholder:내용" }}</div>
     <div><label class="small" for="id_photo">썸네일</label>{{ form.photo|add_class:"form-control"|attr:"placeholder:이미지" }}</div>
