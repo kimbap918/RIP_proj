@@ -21,7 +21,7 @@ class CustomUserCreationForm(UserCreationForm):
         )
         widgets = {"birthday": DateInput()}
         labels = {
-            "username":"닉네임",
+            "username": "닉네임",
         }
 
 
