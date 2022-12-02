@@ -61,3 +61,4 @@ def detail(request):
         'support' : support,
     }
     return render(request, 'champions/detail.html', context)
+
