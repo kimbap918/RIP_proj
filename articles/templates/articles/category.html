@@ -9,10 +9,6 @@
         text-decoration:none;
         color:black;
     }
-    a:focus{
-        background-color:grey;
-        color:green;
-    }
     .active-color{
         background-color:grey;
         color:green;
@@ -45,7 +41,7 @@
             <div class="d-flex flex-column">
                 {% if categories %}
                 {% for category in categories %}
-                <a name="tag1" class="my-1 small" href="{% url 'articles:category' category %} ">{{ category }}</a>
+                <a class="my-1 small" href="{% url 'articles:category' category %} ">{{ category }}</a>
                 {% endfor %}
                 {% endif %}
             </div>
@@ -59,11 +55,7 @@
             <div class="d-flex flex-column">
                 {% if categories %}
                 {% for category in categories %}
-                {% if request.resolver_match.url_name == 'category' and request.resolver_match.route == 'articles/category/<cats>' %}
-                <a name="tag1" class="my-1 small active" href="{% url 'articles:category' category %} ">{{ category }}</a>
-                {% else %}
                 <a name="tag1" class="my-1 small" href="{% url 'articles:category' category %} ">{{ category }}</a>
-                {% endif %}
                 {% endfor %}
                 {% endif %}
             </div>
@@ -187,8 +179,9 @@
 </div>
 {% endblock content %}
 {% block script %}
-<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script>
-    
+    $("a").click(function () {
+        toggleClass(".active-color");
+    });
 </script>
 {% endblock script %}
