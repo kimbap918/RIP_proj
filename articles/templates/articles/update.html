@@ -1,14 +1,17 @@
-{% comment %} {% extends 'base.html' %} {% endcomment %}
+{% extends 'base.html' %} 
 {% load static %}
 {% load django_bootstrap5 %}
 {% load widget_tweaks %}
-{% comment %} {% block content %} {% endcomment %}
+{% block content %} 
 <div class="row d-flex justify-content-center align-content-center">
     <form action="" method="POST" enctype="multipart/form-data" class="col-8">
+    {% csrf_token %}
     <h2>update</h2>
+    <div class="my-2">{{ form.category|add_class:"form-control"|attr:"placeholder:카테고리" }}</div>
     <div class="my-3">{{ form.title|add_class:"form-control" |attr:"placeholder:제목" }}</div>
-    <div>{{ form.content }}</div>
-    {% bootstrap_button content="update" button_type="submit" button_class="btn-primary" %}
+    <div>{{ form.content|add_class:"form-control"|attr:"placeholder:내용" }}</div>
+    <div>{{ form.photo|add_class:"form-control"|attr:"placeholder:이미지" }}</div>
+    {% bootstrap_button content="update" button_type="submit" button_class="btn-primary mt-5" %}
 </form>
 </div>
-{% comment %} {% endblock content %} {% endcomment %}
+{% endblock content %}

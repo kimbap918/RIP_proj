@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+.wrap {
+    padding: 15px;
+    letter-spacing: -0.5px;
+}
+
+.tab_menu {
+    position: relative;
+}
+
+.tab_menu .list {
+    overflow: hidden;
+}
+
+.tab_menu .list li {
+    float: left;
+    margin-right: 14px;
+}
+
+.tab_menu .list li.is_on .btn {
+    font-weight: bold;
+    color: green;
+}
+
+.tab_menu .list .btn {
+    font-size: 13px;
+}
+
+.tab_menu .cont_area .cont {
+    display: none;
+    position: absolute;
+    top: 25px;
+    left: 0;
+    background: #555;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    line-height: 100px;
+}

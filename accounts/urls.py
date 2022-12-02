@@ -48,4 +48,6 @@ urlpatterns = [
         name="password_reset_complete",
     ),
     path("send_email/", views.send_email, name="send_email"),
+
+    path("member/",views.member, name="member"), # 프로그래스바
 ]
