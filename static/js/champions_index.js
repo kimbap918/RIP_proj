@@ -1,7 +1,7 @@
 // 랭킹 탭 메뉴
 
 const tabList = document.querySelectorAll('.tab_menu .list li');
-const contents = document.querySelectorAll('.tab_menu .cont_area .cont')
+const contents = document.querySelectorAll('.cont_area .cont')
 let activeCont = ''; // 현재 활성화 된 컨텐츠 (기본:#tab1 활성화)
 
 for (var i = 0; i < tabList.length; i++) {
@@ -23,3 +23,17 @@ for (var i = 0; i < tabList.length; i++) {
         document.querySelector(activeCont).style.display = 'block';
     });
 }
+
+// 테이블
+
+$(window).on("load resize ", function () {
+    var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
+    $('.tbl-header').css({ 'padding-right': scrollWidth });
+}).resize();
+
+// 챔피언 정보
+
+$(window).on("load resize ", function () {
+    var scrollWidth = $('.champs').width() - $('.champs table').width();
+    $('.tbl-header').css({ 'padding-right': scrollWidth });
+}).resize();

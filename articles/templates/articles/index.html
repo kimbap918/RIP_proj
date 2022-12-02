@@ -5,13 +5,14 @@
 {% load widget_tweaks %}
 {% block content %}
 <style>
-    a{
-        text-decoration:none;
-        color:black;
+    a {
+        text-decoration: none;
+        color: black;
     }
-    a:active{
-        background-color:grey;
-        color:green;
+
+    a:active {
+        background-color: grey;
+        color: green;
     }
 </style>
 <!-- 게시판 -->
@@ -19,13 +20,16 @@
 <div class="row my-3">
     <!-- 왼쪽 어사이드 -->
     {% if request.user.is_authenticated %}
-    <div class="d-none d-lg-block col-lg-3 border border-3 my-3 rounded-3" style="max-height:600px; position:sticky; top:0;">
+    <div class="d-none d-lg-block col-lg-3 border border-3 my-3 rounded-3"
+        style="max-height:600px; position:sticky; top:0;">
         <div class="my-2 container">
             <p>
-                <img style="width: 20%; height:20%;" src="{% static 'images/logo.png' %}" alt=""> <span>{{ user.username }}</span>
+                <img style="width: 20%; height:20%;" src="{% static 'images/logo.png' %}" alt=""> <span>{{ user.username
+                    }}</span>
                 <span>
                     <div class="progress" style="height: 3px;">
-                        <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width:30%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width:30%;"
+                            aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </span>
             </p>
@@ -40,56 +44,60 @@
             <hr>
             <div class="d-flex flex-column">
                 <a name="tag1" class="my-1 small" href="?sort=6">자유</a>
-                <a class="my-1 small"href="?sort=7">유머</a>
-                <a class="my-1 small"href="?sort=10">팬아트</a>
+                <a class="my-1 small" href="?sort=7">유머</a>
+                <a class="my-1 small" href="?sort=10">팬아트</a>
                 <hr>
-                <a class="my-1 small"href="?sort=8">유저찾기</a>
-                <a class="my-1 small"href="?sort=12">유저뉴스</a>
-                <a class="my-1 small"href="?sort=13">팁과노하우</a>
+                <a class="my-1 small" href="?sort=8">유저찾기</a>
+                <a class="my-1 small" href="?sort=12">유저뉴스</a>
+                <a class="my-1 small" href="?sort=13">팁과노하우</a>
                 <hr>
-                <a class="my-1 small"href="?sort=11">기획</a>
-                <a class="my-1 small"href="?sort=9">사건사고</a>
+                <a class="my-1 small" href="?sort=11">기획</a>
+                <a class="my-1 small" href="?sort=9">사건사고</a>
             </div>
         </div>
     </div>
     {% else %}
-    <div class="d-none d-lg-block col-lg-3 border border-3 my-3 rounded-3" style="max-height:400px; position:sticky; top:0;">
+    <div class="d-none d-lg-block col-lg-3 border border-3 my-3 rounded-3"
+        style="max-height:400px; position:sticky; top:0;">
         <div class="my-2 container">
             <a href="{% url 'accounts:login' %}" class="btn btn-primary w-100 mt-2">로그인</a>
             <hr>
             <div class="d-flex flex-column">
-                <a class="my-1 small"href="?sort=6">자유</a>
-                <a class="my-1 small"href="?sort=7">유머</a>
-                <a class="my-1 small"href="?sort=10">팬아트</a>
+                <a class="my-1 small" href="?sort=6">자유</a>
+                <a class="my-1 small" href="?sort=7">유머</a>
+                <a class="my-1 small" href="?sort=10">팬아트</a>
                 <hr>
-                <a class="my-1 small"href="?sort=8">유저찾기</a>
-                <a class="my-1 small"href="?sort=12">유저뉴스</a>
-                <a class="my-1 small"href="?sort=13">팁과노하우</a>
+                <a class="my-1 small" href="?sort=8">유저찾기</a>
+                <a class="my-1 small" href="?sort=12">유저뉴스</a>
+                <a class="my-1 small" href="?sort=13">팁과노하우</a>
                 <hr>
-                <a class="my-1 small"href="?sort=11">기획</a>
-                <a class="my-1 small"href="?sort=9">사건사고</a>
+                <a class="my-1 small" href="?sort=11">기획</a>
+                <a class="my-1 small" href="?sort=9">사건사고</a>
             </div>
         </div>
     </div>
-            {% endif %}
-  
+    {% endif %}
+
     <!-- 게시판 내용 -->
     <div class="col-lg-9 col-md-12">
         <div class="border border-3 d-flex flex-column my-3 rounded-3">
             <h6 class="mx-3 mt-3"><a href="">전체</a>
-                <span class="d-flex"style="float:right;">
+                <span class="d-flex" style="float:right;">
                     <a class="me-3 d-md-none d-sm-block">
                         <i class="bi bi-search"></i>
                     </a>
                     <a href="{% url 'articles:create' %}" class="text-info"><i class="bi bi-pencil-square"></i></a>
                 </span>
-                
+
             </h6>
             <div class="d-flex my-3 ">
                 <div class="d-flex justify-content-between col-8">
-                    <a href="?sort=1" style="min-width:60px;" class="small col-2 mx-3 d-flex align-items-center"><i class="bi bi-fire"></i>인기순</a>
-                    <a href="{% url 'articles:index' %}" style="min-width:60px;" class="small col-2 mx-3 d-flex align-items-center"><i class="bi bi-hand-thumbs-up"></i>최신순</a>
-                    <a href="?sort=2" style="min-width:60px;"  class="small col-2 mx-3 d-flex align-items-center"><i class="bi bi-hand-thumbs-up"></i>댓글순</a>
+                    <a href="?sort=1" style="min-width:60px;" class="small col-2 mx-3 d-flex align-items-centerz"><i
+                            class="bi bi-fire"></i>인기순</a>
+                    <a href="{% url 'articles:index' %}" style="min-width:60px;"
+                        class="small col-2 mx-3 d-flex align-items-center"><i class="bi bi-hand-thumbs-up"></i>최신순</a>
+                    <a href="?sort=2" style="min-width:60px;" class="small col-2 mx-3 d-flex align-items-center"><i
+                            class="bi bi-hand-thumbs-up"></i>댓글순</a>
                 </div>
                 <div class="d-none d-md-block col-4">
                     <form class="d-flex" role="search" style="width:100%; height:100%;">
@@ -98,10 +106,10 @@
                             <i class="bi bi-search"></i></button>
                     </form>
                 </div>
-                
+
             </div>
         </div>
-        <table class="table" >
+        <table class="table">
             <tbody>
                 {% if article %}
                 <!-- 기본 전체 -->
@@ -109,7 +117,8 @@
                 <tr class="border">
                     <td class="d-flex justify-content-between">
                         <div class="col-md-1 col-sm-1">
-                            <p class="d-flex flex-column text-center"><span style="font-size: 8px;">추천</span>{{ articles.like_user.count }}</p>
+                            <p class="d-flex flex-column text-center"><span style="font-size: 8px;">추천</span>{{
+                                articles.like_user.count }}</p>
                         </div>
                         <div class="d-flex flex-column col-md-10 col-sm-9">
                             <a href="{% url 'articles:detail' articles.pk %}" class="">{{ articles.title }}
@@ -132,7 +141,8 @@
                         </div>
                         {% else %}
                         <div class="col-md-1 col-sm-2" style="float:right;">
-                            <img style="width:100%; height:100%;" src="https://dummyimage.com/100x80/000000/c4c4c4" alt="">
+                            <img style="width:100%; height:100%;" src="https://dummyimage.com/100x80/000000/c4c4c4"
+                                alt="">
                         </div>
                         {% endif %}
                     </td>
@@ -160,37 +170,38 @@
             </li>
             {% endif %}
             <!-- 페이지 리스트-->
-            {% for page_number in article.paginator.page_range  %}
-            {% if page_number >= article.number|add:-5 and page_number <= article.number|add:5 %}
-            {% if page_number == article.number %}
-            <li class="page-item active" aria-current="page">
+            {% for page_number in article.paginator.page_range %}
+            {% if page_number >= article.number|add:-5 and page_number <= article.number|add:5 %} {% if
+                page_number==article.number %} <li class="page-item active" aria-current="page">
                 <a href="?page={{ page_number }}" class="page-link">{{ page_number }}</a>
-            </li>
-            {% else %}
-            <li class="page-item">
-                <a href="?page={{ page_number }}" class="page-link">{{ page_number }}</a>
-            </li>
-            {% endif %}
-            {% endif %}
-            {% endfor %}
-            <!-- 다음페이지-->
-            {% if article.has_next %}
-            <li class="page-item">
-                <a href="?page={{ article.next_page_number }}" class="page-link">다음</a>
-            </li>
-            {% else %}
-            <li class="page-item disabled">
-                <a href="#" class="page-link" tabindex="1" aria-disabled="true">다음</a></li>
-            {% endif %}
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a href="?page={{ page_number }}" class="page-link">{{ page_number }}</a>
+                </li>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+                <!-- 다음페이지-->
+                {% if article.has_next %}
+                <li class="page-item">
+                    <a href="?page={{ article.next_page_number }}" class="page-link">다음</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a href="#" class="page-link" tabindex="1" aria-disabled="true">다음</a>
+                </li>
+                {% endif %}
         </ul>
         <!-- 페이징처리 end-->
 
     </div>
 </div>
 {% endblock content %}
-<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script>
-    $("a").click(function(){
+    $("a").click(function () {
         toggleClass(".active-color");
     })
 </script>
