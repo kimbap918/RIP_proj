@@ -28,6 +28,11 @@ def comment_create(request, pk):
 
     # temp에서 순회하면서 유저의 id, 댓글의 pk, 내용, 생성일자, 닉네임을 각각 comment_data에 담음
     for t in temp:
+        if request.user not in t.like_user.all():
+            is_like = True
+        else:
+            is_like = False
+
         t.created_at = t.created_at.strftime("%Y-%m-%d %H:%M")
         comment_data.append(
             {
@@ -36,7 +41,9 @@ def comment_create(request, pk):
                 "content": t.content,
                 "created_at": t.created_at,
                 "profile_name": t.user.username,
-                "count": t.like_user.count()
+                "count": t.like_user.count(),
+                "isLike": is_like,
+
             }
         )
     # context(data)에 commentData, article의 pk, 요청유저의 pk를 담아서
@@ -64,6 +71,11 @@ def comment_delete(request, pk, comment_pk):
 
     # temp에서 순회하면서 유저의 id, 댓글의 pk, 내용, 생성일자, 닉네임을 각각 comment_data에 담음 
     for t in temp:
+        if request.user not in t.like_user.all():
+            is_like = True
+        else:
+            is_like = False
+
         t.created_at = t.created_at.strftime("%Y-%m-%d %H:%M")
         comment_data.append(
             {
@@ -72,9 +84,12 @@ def comment_delete(request, pk, comment_pk):
                 "content": t.content,
                 "created_at": t.created_at,
                 "profile_name": t.user.username,
-                "count": t.like_user.count()
+                "count": t.like_user.count(),
+                "isLike": is_like,
+
             }
         )
+    print(comment_data)
     # context(data)에 commentData, article의 pk, 요청유저의 pk를 담아서
     data = {
         "commentData": comment_data,
