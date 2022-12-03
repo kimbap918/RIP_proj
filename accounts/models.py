@@ -5,6 +5,7 @@ from django.conf import settings
 
 # Create your models here.
 class User(AbstractUser):
+    kakao_id = models.BigIntegerField(null=True, unique=True)
     birthday = models.DateTimeField(default=timezone.now)
     email = models.EmailField(max_length=100)
     agree = models.BooleanField(null=False, default=False)
