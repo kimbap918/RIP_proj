@@ -4,237 +4,258 @@
 {% load widget_tweaks %}
 {% block content %}
 
-<h1 class="logo-font">테스트 페이지</h1>
-
-<div class="d-flex">
-    <div class="d-flex">
-        {% for champ in infos %}
-        <div style="flex-direction: row;">
-            <a href="{{ champ.detail }}">
-                <img src="{{ champ.img }}" alt="">
-                <p>{{ champ.name }}</p>
-            </a>
-        </div>
-        {% endfor %}
-    </div>
-</div>
-
-<!-- <table class="table table-dark">
-    <thead class="text-center">
-        <tr>
-            <th scope="col">순위</th>
-            <th scope="col">챔피언</th>
-            <th scope="col">티어</th>
-            <th scope="col">승률</th>
-            <th scope="col">픽률</th>
-            <th scope="col">밴률</th>
-            <th scope="col">상대하기 어려운 챔피언</th>
-        </tr>
-    </thead>
-    <tbody class="text-center">
-        {% for r in ranking %}
-        <tr>
-            <td scope="col">{{ r.rank }}</td>
-            <td scope="col"><img src="{{ r.img }}" alt="" style="width: 20px; height: 20px;">{{ r.name }}</td>
-            <td scope="col">{{ r.tier }}</td>
-            <td scope="col">{{ r.win }}</td>
-            <td scope="col">{{ r.pick }}</td>
-            <td scope="col">{{ r.ben }}</td>
-            <td scope="col"><img src="{{ r.hard.0 }}" alt="" style="border-radius: 100%;"><img src="{{ r.hard.1 }}"
-                    alt="" style="border-radius: 100%; margin-left: 5px; margin-right: 5px;"><img src="{{ r.hard.2 }}"
-                    alt="" style="border-radius: 100%;">
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table> -->
-
-<div class="wrap">
-    <div class="tab_menu">
-        <ul class="list">
-            <li class="is_on">
-                <a href="#top" class="btn">탑</a>
-            </li>
-            <li>
-                <a href="#jungle" class="btn">정글</a>
-            </li>
-            <li>
-                <a href="#mid" class="btn">미드</a>
-            </li>
-            <li>
-                <a href="#adc" class="btn">바텀</a>
-            </li>
-            <li>
-                <a href="#support" class="btn">서포터</a>
-            </li>
-        </ul>
-
-        <div class="cont_area">
-            <div id="top" class="cont" style="display:block;">
-                <table class="table table-dark">
-                    <thead class="text-center">
-                        <tr>
-                            <th scope="col">순위</th>
-                            <th scope="col">챔피언</th>
-                            <th scope="col">티어</th>
-                            <th scope="col">승률</th>
-                            <th scope="col">픽률</th>
-                            <th scope="col">밴률</th>
-                            <th scope="col">상대하기 어려운 챔피언</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-center">
-                        {% for t in top %}
-                        <tr>
-                            <td scope="col">{{ t.rank }}</td>
-                            <td scope="col"><img src="{{ t.img }}" alt="" style="width: 20px; height: 20px;">
-                                {{ t.name}}</td>
-                            <td scope="col">{{ t.tier }}</td>
-                            <td scope="col">{{ t.win }}</td>
-                            <td scope="col">{{ t.pick }}</td>
-                            <td scope="col">{{ t.ben }}</td>
-                            <td scope="col"><img src="{{ t.hard.0 }}" alt="" style="border-radius: 100%;"><img
-                                    src="{{ t.hard.1 }}" alt=""
-                                    style="border-radius: 100%; margin-left: 5px; margin-right: 5px;"><img
-                                    src="{{ t.hard.2 }}" alt="" style="border-radius: 100%;">
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            <div id="jungle" class="cont">
-                <table class="table table-dark">
-                    <thead class="text-center">
-                        <tr>
-                            <th scope="col">순위</th>
-                            <th scope="col">챔피언</th>
-                            <th scope="col">티어</th>
-                            <th scope="col">승률</th>
-                            <th scope="col">픽률</th>
-                            <th scope="col">밴률</th>
-                            <th scope="col">상대하기 어려운 챔피언</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-center">
-                        {% for t in jungle %}
-                        <tr>
-                            <td scope="col">{{ t.rank }}</td>
-                            <td scope="col"><img src="{{ t.img }}" alt="" style="width: 20px; height: 20px;">
-                                {{ t.name}}</td>
-                            <td scope="col">{{ t.tier }}</td>
-                            <td scope="col">{{ t.win }}</td>
-                            <td scope="col">{{ t.pick }}</td>
-                            <td scope="col">{{ t.ben }}</td>
-                            <td scope="col"><img src="{{ t.hard.0 }}" alt="" style="border-radius: 100%;"><img
-                                    src="{{ t.hard.1 }}" alt=""
-                                    style="border-radius: 100%; margin-left: 5px; margin-right: 5px;"><img
-                                    src="{{ t.hard.2 }}" alt="" style="border-radius: 100%;">
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            <div id="mid" class="cont">
-                <table class="table table-dark">
-                    <thead class="text-center">
-                        <tr>
-                            <th scope="col">순위</th>
-                            <th scope="col">챔피언</th>
-                            <th scope="col">티어</th>
-                            <th scope="col">승률</th>
-                            <th scope="col">픽률</th>
-                            <th scope="col">밴률</th>
-                            <th scope="col">상대하기 어려운 챔피언</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-center">
-                        {% for t in mid %}
-                        <tr>
-                            <td scope="col">{{ t.rank }}</td>
-                            <td scope="col"><img src="{{ t.img }}" alt="" style="width: 20px; height: 20px;">
-                                {{ t.name}}</td>
-                            <td scope="col">{{ t.tier }}</td>
-                            <td scope="col">{{ t.win }}</td>
-                            <td scope="col">{{ t.pick }}</td>
-                            <td scope="col">{{ t.ben }}</td>
-                            <td scope="col"><img src="{{ t.hard.0 }}" alt="" style="border-radius: 100%;"><img
-                                    src="{{ t.hard.1 }}" alt=""
-                                    style="border-radius: 100%; margin-left: 5px; margin-right: 5px;"><img
-                                    src="{{ t.hard.2 }}" alt="" style="border-radius: 100%;">
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            <div id="adc" class="cont">
-                <table class="table table-dark">
-                    <thead class="text-center">
-                        <tr>
-                            <th scope="col">순위</th>
-                            <th scope="col">챔피언</th>
-                            <th scope="col">티어</th>
-                            <th scope="col">승률</th>
-                            <th scope="col">픽률</th>
-                            <th scope="col">밴률</th>
-                            <th scope="col">상대하기 어려운 챔피언</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-center">
-                        {% for t in adc %}
-                        <tr>
-                            <td scope="col">{{ t.rank }}</td>
-                            <td scope="col"><img src="{{ t.img }}" alt="" style="width: 20px; height: 20px;">
-                                {{ t.name}}</td>
-                            <td scope="col">{{ t.tier }}</td>
-                            <td scope="col">{{ t.win }}</td>
-                            <td scope="col">{{ t.pick }}</td>
-                            <td scope="col">{{ t.ben }}</td>
-                            <td scope="col"><img src="{{ t.hard.0 }}" alt="" style="border-radius: 100%;"><img
-                                    src="{{ t.hard.1 }}" alt=""
-                                    style="border-radius: 100%; margin-left: 5px; margin-right: 5px;"><img
-                                    src="{{ t.hard.2 }}" alt="" style="border-radius: 100%;">
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            <div id="support" class="cont">
-                <table class="table table-dark">
-                    <thead class="text-center">
-                        <tr>
-                            <th scope="col">순위</th>
-                            <th scope="col">챔피언</th>
-                            <th scope="col">티어</th>
-                            <th scope="col">승률</th>
-                            <th scope="col">픽률</th>
-                            <th scope="col">밴률</th>
-                            <th scope="col">상대하기 어려운 챔피언</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-center">
-                        {% for t in support %}
-                        <tr>
-                            <td scope="col">{{ t.rank }}</td>
-                            <td scope="col"><img src="{{ t.img }}" alt="" style="width: 20px; height: 20px;">
-                                {{ t.name}}</td>
-                            <td scope="col">{{ t.tier }}</td>
-                            <td scope="col">{{ t.win }}</td>
-                            <td scope="col">{{ t.pick }}</td>
-                            <td scope="col">{{ t.ben }}</td>
-                            <td scope="col"><img src="{{ t.hard.0 }}" alt="" style="border-radius: 100%;"><img
-                                    src="{{ t.hard.1 }}" alt=""
-                                    style="border-radius: 100%; margin-left: 5px; margin-right: 5px;"><img
-                                    src="{{ t.hard.2 }}" alt="" style="border-radius: 100%;">
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+<div class="m-0 p-0" style="background-color: olive;">
+    <div style="padding-left: 30px; padding-right: 30px;">
+        <div class="d-flex">
+            <aside class="m-2" style="width: 30%;">
+                <h1 class="text-center">Champions</h1>
+                <div class="row champs">
+                    {% for champ in infos %}
+                    <div class="col-md-6 p-0 m-1" style="width: 50px; height: 64px;">
+                        <a href="{{ champ.detail }}" style="text-decoration: none;">
+                            <img src="{{ champ.img }}" alt="" style="width: 50px; height: 50px; border-radius: 5px;">
+                            <p style="font-size: 13px; text-decoration: none;">{{ champ.name }}</p>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </aside>
+            <article class="m-2" style="width: 70%;">
+                <h1>Ranking</h1>
+                <div class="wrap">
+                    <div class="tab_menu">
+                        <ul class="list">
+                            <li class="is_on">
+                                <a href="#top" class="btn">탑</a>
+                            </li>
+                            <li>
+                                <a href="#jungle" class="btn">정글</a>
+                            </li>
+                            <li>
+                                <a href="#mid" class="btn">미드</a>
+                            </li>
+                            <li>
+                                <a href="#adc" class="btn">바텀</a>
+                            </li>
+                            <li>
+                                <a href="#support" class="btn">서포터</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="cont_area">
+                        <div id="top" class="cont" style="display:block;">
+                            <div class="tbl-header">
+                                <table cellpadding="0" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">순위</th>
+                                            <th scope="col">챔피언</th>
+                                            <th scope="col">티어</th>
+                                            <th scope="col">승률</th>
+                                            <th scope="col">픽률</th>
+                                            <th scope="col">밴률</th>
+                                            <th scope="col">상대하기 어려운 챔피언</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="tbl-content">
+                                <table cellpadding="0" cellspacing="0">
+                                    <tbody class="text-center">
+                                        {% for t in top %}
+                                        <tr>
+                                            <td scope="col">{{ t.rank }}</td>
+                                            <td scope="col"><img src="{{ t.img }}" alt=""
+                                                    style="width: 20px; height: 20px;">
+                                                {{ t.name}}</td>
+                                            <td scope="col">{{ t.tier }}</td>
+                                            <td scope="col">{{ t.win }}</td>
+                                            <td scope="col">{{ t.pick }}</td>
+                                            <td scope="col">{{ t.ben }}</td>
+                                            <td scope="col"><img src="{{ t.hard.0 }}" alt=""
+                                                    style="border-radius: 100%; width: 20px;"><img src="{{ t.hard.1 }}"
+                                                    alt=""
+                                                    style="border-radius: 100%; width: 20px; margin-left: 5px; margin-right: 5px;"><img
+                                                    src="{{ t.hard.2 }}" alt=""
+                                                    style="border-radius: 100%; width: 20px;">
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="jungle" class="cont">
+                            <div class="tbl-header">
+                                <table cellpadding="0" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">순위</th>
+                                            <th scope="col">챔피언</th>
+                                            <th scope="col">티어</th>
+                                            <th scope="col">승률</th>
+                                            <th scope="col">픽률</th>
+                                            <th scope="col">밴률</th>
+                                            <th scope="col">상대하기 어려운 챔피언</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="tbl-content">
+                                <table cellpadding="0" cellspacing="0">
+                                    <tbody class="text-center">
+                                        {% for t in jungle %}
+                                        <tr>
+                                            <td scope="col">{{ t.rank }}</td>
+                                            <td scope="col"><img src="{{ t.img }}" alt=""
+                                                    style="width: 20px; height: 20px;">
+                                                {{ t.name}}</td>
+                                            <td scope="col">{{ t.tier }}</td>
+                                            <td scope="col">{{ t.win }}</td>
+                                            <td scope="col">{{ t.pick }}</td>
+                                            <td scope="col">{{ t.ben }}</td>
+                                            <td scope="col"><img src="{{ t.hard.0 }}" alt=""
+                                                    style="border-radius: 100%; width: 20px;"><img src="{{ t.hard.1 }}"
+                                                    alt=""
+                                                    style="border-radius: 100%; width: 20px; margin-left: 5px; margin-right: 5px;"><img
+                                                    src="{{ t.hard.2 }}" alt=""
+                                                    style="border-radius: 100%; width: 20px;">
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="mid" class="cont">
+                            <div class="tbl-header">
+                                <table cellpadding="0" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">순위</th>
+                                            <th scope="col">챔피언</th>
+                                            <th scope="col">티어</th>
+                                            <th scope="col">승률</th>
+                                            <th scope="col">픽률</th>
+                                            <th scope="col">밴률</th>
+                                            <th scope="col">상대하기 어려운 챔피언</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="tbl-content">
+                                <table cellpadding="0" cellspacing="0">
+                                    <tbody class="text-center">
+                                        {% for t in mid %}
+                                        <tr>
+                                            <td scope="col">{{ t.rank }}</td>
+                                            <td scope="col"><img src="{{ t.img }}" alt=""
+                                                    style="width: 20px; height: 20px;">
+                                                {{ t.name}}</td>
+                                            <td scope="col">{{ t.tier }}</td>
+                                            <td scope="col">{{ t.win }}</td>
+                                            <td scope="col">{{ t.pick }}</td>
+                                            <td scope="col">{{ t.ben }}</td>
+                                            <td scope="col"><img src="{{ t.hard.0 }}" alt=""
+                                                    style="border-radius: 100%; width: 20px;"><img src="{{ t.hard.1 }}"
+                                                    alt=""
+                                                    style="border-radius: 100%; width: 20px; margin-left: 5px; margin-right: 5px;"><img
+                                                    src="{{ t.hard.2 }}" alt=""
+                                                    style="border-radius: 100%; width: 20px;">
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="adc" class="cont">
+                            <div class="tbl-header">
+                                <table cellpadding="0" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">순위</th>
+                                            <th scope="col">챔피언</th>
+                                            <th scope="col">티어</th>
+                                            <th scope="col">승률</th>
+                                            <th scope="col">픽률</th>
+                                            <th scope="col">밴률</th>
+                                            <th scope="col">상대하기 어려운 챔피언</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="tbl-content">
+                                <table cellpadding="0" cellspacing="0">
+                                    <tbody class="text-center">
+                                        {% for t in adc %}
+                                        <tr>
+                                            <td scope="col">{{ t.rank }}</td>
+                                            <td scope="col"><img src="{{ t.img }}" alt=""
+                                                    style="width: 20px; height: 20px;">
+                                                {{ t.name}}</td>
+                                            <td scope="col">{{ t.tier }}</td>
+                                            <td scope="col">{{ t.win }}</td>
+                                            <td scope="col">{{ t.pick }}</td>
+                                            <td scope="col">{{ t.ben }}</td>
+                                            <td scope="col"><img src="{{ t.hard.0 }}" alt=""
+                                                    style="border-radius: 100%; width: 20px;"><img src="{{ t.hard.1 }}"
+                                                    alt=""
+                                                    style="border-radius: 100%; width: 20px; margin-left: 5px; margin-right: 5px;"><img
+                                                    src="{{ t.hard.2 }}" alt=""
+                                                    style="border-radius: 100%; width: 20px;">
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="support" class="cont">
+                            <div class="tbl-header">
+                                <table cellpadding="0" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">순위</th>
+                                            <th scope="col">챔피언</th>
+                                            <th scope="col">티어</th>
+                                            <th scope="col">승률</th>
+                                            <th scope="col">픽률</th>
+                                            <th scope="col">밴률</th>
+                                            <th scope="col">상대하기 어려운 챔피언</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="tbl-content">
+                                <table cellpadding="0" cellspacing="0">
+                                    <tbody class="text-center">
+                                        {% for t in support %}
+                                        <tr>
+                                            <td scope="col">{{ t.rank }}</td>
+                                            <td scope="col"><img src="{{ t.img }}" alt=""
+                                                    style="width: 20px; height: 20px;">
+                                                {{ t.name}}</td>
+                                            <td scope="col">{{ t.tier }}</td>
+                                            <td scope="col">{{ t.win }}</td>
+                                            <td scope="col">{{ t.pick }}</td>
+                                            <td scope="col">{{ t.ben }}</td>
+                                            <td scope="col"><img src="{{ t.hard.0 }}" alt=""
+                                                    style="border-radius: 100%; width: 20px;"><img src="{{ t.hard.1 }}"
+                                                    alt=""
+                                                    style="border-radius: 100%; width: 20px; margin-left: 5px; margin-right: 5px;"><img
+                                                    src="{{ t.hard.2 }}" alt=""
+                                                    style="border-radius: 100%; width: 20px;">
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
         </div>
     </div>
 </div>

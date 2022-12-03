@@ -20,13 +20,13 @@ from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
-    path('base/', views.base, name='base'),
-    path('admin/', admin.site.urls),
-    path('', views.main, name='main'),
-    path('home/', views.home, name='home'),
-    path('accounts/', include("accounts.urls")),
-    path('articles/', include("articles.urls")),
-    path('champions/', include("champions.urls")),
+    path("base/", views.base, name="base"),
+    path("admin/", admin.site.urls),
+    path("", views.main, name="main"),
+    path("home/", views.home, name="home"),
+    path("accounts/", include("accounts.urls")),
+    path("articles/", include("articles.urls")),
+    path("champions/", include("champions.urls")),
     # summernote
-    path('summernot/', include('django_summernote.urls')),
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path("summernot/", include("django_summernote.urls")),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -49,18 +49,16 @@ def index(request):
     }
     return render(request, 'champions/index.html', context)
 
-# def lane_name(request, lane):
-
-#     context = {
-#         'lane' : lane,
-#     }
-#     return render(request, 'champions/index.html', context)
-
-# def detail(request, c_name):
-#     for champ in champs:
-#         detail = champ['detail']
+def detail(request):
     
-#     context = {
-#         'detail' : detail,
-#     }
-#     return render(request, 'champions/detail.html', context)
+    context = {
+        
+        'infos' : infos,
+        'top' : top,
+        'jungle' : jungle,
+        'mid' : mid,
+        'adc' : adc,
+        'support' : support,
+    }
+    return render(request, 'champions/detail.html', context)
+

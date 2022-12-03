@@ -13,7 +13,24 @@ from django.contrib.auth import get_user_model, update_session_auth_hash
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-
+from django.core.mail.message import EmailMessage
+from django.template.loader import render_to_string
+from django.urls import reverse_lazy
+from django.contrib.auth.views import (
+    LoginView,
+    LogoutView,
+    PasswordResetView,
+    PasswordResetDoneView,
+    PasswordResetCompleteView,
+    PasswordResetConfirmView,
+)
+from django.contrib.auth.forms import (
+    AuthenticationForm,
+    PasswordChangeForm,
+    PasswordResetForm,
+    SetPasswordForm,
+)
+from django.shortcuts import resolve_url
 
 # Create your views here.
 def login(request):
@@ -181,6 +198,13 @@ def update(request, pk):
     #     change_form = CustomUserChangeForm(instance=user)
 
 
+def send_email(request):
+    subject = "RIP.gg 비밀번호 재설정"
+    message = render_to_string("password_reset_email.html")
+    send_email = EmailMessage(subject, message)
+    send_email.send()
+
+
 def member(request):
     if request.method == "POST":
         form = CustomUserCreationForm(request.POST)
@@ -199,6 +223,7 @@ def member(request):
     }
     return render(request, "accounts/member.html", context)
 
+
 @login_required
 def articles(request, pk):
     articles = all.Articles.objects.filter(user=request.user).order_by("-pk")
@@ -206,8 +231,6 @@ def articles(request, pk):
         "articles": articles,
     }
     return render(request, "accounts/articles.html", context)
-
-
 
 import secrets
 
@@ -256,3 +279,40 @@ def kakao_callback(request):
     # messages.success(request, f"{kakao_nickname}님, {g}")
     return redirect(request.GET.get("next") or "articles:index")
 
+
+class UserPasswordResetView(PasswordResetView):
+    template_name = "accounts/password_reset.html"
+    success_url = reverse_lazy("password_reset_done")
+    form_class = PasswordResetForm
+
+    def form_valid(self, form):
+        if User.objects.filter(email=self.request.POST.get("email")).exists():
+            return super().form_valid(form)
+        else:
+            return render(self.request, "accounts/password_reset_done_fail.html")
+
+
+class UserPasswordResetDoneView(PasswordResetDoneView):
+    template_name = "accounts/password_reset_done.html"
+
+
+class UserPasswordResetConfirmView(PasswordResetConfirmView):
+    form_class = SetPasswordForm
+    post_reset_login = False
+    post_reset_login_backend = None
+    reset_url_token = "set-password"
+    success_url = reverse_lazy("accounts/password_reset_complete.html")
+    template_name = "accounts/password_reset_confirm.html"
+    email_template_name = "accounts/password_reset.html"
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+
+class UserPasswordResetCompleteView(PasswordResetCompleteView):
+    template_name = "accounts/password_reset_complete.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["login_url"] = resolve_url(settings.LOGIN_URL)
+        return context
