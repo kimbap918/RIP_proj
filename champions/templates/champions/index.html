@@ -4,26 +4,26 @@
 {% load widget_tweaks %}
 {% block content %}
 
-<div class="m-0 p-0" style="background-color: olive;">
-    <div style="padding-left: 30px; padding-right: 30px;">
+<body class="m-0 p-0" style="background-color: #0A323C;">
+    <div style="padding-left: 30px; padding-right: 30px; margin-top: 2rem;">
         <div class="d-flex">
             <aside class="m-2" style="width: 30%;">
                 <h1 class="text-center">Champions</h1>
-                <div class="row champs">
+                <div class="row champs" style="justify-content: space-evenly">
                     {% for champ in infos %}
                     <div class="col-md-6 p-0 m-1" style="width: 50px; height: 64px;">
                         <a href="{{ champ.detail }}" style="text-decoration: none;">
                             <img src="{{ champ.img }}" alt="" style="width: 50px; height: 50px; border-radius: 5px;">
-                            <p style="font-size: 13px; text-decoration: none;">{{ champ.name }}</p>
+                            <p style="font-size: 13px; text-decoration: none; color: azure;">{{ champ.name }}</p>
                         </a>
                     </div>
                     {% endfor %}
                 </div>
             </aside>
             <article class="m-2" style="width: 70%;">
-                <h1>Ranking</h1>
+                <h1>Lane Ranking</h1>
                 <div class="wrap">
-                    <div class="tab_menu">
+                    <div class="tab_menu d-flex justify-content-center">
                         <ul class="list">
                             <li class="is_on">
                                 <a href="#top" class="btn">탑</a>
@@ -48,13 +48,13 @@
                                 <table cellpadding="0" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th scope="col">순위</th>
-                                            <th scope="col">챔피언</th>
-                                            <th scope="col">티어</th>
-                                            <th scope="col">승률</th>
-                                            <th scope="col">픽률</th>
-                                            <th scope="col">밴률</th>
-                                            <th scope="col">상대하기 어려운 챔피언</th>
+                                            <th scope="col" class="c-rank">순위</th>
+                                            <th scope="col" class="c-name">챔피언</th>
+                                            <th scope="col" class="c-rank">티어</th>
+                                            <th scope="col" class="c-percent">승률</th>
+                                            <th scope="col" class="c-percent">픽률</th>
+                                            <th scope="col" class="c-percent">밴률</th>
+                                            <th scope="col" class="c-name">어려운 챔피언</th>
                                         </tr>
                                     </thead>
                                 </table>
@@ -64,20 +64,34 @@
                                     <tbody class="text-center">
                                         {% for t in top %}
                                         <tr>
-                                            <td scope="col">{{ t.rank }}</td>
-                                            <td scope="col"><img src="{{ t.img }}" alt=""
-                                                    style="width: 20px; height: 20px;">
+                                            <td scope="col" class="c-rank-t">{{ t.rank }}</td>
+                                            <td scope="col" class="c-name-t"><img src="{{ t.img }}" alt=""
+                                                    style="width: 25px; height: 25px; border-radius: 5px;">
                                                 {{ t.name}}</td>
-                                            <td scope="col">{{ t.tier }}</td>
-                                            <td scope="col">{{ t.win }}</td>
-                                            <td scope="col">{{ t.pick }}</td>
-                                            <td scope="col">{{ t.ben }}</td>
-                                            <td scope="col"><img src="{{ t.hard.0 }}" alt=""
-                                                    style="border-radius: 100%; width: 20px;"><img src="{{ t.hard.1 }}"
+                                            <td scope="col" class="c-rank-t">
+                                                {% if t.tier == '0' %}
+                                                <img src="/static/images/t_op.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '1' %}
+                                                <img src="/static/images/t_1.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '2' %}
+                                                <img src="/static/images/t_2.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '3' %}
+                                                <img src="/static/images/t_3.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '4' %}
+                                                <img src="/static/images/t_4.png" alt="" style="width: 24px; height: 24px;">
+                                                {% else %}
+                                                <img src="/static/images/t_5.png" alt="" style="width: 24px; height: 24px;">
+                                                {% endif %}
+                                            </td>
+                                            <td scope="col" class="c-percent-t">{{ t.win }}</td>
+                                            <td scope="col" class="c-percent-t">{{ t.pick }}</td>
+                                            <td scope="col" class="c-percent-t">{{ t.ben }}</td>
+                                            <td scope="col" class="c-name-t"><img src="{{ t.hard.0 }}" alt=""
+                                                    style="border-radius: 100%; width: 25px;"><img src="{{ t.hard.1 }}"
                                                     alt=""
-                                                    style="border-radius: 100%; width: 20px; margin-left: 5px; margin-right: 5px;"><img
+                                                    style="border-radius: 100%; width: 25px; margin-left: 5px; margin-right: 5px;"><img
                                                     src="{{ t.hard.2 }}" alt=""
-                                                    style="border-radius: 100%; width: 20px;">
+                                                    style="border-radius: 100%; width: 25px;">
                                             </td>
                                         </tr>
                                         {% endfor %}
@@ -90,13 +104,13 @@
                                 <table cellpadding="0" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th scope="col">순위</th>
-                                            <th scope="col">챔피언</th>
-                                            <th scope="col">티어</th>
-                                            <th scope="col">승률</th>
-                                            <th scope="col">픽률</th>
-                                            <th scope="col">밴률</th>
-                                            <th scope="col">상대하기 어려운 챔피언</th>
+                                            <th scope="col" class="c-rank">순위</th>
+                                            <th scope="col" class="c-name">챔피언</th>
+                                            <th scope="col" class="c-rank">티어</th>
+                                            <th scope="col" class="c-percent">승률</th>
+                                            <th scope="col" class="c-percent">픽률</th>
+                                            <th scope="col" class="c-percent">밴률</th>
+                                            <th scope="col" class="c-name">어려운 챔피언</th>
                                         </tr>
                                     </thead>
                                 </table>
@@ -106,20 +120,34 @@
                                     <tbody class="text-center">
                                         {% for t in jungle %}
                                         <tr>
-                                            <td scope="col">{{ t.rank }}</td>
-                                            <td scope="col"><img src="{{ t.img }}" alt=""
-                                                    style="width: 20px; height: 20px;">
+                                            <td scope="col" class="c-rank-t">{{ t.rank }}</td>
+                                            <td scope="col" class="c-name-t"><img src="{{ t.img }}" alt=""
+                                                    style="width: 25px; height: 25px; border-radius: 5px;">
                                                 {{ t.name}}</td>
-                                            <td scope="col">{{ t.tier }}</td>
-                                            <td scope="col">{{ t.win }}</td>
-                                            <td scope="col">{{ t.pick }}</td>
-                                            <td scope="col">{{ t.ben }}</td>
-                                            <td scope="col"><img src="{{ t.hard.0 }}" alt=""
-                                                    style="border-radius: 100%; width: 20px;"><img src="{{ t.hard.1 }}"
+                                            <td scope="col" class="c-rank-t">
+                                                {% if t.tier == '0' %}
+                                                <img src="/static/images/t_op.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '1' %}
+                                                <img src="/static/images/t_1.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '2' %}
+                                                <img src="/static/images/t_2.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '3' %}
+                                                <img src="/static/images/t_3.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '4' %}
+                                                <img src="/static/images/t_4.png" alt="" style="width: 24px; height: 24px;">
+                                                {% else %}
+                                                <img src="/static/images/t_5.png" alt="" style="width: 24px; height: 24px;">
+                                                {% endif %}
+                                            </td>
+                                            <td scope="col" class="c-percent-t">{{ t.win }}</td>
+                                            <td scope="col" class="c-percent-t">{{ t.pick }}</td>
+                                            <td scope="col" class="c-percent-t">{{ t.ben }}</td>
+                                            <td scope="col" class="c-name-t"><img src="{{ t.hard.0 }}" alt=""
+                                                    style="border-radius: 100%; width: 25px;"><img src="{{ t.hard.1 }}"
                                                     alt=""
-                                                    style="border-radius: 100%; width: 20px; margin-left: 5px; margin-right: 5px;"><img
+                                                    style="border-radius: 100%; width: 25px; margin-left: 5px; margin-right: 5px;"><img
                                                     src="{{ t.hard.2 }}" alt=""
-                                                    style="border-radius: 100%; width: 20px;">
+                                                    style="border-radius: 100%; width: 25px;">
                                             </td>
                                         </tr>
                                         {% endfor %}
@@ -132,13 +160,13 @@
                                 <table cellpadding="0" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th scope="col">순위</th>
-                                            <th scope="col">챔피언</th>
-                                            <th scope="col">티어</th>
-                                            <th scope="col">승률</th>
-                                            <th scope="col">픽률</th>
-                                            <th scope="col">밴률</th>
-                                            <th scope="col">상대하기 어려운 챔피언</th>
+                                            <th scope="col" class="c-rank">순위</th>
+                                            <th scope="col" class="c-name">챔피언</th>
+                                            <th scope="col" class="c-rank">티어</th>
+                                            <th scope="col" class="c-percent">승률</th>
+                                            <th scope="col" class="c-percent">픽률</th>
+                                            <th scope="col" class="c-percent">밴률</th>
+                                            <th scope="col" class="c-name">어려운 챔피언</th>
                                         </tr>
                                     </thead>
                                 </table>
@@ -148,20 +176,34 @@
                                     <tbody class="text-center">
                                         {% for t in mid %}
                                         <tr>
-                                            <td scope="col">{{ t.rank }}</td>
-                                            <td scope="col"><img src="{{ t.img }}" alt=""
-                                                    style="width: 20px; height: 20px;">
+                                            <td scope="col" class="c-rank-t">{{ t.rank }}</td>
+                                            <td scope="col" class="c-name-t"><img src="{{ t.img }}" alt=""
+                                                    style="width: 25px; height: 25px; border-radius: 5px;">
                                                 {{ t.name}}</td>
-                                            <td scope="col">{{ t.tier }}</td>
-                                            <td scope="col">{{ t.win }}</td>
-                                            <td scope="col">{{ t.pick }}</td>
-                                            <td scope="col">{{ t.ben }}</td>
-                                            <td scope="col"><img src="{{ t.hard.0 }}" alt=""
-                                                    style="border-radius: 100%; width: 20px;"><img src="{{ t.hard.1 }}"
+                                            <td scope="col" class="c-rank-t">
+                                                {% if t.tier == '0' %}
+                                                <img src="/static/images/t_op.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '1' %}
+                                                <img src="/static/images/t_1.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '2' %}
+                                                <img src="/static/images/t_2.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '3' %}
+                                                <img src="/static/images/t_3.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '4' %}
+                                                <img src="/static/images/t_4.png" alt="" style="width: 24px; height: 24px;">
+                                                {% else %}
+                                                <img src="/static/images/t_5.png" alt="" style="width: 24px; height: 24px;">
+                                                {% endif %}
+                                            </td>
+                                            <td scope="col" class="c-percent-t">{{ t.win }}</td>
+                                            <td scope="col" class="c-percent-t">{{ t.pick }}</td>
+                                            <td scope="col" class="c-percent-t">{{ t.ben }}</td>
+                                            <td scope="col" class="c-name-t"><img src="{{ t.hard.0 }}" alt=""
+                                                    style="border-radius: 100%; width: 25px;"><img src="{{ t.hard.1 }}"
                                                     alt=""
-                                                    style="border-radius: 100%; width: 20px; margin-left: 5px; margin-right: 5px;"><img
+                                                    style="border-radius: 100%; width: 25px; margin-left: 5px; margin-right: 5px;"><img
                                                     src="{{ t.hard.2 }}" alt=""
-                                                    style="border-radius: 100%; width: 20px;">
+                                                    style="border-radius: 100%; width: 25px;">
                                             </td>
                                         </tr>
                                         {% endfor %}
@@ -174,13 +216,13 @@
                                 <table cellpadding="0" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th scope="col">순위</th>
-                                            <th scope="col">챔피언</th>
-                                            <th scope="col">티어</th>
-                                            <th scope="col">승률</th>
-                                            <th scope="col">픽률</th>
-                                            <th scope="col">밴률</th>
-                                            <th scope="col">상대하기 어려운 챔피언</th>
+                                            <th scope="col" class="c-rank">순위</th>
+                                            <th scope="col" class="c-name">챔피언</th>
+                                            <th scope="col" class="c-rank">티어</th>
+                                            <th scope="col" class="c-percent">승률</th>
+                                            <th scope="col" class="c-percent">픽률</th>
+                                            <th scope="col" class="c-percent">밴률</th>
+                                            <th scope="col" class="c-name">어려운 챔피언</th>
                                         </tr>
                                     </thead>
                                 </table>
@@ -190,20 +232,34 @@
                                     <tbody class="text-center">
                                         {% for t in adc %}
                                         <tr>
-                                            <td scope="col">{{ t.rank }}</td>
-                                            <td scope="col"><img src="{{ t.img }}" alt=""
-                                                    style="width: 20px; height: 20px;">
+                                            <td scope="col" class="c-rank-t">{{ t.rank }}</td>
+                                            <td scope="col" class="c-name-t"><img src="{{ t.img }}" alt=""
+                                                    style="width: 25px; height: 25px; border-radius: 5px;">
                                                 {{ t.name}}</td>
-                                            <td scope="col">{{ t.tier }}</td>
-                                            <td scope="col">{{ t.win }}</td>
-                                            <td scope="col">{{ t.pick }}</td>
-                                            <td scope="col">{{ t.ben }}</td>
-                                            <td scope="col"><img src="{{ t.hard.0 }}" alt=""
-                                                    style="border-radius: 100%; width: 20px;"><img src="{{ t.hard.1 }}"
+                                            <td scope="col" class="c-rank-t">
+                                                {% if t.tier == '0' %}
+                                                <img src="/static/images/t_op.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '1' %}
+                                                <img src="/static/images/t_1.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '2' %}
+                                                <img src="/static/images/t_2.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '3' %}
+                                                <img src="/static/images/t_3.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '4' %}
+                                                <img src="/static/images/t_4.png" alt="" style="width: 24px; height: 24px;">
+                                                {% else %}
+                                                <img src="/static/images/t_5.png" alt="" style="width: 24px; height: 24px;">
+                                                {% endif %}
+                                            </td>
+                                            <td scope="col" class="c-percent-t">{{ t.win }}</td>
+                                            <td scope="col" class="c-percent-t">{{ t.pick }}</td>
+                                            <td scope="col" class="c-percent-t">{{ t.ben }}</td>
+                                            <td scope="col" class="c-name-t"><img src="{{ t.hard.0 }}" alt=""
+                                                    style="border-radius: 100%; width: 25px;"><img src="{{ t.hard.1 }}"
                                                     alt=""
-                                                    style="border-radius: 100%; width: 20px; margin-left: 5px; margin-right: 5px;"><img
+                                                    style="border-radius: 100%; width: 25px; margin-left: 5px; margin-right: 5px;"><img
                                                     src="{{ t.hard.2 }}" alt=""
-                                                    style="border-radius: 100%; width: 20px;">
+                                                    style="border-radius: 100%; width: 25px;">
                                             </td>
                                         </tr>
                                         {% endfor %}
@@ -216,13 +272,13 @@
                                 <table cellpadding="0" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th scope="col">순위</th>
-                                            <th scope="col">챔피언</th>
-                                            <th scope="col">티어</th>
-                                            <th scope="col">승률</th>
-                                            <th scope="col">픽률</th>
-                                            <th scope="col">밴률</th>
-                                            <th scope="col">상대하기 어려운 챔피언</th>
+                                            <th scope="col" class="c-rank">순위</th>
+                                            <th scope="col" class="c-name">챔피언</th>
+                                            <th scope="col" class="c-rank">티어</th>
+                                            <th scope="col" class="c-percent">승률</th>
+                                            <th scope="col" class="c-percent">픽률</th>
+                                            <th scope="col" class="c-percent">밴률</th>
+                                            <th scope="col" class="c-name">어려운 챔피언</th>
                                         </tr>
                                     </thead>
                                 </table>
@@ -232,20 +288,34 @@
                                     <tbody class="text-center">
                                         {% for t in support %}
                                         <tr>
-                                            <td scope="col">{{ t.rank }}</td>
-                                            <td scope="col"><img src="{{ t.img }}" alt=""
-                                                    style="width: 20px; height: 20px;">
+                                            <td scope="col" class="c-rank-t">{{ t.rank }}</td>
+                                            <td scope="col" class="c-name-t"><img src="{{ t.img }}" alt=""
+                                                    style="width: 25px; height: 25px; border-radius: 5px;">
                                                 {{ t.name}}</td>
-                                            <td scope="col">{{ t.tier }}</td>
-                                            <td scope="col">{{ t.win }}</td>
-                                            <td scope="col">{{ t.pick }}</td>
-                                            <td scope="col">{{ t.ben }}</td>
-                                            <td scope="col"><img src="{{ t.hard.0 }}" alt=""
-                                                    style="border-radius: 100%; width: 20px;"><img src="{{ t.hard.1 }}"
+                                            <td scope="col" class="c-rank-t">
+                                                {% if t.tier == '0' %}
+                                                <img src="/static/images/t_op.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '1' %}
+                                                <img src="/static/images/t_1.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '2' %}
+                                                <img src="/static/images/t_2.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '3' %}
+                                                <img src="/static/images/t_3.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '4' %}
+                                                <img src="/static/images/t_4.png" alt="" style="width: 24px; height: 24px;">
+                                                {% else %}
+                                                <img src="/static/images/t_5.png" alt="" style="width: 24px; height: 24px;">
+                                                {% endif %}
+                                            </td>
+                                            <td scope="col" class="c-percent-t">{{ t.win }}</td>
+                                            <td scope="col" class="c-percent-t">{{ t.pick }}</td>
+                                            <td scope="col" class="c-percent-t">{{ t.ben }}</td>
+                                            <td scope="col" class="c-name-t"><img src="{{ t.hard.0 }}" alt=""
+                                                    style="border-radius: 100%; width: 25px;"><img src="{{ t.hard.1 }}"
                                                     alt=""
-                                                    style="border-radius: 100%; width: 20px; margin-left: 5px; margin-right: 5px;"><img
+                                                    style="border-radius: 100%; width: 25px; margin-left: 5px; margin-right: 5px;"><img
                                                     src="{{ t.hard.2 }}" alt=""
-                                                    style="border-radius: 100%; width: 20px;">
+                                                    style="border-radius: 100%; width: 25px;">
                                             </td>
                                         </tr>
                                         {% endfor %}
@@ -258,7 +328,7 @@
             </article>
         </div>
     </div>
-</div>
+</body>
 
 <!-- 랭킹 탭 메뉴 JS -->
 <script src="{% static 'js/champions_index.js' %}"></script>
