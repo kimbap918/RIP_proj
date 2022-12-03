@@ -1,3 +1,5 @@
+import random
+import requests
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Profile
 from .forms import CustomUserCreationForm, ProfileForm
@@ -46,7 +48,6 @@ def login(request):
         "login_form": login_form,
     }
     return render(request, "accounts/login.html", context)
-
 
 # else:
 #    return HttpResponseRedirect("")
@@ -230,6 +231,53 @@ def articles(request, pk):
         "articles": articles,
     }
     return render(request, "accounts/articles.html", context)
+
+import secrets
+
+state_token = secrets.token_urlsafe(16)
+
+
+def kakao_request(request):
+    kakao_api = "https://kauth.kakao.com/oauth/authorize?"
+    redirect_uri = "http://localhost:8000/accounts/login/kakao/callback"
+    client_id = "39c09c3e2d2a0741405cf64373d6a60a"  # # rest_api_key
+    return redirect(f"{kakao_api}&client_id={client_id}&redirect_uri={redirect_uri}&response_type=code")
+
+
+def kakao_callback(request):
+    data = {
+        "grant_type": "authorization_code",
+        "client_id": "39c09c3e2d2a0741405cf64373d6a60a",  # rest_api_key
+        "redirect_uri": "http://localhost:8000/accounts/login/kakao/callback",
+        "code": request.GET.get("code"),
+    }
+    kakao_token_api = "https://kauth.kakao.com/oauth/token"
+    access_token = requests.post(kakao_token_api, data=data).json()["access_token"]
+
+    headers = {"Authorization": f"bearer ${access_token}"}
+    kakao_user_api = "https://kapi.kakao.com/v2/user/me"
+    kakao_user_information = requests.get(kakao_user_api, headers=headers).json()
+
+    kakao_id = kakao_user_information["id"]
+    kakao_nickname = kakao_user_information["properties"]["nickname"]
+    # 유저 모델에 프로필 사진 추가시 사용
+    # kakao_profile_image = kakao_user_information["properties"]["profile_image"]
+
+    if get_user_model().objects.filter(kakao_id=kakao_id).exists():
+        kakao_user = get_user_model().objects.get(kakao_id=kakao_id)
+    else:
+        kakao_login_user = get_user_model()()
+        kakao_login_user.username = kakao_nickname
+        kakao_login_user.kakao_id = kakao_id
+        # kakao_login_user.social_profile_picture = kakao_profile_image
+        kakao_login_user.set_password(str(state_token))
+        kakao_login_user.save()
+        kakao_user = get_user_model().objects.get(kakao_id=kakao_id)
+        auth_login(request, kakao_user)
+        print(auth_login)
+    # g = random.choice(greetings)
+    # messages.success(request, f"{kakao_nickname}님, {g}")
+    return redirect(request.GET.get("next") or "articles:index")
 
 
 class UserPasswordResetView(PasswordResetView):
