@@ -13,6 +13,6 @@ urlpatterns = [
     path("delete/", views.delete, name="delete"),  # 회원탈퇴
     path("<int:pk>/update/", views.update, name="update"),  # 회원정보수정
     path("member/",views.member, name="member"), # 프로그래스바
-    path("login/kakao/", views.kakao_request, name="kakao"),
+    path("login/kakao", views.kakao_request, name="kakao"),
     path("login/kakao/callback/", views.kakao_callback),
 ]
