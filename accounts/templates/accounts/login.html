@@ -11,7 +11,10 @@
   <section class="col-6 border border-3 rounded-3">
     <h1 class="text-center my-2">로그인</h1> 
     <div class="mt-5">
-      <a href="{% url 'accounts:login' %}kakao" class="btn btn-warning col-6 my-2">카카오톡으로 로그인</a>
+      <form action="{% url 'accounts:login' %}kakao" method='POST'>
+        {% csrf_token %}
+        <input type="submit" class="btn btn-warning col-6 my-2" value="카카오로 로그인하기"/>
+      </form>
     </div>
     <form action="" method='POST'>
       {% csrf_token %}

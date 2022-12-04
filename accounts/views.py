@@ -47,6 +47,7 @@ def login(request):
     context = {
         "login_form": login_form,
     }
+    print(context)
     return render(request, "accounts/login.html", context)
 
 # else:
@@ -260,24 +261,31 @@ def kakao_callback(request):
 
     kakao_id = kakao_user_information["id"]
     kakao_nickname = kakao_user_information["properties"]["nickname"]
+    kakao_email = kakao_user_information['kakao_account']['email']
+
     # 유저 모델에 프로필 사진 추가시 사용
     # kakao_profile_image = kakao_user_information["properties"]["profile_image"]
-
     if get_user_model().objects.filter(kakao_id=kakao_id).exists():
         kakao_user = get_user_model().objects.get(kakao_id=kakao_id)
+        print(kakao_user)
+        print(kakao_id)
+        print(kakao_nickname)
+            
     else:
-        kakao_login_user = get_user_model()()
+        kakao_login_user = get_user_model()
         kakao_login_user.username = kakao_nickname
         kakao_login_user.kakao_id = kakao_id
+        kakao_login_user.kakao_email = kakao_email
         # kakao_login_user.social_profile_picture = kakao_profile_image
         kakao_login_user.set_password(str(state_token))
         kakao_login_user.save()
         kakao_user = get_user_model().objects.get(kakao_id=kakao_id)
-        auth_login(request, kakao_user)
-        print(auth_login)
+    auth_login(request, kakao_user, backend='django.contrib.auth.backends.ModelBackend')
+
+    # print(kakao_login_user)
     # g = random.choice(greetings)
     # messages.success(request, f"{kakao_nickname}님, {g}")
-    return redirect(request.GET.get("next") or "articles:index")
+    return redirect(request.POST.get("next") or "articles:index")
 
 
 class UserPasswordResetView(PasswordResetView):
