@@ -94,3 +94,4 @@ function errorEvent() {
 // month => 달 Date => 일
 // document.getElementById('currnetMonth').value= new Date().toISOString().slice(0, 7);
 // document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);
+

@@ -3,41 +3,103 @@
 {% load django_bootstrap5 %}
 {% load article_filter %}
 {% load widget_tweaks %}
-
 {% block content %}
-<div class="row">
-    <div class="col-3"></div>
-    <div class="col-9 border">
-        <div class="d-flex flex-column">
+<style>
+    a{
+        text-decoration:none;
+        color:black;
+    }
+    a:active{
+        background-color:grey;
+        color:green;
+    }
+</style>
+<div class="row my-3">
+    {% if request.user.is_authenticated %}
+    <div class="d-none d-lg-block col-lg-3 border border-3 my-3 rounded-3" style="max-height:600px; position:sticky; top:0;">
+        <div class="my-2 container">
+            <p>
+                <img style="width: 20%; height:20%;" src="{% static 'images/logo.png' %}" alt=""> <span>{{ user.username }}</span>
+                <span>
+                    <div class="progress" style="height: 3px;">
+                        <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width:30%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </span>
+            </p>
+            <hr>
+            <div class="d-flex justify-content-between my-2">
+                <a href="?sort=3" class="btn btn-outline-success">내가 쓴 글</a>
+                <a href="?sort=4" class="btn btn-outline-success">내 와드</a>
+                <a href="?sort=5" class="btn btn-outline-success">좋아요</a>
+            </div>
+            <hr>
+            <a href="{% url 'articles:create' %}" class="btn btn-success w-100">글쓰기</a>
+            <hr>
+            <div class="d-flex flex-column">
+                <a name="tag1" class="my-1 small" href="?sort=6">자유</a>
+                <a class="my-1 small"href="?sort=7">유머</a>
+                <a class="my-1 small"href="?sort=10">팬아트</a>
+                <hr>
+                <a class="my-1 small"href="?sort=8">유저찾기</a>
+                <a class="my-1 small"href="?sort=12">유저뉴스</a>
+                <a class="my-1 small"href="?sort=13">팁과노하우</a>
+                <hr>
+                <a class="my-1 small"href="?sort=11">기획</a>
+                <a class="my-1 small"href="?sort=9">사건사고</a>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="d-none d-lg-block col-lg-3 border border-3 my-3 rounded-3" style="max-height:400px; position:sticky; top:0;">
+        <div class="my-2 container">
+            <a href="{% url 'accounts:login' %}" class="btn btn-primary w-100 mt-2">로그인</a>
+            <hr>
+            <div class="d-flex flex-column">
+                <a class="my-1 small"href="?sort=6">자유</a>
+                <a class="my-1 small"href="?sort=7">유머</a>
+                <a class="my-1 small"href="?sort=10">팬아트</a>
+                <hr>
+                <a class="my-1 small"href="?sort=8">유저찾기</a>
+                <a class="my-1 small"href="?sort=12">유저뉴스</a>
+                <a class="my-1 small"href="?sort=13">팁과노하우</a>
+                <hr>
+                <a class="my-1 small"href="?sort=11">기획</a>
+                <a class="my-1 small"href="?sort=9">사건사고</a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <div class="col-lg-9 col-md-12">
+        <div class="border border-3 d-flex flex-column my-3 rounded-3">
             <h4>
                 {{ article.title }}
                 {% if request.user == article.user %}
                 <div style="float:right">
-                <a class="btn btn-primary btn-sm" href="{% url 'articles:update' article.pk %}">수정</a>
-                <!-- 삭제 모달 버튼 -->
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    삭제
-                </button>
+                    <a class="btn btn-primary btn-sm" href="{% url 'articles:update' article.pk %}">수정</a>
+                    <!-- 삭제 모달 버튼 -->
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        삭제
+                    </button>
 
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                정말로 삭제하시겠습니까?
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <a href="{% url 'articles:delete' article.pk %}" class="btn btn-danger">삭제하기</a>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    정말로 삭제하시겠습니까?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <a href="{% url 'articles:delete' article.pk %}" class="btn btn-danger">삭제하기</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 </div>
                 {% endif %}
             </h4>
@@ -53,7 +115,7 @@
                 </span>
 
             </p>
-        </div>
+        
         <hr>
         {{ article.content|safe|linebreaks }}
         <!-- 비동기 북마크 -->
@@ -83,11 +145,10 @@
         <span id="like-count">{{ article.like_user.count }}</span>
     <!-- article.pk번 게시글의 댓글 -->
     <!-- 댓글 작성 폼-->
-    </div>
 </div>
-<div class="row">
-    <div class="col-3"></div>
-    <div class="border col-9 my-5">
+
+
+    <div class="border border-3 rounded-3">
         <h4 class="my-3">댓글</h4>
         {% if request.user.is_authenticated %}
         <form action="{% url 'articles:comment_create' article.pk %}" method="POST" id="comment-form"
@@ -98,22 +159,24 @@
         </form>
         {% endif %}
         <hr>
-            <!-- 댓글 목록 -->
-            <div id="comments">  
-                {% for comment in comments %}
-                <p class="div_comment">
-                    <a class="keyboard-comment-user" href="{% url 'accounts:detail' comment.user.pk %}" style="text-decoration: none;">{{ comment.user }}</a> 
+                    <!-- 댓글 목록 -->
+                    <div id="comments">  
+                        {% for comment in comments %}
+                        <div class="div_comment">
+                            <a class="keyboard-comment-user" href="{% url 'accounts:detail' comment.user.pk %}" style="text-decoration: none;">{{ comment.user }}</a> 
 
+                    <!-- 좋아요 (나중에 폼으로 만들기) -->
                     {% if request.user.is_authenticated %}
-                    {% if request.user in comment.like_user.all %} <!-- 따봉을 하는 유저가 comment.like_user에 포함되어있을 경우 따봉업 가능-->
-                    <!-- <p>{{ comment.id }}</p> -->
-                    <i class="like-btn-comment bi bi-hand-thumbs-up-fill" data-article-id="{{ comment.article.id }}" data-comment-id="{{ comment.id }}"></i>
-                    {% else %} <!-- 따봉을 하는 유저가 comment.like_user에 포함되어있지 않을경우 따봉업 불가능-->
-                    <!-- <p>{{ comment.id }}</p>
-                    <p>{{ comment.article.id }}</p> -->
-                    <i class="like-btn-comment bi bi-hand-thumbs-up" data-article-id="{{ comment.article.id }}" data-comment-id="{{ comment.id }}"></i>
-                    {% endif %}
-                    {% endif %}        
+                        {% if request.user in comment.like_users.all %}
+                            <i class="like-btn-comment bi bi-hand-thumbs-up-fill" data-article-id="{{ comment.article.id }}" data-comment-id="{{ comment.id }}"></i>
+                        {% else %}
+                            <i class="like-btn-comment bi bi-hand-thumbs-up" data-article-id="{{ comment.article.id }}" data-comment-id="{{ comment.id }}"></i>
+                        {% endif %}
+                    {% else %}
+                        <a href="{% url 'accounts:login' %}" class="mx-2">
+                        <i class="bi bi-hand-thumbs-up"></i>
+                        </a>
+                    {% endif %}   
                     <span class="like-count-comment">{{ comment.like_user.count }}</span>
                     <p>{{ comment.content }}</p>
                     <p class="comment-control-delete btn btn-outline-danger mb-2" onclick="comment_delete(this)" id="comment-delete-{{ comment.pk }}" data-postdel-id="{{ article.pk }}" data-commentdel-id="{{ comment.pk }}">삭제</p>
@@ -128,6 +191,7 @@
                 </div>
                 {% endfor %}
             </div>
+        </div>
     </div> 
 </div>  
 {% endblock content %}
@@ -144,4 +208,7 @@
     <script src="{% static 'js/article_bookmark.js' %}"></script>
     <!-- 댓글 좋아요 -->
     <script src="{% static 'js/comment_like.js' %}"></script>
+    <!-- 댓글 좋아요 삭제, 생성 비동기 -->
+    <script src="{% static 'js/comment_like_detail.js' %}"></script>
     {% endblock script %}
+

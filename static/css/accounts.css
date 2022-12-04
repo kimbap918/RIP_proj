@@ -150,8 +150,8 @@ p input:valid+label::after {
 
 
 /* 로고이미지 */
-/* 로고이미지 */
-.logo {
+
+.logo{
     display: flex;
     justify-content: center;
     padding: 2.5rem;
@@ -181,12 +181,14 @@ p input:valid+label::after {
     margin: 10px;
 }
 
+
 .previousBtn {
     background-color: #e9edef !important;
     color: #333;
 }
 
-.progBtn1 {
+
+.progBtn1{
     display: flex;
     justify-content: center;
 }
@@ -224,4 +226,3 @@ a:hover {
     margin-block-end: 1em !important;
     margin-inline-start: 0px !important;
     margin-inline-end: 0px !important;
-}

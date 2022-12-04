@@ -2,18 +2,27 @@ from django.forms import ModelForm
 from django import forms
 from .models import *
 from django_summernote.widgets import SummernoteWidget
+
+choices = Category.objects.all().values_list('title','title')
+
+choice_list = []
+
+for item in choices:
+    choice_list.append(item)
+
 class ArticleForm(forms.ModelForm):
 
     class Meta:
         model = Article
-        fields = ['title', 'content','photo']
+        fields = ['title', 'content','photo','category']
         labels = {
             'title': '제목',
             'content': '내용',
             'photo': '이미지',
         }
         widgets = {
-            'content': SummernoteWidget(attrs={'summernote':{'width':'100%','height':'400px'}})
+            'content': SummernoteWidget(attrs={'summernote':{'width':'100%','height':'400px'}}),
+            'category':forms.Select(choices=choice_list)
         }
 
 class CommentForm(forms.ModelForm):
