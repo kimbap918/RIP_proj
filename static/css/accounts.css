@@ -1,4 +1,4 @@
-container{
+container {
     margin: 0;
     padding: 0;
     display: flex;
@@ -30,7 +30,7 @@ container{
     margin-bottom: 36px;
 }
 
-.iBox i{
+.iBox i {
     padding-left: 1rem;
     padding-right: 1rem;
 }
@@ -45,7 +45,7 @@ container{
     display: none;
 }
 
-.form-group{
+.form-group {
     display: flex;
     flex-direction: column;
     margin-bottom: .5rem;
@@ -56,13 +56,13 @@ container{
     margin: 0;
 }
 
-.form-group > label {
+.form-group>label {
     font-weight: bold;
     font-size: .8em;
     color: #333;
 }
 
-.form-group > input{
+.form-group>input {
     border: 1px solid #333;
     border-radius: .25em;
     font-size: 1rem;
@@ -150,7 +150,7 @@ p input:valid+label::after {
 
 
 /* 로고이미지 */
-/* 로고이미지 */
+
 .logo{
     display: flex;
     justify-content: center;
@@ -181,30 +181,32 @@ p input:valid+label::after {
     margin: 10px;
 }
 
-.previousBtn{
+
+.previousBtn {
     background-color: #e9edef !important;
     color: #333;
 }
+
 
 .progBtn1{
     display: flex;
     justify-content: center;
 }
 
-.progBtn2{
+.progBtn2 {
     display: flex;
     justify-content: space-between;
 }
 
 a {
-text-decoration: none;
+    text-decoration: none;
 }
 
 a:hover {
     color: #333;
 }
 
-.check{
+.check {
     width: 100%;
     overflow: auto;
     height: 300px;
@@ -214,13 +216,13 @@ a:hover {
 
 /* 약관 */
 .scroll-touch {
-    -webkit-overflow-scrolling: touch; /* Lets it scroll lazy */
-  }
+    -webkit-overflow-scrolling: touch;
+    /* Lets it scroll lazy */
+}
 
 .p2 {
-    display: block !important; 
-    margin-block-start: 1em !important; 
-    margin-block-end: 1em !important; 
-    margin-inline-start: 0px !important; 
-    margin-inline-end: 0px !important; 
-}
+    display: block !important;
+    margin-block-start: 1em !important;
+    margin-block-end: 1em !important;
+    margin-inline-start: 0px !important;
+    margin-inline-end: 0px !important;

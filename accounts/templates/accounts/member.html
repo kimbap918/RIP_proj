@@ -85,22 +85,23 @@ body {
                         <i class="fa-solid fa-circle" style="color: #1ea1f7;"></i>
                     </div>
                     <p class="">
-                        <input type="text" id="user_id" class="form-control box" placeholder="카카오계정" title="카카오계정" required>
-                        {% comment %} <input id="user_id" type="email" name="email" maxlength="100" required=" "id="id_email" required> {% endcomment %}
+
+                        <input id="user_id" type="text" name="email" maxlength="100" required=" "id="id_email"  autocomplete="off" required>
                         <label for="id_email"><span>이메일</span></label>
                     </p>
-                    {% comment %} <p class="nickForm">
+                    <p class="nickForm">
                         <input id="user_nick" type="text" name="username" maxlength="150" autofocus="" required="" id="id_username">
                         <label for="id_username"><span>닉네임</span></label>
-                    </p> {% endcomment %}
+                    </p> 
+
                     <p class="pwForm">
                         <input id="user_pw" type="password" name="password1" autocomplete="new-password" required="" id="id_password1">
                         <label for="id_username"><span>비밀번호</span></label>
                     </p>
-                    {% comment %} <p class="">
+                    <p class="">
                         <input id="pwFormT" type="password" name="password2" autocomplete="new-password" required="" id="id_password2">
                         <label for="id_username"><span>비밀번호확인</span></label>
-                    </p> {% endcomment %}
+                    </p>
                     <div class="progBtn2">
                         <a class="memberBtn previousBtn" href="{% url 'home' %}">취소</a>
                         <button id="btn_sign" class="memberBtn" type="submit">완료</button>
@@ -111,4 +112,3 @@ body {
     </div>
 </div>
 {% endblock %}
-

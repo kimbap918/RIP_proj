@@ -1,4 +1,3 @@
-
 const multiStepForm = document.querySelector("[data-multi-step]")
 const formSteps = [...multiStepForm.querySelectorAll("[data-step]")]
 // 현재 위치에 active를 줘라 
@@ -95,3 +94,4 @@ function errorEvent() {
 // month => 달 Date => 일
 // document.getElementById('currnetMonth').value= new Date().toISOString().slice(0, 7);
 // document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);
+
