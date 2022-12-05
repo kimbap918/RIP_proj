@@ -39,6 +39,7 @@ def get_secret(setting, secrets=secrets):
 
 
 SECRET_KEY = get_secret("SECRET_KEY")
+API_KEY = get_secret("API_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -53,7 +54,6 @@ INSTALLED_APPS = [
     "accounts",
     "summoners",
     "champions",
-    
     # requirements extension
     "imagekit",
     "django_bootstrap5",
@@ -61,24 +61,21 @@ INSTALLED_APPS = [
     "widget_tweaks",
     # django-summernote
     "django_summernote",
-    
     # default settings
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django.contrib.sites', # django email 로그인
-    
-    # django email 
-    'allauth', # new
-    'allauth.account', # new
-    'allauth.socialaccount', # new
-
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "django.contrib.sites",  # django email 로그인
+    # django email
+    "allauth",  # new
+    "allauth.account",  # new
+    "allauth.socialaccount",  # new
     # social login provider
-    'allauth.socialaccount.providers.auth0',
-    'allauth.socialaccount.providers.kakao',
+    "allauth.socialaccount.providers.auth0",
+    "allauth.socialaccount.providers.kakao",
 ]
 
 MIDDLEWARE = [
@@ -209,9 +206,9 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = "/"
 ACCOUNT_LOGOUT_REDIRECT_URL = "/"  # 로그아웃 후 리디렉션 할 페이지
-ACCOUNT_LOGOUT_ON_GET = True # 로그아웃 버튼 클릭 시 자동 로그아웃
+ACCOUNT_LOGOUT_ON_GET = True  # 로그아웃 버튼 클릭 시 자동 로그아웃
 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False

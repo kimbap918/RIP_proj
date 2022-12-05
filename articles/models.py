@@ -22,8 +22,7 @@ class Category(models.Model):
 
     def get_absolute_url(self):
         return reverse("articles:index")
-    
-    
+        
 
 class Article(models.Model):
     title = models.CharField(max_length=20)
