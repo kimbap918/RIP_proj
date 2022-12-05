@@ -55,6 +55,7 @@ def login(request):
     print(context)
     return render(request, "accounts/login.html", context)
 
+
 # else:
 #    return HttpResponseRedirect("")
 
@@ -238,6 +239,7 @@ def articles(request, pk):
     }
     return render(request, "accounts/articles.html", context)
 
+
 import secrets
 
 state_token = secrets.token_urlsafe(16)
@@ -247,7 +249,9 @@ def kakao_request(request):
     kakao_api = "https://kauth.kakao.com/oauth/authorize?"
     redirect_uri = "http://localhost:8000/accounts/login/kakao/callback"
     client_id = "39c09c3e2d2a0741405cf64373d6a60a"  # # rest_api_key
-    return redirect(f"{kakao_api}&client_id={client_id}&redirect_uri={redirect_uri}&response_type=code")
+    return redirect(
+        f"{kakao_api}&client_id={client_id}&redirect_uri={redirect_uri}&response_type=code"
+    )
 
 
 def kakao_callback(request):
@@ -266,7 +270,7 @@ def kakao_callback(request):
 
     kakao_id = kakao_user_information["id"]
     kakao_nickname = kakao_user_information["properties"]["nickname"]
-    kakao_email = kakao_user_information['kakao_account']['email']
+    kakao_email = kakao_user_information["kakao_account"]["email"]
 
     # 유저 모델에 프로필 사진 추가시 사용
     # kakao_profile_image = kakao_user_information["properties"]["profile_image"]
@@ -275,7 +279,7 @@ def kakao_callback(request):
         print(kakao_user)
         print(kakao_id)
         print(kakao_nickname)
-            
+
     else:
         kakao_login_user = get_user_model()
         kakao_login_user.username = kakao_nickname
@@ -285,7 +289,7 @@ def kakao_callback(request):
         kakao_login_user.set_password(str(state_token))
         kakao_login_user.save()
         kakao_user = get_user_model().objects.get(kakao_id=kakao_id)
-    auth_login(request, kakao_user, backend='django.contrib.auth.backends.ModelBackend')
+    auth_login(request, kakao_user, backend="django.contrib.auth.backends.ModelBackend")
 
     # print(kakao_login_user)
     # g = random.choice(greetings)
@@ -296,6 +300,7 @@ def kakao_callback(request):
 # 비밀번호 초기화, 찾기 이메일
 class UserPasswordResetView(PasswordResetView):
     template_name = "accounts/password_reset.html"
+    email_template_name = "accounts/password_reset_email.html"
     success_url = reverse_lazy("password_reset_done")
     form_class = PasswordResetForm
 
@@ -312,12 +317,8 @@ class UserPasswordResetDoneView(PasswordResetDoneView):
 
 class UserPasswordResetConfirmView(PasswordResetConfirmView):
     form_class = SetPasswordForm
-    post_reset_login = False
-    post_reset_login_backend = None
     reset_url_token = "set-password"
-    success_url = reverse_lazy("accounts/password_reset_complete.html")
-    template_name = "accounts/password_reset_confirm.html"
-    email_template_name = "accounts/password_reset_email.html"
+    success_url = reverse_lazy("password_reset_complete")
 
     def form_valid(self, form):
         return super().form_valid(form)
