@@ -1,11 +1,16 @@
 from django.shortcuts import render
-# 라이엇 API 
+# 라이엇 API 불러오기
 from urllib import parse
 import requests
+# 라이엇 API 시크릿 키
+from django.conf import settings
 # Create your views here.
 
+
 def index(request):
-    return render(request, 'summoners/index.html')
+    API_KEY = getattr(settings, 'API_KEY', 'API_KEY')
+
+    return render(request, 'summoners/index.html', {'api_key' : API_KEY})
  
 def result(request):
     if request.method == "GET":
@@ -19,7 +24,7 @@ def result(request):
         store_list = []
         game_list ={}
         game_list2 = []
-        api_key = 'RGAPI-dc64e012-b13d-49e5-9389-c1869b1c4a66'
+        api_key = getattr(settings, 'API_KEY', 'API_KEY')
  
  
         summoner_url = 'https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + summoner_name +'?api_key=' + api_key #소환사 정보 검색
