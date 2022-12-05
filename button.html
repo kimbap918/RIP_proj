@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+{% load static %}
+{% load django_bootstrap5 %}
+{% load article_filter %}
+{% load widget_tweaks %}
+{% block content %}
+
+<style>
+    .div2 {
+        border: 1px solid;
+        width: 100px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .div2:hover {
+        color: gold;
+    }
+
+    .clicked {
+        color: gold;
+    }
+</style>
+
+<div class="d-flex my-3 ">
+    <div class="d-flex justify-content-between col-8">
+        <a href="{% url 'articles:button' %}" style="min-width:60px;"
+            class="small col-2 mx-3 d-flex align-items-center div2"><i class="bi bi-fire"></i>인기순</a>
+        <a href="#" style="min-width:60px;" class="small col-2 mx-3 d-flex align-items-center div2"><i
+                class="bi bi-hand-thumbs-up"></i>최신순</a>
+        <a href="#" style="min-width:60px;" class="small col-2 mx-3 d-flex align-items-center div2"><i
+                class="bi bi-hand-thumbs-up"></i>댓글순</a>
+    </div>
+    <div class="d-none d-md-block col-4">
+        <form class="d-flex" role="search" style="width:100%; height:100%;">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-sm btn-outline-success" type="submit">
+                <i class="bi bi-search"></i></button>
+        </form>
+    </div>
+
+</div>
+
+<div class="div1">
+    <div class="div2">div2_1</div>
+    <div class="div2">div2_2</div>
+    <div class="div2">div2_3</div>
+    <div class="div2">div2_4</div>
+    <div class="div2">div2_5</div>
+    <div class="div2">div2_6</div>
+    <div class="div2">div2_7</div>
+    <div class="div2">div2_8</div>
+    <div class="div2">div2_9</div>
+    <div class="div2">div2_10</div>
+</div>
+
+<script>
+
+    const div2 = document.getElementsByClassName("div2");
+
+    function handleClick(event) {
+        console.log(event.target);
+        // console.log(this);
+        // 콘솔창을 보면 둘다 동일한 값이 나온다
+
+        console.log(event.target.classList);
+
+        if (event.target.classList[1] === "clicked") {
+            event.target.classList.remove("clicked");
+        } else {
+            for (var i = 0; i < div2.length; i++) {
+                div2[i].classList.remove("clicked");
+            }
+
+            event.target.classList.add("clicked");
+        }
+    }
+
+    function init() {
+        for (var i = 0; i < div2.length; i++) {
+            div2[i].addEventListener("click", handleClick);
+        }
+    }
+
+    init();
+</script>
+<script>
+    $('a').click(function (e) {
+        e.preventDefault();
+    });
+</script>
+<script>
+    // document ready 를 순수 JS handler 로 구현
+    document.addEventListener("DOMContentLoaded", function () {
+        calc_expense();
+    });
+</script>
+<script>
+    const urlParams = new URL(location.href).searchParams;
+
+    const name = urlParams.get('fill');
+
+    if (name == '0') {
+        console.log(document.querySelector('#fillselect').options[1].selected = true)
+    } else if (name == '1') {
+        console.log(document.querySelector('#fillselect').options[2].selected = true)
+    } else if (name == '2') {
+        console.log(document.querySelector('#fillselect').options[3].selected = true)
+    }
+</script>
+{% endblock content %}
+
+def index(request):
+studies = Study.objects.order_by("-pk")
+fill = request.GET.get('fill')
+print(fill)
+if fill=='1':
+studies = Study.objects.filter(location_type=False).order_by("-pk")
+elif fill=='2':
+studies = Study.objects.filter(location_type=True).order_by("-pk")
+paginator = Paginator(studies, 16)
+page = request.GET.get('page')
+posts = paginator.get_page(page)
+context = {
+"studies": posts,
+}
+return render(request, "reviews/index.html", context)
+
+<form class="" id="category_form" action="" method="GET">
+    <select id="fillselect" name="fill" class="form-select" aria-label="Default select example"
+        onchange="this.form.submit()">
+        <option selected>스터디 카테고리</option>
+        <option value="0">모든 스터디</option>
+        <option value="1">오프라인 스터디</option>
+        <option value="2">온라인 스터디</option>
+    </select>
+</form>
+
+<a href=" 주소 ?fill=카테고리이름">
+    뷰에서 fill값을 request.GET.get['fill]
