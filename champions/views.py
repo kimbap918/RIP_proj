@@ -36,4 +36,19 @@ def index(request):
         "adc": adc,
         "support": support,
     }
-    return render(request, "champions/index.html", context)
+    return render(request, 'champions/index.html', context)
+
+def detail(request):
+    
+    context = {
+        
+        'infos' : infos,
+        'top' : top,
+        'jungle' : jungle,
+        'mid' : mid,
+        'adc' : adc,
+        'support' : support,
+    }
+    return render(request, 'champions/detail.html', context)
+
+

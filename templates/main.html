@@ -28,7 +28,10 @@
 </head>
 
 <style>
-
+body {
+  margin: 0;
+  padding: 0;
+}
   .letter {
     position: absolute;
   }
@@ -122,6 +125,11 @@ video#bgvid {
 
 
 /* 메인 로그인 */
+@media (min-width: 1280px) {
+  .lg\:login1 {
+    display: block;
+  }
+}
 
 @media (max-width: 991px) {
   .md\:login1 {
@@ -129,14 +137,26 @@ video#bgvid {
   }
 }
 
+
 /* 991이하 일 때 폼 따로 만들기 (center) */
-@media (max-width: 991px) {
-  .md\:login2 {
-    display:block;
+
+@media (min-width: 1280px) {
+  .lg\:login2 {
+    display:none;
   }
 }
 
+@media (min-width: 991px) {
+  .md\:login2 {
+    display:none;
+  }
+}
 
+@media (max-width: 320px) {
+  .sm\:login2 {
+    display:block;
+  }
+}
 
 .jb_loginBox {
   position: absolute;
@@ -146,6 +166,14 @@ video#bgvid {
   padding: 100px;
   border: 3px solid #fff;
   border-radius: 50px;
+}
+
+.jb_loginBox2 {
+  position: relative;
+  top: 50%;
+  border-radius: 50px;
+  padding: 35vh 30px;
+
 }
 
 .login__email-title {
@@ -216,7 +244,7 @@ body{
         <a href="{% url 'home' %}"><img src="/static/images/흰로고.png" alt="" style="width: 200px; padding-bottom: 15px;"></a>
       </p>
     </div>
-    <div class="md:login1 jb_loginBox">
+    <div class="lg:login1 md:login1 jb_loginBox">
       <form action="" method='POST'>
         {% csrf_token %}
         <H2 class="login__email-title" style="font-weight: 900;">이메일 로그인</H2>
@@ -241,6 +269,36 @@ body{
         </div>
         <!-- <input type="password"> -->
       </form>
+    </div>
+
+    <div class="lg:login2 md:login2 sm:login2 ">   
+      <div class="jb_loginBox2">
+        <form action="" method='POST'>
+          {% csrf_token %}
+          <H2 class="login__email-title" style="font-weight: 900;">이메일 로그인</H2>
+          <div class="member-input">
+            <!-- 이메일 -->
+            <p>
+              <input type="text" id="user_name" autocomplete="off" name="username" required>
+              <label for="user_name"><span>이메일</span></label>
+            </p>
+            <!-- 비밀번호 -->
+            <p>
+              <input type="password" id="user_password" autocomplete="off" name="password" required>
+              <label for="user_password"><span>비밀번호</span></label>
+            </p>
+            <input type="submit" class="btn py-2 form-control text-center"
+              style="font-size:15px; font-weight: 900; height: 40px; background-color: #fff; color: black" value="LOGIN" />
+            <p class="d-flex justify-content-center" style="padding-top: 20px; margin-bottom: 0;"><a
+                class="signup_link text-decoration-none" href="{% url 'accounts:member' %}">계정생성</a>
+            </p>
+            <p class="d-flex justify-content-center"><a class="signup_link text-decoration-none" href="{% url 'home' %}">비회원으로
+                이용하기</a>
+            </p>
+          </div>
+          <!-- <input type="password"> -->
+        </form>
+      </div>
     </div>
   </div>
 

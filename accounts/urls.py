@@ -9,7 +9,7 @@ from django.urls import reverse_lazy
 app_name = "accounts"
 
 urlpatterns = [
-    path("", views.login, name="login"),
+    path("login/", views.login, name="login"),
     path("signup/", views.signup, name="signup"),  # 회원가입
     path("logout/", views.logout, name="logout"),  # 로그아웃
     path("<int:pk>/", views.detail, name="detail"),
@@ -48,5 +48,8 @@ urlpatterns = [
         name="password_reset_complete",
     ),
     path("send_email/", views.send_email, name="send_email"),
-    path("member/", views.member, name="member"),  # 프로그래스바
+    path("member/",views.member, name="member"), # 프로그래스바
+    path("login/kakao", views.kakao_request, name="kakao"),
+    path("login/kakao/callback/", views.kakao_callback),
+
 ]

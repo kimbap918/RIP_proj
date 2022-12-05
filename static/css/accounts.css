@@ -1,4 +1,4 @@
-container{
+container {
     margin: 0;
     padding: 0;
     display: flex;
@@ -27,9 +27,10 @@ container{
 .iBox {
     display: flex;
     justify-content: center;
+    margin-bottom: 36px;
 }
 
-.iBox i{
+.iBox i {
     padding-left: 1rem;
     padding-right: 1rem;
 }
@@ -39,12 +40,12 @@ container{
     border: none;
     border-radius: .5rem;
     padding: .5rem;
-    max-width: 300px;
+    max-width: 400px;
     margin: 0 auto;
     display: none;
 }
 
-.form-group{
+.form-group {
     display: flex;
     flex-direction: column;
     margin-bottom: .5rem;
@@ -55,13 +56,13 @@ container{
     margin: 0;
 }
 
-.form-group > label {
+.form-group>label {
     font-weight: bold;
     font-size: .8em;
     color: #333;
 }
 
-.form-group > input{
+.form-group>input {
     border: 1px solid #333;
     border-radius: .25em;
     font-size: 1rem;
@@ -149,9 +150,79 @@ p input:valid+label::after {
 
 
 /* 로고이미지 */
+
 .logo{
     display: flex;
     justify-content: center;
     padding: 2.5rem;
+    margin-top: 10rem;
 }
 
+/* 버튼 */
+
+.memberBtn:disabled {
+    background-color: #dddfe4 !important;
+    cursor: default !important;
+}
+
+.memberBtn {
+    width: 100%;
+    font-weight: 400;
+    line-height: 19px;
+    text-align: center;
+    background-color: #1ea1f7;
+    font-weight: 700;
+    cursor: pointer;
+    line-height: 45px;
+    border-radius: 5px;
+    border: none;
+    color: #f3f5f7;
+    margin-top: 1.5rem;
+    margin: 10px;
+}
+
+
+.previousBtn {
+    background-color: #e9edef !important;
+    color: #333;
+}
+
+
+.progBtn1{
+    display: flex;
+    justify-content: center;
+}
+
+.progBtn2 {
+    display: flex;
+    justify-content: space-between;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: #333;
+}
+
+.check {
+    width: 100%;
+    overflow: auto;
+    height: 300px;
+    background-color: #f3f5f7;
+}
+
+
+/* 약관 */
+.scroll-touch {
+    -webkit-overflow-scrolling: touch;
+    /* Lets it scroll lazy */
+}
+
+.p2 {
+    display: block !important;
+    margin-block-start: 1em !important;
+    margin-block-end: 1em !important;
+    margin-inline-start: 0px !important;
+    margin-inline-end: 0px !important;

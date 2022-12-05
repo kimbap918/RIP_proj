@@ -17,7 +17,7 @@ const comment_delete = (e) => {
 
     for (let i = 0; i < commentData.length; i++) {
       let like = "";
-      console.log("commentLike", commentData[i].isLike)
+      // console.log("commentLike", commentData[i].isLike)
       if (commentData[i].isLike) {
         like = "bi-hand-thumbs-up";
       }
@@ -31,7 +31,7 @@ const comment_delete = (e) => {
         comments.insertAdjacentHTML('beforeend', `
         <div class="div_comment">
           <a class="keyboard-comment-user" href="#" style="text-decoration: none;">${commentData[i].profile_name}</a>
-          <i class="like-btn-comment ${like}" data-article-id="${articlePK}" data-comment-id="${commentData[i].commentPK}"></i>
+          <i class="like-btn-comment ${like}" data-article-id="${articlePK}" data-comment-id="${commentData[i].commentPK}" onclick="likeBtnComment(this)"></i>
           <span class="like-count-comment">${commentData[i].count}</span>
           <p>${commentData[i].content}</p>
           <p class="comment-control-delete btn btn-outline-danger mb-2" onclick="comment_delete(this)" id="comment-delete-${commentData[i].commentPK}" data-postdel-id="${articlePK}" data-commentdel-id="${commentData[i].commentPK}">삭제</p>
@@ -42,7 +42,7 @@ const comment_delete = (e) => {
         comments.insertAdjacentHTML('beforeend', `
         <div class="comment">
           <a class="keyboard-comment-user" href="#" style="text-decoration: none;">${commentData[i].profile_name}</a>
-          <i class="like-btn-comment bi ${like}" data-article-id="${articlePK}" data-comment-id="${commentData[i].commentPK}"></i>
+          <i class="like-btn-comment bi ${like}" data-article-id="${articlePK}" data-comment-id="${commentData[i].commentPK}" onclick="likeBtnComment(this)"></i>
           <span class="like-count-comment">${commentData[i].count}</span>
           <p>${commentData[i].content}</p>
           <p class="comment-control-delete btn btn-outline-danger mb-2" onclick="comment_delete(this)" id="comment-delete-${commentData[i].commentPK}" data-postdel-id="${articlePK}" data-commentdel-id="${commentData[i].commentPK}">삭제</p>
