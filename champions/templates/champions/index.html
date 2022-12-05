@@ -8,7 +8,7 @@
     <div style="padding-left: 30px; padding-right: 30px; margin-top: 2rem;">
         <div class="d-flex">
             <aside class="m-2" style="width: 30%;">
-                <h1 class="text-center">Champions</h1>
+                <h1 class="text-center">챔피언</h1>
                 <div class="row champs" style="justify-content: space-evenly">
                     {% for champ in infos %}
                     <div class="col-md-6 p-0 m-1" style="width: 50px; height: 64px;">
@@ -21,7 +21,7 @@
                 </div>
             </aside>
             <article class="m-2" style="width: 70%;">
-                <h1>Lane Ranking</h1>
+                <h1>순위</h1>
                 <div class="wrap">
                     <div class="tab_menu d-flex justify-content-center">
                         <ul class="list">
@@ -70,17 +70,23 @@
                                                 {{ t.name}}</td>
                                             <td scope="col" class="c-rank-t">
                                                 {% if t.tier == '0' %}
-                                                <img src="/static/images/t_op.png" alt="" style="width: 24px; height: 24px;">
+                                                <img src="/static/images/t_op.png" alt=""
+                                                    style="width: 24px; height: 24px;">
                                                 {% elif t.tier == '1' %}
-                                                <img src="/static/images/t_1.png" alt="" style="width: 24px; height: 24px;">
+                                                <img src="/static/images/t_1.png" alt=""
+                                                    style="width: 24px; height: 24px;">
                                                 {% elif t.tier == '2' %}
-                                                <img src="/static/images/t_2.png" alt="" style="width: 24px; height: 24px;">
+                                                <img src="/static/images/t_2.png" alt=""
+                                                    style="width: 24px; height: 24px;">
                                                 {% elif t.tier == '3' %}
-                                                <img src="/static/images/t_3.png" alt="" style="width: 24px; height: 24px;">
+                                                <img src="/static/images/t_3.png" alt=""
+                                                    style="width: 24px; height: 24px;">
                                                 {% elif t.tier == '4' %}
-                                                <img src="/static/images/t_4.png" alt="" style="width: 24px; height: 24px;">
+                                                <img src="/static/images/t_4.png" alt=""
+                                                    style="width: 24px; height: 24px;">
                                                 {% else %}
-                                                <img src="/static/images/t_5.png" alt="" style="width: 24px; height: 24px;">
+                                                <img src="/static/images/t_5.png" alt=""
+                                                    style="width: 24px; height: 24px;">
                                                 {% endif %}
                                             </td>
                                             <td scope="col" class="c-percent-t">{{ t.win }}</td>
@@ -99,7 +105,7 @@
                                 </table>
                             </div>
                         </div>
-                        <div id="jungle" class="cont">
+                        <div id="jungle" class="cont" style="display: none;">
                             <div class="tbl-header">
                                 <table cellpadding="0" cellspacing="0">
                                     <thead>
@@ -126,17 +132,23 @@
                                                 {{ t.name}}</td>
                                             <td scope="col" class="c-rank-t">
                                                 {% if t.tier == '0' %}
-                                                <img src="/static/images/t_op.png" alt="" style="width: 24px; height: 24px;">
+                                                <img src="/static/images/t_op.png" alt=""
+                                                    style="width: 24px; height: 24px;">
                                                 {% elif t.tier == '1' %}
-                                                <img src="/static/images/t_1.png" alt="" style="width: 24px; height: 24px;">
+                                                <img src="/static/images/t_1.png" alt=""
+                                                    style="width: 24px; height: 24px;">
                                                 {% elif t.tier == '2' %}
-                                                <img src="/static/images/t_2.png" alt="" style="width: 24px; height: 24px;">
+                                                <img src="/static/images/t_2.png" alt=""
+                                                    style="width: 24px; height: 24px;">
                                                 {% elif t.tier == '3' %}
-                                                <img src="/static/images/t_3.png" alt="" style="width: 24px; height: 24px;">
+                                                <img src="/static/images/t_3.png" alt=""
+                                                    style="width: 24px; height: 24px;">
                                                 {% elif t.tier == '4' %}
-                                                <img src="/static/images/t_4.png" alt="" style="width: 24px; height: 24px;">
+                                                <img src="/static/images/t_4.png" alt=""
+                                                    style="width: 24px; height: 24px;">
                                                 {% else %}
-                                                <img src="/static/images/t_5.png" alt="" style="width: 24px; height: 24px;">
+                                                <img src="/static/images/t_5.png" alt=""
+                                                    style="width: 24px; height: 24px;">
                                                 {% endif %}
                                             </td>
                                             <td scope="col" class="c-percent-t">{{ t.win }}</td>
@@ -155,7 +167,7 @@
                                 </table>
                             </div>
                         </div>
-                        <div id="mid" class="cont">
+                        <div id="mid" class="cont" style="display: none;">
                             <div class="tbl-header">
                                 <table cellpadding="0" cellspacing="0">
                                     <thead>
@@ -182,17 +194,23 @@
                                                 {{ t.name}}</td>
                                             <td scope="col" class="c-rank-t">
                                                 {% if t.tier == '0' %}
-                                                <img src="/static/images/t_op.png" alt="" style="width: 24px; height: 24px;">
+                                                <img src="/static/images/t_op.png" alt=""
+                                                    style="width: 24px; height: 24px;">
                                                 {% elif t.tier == '1' %}
-                                                <img src="/static/images/t_1.png" alt="" style="width: 24px; height: 24px;">
+                                                <img src="/static/images/t_1.png" alt=""
+                                                    style="width: 24px; height: 24px;">
                                                 {% elif t.tier == '2' %}
-                                                <img src="/static/images/t_2.png" alt="" style="width: 24px; height: 24px;">
+                                                <img src="/static/images/t_2.png" alt=""
+                                                    style="width: 24px; height: 24px;">
                                                 {% elif t.tier == '3' %}
-                                                <img src="/static/images/t_3.png" alt="" style="width: 24px; height: 24px;">
+                                                <img src="/static/images/t_3.png" alt=""
+                                                    style="width: 24px; height: 24px;">
                                                 {% elif t.tier == '4' %}
-                                                <img src="/static/images/t_4.png" alt="" style="width: 24px; height: 24px;">
+                                                <img src="/static/images/t_4.png" alt=""
+                                                    style="width: 24px; height: 24px;">
                                                 {% else %}
-                                                <img src="/static/images/t_5.png" alt="" style="width: 24px; height: 24px;">
+                                                <img src="/static/images/t_5.png" alt=""
+                                                    style="width: 24px; height: 24px;">
                                                 {% endif %}
                                             </td>
                                             <td scope="col" class="c-percent-t">{{ t.win }}</td>
@@ -211,7 +229,7 @@
                                 </table>
                             </div>
                         </div>
-                        <div id="adc" class="cont">
+                        <div id="adc" class="cont" style="display: none;">
                             <div class="tbl-header">
                                 <table cellpadding="0" cellspacing="0">
                                     <thead>
@@ -238,17 +256,23 @@
                                                 {{ t.name}}</td>
                                             <td scope="col" class="c-rank-t">
                                                 {% if t.tier == '0' %}
-                                                <img src="/static/images/t_op.png" alt="" style="width: 24px; height: 24px;">
+                                                <img src="/static/images/t_op.png" alt=""
+                                                    style="width: 24px; height: 24px;">
                                                 {% elif t.tier == '1' %}
-                                                <img src="/static/images/t_1.png" alt="" style="width: 24px; height: 24px;">
+                                                <img src="/static/images/t_1.png" alt=""
+                                                    style="width: 24px; height: 24px;">
                                                 {% elif t.tier == '2' %}
-                                                <img src="/static/images/t_2.png" alt="" style="width: 24px; height: 24px;">
+                                                <img src="/static/images/t_2.png" alt=""
+                                                    style="width: 24px; height: 24px;">
                                                 {% elif t.tier == '3' %}
-                                                <img src="/static/images/t_3.png" alt="" style="width: 24px; height: 24px;">
+                                                <img src="/static/images/t_3.png" alt=""
+                                                    style="width: 24px; height: 24px;">
                                                 {% elif t.tier == '4' %}
-                                                <img src="/static/images/t_4.png" alt="" style="width: 24px; height: 24px;">
+                                                <img src="/static/images/t_4.png" alt=""
+                                                    style="width: 24px; height: 24px;">
                                                 {% else %}
-                                                <img src="/static/images/t_5.png" alt="" style="width: 24px; height: 24px;">
+                                                <img src="/static/images/t_5.png" alt=""
+                                                    style="width: 24px; height: 24px;">
                                                 {% endif %}
                                             </td>
                                             <td scope="col" class="c-percent-t">{{ t.win }}</td>
@@ -267,7 +291,7 @@
                                 </table>
                             </div>
                         </div>
-                        <div id="support" class="cont">
+                        <div id="support" class="cont" style="display: none;">
                             <div class="tbl-header">
                                 <table cellpadding="0" cellspacing="0">
                                     <thead>
@@ -294,17 +318,23 @@
                                                 {{ t.name}}</td>
                                             <td scope="col" class="c-rank-t">
                                                 {% if t.tier == '0' %}
-                                                <img src="/static/images/t_op.png" alt="" style="width: 24px; height: 24px;">
+                                                <img src="/static/images/t_op.png" alt=""
+                                                    style="width: 24px; height: 24px;">
                                                 {% elif t.tier == '1' %}
-                                                <img src="/static/images/t_1.png" alt="" style="width: 24px; height: 24px;">
+                                                <img src="/static/images/t_1.png" alt=""
+                                                    style="width: 24px; height: 24px;">
                                                 {% elif t.tier == '2' %}
-                                                <img src="/static/images/t_2.png" alt="" style="width: 24px; height: 24px;">
+                                                <img src="/static/images/t_2.png" alt=""
+                                                    style="width: 24px; height: 24px;">
                                                 {% elif t.tier == '3' %}
-                                                <img src="/static/images/t_3.png" alt="" style="width: 24px; height: 24px;">
+                                                <img src="/static/images/t_3.png" alt=""
+                                                    style="width: 24px; height: 24px;">
                                                 {% elif t.tier == '4' %}
-                                                <img src="/static/images/t_4.png" alt="" style="width: 24px; height: 24px;">
+                                                <img src="/static/images/t_4.png" alt=""
+                                                    style="width: 24px; height: 24px;">
                                                 {% else %}
-                                                <img src="/static/images/t_5.png" alt="" style="width: 24px; height: 24px;">
+                                                <img src="/static/images/t_5.png" alt=""
+                                                    style="width: 24px; height: 24px;">
                                                 {% endif %}
                                             </td>
                                             <td scope="col" class="c-percent-t">{{ t.win }}</td>
@@ -331,8 +361,51 @@
 </body>
 
 <!-- 랭킹 탭 메뉴 JS -->
-<script src="{% static 'js/champions_index.js' %}"></script>
+<!-- <script src="{% static 'js/champ_index.js' %}"></script> -->
 <!-- 랭킹 탭 메뉴 CSS -->
 <link rel="stylesheet" href="{% static 'css/champions_index.css' %}">
+
+<script>
+    // 랭킹 탭 메뉴
+
+    const tabList = document.querySelectorAll('.tab_menu .list li');
+    const contents = document.querySelectorAll('.cont_area .cont')
+    let activeCont = ''; // 현재 활성화 된 컨텐츠 (기본:#tab1 활성화)
+
+    for (var i = 0; i < tabList.length; i++) {
+        tabList[i].querySelector('.btn').addEventListener('click', function (e) {
+            e.preventDefault();
+            for (var j = 0; j < tabList.length; j++) {
+                // 나머지 버튼 클래스 제거
+                tabList[j].classList.remove('is_on');
+
+                // 나머지 컨텐츠 display:none 처리
+                contents[j].style.display = 'none';
+            }
+
+            // 버튼 관련 이벤트
+            this.parentNode.classList.add('is_on');
+
+            // 버튼 클릭시 컨텐츠 전환
+            activeCont = this.getAttribute('href');
+            document.querySelector(activeCont).style.display = 'block';
+        });
+    }
+
+    // 테이블
+
+    $(window).on("load resize ", function () {
+        var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
+        $('.tbl-header').css({ 'padding-right': scrollWidth });
+    }).resize();
+
+    // 챔피언 정보
+
+    $(window).on("load resize ", function () {
+        var scrollWidth = $('.champs').width() - $('.champs table').width();
+        $('.tbl-header').css({ 'padding-right': scrollWidth });
+    }).resize();
+
+</script>
 
 {% endblock content %}

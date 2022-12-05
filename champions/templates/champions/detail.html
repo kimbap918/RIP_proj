@@ -1,590 +1,70 @@
+{% extends 'base.html' %}
 {% load static %}
-{% load widget_tweaks %}
 {% load django_bootstrap5 %}
-<!doctype html>
-<html lang="kr">
-
-<head>
-    <link rel="shortcut icon" type="image/x-icon" href="#">
-    <title>RIP.gg</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
-    <!-- 부트스트랩 icon -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css%22%3E">
-    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"> -->
-    <!-- 파비콘 -->
-    <link rel="icon" type="image/png" href="/static/images/logo.png" sizes="16x16">
-    <!-- 폰트어썸 -->
-    <script src="https://kit.fontawesome.com/9dfbf66130.js" crossorigin="anonymous"></script>
-    <!-- 폰트 CSS -->
-    <link rel="stylesheet" href="{% static 'css/font.css' %}" type="text/css">
-    <!-- 로고 폰트 -->
-    <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans:400" rel="stylesheet">
-
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=Roboto');
-
-        /* 로고 폰트 적용하기 */
-        .logo-font {
-            font-family: "Black Han Sans", sans-serif;
-        }
-
-        body {
-            font-family: 'Roboto', sans-serif;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-        }
-
-        /* i {
-	    margin-right: 10px;
-    } */
-
-        a,
-        button {
-            cursor: pointer;
-        }
-
-        /*----------bootstrap-navbar-css------------*/
-        .navbar-logo {
-            padding: 15px;
-            color: #fff;
-        }
-
-        .navbar-mainbg {
-            background-color: #5161ce;
-            padding: 0px;
-        }
-
-        #navbarSupportedContent {
-            overflow: hidden;
-            position: relative;
-        }
-
-        #navbarSupportedContent ul {
-            padding: 0px;
-            margin: 0px;
-        }
-
-        #navbarSupportedContent ul li a i {
-            margin-right: 10px;
-        }
-
-        #navbarSupportedContent li {
-            list-style-type: none;
-            float: left;
-        }
-
-        #navbarSupportedContent ul li a {
-            color: rgba(255, 255, 255, 0.5);
-            text-decoration: none;
-            font-size: 15px;
-            display: block;
-            padding: 20px 20px;
-            transition-duration: 0.6s;
-            transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            position: relative;
-        }
-
-        #navbarSupportedContent>ul>li.active>a {
-            color: #5161ce;
-            background-color: transparent;
-            transition: all 0.7s;
-        }
-
-        #navbarSupportedContent a:not(:only-child):after {
-            content: "\f105";
-            position: absolute;
-            right: 20px;
-            top: 10px;
-            font-size: 14px;
-            font-family: "Font Awesome 5 Free";
-            display: inline-block;
-            padding-right: 0px;
-            vertical-align: middle;
-            font-weight: 900;
-            transition: 0.5s;
-        }
-
-        #navbarSupportedContent .active>a:not(:only-child):after {
-            transform: rotate(90deg);
-        }
-
-        .hori-selector {
-            display: inline-block;
-            position: absolute;
-            height: 100%;
-            top: 0px;
-            left: 0px;
-            transition-duration: 0.6s;
-            transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            background-color: #fff;
-            border-top-left-radius: 15px;
-            border-top-right-radius: 15px;
-            margin-top: 10px;
-        }
-
-        .hori-selector .right,
-        .hori-selector .left {
-            position: absolute;
-            width: 25px;
-            height: 25px;
-            background-color: #fff;
-            bottom: 10px;
-        }
-
-        .hori-selector .right {
-            right: -25px;
-        }
-
-        .hori-selector .left {
-            left: -25px;
-        }
-
-        .hori-selector .right:before,
-        .hori-selector .left:before {
-            content: '';
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: #5161ce;
-        }
-
-        .hori-selector .right:before {
-            bottom: 0;
-            right: -25px;
-        }
-
-        .hori-selector .left:before {
-            bottom: 0;
-            left: -25px;
-        }
-
-
-        @media(min-width: 992px) {
-            .navbar-expand-custom {
-                -ms-flex-flow: row nowrap;
-                flex-flow: row nowrap;
-                -ms-flex-pack: start;
-                justify-content: flex-start;
-            }
-
-            .navbar-expand-custom .navbar-nav {
-                -ms-flex-direction: row;
-                flex-direction: row;
-            }
-
-            .navbar-expand-custom .navbar-toggler {
-                display: none;
-            }
-
-            .navbar-expand-custom .navbar-collapse {
-                display: -ms-flexbox !important;
-                display: flex !important;
-                -ms-flex-preferred-size: auto;
-                flex-basis: auto;
-            }
-        }
-
-
-        /* 네브바 반응형 */
-        /* 네브바 로그인&검색창 */
-        /* 991px 이하 로그인&검색창 네브바에서 출력 */
-
-        @media (min-width: 1280px) {
-            .lg\:nav {
-                display: none;
-            }
-        }
-
-        @media (min-width: 991px) {
-            .md\:nav {
-                display: none;
-            }
-        }
-
-        /* 네브바 검색창 */
-        .search_nav {
-            display: flex;
-            justify-content: center;
-        }
-
-        .search_inp {
-            width: 100%;
-            border-radius: 50px;
-            border: none;
-            padding: 12px 30px;
-            margin: 10px;
-            font-size: 14px;
-        }
-
-        .search_nav:focus {
-            border: none;
-        }
-
-        /* 반응형 css */
-
-        @media (min-width: 320px) {
-            .sm\:display {
-                display: none;
-            }
-        }
-
-        @media (min-width: 991px) {
-            .md\:display {
-                display: none;
-            }
-        }
-
-        @media (min-width: 991px) {
-            .md\:display2 {
-                display: block;
-            }
-        }
-
-        @media (min-width: 1280px) {
-            .lg\:display {
-                display: block;
-            }
-        }
-
-        @media (max-width: 991px) {
-            #navbarSupportedContent ul li a {
-                padding: 12px 30px;
-            }
-
-            .hori-selector {
-                margin-top: 0px;
-                margin-left: 10px;
-                border-radius: 0;
-                border-top-left-radius: 25px;
-                border-bottom-left-radius: 25px;
-            }
-
-            .hori-selector .left,
-            .hori-selector .right {
-                right: 10px;
-            }
-
-            .hori-selector .left {
-                top: -25px;
-                left: auto;
-            }
-
-            .hori-selector .right {
-                bottom: -25px;
-            }
-
-            .hori-selector .left:before {
-                left: -25px;
-                top: -25px;
-            }
-
-            .hori-selector .right:before {
-                bottom: -25px;
-                left: -25px;
-            }
-        }
-
-        /* 네브바 login */
-        .login {
-            display: flex;
-            justify-content: end;
-            list-style: none;
-            margin: 10px;
-        }
-
-        .login a {
-            color: #fff;
-            text-decoration: none;
-            font-size: small;
-        }
-
-        .login a:hover {
-            color: #2e397c;
-        }
-
-        /* 네브바 드롭다운 */
-        .dropbtn {
-            background-color: #5161ce;
-            color: white;
-            width: auto;
-            height: 40px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-        }
-
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            left: 0px;
-            background-color: #fff9f9;
-            min-width: 125px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            z-index: 10;
-            border-radius: 5px;
-        }
-
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            font-size: small;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #ddd;
-            color: black;
-            font-weight: bold;
-            border-radius: 5px;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        /* 테이블 CSS */
-        h1 {
-            font-size: 30px;
-            color: #fff;
-            text-transform: uppercase;
-            font-weight: 300;
-            text-align: center;
-            margin-bottom: 15px;
-            font-family: 'B-bold';
-        }
-
-        table {
-            width: 100%;
-            table-layout: fixed;
-        }
-
-        .tbl-header {
-            background-color: rgba(255, 255, 255, 0.3);
-        }
-
-        .tbl-content {
-            height: 600px;
-            overflow-x: auto;
-            margin-top: 0px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        th {
-            padding: 20px 15px;
-            text-align: left;
-            font-weight: 500;
-            font-size: 12px;
-            color: #fff;
-            text-transform: uppercase;
-        }
-
-        td {
-            padding: 15px;
-            text-align: left;
-            vertical-align: middle;
-            font-weight: 300;
-            font-size: 12px;
-            color: #fff;
-            border-bottom: solid 1px rgba(255, 255, 255, 0.1);
-        }
-
-        /* for custom scrollbar for webkit browser*/
-
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-        }
-
-        /* 탭메뉴 */
-        ul {
-            list-style: none;
-        }
-
-        a {
-            text-decoration: none;
-            color: #333;
-        }
-
-        .wrap {
-            padding: 15px;
-            letter-spacing: -0.5px;
-        }
-
-        .tab_menu {
-            position: relative;
-        }
-
-        .tab_menu .list {
-            overflow: hidden;
-        }
-
-        .tab_menu .list li {
-            float: left;
-            margin-right: 14px;
-        }
-
-        .tab_menu .list li.is_on .btn {
-            font-weight: bold;
-            color: green;
-        }
-
-        .tab_menu .list .btn {
-            font-size: 13px;
-        }
-
-        .tab_menu .cont_area .cont {
-            display: none;
-            position: absolute;
-            top: 25px;
-            left: 0;
-            background: #555;
-            color: #fff;
-            text-align: center;
-            width: 100%;
-            height: 100%;
-            line-height: 100px;
-        }
-    </style>
-
-</head>
-
-<body data-spy="scroll" data-target="#scroll-spy" style="background-color: #5161ce;">
-    <nav class="navbar navbar-expand-custom navbar-mainbg ">
-        <div class="container flex-wrap align-items-center justify-content-sm-between justify-content-lg-start">
-            <a class="navbar-brand" href="{% url 'main' %}"><img src="{% static 'images/흰로고.png' %}" height="20vw"
-                    alt="네브로고"></a>
-            <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <i class="fas fa-bars text-white"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    <div class="hori-selector">
-                        <div class="left"></div>
-                        <div class="right"></div>
+{% load widget_tweaks %}
+{% block content %}
+
+<body class="m-0 p-0" style="background-color: #0A323C;">
+    <div style="padding-left: 30px; padding-right: 30px; margin-top: 2rem;">
+        <div class="d-flex">
+            <aside class="m-2" style="width: 30%;">
+                <h1 class="text-center">챔피언</h1>
+                <div class="row champs" style="justify-content: space-evenly">
+                    {% for champ in infos %}
+                    <div class="col-md-6 p-0 m-1" style="width: 50px; height: 64px;">
+                        <a href="{{ champ.detail }}" style="text-decoration: none;">
+                            <img src="{{ champ.img }}" alt="" style="width: 50px; height: 50px; border-radius: 5px;">
+                            <p style="font-size: 13px; text-decoration: none; color: azure;">{{ champ.name }}</p>
+                        </a>
                     </div>
-
-                    <!-- 사이트 추가 예정 -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home' %}">홈</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'articles:index' %}">커뮤니티</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'champions:index' %}">챔피언</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0);">Documents</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0);">Documents</a>
-                    </li>
-                    <!-- 검색창 -->
-                    <div class="lg:nav md:nav">
-                        <div class="search_nav">
-                            <input class="search_inp" type="text" placeholder="소환사명,소환사명.." name="kw">
-                        </div>
-                        <div class="login">
-                            {% if request.user.is_authenticated %}
-                            <a href="{% url 'accounts:detail' user.pk %}" style="padding-right: 5px;">{{ user.username
-                                }}님의 페이지</a>
-                            {% else %}
-                            <a href="{% url 'accounts:login' %}">로그인</a>
-                            {% endif %}
-                        </div>
-                    </div>
-            </div>
-            </ul>
-            <!-- 로그인과 로그아웃시 변경 -->
-            <div class="sm:display md:display lg:display">
-                {% if request.user.is_authenticated %}
-                <div class="dropdown">
-                    <button class="dropbtn">
-                        {{ user.username }}님
-                        <i class="px-1 fa-solid fa-chevron-down"></i>
-                    </button>
-                    <div class="dropdown-content">
-                        <a href="{% url 'accounts:detail' user.pk %}">settings</a>
-                        <a href="{% url 'accounts:logout' %}">logout</a>
-                    </div>
+                    {% endfor %}
                 </div>
-            </div>
-            {% else %}
-            <div class="login">
-                <a href="{% url 'accounts:login' %}">로그인</a>
-            </div>
-            {% endif %}
-        </div>
-        </div>
-        </div>
-    </nav>
-    <header>
-        <!-- /.fixed navigation -->
-    </header>
-    <main class="container">
-
-        <div style="margin-left: 20px; margin-right: 20px;">
-            <div class="d-flex">
-                <aside class="m-2" style="width: 30%;">
-                    <h1 class="text-center" style="color: white;">Champions</h1>
-                    <div class="row">
-                        {% for champ in infos %}
-                        <div class="col-md-6 p-0 m-1" style="width: 50px; height: 64px;">
-                            <a href="{{ champ.detail }}" style="text-decoration: none;">
-                                <img src="{{ champ.img }}" alt=""
-                                    style="width: 50px; height: 50px; border-radius: 5px;">
-                                <p style="font-size: 13px; text-decoration: none; color: azure;">{{ champ.name }}</p>
-                            </a>
-                        </div>
-                        {% endfor %}
+            </aside>
+            <article class="m-2" style="width: 70%;">
+                <h1>순위</h1>
+                <nav class="navbar navbar-expand-md">
+                    <div class="container-fluid">
+                      <a class="navbar-brand" href="#">Navbar</a>
+                      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                      </button>
+                      <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                          <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="#">Features</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="#">Pricing</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link disabled">Disabled</a>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
-                </aside>
-                <article class="m-2" style="width: 70%;">
-                    <h1>Ranking</h1>
-                    <div class="wrap">
-                        <div class="tab_menu">
-                            <ul class="list">
-                                <li class="is_on">
-                                    <a href="#top" class="btn">탑</a>
-                                </li>
-                                <li>
-                                    <a href="#jungle" class="btn">정글</a>
-                                </li>
-                                <li>
-                                    <a href="#mid" class="btn">미드</a>
-                                </li>
-                                <li>
-                                    <a href="#adc" class="btn">바텀</a>
-                                </li>
-                                <li>
-                                    <a href="#support" class="btn">서포터</a>
-                                </li>
-                            </ul>
-                        </div>
+                  </nav>
+                <div class="wrap">
+                    <div class="tab_menu d-flex justify-content-center">
+                        <ul class="list">
+                            <li class="is_on">
+                                <a href="#top" class="btn">탑</a>
+                            </li>
+                            <li>
+                                <a href="#jungle" class="btn">정글</a>
+                            </li>
+                            <li>
+                                <a href="#mid" class="btn">미드</a>
+                            </li>
+                            <li>
+                                <a href="#adc" class="btn">바텀</a>
+                            </li>
+                            <li>
+                                <a href="#support" class="btn">서포터</a>
+                            </li>
+                        </ul>
                     </div>
                     <div class="cont_area">
                         <div id="top" class="cont" style="display:block;">
@@ -592,13 +72,13 @@
                                 <table cellpadding="0" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th scope="col">순위</th>
-                                            <th scope="col">챔피언</th>
-                                            <th scope="col">티어</th>
-                                            <th scope="col">승률</th>
-                                            <th scope="col">픽률</th>
-                                            <th scope="col">밴률</th>
-                                            <th scope="col">상대하기 어려운 챔피언</th>
+                                            <th scope="col" class="c-rank">순위</th>
+                                            <th scope="col" class="c-name">챔피언</th>
+                                            <th scope="col" class="c-rank">티어</th>
+                                            <th scope="col" class="c-percent">승률</th>
+                                            <th scope="col" class="c-percent">픽률</th>
+                                            <th scope="col" class="c-percent">밴률</th>
+                                            <th scope="col" class="c-name">어려운 챔피언</th>
                                         </tr>
                                     </thead>
                                 </table>
@@ -608,227 +88,275 @@
                                     <tbody class="text-center">
                                         {% for t in top %}
                                         <tr>
-                                            <td scope="col">{{ t.rank }}</td>
-                                            <td scope="col"><img src="{{ t.img }}" alt=""
-                                                    style="width: 20px; height: 20px;">
+                                            <td scope="col" class="c-rank-t">{{ t.rank }}</td>
+                                            <td scope="col" class="c-name-t"><img src="{{ t.img }}" alt=""
+                                                    style="width: 25px; height: 25px; border-radius: 5px;">
                                                 {{ t.name}}</td>
-                                            <td scope="col">{{ t.tier }}</td>
-                                            <td scope="col">{{ t.win }}</td>
-                                            <td scope="col">{{ t.pick }}</td>
-                                            <td scope="col">{{ t.ben }}</td>
-                                            <td scope="col"><img src="{{ t.hard.0 }}" alt=""
-                                                    style="border-radius: 100%; width: 20px;"><img src="{{ t.hard.1 }}"
+                                            <td scope="col" class="c-rank-t">
+                                                {% if t.tier == '0' %}
+                                                <img src="/static/images/t_op.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '1' %}
+                                                <img src="/static/images/t_1.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '2' %}
+                                                <img src="/static/images/t_2.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '3' %}
+                                                <img src="/static/images/t_3.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '4' %}
+                                                <img src="/static/images/t_4.png" alt="" style="width: 24px; height: 24px;">
+                                                {% else %}
+                                                <img src="/static/images/t_5.png" alt="" style="width: 24px; height: 24px;">
+                                                {% endif %}
+                                            </td>
+                                            <td scope="col" class="c-percent-t">{{ t.win }}</td>
+                                            <td scope="col" class="c-percent-t">{{ t.pick }}</td>
+                                            <td scope="col" class="c-percent-t">{{ t.ben }}</td>
+                                            <td scope="col" class="c-name-t"><img src="{{ t.hard.0 }}" alt=""
+                                                    style="border-radius: 100%; width: 25px;"><img src="{{ t.hard.1 }}"
                                                     alt=""
-                                                    style="border-radius: 100%; width: 20px; margin-left: 5px; margin-right: 5px;"><img
+                                                    style="border-radius: 100%; width: 25px; margin-left: 5px; margin-right: 5px;"><img
                                                     src="{{ t.hard.2 }}" alt=""
-                                                    style="border-radius: 100%; width: 20px;">
+                                                    style="border-radius: 100%; width: 25px;">
                                             </td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>
                                 </table>
                             </div>
-                            <div id="jungle" class="cont">
-                                <div class="tbl-header">
-                                    <table cellpadding="0" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">순위</th>
-                                                <th scope="col">챔피언</th>
-                                                <th scope="col">티어</th>
-                                                <th scope="col">승률</th>
-                                                <th scope="col">픽률</th>
-                                                <th scope="col">밴률</th>
-                                                <th scope="col">상대하기 어려운 챔피언</th>
-                                            </tr>
-                                        </thead>
-                                    </table>
-                                </div>
-                                <div class="tbl-content">
-                                    <table cellpadding="0" cellspacing="0">
-                                        <tbody class="text-center">
-                                            {% for t in jungle %}
-                                            <tr>
-                                                <td scope="col">{{ t.rank }}</td>
-                                                <td scope="col"><img src="{{ t.img }}" alt=""
-                                                        style="width: 20px; height: 20px;">
-                                                    {{ t.name}}</td>
-                                                <td scope="col">{{ t.tier }}</td>
-                                                <td scope="col">{{ t.win }}</td>
-                                                <td scope="col">{{ t.pick }}</td>
-                                                <td scope="col">{{ t.ben }}</td>
-                                                <td scope="col"><img src="{{ t.hard.0 }}" alt=""
-                                                        style="border-radius: 100%; width: 20px;"><img
-                                                        src="{{ t.hard.1 }}" alt=""
-                                                        style="border-radius: 100%; width: 20px; margin-left: 5px; margin-right: 5px;"><img
-                                                        src="{{ t.hard.2 }}" alt=""
-                                                        style="border-radius: 100%; width: 20px;">
-                                                </td>
-                                            </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                    </table>
-                                </div>
+                        </div>
+                        <div id="jungle" class="cont" style="display: none;">
+                            <div class="tbl-header">
+                                <table cellpadding="0" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="c-rank">순위</th>
+                                            <th scope="col" class="c-name">챔피언</th>
+                                            <th scope="col" class="c-rank">티어</th>
+                                            <th scope="col" class="c-percent">승률</th>
+                                            <th scope="col" class="c-percent">픽률</th>
+                                            <th scope="col" class="c-percent">밴률</th>
+                                            <th scope="col" class="c-name">어려운 챔피언</th>
+                                        </tr>
+                                    </thead>
+                                </table>
                             </div>
-
+                            <div class="tbl-content">
+                                <table cellpadding="0" cellspacing="0">
+                                    <tbody class="text-center">
+                                        {% for t in jungle %}
+                                        <tr>
+                                            <td scope="col" class="c-rank-t">{{ t.rank }}</td>
+                                            <td scope="col" class="c-name-t"><img src="{{ t.img }}" alt=""
+                                                    style="width: 25px; height: 25px; border-radius: 5px;">
+                                                {{ t.name}}</td>
+                                            <td scope="col" class="c-rank-t">
+                                                {% if t.tier == '0' %}
+                                                <img src="/static/images/t_op.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '1' %}
+                                                <img src="/static/images/t_1.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '2' %}
+                                                <img src="/static/images/t_2.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '3' %}
+                                                <img src="/static/images/t_3.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '4' %}
+                                                <img src="/static/images/t_4.png" alt="" style="width: 24px; height: 24px;">
+                                                {% else %}
+                                                <img src="/static/images/t_5.png" alt="" style="width: 24px; height: 24px;">
+                                                {% endif %}
+                                            </td>
+                                            <td scope="col" class="c-percent-t">{{ t.win }}</td>
+                                            <td scope="col" class="c-percent-t">{{ t.pick }}</td>
+                                            <td scope="col" class="c-percent-t">{{ t.ben }}</td>
+                                            <td scope="col" class="c-name-t"><img src="{{ t.hard.0 }}" alt=""
+                                                    style="border-radius: 100%; width: 25px;"><img src="{{ t.hard.1 }}"
+                                                    alt=""
+                                                    style="border-radius: 100%; width: 25px; margin-left: 5px; margin-right: 5px;"><img
+                                                    src="{{ t.hard.2 }}" alt=""
+                                                    style="border-radius: 100%; width: 25px;">
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="mid" class="cont" style="display: none;">
+                            <div class="tbl-header">
+                                <table cellpadding="0" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="c-rank">순위</th>
+                                            <th scope="col" class="c-name">챔피언</th>
+                                            <th scope="col" class="c-rank">티어</th>
+                                            <th scope="col" class="c-percent">승률</th>
+                                            <th scope="col" class="c-percent">픽률</th>
+                                            <th scope="col" class="c-percent">밴률</th>
+                                            <th scope="col" class="c-name">어려운 챔피언</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="tbl-content">
+                                <table cellpadding="0" cellspacing="0">
+                                    <tbody class="text-center">
+                                        {% for t in mid %}
+                                        <tr>
+                                            <td scope="col" class="c-rank-t">{{ t.rank }}</td>
+                                            <td scope="col" class="c-name-t"><img src="{{ t.img }}" alt=""
+                                                    style="width: 25px; height: 25px; border-radius: 5px;">
+                                                {{ t.name}}</td>
+                                            <td scope="col" class="c-rank-t">
+                                                {% if t.tier == '0' %}
+                                                <img src="/static/images/t_op.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '1' %}
+                                                <img src="/static/images/t_1.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '2' %}
+                                                <img src="/static/images/t_2.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '3' %}
+                                                <img src="/static/images/t_3.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '4' %}
+                                                <img src="/static/images/t_4.png" alt="" style="width: 24px; height: 24px;">
+                                                {% else %}
+                                                <img src="/static/images/t_5.png" alt="" style="width: 24px; height: 24px;">
+                                                {% endif %}
+                                            </td>
+                                            <td scope="col" class="c-percent-t">{{ t.win }}</td>
+                                            <td scope="col" class="c-percent-t">{{ t.pick }}</td>
+                                            <td scope="col" class="c-percent-t">{{ t.ben }}</td>
+                                            <td scope="col" class="c-name-t"><img src="{{ t.hard.0 }}" alt=""
+                                                    style="border-radius: 100%; width: 25px;"><img src="{{ t.hard.1 }}"
+                                                    alt=""
+                                                    style="border-radius: 100%; width: 25px; margin-left: 5px; margin-right: 5px;"><img
+                                                    src="{{ t.hard.2 }}" alt=""
+                                                    style="border-radius: 100%; width: 25px;">
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="adc" class="cont" style="display: none;">
+                            <div class="tbl-header">
+                                <table cellpadding="0" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="c-rank">순위</th>
+                                            <th scope="col" class="c-name">챔피언</th>
+                                            <th scope="col" class="c-rank">티어</th>
+                                            <th scope="col" class="c-percent">승률</th>
+                                            <th scope="col" class="c-percent">픽률</th>
+                                            <th scope="col" class="c-percent">밴률</th>
+                                            <th scope="col" class="c-name">어려운 챔피언</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="tbl-content">
+                                <table cellpadding="0" cellspacing="0">
+                                    <tbody class="text-center">
+                                        {% for t in adc %}
+                                        <tr>
+                                            <td scope="col" class="c-rank-t">{{ t.rank }}</td>
+                                            <td scope="col" class="c-name-t"><img src="{{ t.img }}" alt=""
+                                                    style="width: 25px; height: 25px; border-radius: 5px;">
+                                                {{ t.name}}</td>
+                                            <td scope="col" class="c-rank-t">
+                                                {% if t.tier == '0' %}
+                                                <img src="/static/images/t_op.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '1' %}
+                                                <img src="/static/images/t_1.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '2' %}
+                                                <img src="/static/images/t_2.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '3' %}
+                                                <img src="/static/images/t_3.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '4' %}
+                                                <img src="/static/images/t_4.png" alt="" style="width: 24px; height: 24px;">
+                                                {% else %}
+                                                <img src="/static/images/t_5.png" alt="" style="width: 24px; height: 24px;">
+                                                {% endif %}
+                                            </td>
+                                            <td scope="col" class="c-percent-t">{{ t.win }}</td>
+                                            <td scope="col" class="c-percent-t">{{ t.pick }}</td>
+                                            <td scope="col" class="c-percent-t">{{ t.ben }}</td>
+                                            <td scope="col" class="c-name-t"><img src="{{ t.hard.0 }}" alt=""
+                                                    style="border-radius: 100%; width: 25px;"><img src="{{ t.hard.1 }}"
+                                                    alt=""
+                                                    style="border-radius: 100%; width: 25px; margin-left: 5px; margin-right: 5px;"><img
+                                                    src="{{ t.hard.2 }}" alt=""
+                                                    style="border-radius: 100%; width: 25px;">
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="support" class="cont" style="display: none;">
+                            <div class="tbl-header">
+                                <table cellpadding="0" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="c-rank">순위</th>
+                                            <th scope="col" class="c-name">챔피언</th>
+                                            <th scope="col" class="c-rank">티어</th>
+                                            <th scope="col" class="c-percent">승률</th>
+                                            <th scope="col" class="c-percent">픽률</th>
+                                            <th scope="col" class="c-percent">밴률</th>
+                                            <th scope="col" class="c-name">어려운 챔피언</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="tbl-content">
+                                <table cellpadding="0" cellspacing="0">
+                                    <tbody class="text-center">
+                                        {% for t in support %}
+                                        <tr>
+                                            <td scope="col" class="c-rank-t">{{ t.rank }}</td>
+                                            <td scope="col" class="c-name-t"><img src="{{ t.img }}" alt=""
+                                                    style="width: 25px; height: 25px; border-radius: 5px;">
+                                                {{ t.name}}</td>
+                                            <td scope="col" class="c-rank-t">
+                                                {% if t.tier == '0' %}
+                                                <img src="/static/images/t_op.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '1' %}
+                                                <img src="/static/images/t_1.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '2' %}
+                                                <img src="/static/images/t_2.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '3' %}
+                                                <img src="/static/images/t_3.png" alt="" style="width: 24px; height: 24px;">
+                                                {% elif t.tier == '4' %}
+                                                <img src="/static/images/t_4.png" alt="" style="width: 24px; height: 24px;">
+                                                {% else %}
+                                                <img src="/static/images/t_5.png" alt="" style="width: 24px; height: 24px;">
+                                                {% endif %}
+                                            </td>
+                                            <td scope="col" class="c-percent-t">{{ t.win }}</td>
+                                            <td scope="col" class="c-percent-t">{{ t.pick }}</td>
+                                            <td scope="col" class="c-percent-t">{{ t.ben }}</td>
+                                            <td scope="col" class="c-name-t"><img src="{{ t.hard.0 }}" alt=""
+                                                    style="border-radius: 100%; width: 25px;"><img src="{{ t.hard.1 }}"
+                                                    alt=""
+                                                    style="border-radius: 100%; width: 25px; margin-left: 5px; margin-right: 5px;"><img
+                                                    src="{{ t.hard.2 }}" alt=""
+                                                    style="border-radius: 100%; width: 25px;">
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </article>
-            </div>
+                </div>
+            </article>
         </div>
-    </main>
-    <footer class="text-center mt-5 w-100" style="bottom:0;">
-        <!-- place footer here -->
-        <span class="me-5">footer</span>
-        <img width="50px" src="{% static 'images/logo.png' %}" alt="footerlogo">
-    </footer>
-
-    <!-- 랭킹 탭 메뉴 JS -->
-    <script src="{% static 'js/champions_index.js' %}"></script>
-    <!-- 랭킹 탭 메뉴 CSS -->
-    <link rel="stylesheet" href="{% static 'css/champions_index.css' %}">
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-        crossorigin="anonymous"></script>
-    <!-- Jquery needed -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-    <script type="text/javascript"></script>
-    <!-- Function used to shrink nav bar removing paddings and adding black background -->
-    <script>
-        // ---------Responsive-navbar-active-animation-----------
-        function test() {
-            var tabsNewAnim = $('#navbarSupportedContent');
-            var selectorNewAnim = $('#navbarSupportedContent').find('li').length;
-            var activeItemNewAnim = tabsNewAnim.find('.active');
-            var activeWidthNewAnimHeight = activeItemNewAnim.innerHeight();
-            var activeWidthNewAnimWidth = activeItemNewAnim.innerWidth();
-            var itemPosNewAnimTop = activeItemNewAnim.position();
-            var itemPosNewAnimLeft = activeItemNewAnim.position();
-            $(".hori-selector").css({
-                "top": itemPosNewAnimTop.top + "px",
-                "left": itemPosNewAnimLeft.left + "px",
-                "height": activeWidthNewAnimHeight + "px",
-                "width": activeWidthNewAnimWidth + "px"
-            });
-            $("#navbarSupportedContent").on("click", "li", function (e) {
-                $('#navbarSupportedContent ul li').removeClass("active");
-                $(this).addClass('active');
-                var activeWidthNewAnimHeight = $(this).innerHeight();
-                var activeWidthNewAnimWidth = $(this).innerWidth();
-                var itemPosNewAnimTop = $(this).position();
-                var itemPosNewAnimLeft = $(this).position();
-                $(".hori-selector").css({
-                    "top": itemPosNewAnimTop.top + "px",
-                    "left": itemPosNewAnimLeft.left + "px",
-                    "height": activeWidthNewAnimHeight + "px",
-                    "width": activeWidthNewAnimWidth + "px"
-                });
-            });
-        }
-        $(document).ready(function () {
-            setTimeout(function () { test(); });
-        });
-        $(window).on('resize', function () {
-            setTimeout(function () { test(); }, 500);
-        });
-        $(".navbar-toggler").click(function () {
-            $(".navbar-collapse").slideToggle(300);
-            setTimeout(function () { test(); });
-        });
-
-
-        jQuery(document).ready(function ($) {
-            // Get current path and find target link
-            var path = window.location.pathname.split("/").pop();  // 현재 실행 파일명
-
-            // Account for home page with empty path
-            if (path == '') {
-                path = '';
-            }
-
-            var target = $('#navbarSupportedContent ul li a[href="' + path + '"]');
-            // Add active class to target link
-            target.parent().addClass('active');
-        });
-
-
-
-
-        // Add active class on another page linked
-        // ==========================================
-        $(window).on('load', function () {
-            var current = location.pathname;
-            console.log(current);
-            $('#navbarSupportedContent ul li a').each(function () {
-                var $this = $(this);
-                // if the current path is like this link, make it active
-                if ($this.attr('href').indexOf(current) !== -1) {
-                    $this.parent().addClass('active');
-                    $this.parents('.menu-submenu').addClass('show-dropdown');
-                    $this.parents('.menu-submenu').parent().addClass('active');
-                } else {
-                    $this.parent().removeClass('active');
-                }
-            })
-        });
-    </script>
-    <script>
-        // nav scroll
-        $(window).scroll(function () {
-            if ($(document).scrollTop() > 50) {
-                $('.nav').addClass('affix');
-                console.log("OK");
-            } else {
-                $('.nav').removeClass('affix');
-            }
-        });
-
-        $('.navTrigger').click(function () {
-            $(this).toggleClass('active');
-            console.log("Clicked menu");
-            $("#mainListDiv").toggleClass("show_list");
-            $("#mainListDiv").fadeIn();
-
-        });
-    </script>
-    <!-- 테이블 Js -->
-    <script>
-        $(window).on("load resize ", function () {
-            var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
-            $('.tbl-header').css({ 'padding-right': scrollWidth });
-        }).resize();
-    </script>
-    <!-- 탭메뉴 -->
-    <script>
-        // 랭킹 탭 메뉴
-
-        const tabList = document.querySelectorAll('.tab_menu .list li');
-        const contents = document.querySelectorAll('.tab_menu .cont_area .cont')
-        let activeCont = ''; // 현재 활성화 된 컨텐츠 (기본:#tab1 활성화)
-
-        for (var i = 0; i < tabList.length; i++) {
-            tabList[i].querySelector('.btn').addEventListener('click', function (e) {
-                e.preventDefault();
-                for (var j = 0; j < tabList.length; j++) {
-                    // 나머지 버튼 클래스 제거
-                    tabList[j].classList.remove('is_on');
-
-                    // 나머지 컨텐츠 display:none 처리
-                    contents[j].style.display = 'none';
-                }
-
-                // 버튼 관련 이벤트
-                this.parentNode.classList.add('is_on');
-
-                // 버튼 클릭시 컨텐츠 전환
-                activeCont = this.getAttribute('href');
-                document.querySelector(activeCont).style.display = 'block';
-            });
-        }
-    </script>
-
+    </div>
 </body>
 
-</html>
+<!-- 랭킹 탭 메뉴 JS -->
+<script src="{% static 'js/champions_index.js' %}"></script>
+<!-- 랭킹 탭 메뉴 CSS -->
+<link rel="stylesheet" href="{% static 'css/champions_index.css' %}">
+
+{% endblock content %}

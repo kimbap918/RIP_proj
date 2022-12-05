@@ -265,6 +265,7 @@ def kakao_callback(request):
 
     if get_user_model().objects.filter(kakao_id=kakao_id).exists():
         kakao_user = get_user_model().objects.get(kakao_id=kakao_id)
+        return redirect(request.GET.get("next") or "articles:index")
     else:
         kakao_login_user = get_user_model()()
         kakao_login_user.username = kakao_nickname
@@ -277,7 +278,7 @@ def kakao_callback(request):
         print(auth_login)
     # g = random.choice(greetings)
     # messages.success(request, f"{kakao_nickname}님, {g}")
-    return redirect(request.GET.get("next") or "articles:index")
+        return render(request, "accounts/signup.html")
 
 
 class UserPasswordResetView(PasswordResetView):
