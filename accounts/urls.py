@@ -35,21 +35,21 @@ urlpatterns = [
     ),
     path(
         "password_reset_confirm/<uidb64>/<token>/",
-        auth_views.PasswordResetConfirmView.as_view(
+        views.PasswordResetConfirmView.as_view(
             template_name="accounts/password_reset_confirm.html"
         ),
         name="password_reset_confirm",
     ),
     path(
         "password_reset_complete/",
-        auth_views.PasswordResetCompleteView.as_view(
+        views.PasswordResetCompleteView.as_view(
             template_name="accounts/password_reset_complete.html"
         ),
         name="password_reset_complete",
     ),
     path("send_email/", views.send_email, name="send_email"),
-
     path("member/",views.member, name="member"), # 프로그래스바
     path("login/kakao", views.kakao_request, name="kakao"),
     path("login/kakao/callback/", views.kakao_callback, name="kakao_callback"),
+
 ]

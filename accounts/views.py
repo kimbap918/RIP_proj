@@ -33,6 +33,11 @@ from django.contrib.auth.forms import (
 )
 from django.shortcuts import resolve_url
 
+UserModel = get_user_model()
+INTERNAL_RESET_URL_TOKEN = "set-password"
+INTERNAL_RESET_SESSION_TOKEN = "_password_reset_token"
+
+
 # Create your views here.
 def login(request):
     # if request.user.is_anonymous:
@@ -284,6 +289,7 @@ def kakao_callback(request):
     return redirect(request.GET.get("next") or "articles:index")
 
 
+# 비밀번호 초기화, 찾기 이메일
 class UserPasswordResetView(PasswordResetView):
     template_name = "accounts/password_reset.html"
     success_url = reverse_lazy("password_reset_done")
@@ -307,7 +313,7 @@ class UserPasswordResetConfirmView(PasswordResetConfirmView):
     reset_url_token = "set-password"
     success_url = reverse_lazy("accounts/password_reset_complete.html")
     template_name = "accounts/password_reset_confirm.html"
-    email_template_name = "accounts/password_reset.html"
+    email_template_name = "accounts/password_reset_email.html"
 
     def form_valid(self, form):
         return super().form_valid(form)
