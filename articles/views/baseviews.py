@@ -17,22 +17,32 @@ def index(request):
     if sort == '1':
         page = request.GET.get("page", "1")
         article = Article.objects.all().annotate(like_cnt=Count('like_user')).order_by('-like_cnt')
+        kw = request.GET.get('kw','')
+        if kw:
+            article = article.filter(Q(title__icontains=kw)|Q(content__icontains=kw)|Q(user__username__icontains=kw)).distinct()
         paginator = Paginator(article, 20)
         page_obj = paginator.get_page(page)
         context = {
             "article": page_obj,
-            "categories": Category.objects.all() 
+            "categories": Category.objects.all(),
+            "page":page,
+            "kw":kw,   
             }
         return render(request,"articles/index.html",context)
     # 답글많은 순
     elif sort == '2':
         page = request.GET.get("page", "1")
         article = Article.objects.all().annotate(comments=Count('comment')).order_by('-comments')
+        kw = request.GET.get('kw','')
+        if kw:
+            article = article.filter(Q(title__icontains=kw)|Q(content__icontains=kw)|Q(user__username__icontains=kw)).distinct()
         paginator = Paginator(article, 20)
         page_obj = paginator.get_page(page)
         context = {
             "article": page_obj,
-            "categories": Category.objects.all() 
+            "categories": Category.objects.all(),
+            "page":page,
+            "kw":kw,   
             }
         
         return render(request,"articles/index.html",context)
@@ -40,12 +50,17 @@ def index(request):
     elif sort == '3':
         user = get_user_model().objects.get(pk=request.user.pk)
         page = request.GET.get("page", "1")
+        kw = request.GET.get('kw','')
         article = user.article_set.all()
+        if kw:
+            article = article.filter(Q(title__icontains=kw)|Q(content__icontains=kw)|Q(user__username__icontains=kw)).distinct()
         paginator = Paginator(article, 20)
         page_obj = paginator.get_page(page)
         context = {
             "article": page_obj,
-            "categories": Category.objects.all() 
+            "categories": Category.objects.all(),
+            "page":page,
+            "kw":kw,     
             }
         return render(request,"articles/index.html",context)
     # 내가 와드 한 글
@@ -53,11 +68,16 @@ def index(request):
         user = get_user_model().objects.get(pk=request.user.pk)
         page = request.GET.get("page", "1")
         article = user.bookmark_post.all()
+        kw = request.GET.get('kw','')
+        if kw:
+            article = article.filter(Q(title__icontains=kw)|Q(content__icontains=kw)|Q(user__username__icontains=kw)).distinct()
         paginator = Paginator(article, 20)
         page_obj = paginator.get_page(page)
         context = {
             "article": page_obj,
-            "categories": Category.objects.all() 
+            "categories": Category.objects.all(),
+            "page":page,
+            "kw":kw,     
             }
         return render(request,"articles/index.html",context)
     # 내가 좋아요 한 글
@@ -65,21 +85,48 @@ def index(request):
         user = get_user_model().objects.get(pk=request.user.pk)
         page = request.GET.get("page", "1")
         article = user.like_post.all()
+        kw = request.GET.get('kw','')
+        if kw:
+            article = article.filter(Q(title__icontains=kw)|Q(content__icontains=kw)|Q(user__username__icontains=kw)).distinct()
         paginator = Paginator(article, 20)
         page_obj = paginator.get_page(page)
         context = {
             "article": page_obj,
-            "categories": Category.objects.all() 
+            "categories": Category.objects.all(),
+            "page":page,
+            "kw":kw,      
             }
         return render(request,"articles/index.html",context)
     page = request.GET.get("page", "1")
     article = Article.objects.order_by("-created_at")
+    kw = request.GET.get('kw','')
+    search_kind=request.GET.get('searchKind','전체')
+    if kw:
+        if search_kind == '전체':
+            article = article.filter(
+                Q(title__icontains=kw) |  # 제목 검색
+                Q(content__icontains=kw) |  # 내용 검색
+                Q(user__username__icontains=kw)).distinct()  # 질문 글쓴이 검색
+        elif search_kind == '제목':
+            article = article.filter(
+                Q(title__icontains=kw) # 제목 검색
+            ).distinct()
+        elif search_kind == '내용':
+            article = article.filter(
+                Q(content__icontains=kw)  # 내용 검색
+            ).distinct()
+        elif search_kind == '작성자':
+            article = article.filter(
+                Q(user__username__icontains=kw)  # 내용 검색
+            ).distinct()
     paginator = Paginator(article, 20)
     page_obj = paginator.get_page(page)
     
     context = {
         "article": page_obj,
-        "categories": Category.objects.all()            
+        "categories": Category.objects.all(),
+        "page":page,
+        "kw":kw,           
         }
 
     return render(request, "articles/index.html", context)
