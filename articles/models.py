@@ -14,6 +14,7 @@ from datetime import datetime, timedelta,timezone
 #     팁과노하우 = 6, '팁과노하우'
 #     기획 = 7, '기획'
 #     사건사고 = 8, '사건사고'
+
 class Category(models.Model):
     title = models.CharField(max_length=255, default='자유')
     def __str__(self):
