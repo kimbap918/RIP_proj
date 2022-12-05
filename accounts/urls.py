@@ -18,7 +18,7 @@ urlpatterns = [
     path("delete/", views.delete, name="delete"),  # 회원탈퇴
     path("<int:pk>/update/", views.update, name="update"),  # 회원정보수정
     path(
-        "password_reset/",
+        "password/reset/",
         views.UserPasswordResetView.as_view(
             template_name="accounts/password_reset.html",
             email_template_name="accounts/password_reset_email.html",
@@ -27,29 +27,29 @@ urlpatterns = [
         name="password_reset",
     ),
     path(
-        "password_reset_done/",
+        "password/reset/done/",
         views.UserPasswordResetDoneView.as_view(
             template_name="accounts/password_reset_done.html"
         ),
         name="password_reset_done",
     ),
     path(
-        "password_reset_confirm/<uidb64>/<token>/",
+        "password/reset/confirm/<uidb64>/<token>/",
         views.PasswordResetConfirmView.as_view(
-            template_name="accounts/password_reset_confirm.html"
+            template_name="accounts/password_reset_confirm.html",
+            success_url=reverse_lazy("accounts:password_reset_complete"),
         ),
         name="password_reset_confirm",
     ),
     path(
-        "password_reset_complete/",
+        "password/reset/confirm/complete/",
         views.PasswordResetCompleteView.as_view(
             template_name="accounts/password_reset_complete.html"
         ),
         name="password_reset_complete",
     ),
     path("send_email/", views.send_email, name="send_email"),
-    path("member/",views.member, name="member"), # 프로그래스바
+    path("member/", views.member, name="member"),  # 프로그래스바
     path("login/kakao", views.kakao_request, name="kakao"),
     path("login/kakao/callback/", views.kakao_callback, name="kakao_callback"),
-
 ]
