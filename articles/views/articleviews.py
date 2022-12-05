@@ -50,8 +50,8 @@ def article_update(request, article_pk):
 def article_detail(request, pk):
     # 특정 글을 가져온다.
     article = get_object_or_404(Article, pk=pk)
-    user = User.objects.get(pk=request.user.id)
-    user_articles = user.article_set.all()
+    # user = User.objects.get(pk=request.user.id)
+    # user_articles = user.article_set.all()
     article_form = ArticleForm()
     comments_form = CommentForm()
     comments = Comment.objects.filter(article_id=pk).order_by("-created_at")
@@ -62,8 +62,8 @@ def article_detail(request, pk):
         "articles_form": article_form,
         "comments_form": comments_form,
         "comments": comments,
-        "user_articles":user_articles,
-        "user":user,
+        # "user_articles":user_articles,
+        # "user":user,
     }
     return render(request, "articles/detail.html", context)
 

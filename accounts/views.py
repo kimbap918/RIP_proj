@@ -116,17 +116,16 @@ def mypage(request, user_pk):
 
 # 비밀번호 변경
 @login_required
-def password(request):
+def password(request,user_pk):
     if request.method == "POST":
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
             form.save()
-            update_session_auth_hash(request, form.user)  # 로그인 유지
-            return redirect("accounts:mypage", request.user.pk)
+            update_session_auth_hash(request,user_pk)  # 로그인 유지
+            return redirect("accounts:mypage", user_pk)
 
     else:
         form = PasswordChangeForm(request.user)
-
     context = {
         "form": form,
     }
