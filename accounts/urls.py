@@ -51,5 +51,5 @@ urlpatterns = [
 
     path("member/",views.member, name="member"), # 프로그래스바
     path("login/kakao", views.kakao_request, name="kakao"),
-    path("login/kakao/callback/", views.kakao_callback),
+    path("login/kakao/callback/", views.kakao_callback, name="kakao_callback"),
 ]
