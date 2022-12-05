@@ -1,4 +1,5 @@
 from django.shortcuts import render
+
 # OP.GG 웹크롤링 json 파일
 import json
 import os
@@ -6,46 +7,34 @@ import os
 BASE_DIR = "static/crawling/json/"
 
 # 챔피언 이름 / 챔피언 이미지 / 디테일 주소
-with open(
-    os.path.join(BASE_DIR, "infos.json"), "r", encoding="UTF-8"
-) as infos:
+with open(os.path.join(BASE_DIR, "infos.json"), "r", encoding="UTF-8") as infos:
     infos = json.load(infos)
 # 탑 랭킹 정보
-with open(
-    os.path.join(BASE_DIR, "top.json"), "r", encoding="UTF-8"
-) as top:
+with open(os.path.join(BASE_DIR, "top.json"), "r", encoding="UTF-8") as top:
     top = json.load(top)
 # 정글 랭킹 정보
-with open(
-    os.path.join(BASE_DIR, "jungle.json"), "r", encoding="UTF-8"
-) as jungle:
+with open(os.path.join(BASE_DIR, "jungle.json"), "r", encoding="UTF-8") as jungle:
     jungle = json.load(jungle)
 # 미드 랭킹 정보
-with open(
-    os.path.join(BASE_DIR, "mid.json"), "r", encoding="UTF-8"
-) as mid:
+with open(os.path.join(BASE_DIR, "mid.json"), "r", encoding="UTF-8") as mid:
     mid = json.load(mid)
 # 바텀 랭킹 정보
-with open(
-    os.path.join(BASE_DIR, "adc.json"), "r", encoding="UTF-8"
-) as adc:
+with open(os.path.join(BASE_DIR, "adc.json"), "r", encoding="UTF-8") as adc:
     adc = json.load(adc)
 # 서포터 랭킹 정보
-with open(
-    os.path.join(BASE_DIR, "support.json"), "r", encoding="UTF-8"
-) as support:
+with open(os.path.join(BASE_DIR, "support.json"), "r", encoding="UTF-8") as support:
     support = json.load(support)
 
 # Create your views here.
 def index(request):
 
     context = {
-        'infos' : infos,
-        'top' : top,
-        'jungle' : jungle,
-        'mid' : mid,
-        'adc' : adc,
-        'support' : support,
+        "infos": infos,
+        "top": top,
+        "jungle": jungle,
+        "mid": mid,
+        "adc": adc,
+        "support": support,
     }
     return render(request, 'champions/index.html', context)
 
@@ -61,4 +50,5 @@ def detail(request):
         'support' : support,
     }
     return render(request, 'champions/detail.html', context)
+
 
