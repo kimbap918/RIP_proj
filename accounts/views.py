@@ -2,6 +2,7 @@ import random
 import requests
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Profile
+from .models import User
 from .forms import CustomUserCreationForm, ProfileForm
 from .models import *
 from .forms import *
@@ -116,17 +117,16 @@ def mypage(request, user_pk):
 
 # 비밀번호 변경
 @login_required
-def password(request):
+def password(request,user_pk):
     if request.method == "POST":
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
             form.save()
-            update_session_auth_hash(request, form.user)  # 로그인 유지
-            return redirect("accounts:mypage", request.user.pk)
+            update_session_auth_hash(request,user_pk)  # 로그인 유지
+            return redirect("accounts:mypage", user_pk)
 
     else:
         form = PasswordChangeForm(request.user)
-
     context = {
         "form": form,
     }
@@ -276,25 +276,22 @@ def kakao_callback(request):
     # kakao_profile_image = kakao_user_information["properties"]["profile_image"]
     if get_user_model().objects.filter(kakao_id=kakao_id).exists():
         kakao_user = get_user_model().objects.get(kakao_id=kakao_id)
-        print(kakao_user)
-        print(kakao_id)
-        print(kakao_nickname)
+        # print(kakao_user)
+        # print(kakao_id)
+        # print(kakao_nickname)
+            
 
     else:
-        kakao_login_user = get_user_model()
+        kakao_login_user = get_user_model()()
         kakao_login_user.username = kakao_nickname
         kakao_login_user.kakao_id = kakao_id
         kakao_login_user.kakao_email = kakao_email
-        # kakao_login_user.social_profile_picture = kakao_profile_image
-        kakao_login_user.set_password(str(state_token))
+        kakao_login_user.password = (str(state_token))
         kakao_login_user.save()
         kakao_user = get_user_model().objects.get(kakao_id=kakao_id)
-    auth_login(request, kakao_user, backend="django.contrib.auth.backends.ModelBackend")
+    auth_login(request, kakao_user, backend='django.contrib.auth.backends.ModelBackend')
+    return redirect(request.GET.get("next") or "articles:index")
 
-    # print(kakao_login_user)
-    # g = random.choice(greetings)
-    # messages.success(request, f"{kakao_nickname}님, {g}")
-    return redirect(request.POST.get("next") or "articles:index")
 
 
 # 비밀번호 초기화, 찾기 이메일

@@ -14,7 +14,7 @@ urlpatterns = [
     path("logout/", views.logout, name="logout"),  # 로그아웃
     path("<int:pk>/", views.detail, name="detail"),
     path("<int:user_pk>/mypage/", views.mypage, name="mypage"),  # 마이페이지
-    path("password/", views.password, name="password"),  # 비밀번호 변경
+    path("<int:user_pk>/password/", views.password, name="password"),  # 비밀번호 변경
     path("delete/", views.delete, name="delete"),  # 회원탈퇴
     path("<int:pk>/update/", views.update, name="update"),  # 회원정보수정
     path(
@@ -51,5 +51,5 @@ urlpatterns = [
     path("send_email/", views.send_email, name="send_email"),
     path("member/", views.member, name="member"),  # 프로그래스바
     path("login/kakao", views.kakao_request, name="kakao"),
-    path("login/kakao/callback/", views.kakao_callback),
+    path("login/kakao/callback/", views.kakao_callback, name="kakao_callback"),
 ]

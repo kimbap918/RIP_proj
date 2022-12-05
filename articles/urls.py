@@ -6,7 +6,7 @@ app_name = "articles"
 urlpatterns = [
     path('', baseviews.index, name="index"),
     # 카테고리
-    path('category/<str:cats>/', baseviews.category, name="category"),
+    path('category/<int:pk>/', baseviews.category, name="category"),
     path('create/', articleviews.article_create, name="create"),
     path('<int:article_pk>/update', articleviews.article_update, name="update"),
     path('<int:pk>/',articleviews.article_detail, name='detail'),

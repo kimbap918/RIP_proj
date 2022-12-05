@@ -9,21 +9,14 @@
         text-decoration:none;
         color:black;
     }
-    a:focus{
-        background-color:grey;
-        color:green;
-    }
-    .active-color{
-        background-color:grey;
-        color:green;
-    }
+    
 </style>
 <!-- 게시판 -->
 
 <div class="row my-3">
     <!-- 왼쪽 어사이드 -->
     {% if request.user.is_authenticated %}
-    <div class="d-none d-lg-block col-lg-3 border border-3 my-3 rounded-3" style="max-height:600px; position:sticky; top:0;">
+    <div class="d-none d-lg-block col-lg-3 border border-3 my-3 rounded-3" style="max-height:700px; position:sticky; top:0;">
         <div class="my-2 container">
             <p>
                 <img style="width: 20%; height:20%;" src="{% static 'images/logo.png' %}" alt=""> <span>{{ user.username }}</span>
@@ -35,41 +28,55 @@
             </p>
             <hr>
             <div class="d-flex justify-content-between my-2">
-                <a href="?sort=3" class="btn btn-outline-success">내가 쓴 글</a>
-                <a href="?sort=4" class="btn btn-outline-success">내 와드</a>
-                <a href="?sort=5" class="btn btn-outline-success">좋아요</a>
+                <a href="?sort=3">내가 쓴 글</a>
+                <a href="?sort=4">내 와드</a>
+                <a href="?sort=5">좋아요</a>
             </div>
-            <hr>
-            <a href="{% url 'articles:create' %}" class="btn btn-success w-100">글쓰기</a>
-            <hr>
-            <div class="d-flex flex-column">
+            <hr style="margin:10px;">
+            <a href="{% url 'articles:create' %}" class="btn w-100">글쓰기</a>
+            <hr style="margin:10px;">
+            
+                <ul class="nav nav-tabs d-flex flex-column" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a href=" {% url 'articles:index' %}" class="small"><button class="nav-link text-black" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">전체</button></a>
+                    </li>
+                    {% for category in categories %}
+                    <li class="nav-item" role="presentation">
+                        <a class="my-1 small active" href="{% url 'articles:category' forloop.counter0 %} ">
+                        {% if category == category_name %}
+                        <button class="nav-link text-black active" type="button" role="tab" aria-selected="true">
+                        {% else %}
+                        <button class="nav-link text-black" type="button" role="tab" aria-selected="true">
+                        {% endif %}
+                    {{ category }}
+                        </a></li>
+                    {% endfor %}
+                </ul>
 
-                {% if categories %}
-                {% for category in categories %}
-                <a name="tag1" class="my-1 small" href="{% url 'articles:category' category %} ">{{ category }}</a>
-                {% endfor %}
-                {% endif %}
-
-            </div>
         </div>
     </div>
     {% else %}
-    <div class="d-none d-lg-block col-lg-3 border border-3 my-3 rounded-3" style="max-height:400px; position:sticky; top:0;">
+    <div class="d-none d-lg-block col-lg-3 border border-3 my-3 rounded-3" style="max-height:500px; position:sticky; top:0;">
         <div class="my-2 container">
             <a href="{% url 'accounts:login' %}" class="btn btn-primary w-100 mt-2">로그인</a>
-            <hr>
-            <div class="d-flex flex-column">
-
-
-                {% if categories %}
-                {% for category in categories %}
-                {% if request.resolver_match.url_name == 'category' and request.resolver_match.route == 'articles/category/<cats>' %}
-                <a name="tag1" class="my-1 small active" href="{% url 'articles:category' category %} ">{{ category }}</a>
-                {% else %}
-                <a name="tag1" class="my-1 small" href="{% url 'articles:category' category %} ">{{ category }}</a>
-                {% endif %}
-                {% endfor %}
-                {% endif %}
+            <hr style="margin:10px;">
+            
+                <ul class="nav nav-tabs d-flex flex-column" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a href=" {% url 'articles:index' %}" class="small"><button class="nav-link text-black" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">전체</button></a>
+                    </li>
+                    {% for category in categories %}
+                    <li class="nav-item" role="presentation">
+                        <a class="my-1 small active" href="{% url 'articles:category' forloop.counter0 %} ">
+                        {% if category == category_name %}
+                        <button class="nav-link text-black active" type="button" role="tab" aria-selected="true">
+                        {% else %}
+                        <button class="nav-link text-black" type="button" role="tab" aria-selected="true">
+                        {% endif %}
+                    {{ category }}
+                        </a></li>
+                    {% endfor %}
+                </ul>
 
             </div>
         </div>
@@ -86,13 +93,10 @@
                     </a>
                     <a href="{% url 'articles:create' %}" class="text-info"><i class="bi bi-pencil-square"></i></a>
                 </span>
-                
             </h6>
             <div class="d-flex my-3 ">
                 <div class="d-flex justify-content-between col-8">
-
-
-                    <a href="?sort=1" style="min-width:60px;" class="small col-2 mx-3 d-flex align-items-centerz"><i
+                    <a href="?sort=1" style="min-width:60px;" class="small col-2 mx-3 d-flex align-items-center"><i
                             class="bi bi-fire"></i>인기순</a>
                     <a href="{% url 'articles:index' %}" style="min-width:60px;"
                         class="small col-2 mx-3 d-flex align-items-center"><i class="bi bi-hand-thumbs-up"></i>최신순</a>
@@ -101,11 +105,18 @@
 
                 </div>
                 <div class="d-none d-md-block col-4">
-                    <form class="d-flex" role="search" style="width:100%; height:100%;">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-sm btn-outline-success" type="submit">
-                            <i class="bi bi-search"></i></button>
-                    </form>
+                    <div class="input-group">
+                            <select class="selectpicker" name="search_kinds" id="search_kind">
+                                <option value="전체" selected="selected">전체</option>
+                                <option value="제목">제목</option>
+                                <option value="내용">내용</option>
+                                <option value="작성자">작성자</option>
+                            </select>
+                        <input type="text" id="search_kw" class="form-control" value="{{ kw|default_if_none:'' }}">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" id="btn_search"><i class="bi bi-search"></i></button>
+                        </div>
+                    </div>
                 </div>
                 
             </div>
@@ -126,7 +137,7 @@
                                 <span class="text-success small mx-2">[{{ articles.comment_set.count }}]</span>
                                 {% endif %}
                             </a>
-                            <p style="font-size:12px;"><span>{{ articles.category }}</span>  |  {{ articles.user.username }}  | 
+                            <p style="font-size:12px;"><span>{{ articles.get_category_display }}</span>  |  {{ articles.user.username }}  | 
                                 {% if articles.created_string == False %}
                                 <span style="font-size:12px;">{{ articles.created_at|date:'m월 d일' }}</span>
                                 {% else %}
@@ -161,7 +172,7 @@
             <!-- 이전페이지 -->
             {% if article.has_previous %}
             <li class="page-item">
-                <a href="?page={{article.previous_page_number }}" class="page-link">이전</a>
+                <a href="javascript:void(0)" data-page="{{article.previous_page_number }}" class="page-link">이전</a>
             </li>
             {% else %}
             <li class="page-item disabled">
@@ -173,11 +184,11 @@
             {% if page_number >= article.number|add:-5 and page_number <= article.number|add:5 %}
             {% if page_number == article.number %}
             <li class="page-item active" aria-current="page">
-                <a href="?page={{ page_number }}" class="page-link">{{ page_number }}</a>
+                <a href="javascript:void(0)" data-page="{{ page_number }}" class="page-link">{{ page_number }}</a>
             </li>
             {% else %}
             <li class="page-item">
-                <a href="?page={{ page_number }}" class="page-link">{{ page_number }}</a>
+                <a href="javascript:void(0)" data-page="{{ page_number }}" class="page-link">{{ page_number }}</a>
             </li>
             {% endif %}
             {% endif %}
@@ -185,7 +196,7 @@
             <!-- 다음페이지-->
             {% if article.has_next %}
             <li class="page-item">
-                <a href="?page={{ article.next_page_number }}" class="page-link">다음</a>
+                <a href="javascript:void(0)" data-page="{{ article.next_page_number }}" class="page-link">다음</a>
             </li>
             {% else %}
             <li class="page-item disabled">
@@ -196,18 +207,52 @@
 
     </div>
 </div>
+<form id="searchForm" method="get" action="{% url 'articles:index' %}">
+    <input type="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}">
+    <input type="hidden" id="page" name="page" value="{{ page }}">
+    <input type="hidden" id="searchKind" name="searchKind" value="{{ searchKind }}">
+</form>
 {% endblock content %}
-
-{% block script %}
 
 
 
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"
     integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
-<script>
-    $("a").click(function(){
-        toggleClass(".active-color");
-    })
-</script>
-{% endblock script %}
+{% block script %}
+    <script type='text/javascript'>
+    
+    window.onload = function() {
+        const searchParams=new URLSearchParams(location.search)
+        const search_kind = document.getElementById('search_kind')
+        for (i = 0 ; i<search_kind.options.length ; i++){
+            if (searchParams.get('searchKind') == search_kind.options[i].value){
+                search_kind.value=search_kind.options[i].value
+            }
+        }
+        const search_keyword=document.getElementById('search_kw')
+        search_keyword.value=searchParams.get('kw')
+    }
+
+    const page_elements = document.getElementsByClassName("page-link");
+    Array.from(page_elements).forEach(function(element) {
+        element.addEventListener('click', function() {
+            document.getElementById('page').value = this.dataset.page;
+            document.getElementById('searchForm').submit();
+        });
+    });
+
+    const btn_search = document.getElementById("btn_search");
+    btn_search.addEventListener('click', function() {
+        document.getElementById('kw').value = document.getElementById('search_kw').value;
+        document.getElementById('page').value = 1;  // 검색버튼을 클릭할 경우 1페이지부터 조회한다.
+        var ser = document.getElementById('search_kind')
+        document.getElementById('searchKind').value=ser.options[ser.selectedIndex].value;
+        document.getElementById('searchForm').submit();
+
+    });
+    </script>
+    <script>
+
+    </script>
+    {% endblock %}

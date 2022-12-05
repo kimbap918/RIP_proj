@@ -1,10 +1,50 @@
+body {
+    background-color: #f3f5f7;
+}
+
 container {
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
 }
+/* second nav */
+.s-nav {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 8;
+}
 
+.s-list {
+    font-size: 14px;
+    list-style: none;
+}
+
+.s-item {
+    margin-right: 15px;
+    line-height: 3;
+}
+
+.s-item-link {
+    text-decoration: none;
+    color: black;
+}
+
+.s-item-link:hover {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.s-active {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 10px;
+    font-weight: bold;
+}
+/* 로그인 */
 .signBox {
     min-width: 320px;
     min-height: 100%;
@@ -181,6 +221,20 @@ p input:valid+label::after {
     margin: 10px;
 }
 
+.login_btn {
+    width: 100%;
+    font-weight: 400;
+    line-height: 19px;
+    text-align: center;
+    background-color: #1ea1f7;
+    font-weight: 700;
+    cursor: pointer;
+    line-height: 45px;
+    border-radius: 5px;
+    border: none;
+    color: #f3f5f7;
+    margin-top: 1.5rem;
+}
 
 .previousBtn {
     background-color: #e9edef !important;
@@ -220,9 +274,71 @@ a:hover {
     /* Lets it scroll lazy */
 }
 
-.p2 {
-    display: block !important;
-    margin-block-start: 1em !important;
-    margin-block-end: 1em !important;
-    margin-inline-start: 0px !important;
-    margin-inline-end: 0px !important;
+/* 로그인 박스 */
+.login_section {
+    padding: 120px 0;
+}
+
+.login_box {
+    position: relative;
+    margin: 0 auto;
+    padding: 20px;
+    width: 450px;
+    min-height: 682px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%);
+}
+
+.login_img {
+    text-align: center;
+    padding: 24px;
+}
+
+/* 카카오 로그인 버튼 */
+.btnkakao {
+    width: 100%;
+    line-height: 45px;
+    border: none;
+    background-color: rgb(254, 229, 0);
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 0.5rem;
+}
+
+.login_or {
+    position: relative;
+    margin: 24px 0;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: #c5cbd0;
+    text-align: center;
+    vertical-align: top;
+    line-height: 14px;
+}
+
+.login_or::before {
+    position: absolute;
+    top: 6px;
+    content: "";
+    display: block;
+    width: 160px;
+    height: 1px;
+    background-color: #dddfe4;
+}
+
+.login_or:after {
+    position: absolute;
+    top: 6px;
+    content: "";
+    display: block;
+    width: 160px;
+    height: 1px;
+    background-color: #dddfe4;
+    right: 0;
+}
+
+.login_box2 {
+    font-size: 14px;
+    margin-top: 24px;
+}

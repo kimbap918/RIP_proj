@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+{% load widget_tweaks %}
+{% block content %}
+
+{% load static %}
+
+<head>
+    <link href="https://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+        integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+        integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+        crossorigin="anonymous"></script>
+
+</head>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <form method="get" name="search_form" action="{% url 'summoners:result' %}">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="소환사명" name="search_text"
+                        value="{{search_text}}">
+                    <span class="input-group-btn">
+                        <button class="btn btn-secondary" type="submit">검색</button>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% if summoner_exist %}
+    <div class="row" style="margin: 40px; float: none;">
+
+        <img style="display: block; margin: 0px; height: 10%;" class="img-thumbnail"
+            src="{% static 'images/검정로고.png' %}">
+        <span style="margin: 20 0 0 20; font-size: 32px;">{{ summoners_result.name }}<br>
+            <span style="font-size: 20px; ">LV: {{ summoners_result.level }}</span>
+        </span>
+
+
+    </div>
+    <div class="row">
+        <div style="float: none; margin: 0 auto" class="col-5 border border-secondary">
+            <div class="row">
+                {% if solo_tier %}
+                <div class="col-4">
+                    <img src="{% static 'images/검정로고.png' %}" width="100%">
+                </div>
+                <div>
+                    리그: {{ solo_tier.rank_type }}<br>
+                    티어: {{ solo_tier.tier }} {{ solo_tier.rank }}<br>
+                    포인트: {{ solo_tier.points }}<br>
+                    전적: {{ solo_tier.wins|add:solo_tier.losses}}전 {{ solo_tier.wins }}승 {{ solo_tier.losses }}패
+                </div>
+            </div>
+            {% else %}
+            <div>
+                배치&전적정보없음
+            </div>
+            {% endif %}
+        </div>
+
+        <div style="float: none; margin: 0 auto" class="col-5 border border-secondary">
+            <div class="row">
+
+                {% if team_tier %}
+                <div class="col-4">
+                    <img src="{% static 'images/검정로고.png' %}" width="100%">
+                </div>
+                <div>
+                    리그: {{ team_tier.rank_type }}<br>
+                    티어: {{ team_tier.tier }} {{ team_tier.rank }}<br>
+                    포인트: {{ team_tier.points }}<br>
+                    전적: {{ team_tier.wins|add:team_tier.losses}}전 {{ team_tier.wins }}승 {{ team_tier.losses }}패
+                </div>
+                {% else %}
+                <div>
+                    배치&전적정보없음
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% else %}
+    사용자가 존재하지않습니다.
+    {% endif %}
+
+</div>
+
+
+{% endblock content %}

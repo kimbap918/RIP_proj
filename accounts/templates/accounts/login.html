@@ -1,38 +1,62 @@
-{% extends 'base.html' %}
+{% extends 'nonavbase.html' %}
 
 {% load static %}
 {% load widget_tweaks %}
 {% load django_bootstrap5 %}
 
-{% block title %}{% endblock title %}
-
+{% block title %} LOGIN{% endblock title %}
+{% block style %}
+{% endblock%}
 {% block content %}
-<div class="row justify-content-center">
-  <section class="col-6 border border-3 rounded-3">
-    <h1 class="text-center my-2">로그인</h1> 
-    <div class="mt-5">
-      <form action="{% url 'accounts:login' %}kakao" method='POST'>
-        {% csrf_token %}
-        <input type="submit" class="btn btn-warning col-6 my-2" value="카카오로 로그인하기"/>
+<div class="login_section">
+  <!-- <section class="col-6 border border-3 rounded-3"> -->
+  <div class="login_box">   
+    <div class="login_img">
+      <img src="{% static 'images/검정로고.png' %}" width="150" alt="">
+    </div>
+    <div class="mt-3 d-flex justify-content-start">
+      간편 로그인
+    </div>
+    <div class="mt-1">
+      <form action="{% url 'accounts:login' %}kakao" method='GET'>
+        <button class="btnkakao">
+          <i style="color: rgb(28, 16, 0)" class="fa-solid fa-comment"></i><span style="font-weight: bold; color: rgb(28, 16, 0); padding: 5px">카카오로 로그인하기</span>
+        </button>
+        <!-- <input type="submit" class="btn btn-warning col-6 my-2" value="카카오로 로그인하기"/> -->
       </form>
     </div>
+    <div class="login_or">OR</div>
     <form action="" method='POST'>
       {% csrf_token %}
-      {% bootstrap_form login_form %}
-      {% bootstrap_button button_type="submit" content="OK" %}
-    <p class="text-center mt-5">회원이 아니신가요?
-      <a class="to-signup" href="{% url 'accounts:signup' %}">
-        <b>회원 가입<i class="bi bi-person-fill-add"></i>
-        </b>
-      </a>
-    </p>
-    <p class="text-center mt-3">비밀번호를 잃어버리셨나요?
-      <a href="{% url 'accounts:password_reset' %}">
-        <b>비밀번호 찾기<i class="bi bi-person-fill-add"></i>
-        </b>
-      </a>
-    </p>
+        <!-- 이메일 -->
+      <div class="form_wrap_line login_top">
+        <p>
+          <input type="text" id="user_id" autocomplete="off" name="username" required>
+          <label for="user_name"><span>이메일 주소</span></label>
+        </p>
+        <!-- 비밀번호 -->
+        <p>
+          <input type="password" id="user_pw" autocomplete="off" name="password" required>
+          <label for="user_password"><span>비밀번호</span></label>
+        </p>
+        <input  class="login_btn" id="btn_login"type="submit" value="LOGIN" />
+      </div>
+      <div class="login_box2">
+        <div class="text-center p-1">RIP.GG에 처음이신가요?
+          <a class="to-signup" href="/accounts/signup/">
+            <b>회원 가입<i class="bi bi-person-fill-add"></i>
+            </b>
+          </a>
+        </div>
+        <div class="text-center p-1">비밀번호를 잃어버리셨나요?
+          <a href="{% url 'accounts:password_reset' %}">
+            <b>비밀번호 찾기<i class="bi bi-person-fill-add"></i>
+            </b>
+          </a>
+        </div>
+      </div>
     </form>
-  </section>
+  </div>
+  <!-- </section> -->
 </div>
 {% endblock content %}
