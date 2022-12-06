@@ -96,8 +96,8 @@
                   style="padding-left: 2.5rem" />
               </form>
             </div>
+            {% if request.user.is_authenticated %}
             <div class="sm:display2 md:display lg:display">
-              {% if request.user.is_authenticated %}
               <div class="dropdown">
                 <button class="dropbtn">
                   <span style="font-size: 14px">{{ user.username }}님</span>
@@ -116,11 +116,19 @@
               </div>
             </div>
             {% else %}
-            <div class="login">
-              <a href="{% url 'accounts:login' %}">로그인</a>
+            <div class="sm:display2 md:display lg:display">
+              <div class="">
+                <div class="login">
+                  <a class="" href="{% url 'accounts:login' %}">로그인</a>
+                </div>
+              </div>
+            </div>
+            <div class="">
+              <div class="smallinfo">
+                  <a style="text-decoration: none;" href="{% url 'accounts:login' %}">로그인</a>
+              </div>
             </div>
             {% endif %}
-          </div>
         </div>
       </nav>
       <!-- /.fixed navigation -->
