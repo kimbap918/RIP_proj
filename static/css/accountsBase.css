@@ -117,7 +117,7 @@ body {
 
 .target {
   position: absolute;
-  border-bottom: 4px solid transparent;
+  border-bottom: 3px solid transparent;
 }
 
 .mynav a,
