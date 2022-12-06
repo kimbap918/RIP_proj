@@ -165,3 +165,24 @@ body {
   border-radius: 50px;
   border-color: rgb(233, 233, 233); */
 }
+
+/* 로그인 반응형*/
+.login {
+  padding: 0 12px;
+}
+.login a {
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #28344E;
+  padding: 6px 12px;
+  background-color: #28344E;
+}
+
+.login a:hover {
+  text-decoration: none;
+  color: #29437a
+  font-size: 14px;
+}
+

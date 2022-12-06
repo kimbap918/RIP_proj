@@ -63,7 +63,7 @@ def login(request):
 
 def logout(request):
     auth_logout(request)
-    return redirect("accounts:login")
+    return redirect("main")
 
 
 def signup(request):
@@ -84,57 +84,19 @@ def signup(request):
     }
     return render(request, "accounts/signup.html", context)
 
-    user = get_object_or_404(get_user_model(), pk=pk)
-
-
 
 def detail(request, pk):
-    user = get_object_or_404(get_user_model(), pk=pk)
+    user = get_user_model().objects.get(pk=pk)
     articles = user.article_set.all()
     like_articles = user.like_post.all()
     bookmark_articles = user.bookmark_post.all()
-    # 업데이트
-    if request.user.profile:
-        profile = request.user.profile
-
-        if request.method == "POST":
-            profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
-            change_form = CustomUserChangeForm(request.POST, instance=user)
-
-            if profile_form.is_valid() and change_form.is_valid():
-                profile_form.save()
-                change_form.save()
-                # return redirect('accounts:detail', request.user.pk)
-                return redirect("accounts:detail", request.user.pk)
-        else:
-            profile_form = ProfileForm(instance=profile)
-            change_form = CustomUserChangeForm(instance=user)
-
-    # 최초 생성
-    else:
-        if request.method == "POST":
-            profile_form = ProfileForm(request.POST, request.FILES)
-            change_form = CustomUserChangeForm(request.POST, instance=user)
-
-            if profile_form.is_valid() and change_form.is_valid():
-                profile_form.save()
-                change_form.save()
-                # return redirect('accounts:detail', request.user.pk)
-                return redirect("accounts:detail", request.user.pk)
-
-        else:
-            profile_form = ProfileForm
-            change_form = CustomUserChangeForm(instance=user)
 
     context = {
         "user": user,
         "articles": articles,
         "like_articles": like_articles,
         "bookmark_articles": bookmark_articles,
-        "profile_form": profile_form,        
-        "change_form": change_form,
     }
-
     return render(request, "accounts/detail.html", context)
 
 
