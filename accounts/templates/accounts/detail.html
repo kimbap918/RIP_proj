@@ -4,11 +4,13 @@
 <link rel="stylesheet" href="/static/css/accountsdatail.css"><!-- accounts.css -->
 {% block style %}
 <style>
+
+/* 탭 강조 효과 */
+
   .list {
   list-style-type: none;
   margin: 0;
-  padding: 0;
-  border-bottom: 1px solid #ddd;
+  padding: 20px;
 }
 
 .list::after {
@@ -47,71 +49,300 @@
   display: block;
 }
 
+/* 개인정보란 */
+/* 타이틀 */
+.member-settings-layout__title {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+    padding: 40px 40px 0;
+    line-height: 1;
+    color: #1e2022;
+}
+
+/* 수신동의 */
+.edit__email-term-title {
+    display: block;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1e2022;
+    padding-left: 8px;
+}
+.member-settings-layout__content-inner {
+    width: 970px;
+    margin: 40px auto 0;
+    background-color: #fff;
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 6%);
+    padding-bottom: 40px;
+}
+.edit {
+    margin-top: 40px;
+}
+
+.edit__inner {
+    margin: 0 40px;
+}
+
+.edit__table {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    border-top: 1px solid #e9edef;
+}
+
+.edit__tr {
+    display: table-row;
+}
+
+.edit__td, .edit__th {
+    display: table-cell;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    line-height: 1.5;
+    border-bottom: 1px solid #e9edef;
+    text-align: left;
+    color: #52595f;
+}
+.edit__td {
+    padding: 10px 10px;
+    vertical-align: middle;
+}
+
+.edit__email {
+    color: #98a0a7;
+}
+
+.edit__th {
+    width: 184px;
+    background-color: #f8f9fa;
+    border-right: 1px solid #e9edef;
+    height: 32px;
+    padding: 15px 10px 8px 16px;
+    vertical-align: top;
+}
+
+.edit__l-email-term {
+    padding: 8px 0;
+}
+/* 체크박스 */
+.member-circle-checkbox {
+    position: relative;
+    
+}
+
+.member-circle-checkbox .member-checkbox__state {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -12px;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: #fff;
+
+}
+
+.member-circle-checkbox .member-checkbox__label {
+    margin: 0;
+    display: block;
+    padding-left: 32px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+}
+.edit__email-term-sub {
+    display: block;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #7b858e;
+    padding-left: 8px;
+}
+
+/* username */
+.formtext {
+  font-size: 14px;
+  color: gray;
+}
+
+/* 체크박스 */
+
+input[type="checkbox"] {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    border: 1px solid #999;
+    appearance: none;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  input[type="checkbox"]:checked {
+    background: #32e732;
+    border: none;
+  }
+
+
+.inputInfo{
+  position: relative;
+}
+
+.inputInfo input,
+.inputInfo textarea{
+  outline: none;
+  border: 1px solid #999;
+  color: #999;
+  width: 320px;
+  padding: 2px;
+}
+
+.inputInfo input:focus,
+.inputInfo textarea:focus {
+  outline: none;
+  border: 1px solid #1ea1f7;
+   color: black;
+ 
+}
+
+.submitBnt{
+  font-size: 14px;
+}
+
+.submitBnt:hover{
+  color: #1ea1f7;
+}
 </style>
 {% endblock style %}
+
 {% block content %}
 
-<h1 class="text-center my-5">
-    <span class="text-primary">{{ user.username }}</span>님의 페이지</h1>
-
-<!-- 프로필 이미지?(op.gg에는 뱃지 같은게 있어욜...), 닉네임, 유저네임, 소개글 -->
-<div class="container d-grid p-3 rounded-4 border border-1 mb-5" style="background-color: white;">
-  <div class="row row-cols-2 align-items-center">
-      <div class="col-3">
-        {% if user.profile.image %}
-          <img src="{{ user.profile.image.url }}" alt="" class="rounded-4 border border-1 w-100">
-        {% else %}
-          <img src="{% static 'images/dummy-image-square.jpg' %}" alt="" class="rounded-4 border border-1 w-100">
-        {% endif %}
-      </div>
-
-      <div class="col-9 p-3" style="height: 100%">
-        <div class="d-flex align-items-center justify-content-between">
-          <div class="d-flex align-items-center">
-            <h3 class="m-0 me-3">{{ user.username }}</h3>
-            <p class="m-0">{{ user.profile.intro }}</p>
-          </div>
-          <div>
-            <!-- 로그인 유저 == 회원 정보 페이지의 유저 -->
-            {% if request.user == user %}
-              <a href="{% url 'accounts:update' user.pk %}" class="btn btn-primary">회원 정보 수정</a>
-            <!-- 로그인 유저 -->
-            {% endif %}
+<div class="member-settings-layout__content-inner">
+  <h2 class="member-settings-layout__title">개인정보 관리</h2>    
+  <div class="edit">
+    <div class="edit__inner">
+      <div class="edit__table">
+        <div class="edit__tr">
+          <div class="edit__th">이메일</div>
+          <div class="edit__td">
+            <div class="edit__email">
+            {{ user.email }}
+            </div>
           </div>
         </div>
+        <div class="edit__tr">
+          <div class="edit__th">
+            생성일자
+          </div>
+          <div class="edit__td">
+            {{ user.created_at }}
+          </div>
+        </div>
+        
+          <div class="edit__tr">
+            <div class="edit__th">
+              닉네임
+            </div>
+            <div class="edit__td">
+              <div class="member-edit-box-input">
+                <div class="member-box-input">
+                  <div class="member-box-input__state member-edit-box-input__input member-box-input__state--value">
+                    <form action="" method="POST">
+                      {% csrf_token %}
+                      <div class="d-flex justify-content-between">
+                        <div class="inputInfo">
+                          <input type="text" name="username" value="{{ user.username }}" maxlength="150" class="inpform" placeholder="닉네임" required="" id="id_username">
+                          <div class="form-text">개인 정보 기입으로 문제가 될 상황은 RIP.GG에서 책임지지 않습니다.</div>
+                        </div>
+                        <div class="submitBtn">
+                          <input type="submit" class="submitBnt btn" value="변경" style="">
+                        </div>
+                      </div>
+                    <!-- </form> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="edit__tr">
+            <div class="edit__th">
+              소개
+            </div>
+            <div class="edit__td">
+              <div class="member-edit-box-input">
+                <div class="member-box-input">
+                  <div class="member-box-input__state member-edit-box-input__input member-box-input__state--value">
+                      <div class="d-flex justify-content-between">
+                        <div class="inputInfo">
+                          <textarea name="intro" cols="40" rows="2" class="" placeholder="소개글" id="id_intro">{{ user.profile.intro }}</textarea>
+                        </div>
+                        <div class="submitBtn">
+                          <input type="submit" class="submitBnt btn" value="변경" style="">
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <!-- <div class="edit__tr">
+          <div class="edit__th">
+            이메일 수신 동의
+          </div>
+          <div class="edit__td">
+            <div class="edit__l-email-term">
+              <div class="member-checkbox member-circle-checkbox">
+                <span class="member-checkbox__state">
+                  <input type="checkbox" type="checkbox" class="cb2">
+                </span>
+                <label for="memberInput1" class="member-checkbox__label">
+                  <span class="edit__email-term-title">OP.GG 소식 혹은 이벤트 알림 메일을 받겠습니다.</span>
+                  <span class="edit__email-term-sub">주요 공지사항 및 이벤트 당첨 안내 등은 알림 설정에 관계없이 발송됩니다.</span></label>
+                </div>
+              </div>
+            </div>
+          </div> -->
+        </div>
       </div>
-  </div>
-  <div class="list" style="font-size: 14px;">
-    <a class="tab-button" id="link_user_articles" data-bs-toggle="collapse" href="#user_articles" role="button" aria-expanded="false" aria-controls="collapseExample">작성한 글</a>
-    <a class="tab-button" id="link_like_articles" data-bs-toggle="collapse" href="#like_articles" role="button" aria-expanded="false" aria-controls="collapseExample">좋아요</a>
-    <a class="tab-button" id="link_bookmark_articles" data-bs-toggle="collapse" href="#bookmark_articles" role="button" aria-expanded="false" aria-controls="collapseExample">와드</a>
-  </div> 
-  <!-- 글 목록 -->
-  <div>
-    <!-- 작성한 글 -->
+    </div>
+    <div class="list" style="font-size: 14px;">
+      <a class="tab-button" id="link_user_articles" data-bs-toggle="collapse" href="#user_articles" role="button" aria-expanded="false" aria-controls="collapseExample">작성한 글</a>
+      <a class="tab-button" id="link_like_articles" data-bs-toggle="collapse" href="#like_articles" role="button" aria-expanded="false" aria-controls="collapseExample">좋아요</a>
+      <a class="tab-button" id="link_bookmark_articles" data-bs-toggle="collapse" href="#bookmark_articles" role="button" aria-expanded="false" aria-controls="collapseExample">와드</a>
+    </div>
+    
+    <!-- 글 목록 -->
+    <div>
+      <!-- 작성한 글 -->
     <div class="collapse" id="user_articles">
       <div class="row">
         {% for article in articles %}
-          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 p-3">
-            <a href="{% url 'articles:detail' article.pk %}">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 p-3">
+          <a href="{% url 'articles:detail' article.pk %}">
               <div class="card glow">
                 <!-- 첫 번째 이미지를 썸네일로 -->
                 {% if article.photo %}
-                  <img src="{{ article.photo.url }}" class="card-img-top" alt="..." height="300px">
+                <img src="{{ article.photo.url }}" class="card-img-top" alt="..." height="300px">
                 {% else %}
-                  <img src="https://dummyimage.com/1200x960/000000/c4c4c4" class="card-img-top" height="300px">
+                <img src="https://dummyimage.com/1200x960/000000/c4c4c4" class="card-img-top" height="300px">
                 {% endif %}
                 <div class="card-body d-flex flex-column justify-content-between" style="height: 12rem">
-
+                  
                   <!-- 유저 -->
                   <div class="mb-2">
                     <a href="{% url 'accounts:detail' article.user.pk %}" class="text-dark">
                       {% if article.user.profile.image %}
-                        <img src="{{ article.user.profile.image.url }}" alt="{{ article.user.profile.image }}" class="rounded-2 border border-1" width="40px">
+                      <img src="{{ article.user.profile.image.url }}" alt="{{ article.user.profile.image }}" class="rounded-2 border border-1" width="40px">
                       {% else %}
                         <img src="{% static 'images/dummy-image-square.jpg' %}" alt="" class="rounded-2 border border-1" width="40px">
-                      {% endif %}
-                      <span class="ms-2">{{ article.user.username }}</span>
+                        {% endif %}
+                        <span class="ms-2">{{ article.user.username }}</span>
                     </a>
                   </div>                
                   <h5 class="card-title card-title-text mb-2"><a href="{% url 'articles:detail' article.pk %}">{{ article.title }}</a></h5>
@@ -120,10 +351,10 @@
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="text-muted fs-6">
                       {% if request.user.is_authenticated %}
-                        <div class="like-forms d-inline" data-article-id="{{ article.pk }}">
-                          {% if request.user in article.like_user.all %}
+                      <div class="like-forms d-inline" data-article-id="{{ article.pk }}">
+                        {% if request.user in article.like_user.all %}
                             <i id="like-btn" data-article-id="{{ article.pk }}" class="bi bi-heart-fill"></i>
-                          {% else %}
+                            {% else %}
                             <i id="like-btn" data-article-id="{{ article.pk }}" class="bi bi-heart"></i>
                           {% endif %}
                         </div>
@@ -134,7 +365,7 @@
                         <span class="">{{ article.comment_set.all.count }}</span>
                       </span>                                    
                     </div>
-
+                    
                     <div>
                       {% if request.user.is_authenticated %}
                         <div class="bookmark-forms d-inline" data-article-id="{{ article.pk }}">
@@ -151,52 +382,52 @@
               </div>          
           </div>
           {% endfor %}     
-      </div>
+        </div>
     </div>
 
     <!-- 좋아요한 글 -->
     <div class="collapse" id="like_articles">
       <div class="row">
         {% for article in like_articles %}
-          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 p-3" id="like-{{ article.pk }}">
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 p-3" id="like-{{ article.pk }}">
             <a href="{% url 'articles:detail' article.pk %}">
               <div class="card glow">
                 <!-- 첫 번째 이미지를 썸네일로 -->
                 {% if article.photo %}
                   <img src="{{ article.photo.url }}" class="card-img-top" alt="..." height="300px">
-                {% else %}
+                  {% else %}
                   <img src="https://dummyimage.com/1200x960/000000/c4c4c4" class="card-img-top" height="300px">
-                {% endif %}
-
-                <div class="card-body d-flex flex-column justify-content-between" style="height: 12rem">
-                  <!-- 유저 -->
-                  <div class="mb-2">
+                  {% endif %}
+                  
+                  <div class="card-body d-flex flex-column justify-content-between" style="height: 12rem">
+                    <!-- 유저 -->
+                    <div class="mb-2">
                     <a href="{% url 'accounts:detail' article.user.pk %}" class="text-dark">
                       {% if article.user.profile.image %}
                         <img src="{{ article.user.profile.image.url }}" alt="{{ article.user.profile.image }}" class="rounded-2 border border-1" width="40px">
                       {% else %}
-                        <img src="{% static 'images/dummy-image-square.jpg' %}" alt="" class="rounded-2 border border-1" width="40px">
+                      <img src="{% static 'images/dummy-image-square.jpg' %}" alt="" class="rounded-2 border border-1" width="40px">
                       {% endif %}
                       <span class="ms-2">{{ article.user.username }}</span>
                     </a>
                   </div>
                   <h5 class="card-title card-title-text mb-2"><a href="">{{ article.title }}</a></h5>
-
+                  
                   <!-- 좋아요, 댓글, 조회수, 북마크 -->
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="text-muted fs-6">
                       {% if request.user.is_authenticated %}
                         <div class="like-forms d-inline" data-article-id="{{ article.pk }}">
                           {% if request.user in article.like_user.all %}
-                            <i id="like-btn" data-article-id="{{ article.pk }}" class="bi bi-heart-fill"></i>
+                          <i id="like-btn" data-article-id="{{ article.pk }}" class="bi bi-heart-fill"></i>
                           {% else %}
                             <i id="like-btn" data-article-id="{{ article.pk }}" class="bi bi-heart"></i>
-                          {% endif %}
-                        </div>
+                            {% endif %}
+                          </div>
                         <span id="like-count" class="text-muted me-3">{{ article.like_user.count }}</span>
-                      {% endif %}
+                        {% endif %}
 
-                      <span class="bi bi-chat-dots-fill me-3"> 
+                        <span class="bi bi-chat-dots-fill me-3"> 
                         <span class="">{{ article.comment_set.all.count }}</span>
                       </span>                                    
                     </div>
@@ -233,14 +464,14 @@
                     <img src="{{ article.photo.url }}" class="card-img-top" alt="..." height="300px">
                   {% else %}
                     <img src="https://dummyimage.com/1200x960/000000/c4c4c4" class="card-img-top" height="300px">
-                  {% endif %}
+                    {% endif %}
 
                   <div class="card-body d-flex flex-column justify-content-between" style="height: 12rem">
                     <!-- 유저 -->
                     <div class="mb-2">
                       <a href="{% url 'accounts:detail' article.user.pk %}" class="text-dark">
                         {% if article.user.profile.image %}
-                          <img src="{{ article.user.profile.image.url }}" alt="{{ article.user.profile.image }}" class="rounded-2 border border-1" width="40px">
+                        <img src="{{ article.user.profile.image.url }}" alt="{{ article.user.profile.image }}" class="rounded-2 border border-1" width="40px">
                         {% else %}
                           <img src="{% static 'images/dummy-image-square.jpg' %}" alt="" class="rounded-2 border border-1" width="40px">
                         {% endif %}
@@ -259,7 +490,7 @@
                             {% else %}
                               <i id="like-btn" data-article-id="{{ article.pk }}" class="bi bi-heart"></i>
                             {% endif %}
-                        </div>
+                          </div>
                         <span id="like-count" class="text-muted me-3">{{ article.like_user.count }}</span>
                       {% endif %}
 
@@ -289,6 +520,7 @@
     </div>
   {% endif %}
   </div>
+</div>
 
 {% endblock content %}
 
@@ -349,6 +581,16 @@
 
     })
   }
+  // function work() {
+
+  // 	//alert('test');
+  
+  //   var text = document.getElementById("a").value;
+  //   if(text != "") {
+  //     alert(text);
+  //   }
+  
+  // }
 
   </script>
 {% endblock script %}
