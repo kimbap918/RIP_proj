@@ -3,19 +3,21 @@ body {
 }
 .header_color {
   height: 62px;
-  background-color: #1ea1f7;
+  background-color: #5383e8;
   padding: 10px;
 }
 
 /* 네브바 드롭다운 */
 .dropbtn {
   color: white;
-  background-color: #1ea1f7;
+  background-color: #5383e8;
   width: auto;
   height: 40px;
   font-size: 16px;
   border: none;
   border-radius: 5px;
+
+  margin-left: 15px;
 }
 
 .dropdown {
@@ -61,6 +63,12 @@ body {
 /* 반응형 css */
 @media (min-width: 320px) {
   .sm\:display {
+    display: block;
+  }
+}
+
+@media (min-width: 320px) {
+  .sm\:display2 {
     display: none;
   }
 }
@@ -89,11 +97,7 @@ body {
   }
 }
 
-@media (max-width: 991px) {
-  #navbarSupportedContent ul li a {
-    padding: 12px 30px;
-  }
-}
+/* 드롭다운2 */
 
 .mynav ul {
   display: flex;
@@ -101,6 +105,7 @@ body {
   flex-wrap: wrap;
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .mynav li {
@@ -110,9 +115,9 @@ body {
 .mynav a {
   display: block;
   font-size: 14px;
-  color: black;
+  color: white;
   text-decoration: none;
-  padding: 12px 16px;
+  padding: 12px 8px;
 }
 
 .target {
@@ -124,4 +129,39 @@ body {
 .target {
   -webkit-transition: all 0.35s ease-in-out;
   transition: all 0.35s ease-in-out;
+}
+
+.mynav a.active {
+  color: white;
+}
+
+.searchbox {
+  display: flex;
+  text-align: end;
+}
+
+.smallinfo {
+  display: flex;
+  align-items: end;
+  flex-direction: column;
+  margin-top: 5px;
+}
+
+.smallinfo a {
+  color: white;
+  font-size: 14px;
+  padding: 5px;
+}
+
+.smallinfo a:hover {
+  color: #ddd;
+}
+
+.searchBox {
+  position: relative;
+  background: none;
+  /* background: rgb(248, 248, 248); */
+  /* height: 45px;
+  border-radius: 50px;
+  border-color: rgb(233, 233, 233); */
 }
