@@ -8,7 +8,7 @@
         <div class="ms-3">{{ user.username }}</div>
       </div>
     </a>
-    <a href="{% url 'accounts:password' %}" class="list-group-item list-group-item-action">비밀번호 변경</a>
+    <a href="{% url 'accounts:password' user.pk %}" class="list-group-item list-group-item-action">비밀번호 변경</a>
     <a href="{% url 'accounts:logout' %}" class="list-group-item list-group-item-action">로그아웃</a>
     <a href="{% url 'accounts:delete' %}" class="list-group-item list-group-item-action">회원탈퇴</a>
   </div>
