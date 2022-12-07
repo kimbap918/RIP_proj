@@ -159,7 +159,7 @@ p label:after {
     bottom: -1px;
     width: 0;
     height: 100%;
-    border-bottom: 3px solid #5fa8d3;
+    border-bottom: 3px solid #1ea1f7;
     transition: all .3s ease;
 }
 
@@ -175,7 +175,7 @@ p input:focus+label span,
 p input:valid+label span {
     transform: translateY(-150%);
     font-size: 14px;
-    color: #5fa8d3;
+    color: #1ea1f7;
 }
 
 /* input에 글을 입력하고 포커스가 지나간 상태에서 제어하려면 valid 선택자를 써야한다. */

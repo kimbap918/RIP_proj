@@ -73,7 +73,7 @@
         <ul>
             <li><a href="{% url 'accounts:mypage' user.pk %}" >개인정보 관리</a></li>
             <li><a href="{% url 'accounts:password' user.pk %}" >비밀번호 변경</a></li>
-            <li><a href="{% url 'home' %}" >탈퇴하기</a></li>
+            <li><a href="{% url 'accounts:pre_delete' user.pk %}" >탈퇴하기</a></li>
         </ul>
     </nav>
     <span class="target"></span>

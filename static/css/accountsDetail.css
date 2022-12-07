@@ -237,3 +237,100 @@ input[type="checkbox"] {
     width: auto;
     box-shadow: none;
 }
+
+/* 탈퇴 이너박스 */
+
+.edit__inner > h5 {
+}
+
+.edit__inner .leave_info {
+    padding-bottom: 40PX;
+    font-size: 14px;
+    color: #7b858e;
+}
+
+.delete_info_sub_title{
+  font-size: 14px;
+  color: #999;
+  padding-bottom: 5px;
+  margin:0 40px;
+  border-bottom: 1px solid #e9edef;
+}
+
+/* 탈퇴 체크 */
+.leave__checkbox {
+    margin-top: 24px;
+}
+.member-circle-checkbox {
+    position: relative;
+}
+
+.member-circle-checkbox .member-checkbox__label {
+    margin: 0;
+    display: block;
+    padding-left: 32px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.leave__checkbox .member-checkbox__state {
+    margin-top: -6px;
+}
+
+/* 버튼 */
+.memberBtn {
+    width: 100%;
+    font-weight: 400;
+    line-height: 19px;
+    text-align: center;
+    background-color: #1ea1f7;
+    font-weight: 700;
+    cursor: pointer;
+    line-height: 45px;
+    border-radius: 5px;
+    border: none;
+    color: #f3f5f7;
+    margin-top: 1.5rem;
+    margin: 10px;
+}
+
+.login_btn {
+    width: 100%;
+    font-weight: 400;
+    line-height: 19px;
+    text-align: center;
+    background-color: #1ea1f7;
+    font-weight: 700;
+    cursor: pointer;
+    line-height: 45px;
+    border-radius: 5px;
+    border: none;
+    color: #f3f5f7;
+    margin-top: 1.5rem;
+}
+
+.previousBtn {
+    background-color: #e9edef !important;
+    color: #333;
+}
+
+
+.progBtn1{
+    display: flex;
+    justify-content: center;
+}
+
+.leave_progBtn2 {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.leave_progBtn2 a{
+  text-decoration: none;
+}
+
+.leave_progBtn2 a:hover{
+  color: black;
+}
