@@ -24,7 +24,8 @@
     <link rel="stylesheet" href="{% static 'css/font.css' %}" type="text/css">
     <!-- accountsbase -->
     <link rel="stylesheet" href="{% static 'css/accountsBase.css'%}" type="text/css">
-
+    <link rel="stylesheet" href="{% static 'css/accountsDetail.css'%}" type="text/css">
+    
 </head>
 
     {% block style %}{% endblock style %}
@@ -51,7 +52,7 @@
                             <i class="px-1 fa-solid fa-chevron-down"></i>
                         </button>
                         <div class="dropdown-content">
-                            <a href="{% url 'accounts:detail' user.pk %}">개인정보 관리</a>
+                            <a href="{% url 'accounts:mypage' user.pk %}">개인정보 관리</a>
                             <a href="{% url 'accounts:logout' %}">로그아웃</a>
                         </div>
                     </div>
@@ -61,7 +62,7 @@
                             <i class="fa-solid fa-user-check"></i>
                         </button>
                         <div class="dropdown-content dropdown-content2">
-                            <a href="{% url 'accounts:detail' user.pk %}">개인정보 관리</a>
+                            <a href="{% url 'accounts:mypage' user.pk %}">개인정보 관리</a>
                             <a href="{% url 'accounts:logout' %}">로그아웃</a>
                         </div>
                     </div>
@@ -70,9 +71,9 @@
     </header>
     <nav class="mynav">
         <ul>
-            <li><a href="{% url 'accounts:detail' user.pk %}" >개인정보 관리</a></li>
+            <li><a href="{% url 'accounts:mypage' user.pk %}" >개인정보 관리</a></li>
             <li><a href="{% url 'accounts:password' user.pk %}" >비밀번호 변경</a></li>
-            <li><a href="{% url 'home' %}" >탈퇴하기</a></li>
+            <li><a href="{% url 'accounts:pre_delete' user.pk %}" >탈퇴하기</a></li>
         </ul>
     </nav>
     <span class="target"></span>
@@ -103,6 +104,7 @@
     </script>
     <script src="{% static 'js/accountBase.js' %}"></script>
     
-    {% block script %}{% endblock script %}
+    
 </body>
+{% block script %}{% endblock script %}
 </html>

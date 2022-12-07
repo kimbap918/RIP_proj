@@ -107,14 +107,14 @@
                   <i class="px-1 fa-solid fa-chevron-down"></i>
                 </button>
                 <div class="dropdown-content">
-                  <a href="{% url 'accounts:detail' user.pk %}">내 정보 수정</a>
+                  <a href="{% url 'accounts:mypage' user.pk %}">내 정보 수정</a>
                   <a href="{% url 'accounts:logout' %}">로그아웃</a>
                 </div>
               </div>
             </div>
             <div class="sm:display md:display2 lg:display2">
               <div class="smallinfo">
-                <a href="{% url 'accounts:detail' user.pk %}">내 정보 수정</a>
+                <a href="{% url 'accounts:mypage' user.pk %}">내 정보 수정</a>
                 <a href="{% url 'accounts:logout' %}">로그아웃</a>
               </div>
             </div>

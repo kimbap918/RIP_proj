@@ -85,7 +85,7 @@ function errorEvent() {
 // input.addEventListener("change", stateHandle);
 // function stateHandle() {
 //   if (document.querySelector(".input").value === "") {
-//     button.disabled = true; 
+//     button.disabled = true;
 //   } else {
 //     button.disabled = false;
 //   }
@@ -95,3 +95,4 @@ function errorEvent() {
 // document.getElementById('currnetMonth').value= new Date().toISOString().slice(0, 7);
 // document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);
 
+//체크박스

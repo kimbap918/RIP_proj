@@ -94,6 +94,7 @@ def goin(request):
 def detail(request, name):
 
     detail = {}
+    info_d = []  # 승률, 픽률, 밴률, 티어
 
     for champ in champs:
         if champ["name"] == name:
@@ -150,8 +151,39 @@ def detail(request, name):
             detail["rune_pick2"] = champ["rune_pick2"]
             detail["rune_win2"] = champ["rune_win2"]
 
+    for t in top:
+        if t["name"] == name:
+            info_d.append(t["win"])
+            info_d.append(t["pick"])
+            info_d.append(t["ben"])
+            info_d.append(t["tier"])
+    for t in jungle:
+        if t["name"] == name:
+            info_d.append(t["win"])
+            info_d.append(t["pick"])
+            info_d.append(t["ben"])
+            info_d.append(t["tier"])
+    for t in mid:
+        if t["name"] == name:
+            info_d.append(t["win"])
+            info_d.append(t["pick"])
+            info_d.append(t["ben"])
+            info_d.append(t["tier"])
+    for t in adc:
+        if t["name"] == name:
+            info_d.append(t["win"])
+            info_d.append(t["pick"])
+            info_d.append(t["ben"])
+            info_d.append(t["tier"])
+    for t in support:
+        if t["name"] == name:
+            info_d.append(t["win"])
+            info_d.append(t["pick"])
+            info_d.append(t["ben"])
+            info_d.append(t["tier"])
     context = {
         "detail": detail,
+        "info": info_d,
         "champs": champs,
         "name": name,
     }
