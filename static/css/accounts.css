@@ -85,6 +85,16 @@ container {
     display: none;
 }
 
+.card2 {
+    background-color: white;
+    border: none;
+    border-radius: .5rem;
+    padding: .5rem;
+    max-width: 400px;
+    margin: 0 auto;
+    display: none;
+}
+
 .form-group {
     display: flex;
     flex-direction: column;
@@ -280,6 +290,30 @@ a:hover {
     padding: 24px;
 }
 
+@media (max-width: 768px){
+body {
+    background-color: white !important;
+}
+}
+
+
+@media (max-width: 768px){
+.login_section {
+    width: 100%;
+    padding: 14px;
+}
+}
+
+
+@media (max-width: 768px){
+.login_box {
+    width: 100% !important;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;    
+}
+}
 /* 카카오 로그인 버튼 */
 .btnkakao {
     width: 100%;
@@ -420,5 +454,27 @@ input[type="checkbox"] {
     border: none;
   }
 
+/* 비밀번호찾기
+패스워드찾기
+password */
 
+.memberbox_inner{
+    padding: 20px;
+}
 
+.pw_title {
+ font-weight: 400;
+ font-size: 24px;
+ margin-top: 14px;
+}
+
+.pw_title_sub {
+    line-height: 1.43;
+    margin: 16px 0;
+    color: #52595f;
+    font-size: 14px;
+}
+
+.nomarginBtn{
+    margin: 0 !important;
+}
