@@ -1,8 +1,10 @@
 from django.shortcuts import render
-
+import operator
+from django.db.models import F, Func
 # OP.GG 웹크롤링 json 파일
 import json
 import os
+from pprint import pprint
 
 BASE_DIR = "static/crawling/json/"
 
@@ -40,6 +42,54 @@ def index(request):
     }
     return render(request, "champions/index.html", context)
 
+def goin(request):
+    tg = []
+    for i in top:
+        name = i['name']
+        if name == '그라가스' or name == '말파이트' or name == '케일' or name == '볼리베어' or name == '탐 켄치':
+            tg.append(i)
+            # print(tg)
+    jg = []
+    for i in jungle:
+        name = i['name']
+        if name=='아이번' or name == '스카너' or name == '니달리' or name == '자르반 4세' or name == '샤코':
+            jg.append(i)
+
+    mg = []
+    for i in mid:
+        name = i['name']
+        if name=='아우렐리온 솔' or name == '라이즈' or name == '아지르' or name == '코르키' or name == '애니':
+            mg.append(i)
+    ag = []
+    for i in adc:
+        name = i['name']
+        if name=='제리' or name == '칼리스타' or name == '아펠리오스' or name == '시비르' or name == '베인':
+            ag.append(i)
+    sg = []
+    for i in support:
+        name = i['name']
+        if name=='판테온' or name == '자이라' or name == '브랜드' or name == '제라스' or name == '잔나':
+            sg.append(i)
+    allgoin = tg+ag+mg+jg+sg
+    infos = []
+    set1 = set()
+    for i in allgoin:
+        name = i['name']
+        if name not in set1:
+            set1.add(name)
+            infos.append(i)
+    # pprint(infos)
+    # pprint(tg)
+
+    context = {
+        "infos": infos,
+        'top':tg,
+        'jg':jg,
+        'mid':mg,
+        'adc':ag,
+        'sup':sg,
+    }
+    return render(request,'champions/goin.html',context)
 
 def detail(request, name):
 
