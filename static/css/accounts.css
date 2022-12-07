@@ -260,20 +260,6 @@ a:hover {
     color: #333;
 }
 
-.check {
-    width: 100%;
-    overflow: auto;
-    height: 300px;
-    background-color: #f3f5f7;
-}
-
-
-/* 약관 */
-.scroll-touch {
-    -webkit-overflow-scrolling: touch;
-    /* Lets it scroll lazy */
-}
-
 /* 로그인 박스 */
 .login_section {
     padding: 120px 0;
@@ -342,3 +328,97 @@ a:hover {
     font-size: 14px;
     margin-top: 24px;
 }
+
+
+
+/* 약관 */
+.scroll-touch {
+  -webkit-overflow-scrolling: touch;
+  /* Lets it scroll lazy */
+}
+
+.check {
+    width: 100%;
+    overflow: auto;
+    height: 150px;
+    background-color: #f3f5f7;
+}
+
+
+.agreement {
+  display: flex;
+  margin-bottom: 55px;
+}
+
+.checkall {
+    position: relative;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #c5cbd0;
+    margin-top: 15px;
+}
+
+.check1 {
+    position: relative;
+    padding: 12px 5px;
+    margin-top: 15px;
+
+}
+
+.member-agree-checkbox_state {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -15px;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    /* background-color: #fff;
+    border: 1px solid #c5cbd0; */
+}
+.member-agree-checkbox_label {
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 19px;
+    line-height: 1.5;
+    display: block;
+    cursor: pointer;
+    padding-right: 40px;
+    color: #333;
+}
+
+.member-agree-checkbox_input {
+    position: absolute;
+    z-index: 9;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    outline: 0;
+    -webkit-appearance: none;
+    margin: 0;
+    cursor: pointer;
+}
+
+/* 체크박스 */
+
+input[type="checkbox"] {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    border: 1px solid #999;
+    appearance: none;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  input[type="checkbox"]:checked {
+    background: #32e732;
+    border: none;
+  }
+
+
+

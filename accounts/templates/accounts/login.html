@@ -5,7 +5,8 @@
 {% load django_bootstrap5 %}
 
 {% block title %} LOGIN{% endblock title %}
-{% block style %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/accounts.css' %}" type="text/css">
 {% endblock%}
 {% block content %}
 <div class="login_section">
