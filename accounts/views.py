@@ -84,106 +84,29 @@ def signup(request):
     }
     return render(request, "accounts/signup.html", context)
 
-@login_required
-# 마이 페이지 (회원 정보로 이동, 비밀번호 변경, 로그아웃, 회원탈퇴)
+
 def detail(request, pk):
     user = get_user_model().objects.get(pk=pk)
-    user = get_object_or_404(get_user_model(), pk=pk)
     articles = user.article_set.all()
     like_articles = user.like_post.all()
     bookmark_articles = user.bookmark_post.all()
-    # 업데이트
-    if request.user.profile:
-        profile = request.user.profile
-
-        if request.method == "POST":
-            profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
-            change_form = CustomUserChangeForm(request.POST, instance=user)
-
-            if profile_form.is_valid() and change_form.is_valid():
-                profile_form.save()
-                change_form.save()
-                # return redirect('accounts:detail', request.user.pk)
-                return redirect("accounts:detail", request.user.pk)
-        else:
-            profile_form = ProfileForm(instance=profile)
-            change_form = CustomUserChangeForm(instance=user)
-
-    # 최초 생성
-    else:
-        if request.method == "POST":
-            profile_form = ProfileForm(request.POST, request.FILES)
-            change_form = CustomUserChangeForm(request.POST, instance=user)
-
-            if profile_form.is_valid() and change_form.is_valid():
-                profile_form.save()
-                change_form.save()
-                # return redirect('accounts:detail', request.user.pk)
-                return redirect("accounts:detail", request.user.pk)
-
-        else:
-            profile_form = ProfileForm
-            change_form = CustomUserChangeForm(instance=user)
 
     context = {
         "user": user,
         "articles": articles,
         "like_articles": like_articles,
         "bookmark_articles": bookmark_articles,
-        "profile_form": profile_form,        
-        "change_form": change_form,
     }
-
     return render(request, "accounts/detail.html", context)
 
 
 # 마이 페이지 (회원 정보로 이동, 비밀번호 변경, 로그아웃, 회원탈퇴)
 @login_required
 def mypage(request, user_pk):
-    user = get_object_or_404(get_user_model(), pk=user_pk)
-
-    if request.user != user:
-        return redirect("articles:index")
-
-    context = {
-        "user": user,
-    }
-
-    return render(request, "accounts/mypage.html", context)
-
-
-# 비밀번호 변경
-@login_required
-def password(request,user_pk):
-    if request.method == "POST":
-        form = PasswordChangeForm(request.user, request.POST)
-        if form.is_valid():
-            form.save()
-            update_session_auth_hash(request,user_pk)  # 로그인 유지
-            return redirect("accounts:mypage", user_pk)
-
-    else:
-        form = PasswordChangeForm(request.user)
-    context = {
-        "form": form,
-    }
-
-    return render(request, "accounts/password.html", context)
-
-
-# 회원 탈퇴
-def delete(request):
-    if request.user.is_authenticated:
-        request.user.delete()
-        auth_logout(request)
-
-    return redirect("articles:index")
-
-
-# 회원 프로필 (프로필 사진, 소개글) (+ 닉네임?)
-@login_required
-def update(request, pk):
-    user = get_object_or_404(get_user_model(), pk=pk)
+    user = get_user_model().objects.get(pk=user_pk)
+    articles = user.article_set.all()
+    like_articles = user.like_post.all()
+    bookmark_articles = user.bookmark_post.all()
 
     # 업데이트
     if request.user.profile:
@@ -221,6 +144,91 @@ def update(request, pk):
     context = {
         "profile_form": profile_form,
         "change_form": change_form,
+        "user": user,
+        "articles": articles,
+        "like_articles": like_articles,
+        "bookmark_articles": bookmark_articles,
+    }
+
+    return render(request, "accounts/mypage.html", context)
+
+
+# 비밀번호 변경
+@login_required
+def password(request,user_pk):
+    if request.method == "POST":
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request,user_pk)  # 로그인 유지
+            return redirect("accounts:mypage", user_pk)
+
+    else:
+        form = PasswordChangeForm(request.user)
+    context = {
+        "form": form,
+    }
+
+    return render(request, "accounts/password.html", context)
+
+
+# 회원 탈퇴
+def delete(request):
+    if request.user.is_authenticated:
+        request.user.delete()
+        auth_logout(request)
+
+    return redirect("articles:index")
+
+
+# 회원 프로필 (프로필 사진, 소개글) (+ 닉네임?)
+@login_required
+def update(request, pk):
+    user = get_user_model().objects.get(pk=pk)
+    articles = user.article_set.all()
+    like_articles = user.like_post.all()
+    bookmark_articles = user.bookmark_post.all()
+
+    # 업데이트
+    if request.user.profile:
+        profile = request.user.profile
+
+        if request.method == "POST":
+            profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
+            change_form = CustomUserChangeForm(request.POST, instance=user)
+
+            if profile_form.is_valid() and change_form.is_valid():
+                profile_form.save()
+                change_form.save()
+                # return redirect('accounts:detail', request.user.pk)
+                return redirect("accounts:update", request.user.pk)
+        else:
+            profile_form = ProfileForm(instance=profile)
+            change_form = CustomUserChangeForm(instance=user)
+
+    # 최초 생성
+    else:
+        if request.method == "POST":
+            profile_form = ProfileForm(request.POST, request.FILES)
+            change_form = CustomUserChangeForm(request.POST, instance=user)
+
+            if profile_form.is_valid() and change_form.is_valid():
+                profile_form.save()
+                change_form.save()
+                # return redirect('accounts:detail', request.user.pk)
+                return redirect("accounts:update", request.user.pk)
+
+        else:
+            profile_form = ProfileForm
+            change_form = CustomUserChangeForm(instance=user)
+
+    context = {
+        "profile_form": profile_form,
+        "change_form": change_form,
+        "user": user,
+        "articles": articles,
+        "like_articles": like_articles,
+        "bookmark_articles": bookmark_articles,
     }
 
     return render(request, "accounts/update.html", context)
