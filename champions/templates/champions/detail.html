@@ -4,5 +4,46 @@
 {% load widget_tweaks %}
 {% block content %}
 
+<h1>테스트 디테일</h1>
+
+<div>
+    {{ detail.name }}
+    {{ detail.lane }}
+    <hr>
+    스킬
+    <img src="{{ detail.skill.0 }}" alt="">
+    <img src="{{ detail.skill.1 }}" alt="">
+    <img src="{{ detail.skill.2 }}" alt="">
+    <hr>
+    스킬 트리
+    {{ detail.skilltree.0 }}
+    {{ detail.skilltree.1 }}
+    {{ detail.skilltree.2 }}
+    <hr>
+    스킬 트리 순서
+    {{ detail.skilltrees.0 }}
+    {{ detail.skilltrees.1 }}
+    {{ detail.skilltrees.2 }}
+    {{ detail.skilltrees.3 }}
+    {{ detail.skilltrees.4 }}
+    {{ detail.skilltrees.5 }}
+    {{ detail.skilltrees.6 }}
+    {{ detail.skilltrees.7 }}
+    {{ detail.skilltrees.8 }}
+    {{ detail.skilltrees.9 }}
+    {{ detail.skilltrees.10 }}
+    {{ detail.skilltrees.11 }}
+    {{ detail.skilltrees.12 }}
+    {{ detail.skilltrees.12 }}
+    {{ detail.skilltrees.13 }}
+    {{ detail.skilltrees.14 }}
+    {{ detail.skilltrees.15 }}
+    {{ detail.skilltrees.16 }}
+    <hr>
+    스킬픽 / 스킬승률
+    {{ detail.skillpick }}
+    {{ detail.skillwin }}
+
+</div>
 
 {% endblock content %}

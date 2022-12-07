@@ -12,7 +12,7 @@
                 <div class="row champs" style="justify-content: space-evenly">
                     {% for champ in infos %}
                     <div class="col-md-6 p-0 m-1" style="width: 50px; height: 64px;">
-                        <a href="{{ champ.detail }}" style="text-decoration: none;">
+                        <a href="{% url 'champions:detail' champ.name %}" style="text-decoration: none;">
                             <img src="{{ champ.img }}" alt="" style="width: 50px; height: 50px; border-radius: 5px;">
                             <p style="font-size: 13px; text-decoration: none; color: azure;">{{ champ.name }}</p>
                         </a>
