@@ -55,6 +55,7 @@ def result(request):
         params = {"api_key": api_key}
         # res = requests.get(summoner_url, params=params)
         res = requests.get(summoner_url)
+        # print(res)
         # res = res.json()
         # summoners_result = json.loads(((res.text).encode('utf-8')))
         if res.status_code == requests.codes.ok:  # 결과값이 정상적으로 반환되었을때만 실행하도록 설정
@@ -64,14 +65,16 @@ def result(request):
                 sum_result["name"] = summoners_result["name"]
                 sum_result["level"] = summoners_result["summonerLevel"]
                 sum_result["profileIconId"] = summoners_result["profileIconId"]
-
+                sum_result["puuid"] = summoners_result["puuid"]
+                print(sum_result["puuid"])
                 tier_url = (
                     "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/"
                     + summoners_result["id"]
                 )  # 소환사 티어 검색
+                # print(tier_url)
                 tier_info = requests.get(tier_url, params=params)
                 tier_info = tier_info.json()
-
+                # print(tier_info)
                 if len(tier_info) == 1:  # 자유랭크 또는 솔로랭크 둘중 하나만 있는경우
                     tier_info = tier_info.pop()
                     if tier_info["queueType"] == "RANKED_FLEX_SR":  # 자유랭크인 경우
@@ -145,5 +148,5 @@ def match_v5_get_match_history(matchId):
 
     return requests.get(url, headers=request_header).json()
 
-pp.pprint(match_v5_get_match_history('KR_6244514829'))
+# pp.pprint(match_v5_get_match_history('KR_6244514829'))
 
