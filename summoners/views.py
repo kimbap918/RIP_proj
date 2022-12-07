@@ -65,8 +65,8 @@ def result(request):
                 sum_result["name"] = summoners_result["name"]
                 sum_result["level"] = summoners_result["summonerLevel"]
                 sum_result["profileIconId"] = summoners_result["profileIconId"]
+                # 최근 10게임 조회에 사용할 puuid
                 sum_result["puuid"] = summoners_result["puuid"]
-                print(sum_result["puuid"])
                 tier_url = (
                     "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/"
                     + summoners_result["id"]
@@ -118,6 +118,15 @@ def result(request):
                 "team_tier": team_tier,
             },
         )
+
+# 1. https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/ 에서 puuid 값을 가져온다.
+
+# 2. 가져온 puuid값을https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids?start={start}&count={count} 에 넘겨준다. 
+
+#    여기서 puuid : 소환사 고유 puuid, start : 가장 최근 경기부터 알고 싶으면 0, (예 : 가장 최근에 했던 3번째 경기부터 알고 싶다면 3), count : 결과를 몇개 까지 받을지 (max : 100)
+
+# 3. 2에서 받은 결과 값은 KR_6244514829의 형태로(matchId) 저장되는데, https://asia.api.riotgames.com/lol/match/v5/matches/{matchId} 를 통해 게임 상세정보를 알수있다.
+
 
 # puuid : 소환사 고유 puuid
 # start : 가장 최근 경기부터 알고 싶으면 0, (예 : 가장 최근에 했던 3번째 경기부터 알고 싶다면 3)
