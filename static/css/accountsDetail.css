@@ -1,0 +1,239 @@
+/* 탭 강조 효과 */
+
+  .list {
+  list-style-type: none;
+  margin: 0;
+  padding: 20px;
+}
+
+.list::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.list a {
+  text-decoration: none;
+  color: grey;
+}
+
+.tab-button{
+  display: block;
+  padding: 16px 24px;
+  float: left;
+  margin-right: -1px;
+  margin-bottom: -1px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.blue {
+  border-bottom: 3px solid #1ea1f7;
+  color: black !important;
+  margin-top: -2px;
+}
+
+.tab-content {
+  display: none;
+  padding: 10px;
+}
+
+.show {
+  display: block;
+}
+
+/* 개인정보란 */
+/* 타이틀 */
+.member-settings-layout__title {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+    padding: 40px 40px 0;
+    line-height: 1;
+    color: #1e2022;
+}
+
+/* 수신동의 */
+.edit__email-term-title {
+    display: block;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1e2022;
+    padding-left: 8px;
+}
+.member-settings-layout__content-inner {
+    width: 970px;
+    margin: 40px auto 0;
+    background-color: #fff;
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 6%);
+    padding-bottom: 40px;
+}
+.edit {
+    margin-top: 40px;
+}
+
+.edit__inner {
+    margin: 0 40px;
+}
+
+.edit__table {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    border-top: 1px solid #e9edef;
+}
+
+.edit__tr {
+    display: table-row;
+}
+
+.edit__td, .edit__th {
+    display: table-cell;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    line-height: 1.5;
+    border-bottom: 1px solid #e9edef;
+    text-align: left;
+    color: #52595f;
+}
+.edit__td {
+    padding: 10px 10px;
+    vertical-align: middle;
+}
+
+.edit__email {
+    color: #98a0a7;
+}
+
+.edit__th {
+    width: 184px;
+    background-color: #f8f9fa;
+    border-right: 1px solid #e9edef;
+    height: 32px;
+    padding: 15px 10px 8px 16px;
+    vertical-align: top;
+}
+
+.edit__l-email-term {
+    padding: 8px 0;
+}
+/* 체크박스 */
+.member-circle-checkbox {
+    position: relative;
+    
+}
+
+.member-circle-checkbox .member-checkbox__state {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -12px;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: #fff;
+
+}
+
+.member-circle-checkbox .member-checkbox__label {
+    margin: 0;
+    display: block;
+    padding-left: 32px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+}
+.edit__email-term-sub {
+    display: block;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #7b858e;
+    padding-left: 8px;
+}
+
+/* username */
+.formtext {
+  font-size: 14px;
+  color: gray;
+}
+
+/* 체크박스 */
+
+input[type="checkbox"] {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    border: 1px solid #999;
+    appearance: none;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  input[type="checkbox"]:checked {
+    background: #32e732;
+    border: none;
+  }
+
+
+.inputInfo{
+  position: relative;
+}
+
+.inputInfo input,
+.inputInfo textarea{
+  outline: none;
+  border: 1px solid #999;
+  color: #999;
+  width: 320px;
+  padding: 2px;
+}
+
+.inputInfo input:focus,
+.inputInfo textarea:focus {
+  outline: none;
+  border: 1px solid #1ea1f7;
+   color: black;
+ 
+}
+
+.submitBnt{
+  font-size: 14px;
+}
+
+.submitBnt:hover{
+  color: #1ea1f7;
+}
+
+
+/* 비밀번호 변경 박스 */
+.change-password__inner {
+    margin: 0 260px;
+}
+
+.change_btn{
+    width: 100%;
+    font-weight: 400;
+    line-height: 19px;
+    text-align: center;
+    background-color: #1ea1f7;
+    font-weight: 700;
+    cursor: pointer;
+    line-height: 45px;
+    border-radius: 5px;
+    border: none;
+    color: #f3f5f7;
+    margin-top: 1.5rem;
+}
+
+@media (max-width: 768px)
+.member-settings-layout__content-inner {
+    margin-top: 16px;
+    width: auto;
+    box-shadow: none;
+}
