@@ -62,6 +62,7 @@ def article_detail(request, pk):
         "articles_form": article_form,
         "comments_form": comments_form,
         "comments": comments,
+        "categories":['자유','유머','팬아트','유저찾기','유저뉴스','팁과노하우','기획','사건사고'],
         # "user_articles":user_articles,
         # "user":user,
     }
