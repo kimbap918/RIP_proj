@@ -16,6 +16,7 @@ urlpatterns = [
     path("<int:user_pk>/mypage/", views.mypage, name="mypage"),  # 마이페이지
     path("<int:user_pk>/password/", views.password, name="password"),  # 비밀번호 변경
     path("delete/", views.delete, name="delete"),  # 회원탈퇴
+    path("<int:user_pk>/pre_delete/", views.pre_delete, name="pre_delete"),  # 회원탈퇴
     path("<int:pk>/update/", views.update, name="update"),  # 회원정보수정
     path(
         "password/reset/",
