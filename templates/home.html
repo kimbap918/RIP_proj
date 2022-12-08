@@ -1,23 +1,125 @@
-{% extends "base.html" %}
+{% extends "homeBase.html" %}
 {% load static %}
 {% load django_bootstrap5 %}
 {% load article_filter %}
 {% load widget_tweaks %}
 {% block content %}
-<div class="row d-flex justify-content-center align-content-center">
-    {% if lately_a %}
-    {% for article in lately_a %}
+<main class="main_box">
     <div>
+        <div class="first_box">
+            <div class="first_box-inner">
+                <img src="/static/images/검정로고.png" alt="">
+                <div class="search_box">
+                    <div class="search_box-inner">
+                        <input type="text" value="" class="" placeholder="챔피언, 챔피언..">
+                        <i type="submit" class="fa-regular fa-chess-queen"></i>
+                        <input  style="display: none" />
 
-        {{ article.title|safe }}
-        {{ article.content|safe }}
+                        <div class="tuty9o-5 iuPjAe">
+                            <ol class="sc-154wmor-0 ekerqK"></ol>
+                        </div>
+
+                    </div>         
+                </div>
+            </div>
+            <!-- <div class="search_box">
+                <div class="search_box-inner">
+                    서치박스
+                </div>
+            </div> -->
+        </div>
     </div>
-    {% endfor %}
-    {% else %}
-    <div>
-        게시물이 없습니다.
-    </div>
-    {% endif %}
+    <section class="articles_list">
+        <div class="row" style="margin: 0 450px;">            
+            <div class="col col-lg-6 col-sm-12">
+                <div class="article_list_box">
+                    <h5>최신글 목록</h5>
+                    {% if lately_a %}
+                    {% for article in lately_a %}
+                    <div class="article_new_list">
+                        <div class="article1">
+                            <div class="article_new_num">
+                                {{article.id}}
+                            </div>
+                            <div class="article_img_box">
+                                {% if articles.photo %}
+                                <div class="" style="float:right;">
+                                    <img style="width:100%; height:100%;" src="{{ articles.photo.url }}" alt="">
+                                </div>
+                                {% else %}
+                                <div class="" style="float:right;">
+                                    <img style="width:100%; height:100%;" src="https://dummyimage.com/100x80/000000/c4c4c4" alt="">
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="article_content-box">
+                                <div class="article_title">
+                                    {{ article.title|safe }}
+                                </div>
+                                <div class="article_info">
+                                    {{ article.user.username }}
+                                    {{ article.like_user.count }}
+                                    {{ article.created_at|date:'m월 d일' }}
+                                    {{ article.created_string }}
+                                    {{ articles.comment_set.count }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <div>
+                        게시물이 없습니다.
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col col-lg-6 col-sm-12">
+                <div class="article_list_box">
+                    <h5>최신글 목록</h5>
+                    {% if lately_a %}
+                    {% for article in lately_a %}
+                    <div class="article_new_list">
+                        <div class="article1">
+                            <div class="article_new_num">
+                                {{article.id}}
+                            </div>
+                            <div class="article_img_box">
+                                {% if articles.photo %}
+                                <div class="" style="float:right;">
+                                    <img style="width:100%; height:100%;" src="{{ articles.photo.url }}" alt="">
+                                </div>
+                                {% else %}
+                                <div class="" style="float:right;">
+                                    <img style="width:100%; height:100%;" src="https://dummyimage.com/100x80/000000/c4c4c4" alt="">
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="article_content-box">
+                                <div class="article_title">
+                                    {{ article.title|safe }}
+                                </div>
+                                <div class="article_info">
+                                    {{ article.user.username }}
+                                    {{ article.like_user.count }}
+                                    {{ article.created_at|date:'m월 d일' }}
+                                    {{ article.created_string }}
+                                    {{ articles.comment_set.count }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <div>
+                        게시물이 없습니다.
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+    
 
 <!-- like_user 오류 -->
 <!-- {% for like_a in best_a %}
@@ -25,5 +127,5 @@
 {{article.content}}
 {% endfor %} -->
 
-</div>
+</main>
 {% endblock %}

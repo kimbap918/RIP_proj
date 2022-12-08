@@ -186,3 +186,121 @@ body {
   font-size: 14px;
 }
 
+/* home */
+
+.main_box {
+  display: flex;
+    flex-direction: column;
+    min-width: 1180px;
+    height: 100%;
+    padding-top: 37px;
+    background-color: none !important;
+    background: url(/static/images/롤1.png) center 164px / 1800px 840px no-repeat;
+}
+
+.first_box{
+  margin: 156px auto 168px;
+  text-align: center;
+}
+
+.first_box img{
+    max-width: 250px;
+}
+
+.search_box {
+    background: rgb(255, 255, 255);
+    width: 500px;
+    height: 60px;
+    padding: 8px 21px 8px 8px;
+}
+
+.search_box input{
+  border: none;
+  outline: none;
+  width: 90%;
+}
+
+.search_box-inner{
+  position: relative;
+}
+
+.search_box-inner i{
+  position: absolute;
+  right: 20px;
+  bottom: 17px;
+}
+
+.search_box-inner input{
+    flex: 1 1 0%;
+    margin: 0px 15px;
+    background: 0px center;
+    color: rgb(45, 43, 46);
+    font-size: 13px;
+    font-weight: 600;
+    outline: none;
+    padding: 13px 12px 13px 14px;
+}
+
+.first_box-inner {
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 1100px;
+    margin: 0px auto auto;
+    padding: 0px 66px;
+}
+
+.first_box-inner img {
+    height: 50px;
+    margin-bottom: 33px;
+}
+
+.article_box-new{
+  background-color: var(--gray0);
+  border-radius: 4px;
+  min-height: 405px;  
+}
+
+.articles_list {
+  margin: 100px;
+}
+
+.article_list_box {
+  margin: 0px 20px;
+  background-color: white;
+  border-radius: 4px;
+  min-height: 405px;
+  width: auto;
+  padding: 40px 50px;
+}
+
+.article_new_list{
+  margin-top: 20px;
+
+}
+
+.article_title{
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.article_info{
+  font-size: 14px;
+  font-weight: 400;
+  color: #7b858e;
+}
+
+.article1{
+  display: flex;
+  flex-direction: row;
+}
+
+.article_new_num{
+  padding: 15px 25px 15px 0;
+}
+
+.article_img_box{
+  max-width: 80px;
+  padding-right: 15px;
+}
