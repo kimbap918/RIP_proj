@@ -15,8 +15,8 @@ body {
 {% endblock %}
 {% block content %}
 <div class="container">
-    <div class="signBox">
-        <div class="signBox_bg form_wrap_line">
+    <div class="sign_box">
+        <div class="sign_box_bg form_wrap_line">
             <div class="logo">
                 <img src="/static/images/검정로고.png" alt="" style="width: 200px; padding-bottom: 15px;">
             </div>
@@ -28,6 +28,9 @@ body {
                         <i class="fa-solid fa-circle" style="color: #1ea1f7;"></i>
                         <i class="fa-solid fa-circle" style="color: #e9edef"></i>
                         <i class="fa-solid fa-circle" style="color: #e9edef"></i>
+                    </div>
+                    <div class="pw_title">
+                        생년월일 입력
                     </div>
                     <div class="">
                         <p class="">
@@ -114,6 +117,9 @@ body {
                         <i class="fa-solid fa-circle" style="color: #e9edef"></i>
                         <i class="fa-solid fa-circle" style="color: #1ea1f7;"></i>
                     </div>
+                    <div class="pw_title">
+                        기본정보 입력
+                    </div>
                     <p class="">
                         <input id="user_id" type="text" name="email" maxlength="100" required=" "id="id_email"  autocomplete="off" required>
                         <label for="id_email"><span>이메일</span></label>
@@ -121,7 +127,10 @@ body {
                     <p class="">
                         <input id="user_nick" type="text" name="username" maxlength="150" autofocus="" required="" id="id_username">
                         <label for="id_username"><span>닉네임</span></label>
-                    </p> 
+                    </p>
+                    <div class="form-text">
+                        개인정보를 기입하여 발생될 수 있는 피해는 RIP.GG가 일절 책임지지 않습니다.
+                    </div>
                     <p class="">
                         <input id="user_pw" type="password" name="password1" autocomplete="new-password" required="" id="id_password1">
                         <label for="id_username"><span>비밀번호</span></label>
