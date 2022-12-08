@@ -14,53 +14,35 @@
         color:green;
     }
 </style>
-<div class="row my-3">
-    <!-- 왼쪽 어사이드 -->
-    {% if request.user.is_authenticated %}
-    <div class="d-none d-lg-block col-lg-3 border my-3 rounded-3" style="max-height:700px; position:sticky; top:0; background-color:RGB(255, 255, 255);">
-        <div class="my-2 container">
-            <p>
-                <img style="width: 20%; height:20%;" src="{% static 'images/logo.png' %}" alt=""> <span>{{ user.username }}</span>
-                <span>
-                    <div class="progress" style="height: 3px;">
-                        <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width:30%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+<div class="container">
+    <div class="row my-3 justify-content-center">
+        <!-- 왼쪽 어사이드 -->
+        {% if request.user.is_authenticated %}
+        <div class="d-none d-xl-block col-xl-3 border my-3 rounded-2" style="max-height:600px; position:sticky; top:0; background-color:RGB(255, 255, 255);">
+            <div class="my-2 container">
+                <p>
+                    <img style="width: 20%; height:20%;" src="{% static 'images/logo.png' %}" alt=""> <span>{{ user.username }}</span>
+                    <span>
+                        <div class="progress" style="height: 3px;">
+                            <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width:30%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </span>
+                </p>
+                <hr>
+                <div class="d-flex justify-content-between my-2">
+                    <div>
+                    <a href="?sort=3" class="btn" style="font-size:14px; border-color:RGB(70, 207, 167); color:RGB(70, 207, 167);">내가 쓴 글</a>
                     </div>
-                </span>
-            </p>
-            <hr>
-            <div class="d-flex justify-content-between my-2">
-                <a href="?sort=3" class="btn" style="border-color:RGB(22, 174, 129); color:RGB(22, 174, 129);">내가 쓴 글</a>
-                <a href="?sort=4" class="btn" style="border-color:RGB(22, 174, 129); color:RGB(22, 174, 129);">내 와드</a>
-                <a href="?sort=5" class="btn" style="border-color:RGB(22, 174, 129); color:RGB(22, 174, 129);">좋아요</a>
-            </div>
-            <a href="{% url 'articles:create' %}" class="btn w-100" style="color:RGB(248, 249, 250); background-color:RGB(22, 174, 129);"><span><i class="bi bi-pencil-square"></i></span> 글쓰기</a>
-            <hr style="margin:10px;">
-            
-            <ul class="nav nav-tabs d-flex flex-column" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <a href=" {% url 'articles:index' %}" class="small"><button class="w-100 nav-link text-black text-start" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">전체</button></a>
-                </li>
-                {% for category in categories %}
-                <li class="nav-item" role="presentation">
-                    <a class="my-1 small active" href="{% url 'articles:category' forloop.counter0 %} ">
-                    {% if category == category_name %}
-                    <button class="text-start nav-link text-black active w-100" style="background-color:RGB(248, 249, 250); color:RGB(64, 188, 151);" type="button" role="tab" aria-selected="true">
-                    {% else %}
-                    <button class="text-start nav-link text-black w-100" type="button" role="tab" aria-selected="true">
-                    {% endif %}
-                    {{ category }}
-                    </button></a></li>
-                {% endfor %}
-            </ul>
-
-        </div>
-    </div>
-    {% else %}
-    <div class="d-none d-lg-block col-lg-3 border my-3 rounded-3" style="max-height:500px; position:sticky; top:0; background-color:RGB(255, 255, 255);">
-        <div class="my-2 container">
-            <a href="{% url 'accounts:login' %}" style="color:RGB(183, 236, 221); background-color:RGB(22, 174, 129);" class="btn w-100 mt-2">로그인</a>
-            <hr style="margin:10px;">
-            
+                    <div>
+                    <a href="?sort=4" class="btn" style="font-size:14px; border-color:RGB(70, 207, 167); color:RGB(70, 207, 167);">내 와드</a>
+                    </div>
+                    <div>
+                    <a href="?sort=5" class="btn" style="font-size:14px; border-color:RGB(70, 207, 167); color:RGB(70, 207, 167);">좋아요</a>
+                    </div>
+                </div>
+                <a href="{% url 'articles:create' %}" class="btn w-100" style="color:RGB(248, 249, 250); background-color:RGB(70, 207, 167);"><span><i class="bi bi-pencil-square"></i></span> 글쓰기</a>
+                <hr style="margin:10px;">
+                
                 <ul class="nav nav-tabs d-flex flex-column" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <a href=" {% url 'articles:index' %}" class="small"><button class="w-100 nav-link text-black text-start" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">전체</button></a>
@@ -69,7 +51,7 @@
                     <li class="nav-item" role="presentation">
                         <a class="my-1 small active" href="{% url 'articles:category' forloop.counter0 %} ">
                         {% if category == category_name %}
-                        <button class="text-start nav-link text-black active w-100" style="background-color:RGB(248, 249, 250); color:RGB(64, 188, 151);" type="button" role="tab" aria-selected="true">
+                        <button class="text-start nav-link active w-100" style="background-color:RGB(248, 249, 250); color:RGB(64, 188, 151);" type="button" role="tab" aria-selected="true">
                         {% else %}
                         <button class="text-start nav-link text-black w-100" type="button" role="tab" aria-selected="true">
                         {% endif %}
@@ -77,11 +59,38 @@
                         </button></a></li>
                     {% endfor %}
                 </ul>
-
+    
             </div>
         </div>
-            {% endif %}
-    <div class="col-lg-9 col-md-12" >
+        {% else %}
+        <div class="d-none d-lg-block col-lg-3 border my-3 rounded-3" style="max-height:500px; position:sticky; top:0; background-color:RGB(255, 255, 255);">
+            <div class="my-2 container">
+                <a href="{% url 'accounts:login' %}" class="btn w-100 mt-2" style="color:RGB(183, 236, 221); background-color:RGB(70, 207, 167);">로그인</a>
+                <hr style="margin:10px;">
+                
+                    <ul class="nav nav-tabs d-flex flex-column" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a href=" {% url 'articles:index' %}" class="small"><button class="w-100 nav-link text-black text-start" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">전체</button></a>
+                        </li>
+                        {% for category in categories %}
+                        <li class="nav-item" role="presentation">
+                            <a class="my-1 small active" href="{% url 'articles:category' forloop.counter0 %} ">
+                            {% if category == category_name %}
+                            <button class="text-start nav-link active w-100" style="background-color:RGB(248, 249, 250); color:RGB(64, 188, 151);" type="button" role="tab" aria-selected="true">
+                            {% else %}
+                            <button class="text-start nav-link text-black w-100" type="button" role="tab" aria-selected="true">
+                            {% endif %}
+                            {{ category }}
+                            </button></a></li>
+                        {% endfor %}
+                    </ul>
+    
+                </div>
+            </div>
+                {% endif %}
+    
+        <!-- 게시판 내용 -->
+    <div class="col-lg-7 col-md-12" >
         <div class="border d-flex flex-column my-3 rounded-3" style="background-color:RGB(255, 255, 255);">
             <h4 class="m-3">
                 {{ article.title }}
@@ -170,18 +179,18 @@
 
 
     <div class="border rounded-3" style="background-color:RGB(255, 255, 255);">
-        <h4 class="my-3">댓글</h4>
+        <h4 class="m-3">댓글</h4>
         {% if request.user.is_authenticated %}
-        <form action="{% url 'articles:comment_create' article.pk %}" method="POST" id="comment-form"
+        <form class="m-3" action="{% url 'articles:comment_create' article.pk %}" method="POST" id="comment-form"
             data-article-id="{{ article.pk }}">
             {% csrf_token %}
             {% bootstrap_form comments_form layout='floating'%}
             {% bootstrap_button button_type="submit" content="OK" %}
         </form>
         {% endif %}
-        <hr>
                     <!-- 댓글 목록 -->
-                    <div id="comments">  
+                    <div id="comments" class="m-3">  
+                        <hr>
                         {% for comment in comments %}
                         <div class="div_comment">
                             <a class="keyboard-comment-user" href="{% url 'accounts:detail' comment.user.pk %}" style="text-decoration: none;">{{ comment.user }}</a> 
