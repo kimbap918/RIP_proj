@@ -43,7 +43,7 @@
                 <header class="container d-flex flex-wrap justify-content-between align-content-center" style="">
                     <a href="{% url 'home' %}"
                         class="d-flex align-items-center mb-md-0 me-md-auto text-dark text-decoration-none">
-                        <span class=""><img src="/static/images/흰로고.png" width="100" alt=""></span>
+                        <span class=""><img src="/static/images/흰로고.png" width="80" alt=""></span>
                     </a>
                     <div class="dropdown sm:display md:display">
                         <button class="dropbtn">
@@ -52,7 +52,7 @@
                             <i class="px-1 fa-solid fa-chevron-down"></i>
                         </button>
                         <div class="dropdown-content">
-                            <a href="{% url 'accounts:mypage' user.pk %}">개인정보 관리</a>
+                            <a href="{% url 'accounts:detail' user.pk %}">내 정보</a>
                             <a href="{% url 'accounts:logout' %}">로그아웃</a>
                         </div>
                     </div>
