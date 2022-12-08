@@ -35,8 +35,8 @@
     {% if summoner_exist %}
     <div class="row" style="margin: 40px; float: none;">
 
-        <img style="display: block; margin: 0px; height: 10%;" class="img-thumbnail"
-            src="{% static 'images/검정로고.png' %}">
+        <img style="display: block; margin: 0px; height: 70px; width: 70px;" class="img-thumbnail"
+            src="{% static 'images/profileicon/' %}{{summoners_result.profileIconId}}.png">
         <span style="margin: 20 0 0 20; font-size: 32px;">{{ summoners_result.name }}<br>
             <span style="font-size: 20px; ">LV: {{ summoners_result.level }}</span>
         </span>
@@ -48,7 +48,7 @@
             <div class="row">
                 {% if solo_tier %}
                 <div class="col-4">
-                    <img src="{% static 'images/검정로고.png' %}" width="100%">
+                    <img src="{% static 'images/ranked-emblems/' %}{{solo_tier.tier}}.png" width="100%">
                 </div>
                 <div>
                     리그: {{ solo_tier.rank_type }}<br>
@@ -69,7 +69,7 @@
 
                 {% if team_tier %}
                 <div class="col-4">
-                    <img src="{% static 'images/검정로고.png' %}" width="100%">
+                    <img src="{% static 'images/ranked-emblems/' %}{{team_tier.tier}}.png" width="100%">
                 </div>
                 <div>
                     리그: {{ team_tier.rank_type }}<br>
@@ -89,6 +89,33 @@
     사용자가 존재하지않습니다.
     {% endif %}
 
+    <div>
+        {% for p in players %}
+        <div class="d-flex">
+            {{ p.id }}
+            {{ p.champion }}
+            {{ p.spell1 }}
+            {{ p.spell2 }}
+            {{ p.level }}
+            {{ p.kills }}
+            {{ p.deaths }}
+            {{ p.assists }}
+            {{ p.kda }}
+            {{ p.item0 }}
+            {{ p.item1 }}
+            {{ p.item2 }}
+            {{ p.item3 }}
+            {{ p.item4 }}
+            {{ p.item5 }}
+            {{ p.item6 }}
+            {{ p.visionscore }}
+            {{ p.gold }}
+            {{ p.cs }}
+
+
+        </div>
+        {% endfor %}
+    </div>
 </div>
 
 

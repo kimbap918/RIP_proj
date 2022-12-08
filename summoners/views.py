@@ -9,16 +9,17 @@ from django.conf import settings
 
 # 출력 확인용
 import pprint
+
 pp = pprint.PrettyPrinter(indent=4)
 
 
 request_header = {
-                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36",
-                    "Accept-Language": "ko,en-US;q=0.9,en;q=0.8,es;q=0.7",
-                    "Accept-Charset": "application/x-www-form-urlencoded; charset=UTF-8",
-                    "Origin": "https://developer.riotgames.com",
-                    "X-Riot-Token": getattr(settings, "API_KEY", "API_KEY")
-                }
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36",
+    "Accept-Language": "ko,en-US;q=0.9,en;q=0.8,es;q=0.7",
+    "Accept-Charset": "application/x-www-form-urlencoded; charset=UTF-8",
+    "Origin": "https://developer.riotgames.com",
+    "X-Riot-Token": getattr(settings, "API_KEY", "API_KEY"),
+}
 
 
 # Create your views here.
@@ -119,9 +120,10 @@ def result(request):
             },
         )
 
+
 # 1. https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/ 에서 puuid 값을 가져온다.
 
-# 2. 가져온 puuid값을https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids?start={start}&count={count} 에 넘겨준다. 
+# 2. 가져온 puuid값을https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids?start={start}&count={count} 에 넘겨준다.
 
 #    여기서 puuid : 소환사 고유 puuid, start : 가장 최근 경기부터 알고 싶으면 0, (예 : 가장 최근에 했던 3번째 경기부터 알고 싶다면 3), count : 결과를 몇개 까지 받을지 (max : 100)
 
@@ -134,6 +136,7 @@ def result(request):
 def match_v5_get_list_match_id(puuid, start, count):
     url = f"https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids?start={start}&count={count}"
     return requests.get(url, headers=request_header).json()
+
 
 # queueId : 솔랭 - 420, 노말 - 430, 팀랭 - 440
 # gameDuration : 게임 길이
@@ -150,12 +153,12 @@ def match_v5_get_list_match_id(puuid, start, count):
 # item0 ~ 6 : 장비한 아이템 코드(총 7개)
 # totalDamageDealtToChampions : 챔피언에게 가한 피해
 # win : 승패여부
-# visionScore : 시야점수 
+# visionScore : 시야점수
 # stealthWardsPlaced : 제어와드 설치 개수
 def match_v5_get_match_history(matchId):
     url = f"https://asia.api.riotgames.com/lol/match/v5/matches/{matchId}"
 
     return requests.get(url, headers=request_header).json()
 
-# pp.pprint(match_v5_get_match_history('KR_6244514829'))
 
+# pp.pprint(match_v5_get_match_history('KR_6244514829'))
