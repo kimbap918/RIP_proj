@@ -43,8 +43,6 @@ def result(request):
         solo_tier = {}
         team_tier = {}
         store_list = []
-        game_list = {}
-        game_list2 = []
         api_key = getattr(settings, "API_KEY", "API_KEY")
 
         summoner_url = (
@@ -52,13 +50,10 @@ def result(request):
             + summoner_name
             + "?api_key="
             + api_key
-        )  # 소환사 정보 검색
+        )
         params = {"api_key": api_key}
-        # res = requests.get(summoner_url, params=params)
         res = requests.get(summoner_url)
-        # print(res)
-        # res = res.json()
-        # summoners_result = json.loads(((res.text).encode('utf-8')))
+
         if res.status_code == requests.codes.ok:  # 결과값이 정상적으로 반환되었을때만 실행하도록 설정
             summoner_exist = True
             summoners_result = res.json()  # response 값을 json 형태로 변환시키는 함수
@@ -109,6 +104,77 @@ def result(request):
                     team_tier["wins"] = store_list[1]["wins"]
                     team_tier["losses"] = store_list[1]["losses"]
 
+        # 최근 게임 10개 정보
+        data = res.json()
+
+        puu_id = data["puuid"]
+        matches_url = (
+            "https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/"
+            + puu_id
+            + "/ids"
+            + "?api_key="
+            + api_key
+        )
+
+        mat = requests.get(matches_url)
+        matches = mat.json()
+
+        for match in matches[:1]:
+            request_url = (
+                "https://asia.api.riotgames.com/lol/match/v5/matches/"
+                + match
+                + "?api_key="
+                + api_key
+            )
+
+            data = requests.get(request_url)
+            data = data.json()
+
+            games = []
+
+            p = data["info"]["gameDuration"]
+            sec = int(p) % 60
+            min = int(p) // 60
+            play_time = f"{min}분 {sec}초"
+            queue_id = data["info"]["queueId"]
+
+            games.append({"play_time": play_time, "queue_id": queue_id})
+
+            players = []
+
+            for part in data["info"]["participants"]:
+                player = dict()
+                player["participantId"] = part["participantId"]
+                player["championId"] = part["championId"]
+                player["championName"] = part["championName"]
+                player["summoner1Id"] = part["summoner1Id"]
+                player["summoner2Id"] = part["summoner2Id"]
+                player["summonerName"] = part["summonerName"]
+                player["summonerId"] = part["summonerId"]
+                player["kills"] = part["kills"]
+                player["deaths"] = part["deaths"]
+                player["assists"] = part["assists"]
+                # player["kda"] = part["challenges"]["kda"]
+                player["kda1"] = round(
+                    (player["kills"] + player["assists"]) / player["deaths"],
+                )
+                player["item0"] = part["item0"]
+                player["item1"] = part["item1"]
+                player["item2"] = part["item2"]
+                player["item3"] = part["item3"]
+                player["item4"] = part["item4"]
+                player["item5"] = part["item5"]
+                player["item6"] = part["item6"]
+                player["win"] = part["win"]
+                player["visionScore"] = part["visionScore"]
+                player["totalMinionsKilled"] = part["totalMinionsKilled"]
+                player["stealthWardsPlaced"] = part["challenges"]["stealthWardsPlaced"]
+                player["totalDamageDealtToChampions"] = part[
+                    "totalDamageDealtToChampions"
+                ]
+
+                players.append(player)
+
         return render(
             request,
             "summoners/result.html",
@@ -117,6 +183,10 @@ def result(request):
                 "summoners_result": sum_result,
                 "solo_tier": solo_tier,
                 "team_tier": team_tier,
+                "play_time": play_time,
+                "queue_id": queue_id,
+                "players": players,
+                "games": games,
             },
         )
 
