@@ -4,8 +4,7 @@ from . import views
 app_name = "champions"
 
 urlpatterns = [
-
-    path('', views.index, name='index'),
-    path('detail/', views.detail, name='detail'),
-    
+    path("", views.index, name="index"),
+    path("<str:name>/detail/", views.detail, name="detail"),
+    path("goin/", views.goin, name="goin"),
 ]

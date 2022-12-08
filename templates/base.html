@@ -77,10 +77,13 @@
                 <a href="{% url 'champions:index' %}">챔피언</a>
               </li>
               <li class="nav-item">
-                <a href="{% url 'articles:index' %}">커뮤니티</a>
+                <a href="{% url 'champions:goin' %}">고인</a>
               </li>
               <li class="nav-item">
                 <a href="">통계</a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'articles:index' %}">커뮤니티</a>
               </li>
             </ul>
             <div class="searchBox">
@@ -104,14 +107,14 @@
                   <i class="px-1 fa-solid fa-chevron-down"></i>
                 </button>
                 <div class="dropdown-content">
-                  <a href="{% url 'accounts:detail' user.pk %}">내 정보 수정</a>
+                  <a href="{% url 'accounts:mypage' user.pk %}">내 정보 수정</a>
                   <a href="{% url 'accounts:logout' %}">로그아웃</a>
                 </div>
               </div>
             </div>
             <div class="sm:display md:display2 lg:display2">
               <div class="smallinfo">
-                <a href="{% url 'accounts:detail' user.pk %}">내 정보 수정</a>
+                <a href="{% url 'accounts:mypage' user.pk %}">내 정보 수정</a>
                 <a href="{% url 'accounts:logout' %}">로그아웃</a>
               </div>
             </div>
@@ -123,7 +126,7 @@
                 </div>
               </div>
             </div>
-            <div class="">
+            <div class="sm:display md:display2 lg:display2">
               <div class="smallinfo">
                   <a style="text-decoration: none;" href="{% url 'accounts:login' %}">로그인</a>
               </div>
