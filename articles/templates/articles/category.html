@@ -16,32 +16,38 @@
 </style>
 <!-- 게시판 -->
 <div class="container">
-<div class="row my-3">
-    <!-- 왼쪽 어사이드 -->
-    {% if request.user.is_authenticated %}
-    <div class="d-none d-lg-block col-lg-3 border my-3 rounded-3" style="max-height:600px; position:sticky; top:0; background-color:RGB(255, 255, 255);">
-        <div class="my-2 container">
-            <p>
-                <img style="width: 20%; height:20%;" src="{% static 'images/logo.png' %}" alt=""> <span>{{ user.username }}</span>
-                <span>
-                    <div class="progress" style="height: 3px;">
-                        <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width:30%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+    <div class="row my-3 justify-content-center">
+        <!-- 왼쪽 어사이드 -->
+        {% if request.user.is_authenticated %}
+        <div class="d-none d-xl-block col-xl-3 border my-3 rounded-2" style="max-height:600px; position:sticky; top:0; background-color:RGB(255, 255, 255);">
+            <div class="my-2 container">
+                <p>
+                    <img style="width: 20%; height:20%;" src="{% static 'images/logo.png' %}" alt=""> <span><a href="{% url 'accounts:detail' user.pk %}">{{ user.username }}</a></span>
+                    <span>
+                        <div class="progress" style="height: 3px;">
+                            <div class="progress-bar" role="progressbar" aria-label="Basic example" style="width:30%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </span>
+                </p>
+                <hr>
+                <div class="d-flex justify-content-between my-2">
+                    <div>
+                    <a href="?sort=3" class="btn" style="font-size:14px; border-color:RGB(70, 207, 167); color:RGB(70, 207, 167);">내가 쓴 글</a>
                     </div>
-                </span>
-            </p>
-            <hr>
-            <div class="d-flex justify-content-between my-2">
-                <a href="?sort=3" class="btn" style="border-color:RGB(22, 174, 129); color:RGB(22, 174, 129);">내가 쓴 글</a>
-                <a href="?sort=4" class="btn" style="border-color:RGB(22, 174, 129); color:RGB(22, 174, 129);">내 와드</a>
-                <a href="?sort=5" class="btn" style="border-color:RGB(22, 174, 129); color:RGB(22, 174, 129);">좋아요</a>
-            </div>
-            <a href="{% url 'articles:create' %}" class="btn w-100" style="color:RGB(248, 249, 250); background-color:RGB(22, 174, 129);"><span><i class="bi bi-pencil-square"></i></span> 글쓰기</a>
-            <hr style="margin:10px;">
-            
-            <ul class="nav nav-tabs d-flex flex-column" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <a href=" {% url 'articles:index' %}" class="small"><button class="w-100 nav-link text-black text-start" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">전체</button></a>
-                </li>
+                    <div>
+                    <a href="?sort=4" class="btn" style="font-size:14px; border-color:RGB(70, 207, 167); color:RGB(70, 207, 167);">내 와드</a>
+                    </div>
+                    <div>
+                    <a href="?sort=5" class="btn" style="font-size:14px; border-color:RGB(70, 207, 167); color:RGB(70, 207, 167);">좋아요</a>
+                    </div>
+                </div>
+                <a href="{% url 'articles:create' %}" class="btn w-100" style="color:RGB(248, 249, 250); background-color:RGB(70, 207, 167);"><span><i class="bi bi-pencil-square"></i></span> 글쓰기</a>
+                <hr style="margin:10px;">
+                
+                <ul class="nav nav-tabs d-flex flex-column" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a href=" {% url 'articles:index' %}" class="small"><button class="w-100 nav-link text-start text-black" role="tab" aria-controls="home-tab-pane" aria-selected="true">전체</button></a>
+                    </li>
                 {% for category in categories %}
                 <li class="nav-item" role="presentation">
                     <a class="my-1 small active" href="{% url 'articles:category' forloop.counter0 %} ">
@@ -60,7 +66,7 @@
     {% else %}
     <div class="d-none d-lg-block col-lg-3 border my-3 rounded-3" style="max-height:500px; position:sticky; top:0; background-color:RGB(255, 255, 255);">
         <div class="my-2 container">
-            <a href="{% url 'accounts:login' %}" class="btn w-100 mt-2" style="color:RGB(183, 236, 221); background-color:RGB(22, 174, 129);">로그인</a>
+            <a href="{% url 'accounts:login' %}" class="btn w-100 mt-2" style="color:RGB(183, 236, 221); background-color:RGB(70, 207, 167);">로그인</a>
             <hr style="margin:10px;">
             
                 <ul class="nav nav-tabs d-flex flex-column" id="myTab" role="tablist">
@@ -83,9 +89,9 @@
             </div>
         </div>
             {% endif %}
-  
+
     <!-- 게시판 내용 -->
-    <div class="col-lg-9 col-md-12" >
+    <div class="col-lg-7 col-md-12" >
         <div class="border d-flex flex-column my-3 rounded-3" style="background-color:RGB(255, 255, 255);">
             <h6 class="mx-3 mt-3"><a href="">전체</a>
                 <span class="d-flex"style="float:right;">
@@ -94,25 +100,24 @@
                     </a>
                 </span>
             </h6>
-            <div class="d-flex my-3 ">
-                <div class="d-flex justify-content-between col-9">
-                    <a href="?sort=1" style="min-width:60px;" class="small col-2 mx-3 d-flex align-items-center"><i
+            <div class="d-flex justify-content-between my-3">
+                <div class="d-flex justify-content-between col-7">
+                    <a href="?sort=1" style="min-width:65px;" class="col-2 mx-3 d-flex align-items-center"><i
                             class="bi bi-fire"></i>인기순</a>
-                    <a href="{% url 'articles:index' %}" style="min-width:60px;"
-                        class="small col-2 mx-3 d-flex align-items-center"><i class="bi bi-hand-thumbs-up"></i>최신순</a>
-                    <a href="?sort=2" style="min-width:60px;" class="small col-2 mx-3 d-flex align-items-center"><i
-                            class="bi bi-hand-thumbs-up"></i>댓글순</a>
+                    <a href="{% url 'articles:index' %}" style="min-width:65px;"
+                        class="col-2 mx-3 d-flex align-items-center"><i class="bi bi-hand-thumbs-up"></i>최신순</a>
+                    <a href="?sort=2" style="min-width:65px;" class="col-2 mx-3 d-flex align-items-center"><i class="bi bi-chat-dots"></i>댓글순</a>
 
                 </div>
-                <div class="d-none d-md-block col-3" >
+                <div class="d-none d-md-block col-4 me-2" >
                     <div class="input-group">
-                            <select class="selectpicker" name="search_kinds" id="search_kind">
+                            <select class="selectpicker border rounded-2" name="search_kinds" id="search_kind">
                                 <option value="전체" selected="selected">전체</option>
                                 <option value="제목">제목</option>
                                 <option value="내용">내용</option>
                                 <option value="작성자">작성자</option>
                             </select>
-                        <input type="text" id="search_kw" class="form-control" style="background-color:RGB(243, 245, 247)" value="{{ kw|default_if_none:'' }}">
+                        <input type="text" id="search_kw" class="form-control border rounded-2" style="background-color:RGB(243, 245, 247)" value="{{ kw|default_if_none:'' }}">
                         <div class="input-group-append">
                             <button class="btn" style="color:RGB(152, 160, 167); border-color:RGB(152, 160, 167);" type="button" id="btn_search"><i class="bi bi-search"></i></button>
                         </div>
@@ -127,31 +132,32 @@
                 <!-- 기본 전체 -->
                 {% for articles in article %}
                 <tr class="border">
-                    <td class="d-flex justify-content-between">
-                        <div class="col-md-1 col-sm-1">
-                            <p class="d-flex flex-column text-center" style="color:RGB(152, 160, 167);"><span style="font-size: 8px; color:RGB(221, 223, 228);"><i class="bi bi-triangle-fill"></i></span>{{ articles.like_user.count }}</p>
+                    <td class="d-flex justify-content-between hvr">
+                        <div></div>
+                        <div class="col-md-1 col-1 d-flex justify-content-center align-items-center">
+                            <p class="d-flex align-items-center flex-column text-center" style="color:RGB(152, 160, 167);"><span style="font-size: 8px; color:RGB(221, 223, 228);"><i class="bi bi-triangle-fill"></i></span>{{ articles.like_user.count }}</p>
                         </div>
-                        <div class="d-flex flex-column col-md-10 col-sm-9">
-                            <a href="{% url 'articles:detail' articles.pk %}" class="">{{ articles.title }}
+                        <div class="d-flex flex-column justify-content-center col-md-9 col-9">
+                            <a href="{% url 'articles:detail' articles.pk %}" class="small">{{ articles.title }}
                                 {% if articles.comment_set.count > 0 %}
                                 <span class="text-success small mx-2">[{{ articles.comment_set.count }}]</span>
                                 {% endif %}
                             </a>
-                            <p style="font-size:12px; color:RGB(152, 160, 167);"><span>{{ articles.get_category_display }}</span>  |  {{ articles.user.username }}  | 
-                                {% if articles.created_string == False %}
-                                <span style="font-size:12px;">{{ articles.created_at|date:'m월 d일' }}</span>
-                                {% else %}
-                                <span style="font-size:12px;">{{ articles.created_string }}</span>
-                                {% endif %}
+                            <p style="font-size:13px; color:RGB(152, 160, 167);"><span>{{ articles.get_category_display }}</span>  |  <a style="font-size:13px; color:RGB(152, 160, 167);" href="{% url 'accounts:detail' articles.user.pk %}">{{ articles.user.username }}</a>  | 
+                            {% if articles.created_string == False %}
+                            <span style="font-size:13px;">{{ articles.created_at|date:'m월 d일' }}</span>
+                            {% else %}
+                            <span style="font-size:13px;">{{ articles.created_string }}</span>
+                            {% endif %}
                             </p>
                         </div>
 
                         {% if articles.photo %}
-                        <div class="col-md-1 col-sm-2" style="float:right;">
+                        <div class="col-md-2 col-sm-2" style="float:right; max-height:78px;">
                             <img style="width:100%; height:100%;" src="{{ articles.photo.url }}" alt="">
                         </div>
                         {% else %}
-                        <div class="col-md-1 col-sm-2" style="float:right;">
+                        <div class="col-md-2 col-sm-2" style="float:right; max-height:78px;">
                             <img style="width:100%; height:100%;" src="https://dummyimage.com/100x80/000000/c4c4c4" alt="">
                         </div>
                         {% endif %}
@@ -167,6 +173,7 @@
                 {% endif %}
             </tbody>
         </table>
+
 
         <ul class="pagination justify-content-center">
             <!-- 이전페이지 -->

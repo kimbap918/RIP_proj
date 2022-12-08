@@ -52,10 +52,11 @@ def index(request):
             article = article.filter(
                 Q(user__username__icontains=kw)  # 내용 검색
             ).distinct()
-    paginator = Paginator(article, 20)
+    paginator = Paginator(article, 10)
     page_obj = paginator.get_page(page)
     categories = ['자유','유머','팬아트','유저찾기','유저뉴스','팁과노하우','기획','사건사고']
     context = {
+        'sort':sort,
         "article": page_obj,
         "page":page,
         "categories":categories,
@@ -107,11 +108,12 @@ def category(request, pk):
             article = article.filter(
                 Q(user__username__icontains=kw)  # 내용 검색
             ).distinct()
-    paginator = Paginator(article, 20)
+    paginator = Paginator(article, 10)
     page_obj = paginator.get_page(page)
     categories = ['자유','유머','팬아트','유저찾기','유저뉴스','팁과노하우','기획','사건사고']
     category_name = categories[pk]
     context = {
+        'sort':sort,
         'pk':pk,
         "article": page_obj,
         "categories":categories,
