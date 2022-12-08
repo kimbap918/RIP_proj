@@ -44,8 +44,10 @@ container {
     text-underline-offset: 10px;
     font-weight: bold;
 }
-/* 로그인 */
-.signBox {
+
+/* 회원가입 */
+/* signup */
+.sign_box {
     min-width: 320px;
     min-height: 100%;
     background-color: #f3f5f7;
@@ -54,7 +56,7 @@ container {
     width: 610px;
 }
 
-.signBox_bg {
+.sign_box_bg {
     position: absolute;
     width: 610px;
     left: 50%;
@@ -62,6 +64,12 @@ container {
     bottom: 0;
     margin-left: -305px;
     background-color: #fff;
+}
+
+.sign_box_inner{
+    position: relative;
+    margin: 0 80px;
+    padding-bottom: 88px;
 }
 
 .iBox {
@@ -78,10 +86,19 @@ container {
 .card {
     background-color: white;
     border: none;
+    position: relative;
+    margin: 0 80px;
+    padding-bottom: 88px;
+    display: none;
+}
+
+.card2 {
+    background-color: white;
+    border: none;
     border-radius: .5rem;
-    padding: .5rem;
+    padding: 0 80px;
     max-width: 400px;
-    margin: 0 auto;
+    margin: 0;
     display: none;
 }
 
@@ -119,7 +136,7 @@ container {
     display: block;
 }
 
-/* 로그인 폼 스타일 */
+/* 회원가입 폼 스타일 */
 p {
     position: relative;
     width: 100%;
@@ -186,7 +203,17 @@ p input:valid+label::after {
     transform: translateX(0);
 }
 
+
+@media (max-width: 768px){
+    .form-text {
+        font-size: 12px;
+        padding: 5px 50px 0 0 ;
+    }
+}
+
 /* 포커스 될 때 파란색 가로줄이 생김 */
+
+
 
 
 /* 로고이미지 */
@@ -260,6 +287,96 @@ a:hover {
     color: #333;
 }
 
+/* 패스워드 변경 메일 전송 */
+
+.sent-mail{
+}
+
+.sent-mail-btn{
+    padding: 0;
+}
+.sent-mail-inpBox{
+    text-align: center;
+}
+
+.sent-mail__l-resend{
+    line-height: 16px;
+    margin-top: 50px;
+}
+
+.sent-mail-small_info{
+    text-align: center;
+    font-size: 14px;
+}
+
+.sent-mail-inpBox > span {
+    font-size: 14px;
+}
+
+/* 패스워드 변경 메일 전송 반응형 */
+
+@media (max-width: 768px){
+.sign_box {
+    width: 100% !important;
+    }
+}
+
+@media (max-width: 768px){
+.sign_box_bg{
+    width: 100%;
+    left: 0;
+    margin-left: 0;
+    margin-top: 20px;
+    }
+}
+
+
+@media (max-width: 768px){
+.sign_box_inner {
+    margin: 0 16px;  
+    }
+}
+
+@media (max-width: 768px){
+.logo {
+    display: flex;
+    justify-content: start;
+    padding: 20px 20px 0 20px;
+    margin: 0;
+    }
+}
+
+@media (max-width: 768px){
+.sent-mail {
+    left: 0;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;    
+    }
+}
+
+@media (max-width: 768px){
+.card{
+    margin: 0 16px;
+    }
+}
+
+@media (max-width: 768px){
+.memberBtn{
+    margin: 10px 0 0 0;
+    }
+}
+
+@media (max-width: 768px){
+.progBtn2{
+    flex-direction: column
+    }
+}
+
+
+
+
+
 /* 로그인 박스 */
 .login_section {
     padding: 120px 0;
@@ -279,6 +396,55 @@ a:hover {
     text-align: center;
     padding: 24px;
 }
+
+.back_login {
+    text-align: center;
+    font-size: 14px;
+}
+
+.back_login a{
+    border-bottom: 1px solid #0d6efd;
+}
+
+
+
+@media (max-width: 768px){
+    body {
+        background-color: white !important;
+    }
+}
+
+
+@media (max-width: 768px){
+    .login_section {
+        width: 100%;
+        padding: 14px;
+    }
+}
+
+
+@media (max-width: 768px){
+    .login_box {
+        width: 100% !important;
+        left: 0;
+        padding: 0;
+        margin: 0;
+        box-shadow: none;    
+    }
+}
+
+@media (max-width: 768px){
+    .iBox{
+        display: none;
+    }
+}
+
+@media (max-width: 768px){
+    .step_num{
+        display: block;
+    }
+}
+
 
 /* 카카오 로그인 버튼 */
 .btnkakao {
@@ -420,5 +586,33 @@ input[type="checkbox"] {
     border: none;
   }
 
+/* 비밀번호찾기
+패스워드찾기
+password */
 
+.memberbox_inner{
+    padding: 20px;
+}
+
+.pw_title {
+ font-weight: 400;
+ font-size: 24px;
+ margin-top: 14px;
+}
+
+.pw_title_sub {
+    line-height: 1.43;
+    margin: 16px 0;
+    color: #52595f;
+    font-size: 14px;
+}
+.pw_mail_info {
+    margin-top: 16px;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.nomarginBtn {
+    margin: 0 !important;
+}
 

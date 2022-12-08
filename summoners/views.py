@@ -26,6 +26,43 @@ request_header = {
 def test(request):
     return render(request, "summoners/test.html")
 
+# 1. https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/ 에서 puuid 값을 가져온다.
+# 2. 가져온 puuid값을 https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids?start={start}&count={count} 에 넘겨준다. 
+#    여기서 puuid : 소환사 고유 puuid, start : 가장 최근 경기부터 알고 싶으면 0, (예 : 가장 최근에 했던 3번째 경기부터 알고 싶다면 3), count : 결과를 몇개 까지 받을지 (max : 100)
+# 3. 2에서 받은 결과 값은 KR_6244514829의 형태로(matchId) 저장되는데, https://asia.api.riotgames.com/lol/match/v5/matches/{matchId} 를 통해 게임 상세정보를 알수있다.
+
+# puuid : 소환사 고유 puuid
+# start : 가장 최근 경기부터 알고 싶으면 0, (예 : 가장 최근에 했던 3번째 경기부터 알고 싶다면 3)
+# count : 결과를 몇개 까지 받을지 (max : 100)
+def match_v5_get_list_match_id(puuid, start, count):
+    url = f"https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids?start={start}&count={count}"
+    return requests.get(url, headers=request_header).json()
+
+# queueId : 솔랭 - 420, 노말 - 430, 팀랭 - 440
+# gameDuration : 게임 길이
+# championId : 챔프명
+# summoner1Id : D키에 해당하는 서머너스펠
+# summoner2Id : F키에 해당하는 서머너스펠
+# summonerName : 소환사 닉네임
+# puuid : 소환사 고유 이름
+# kills : K
+# deaths : D
+# assists : A
+# kda : KDA((kill + assist) / death,)
+# totalMinionsKilled : cs
+# item0 ~ 6 : 장비한 아이템 코드(총 7개)
+# totalDamageDealtToChampions : 챔피언에게 가한 피해
+# win : 승패여부
+# visionScore : 시야점수 
+# stealthWardsPlaced : 제어와드 설치 개수
+def match_v5_get_match_history(matchId):
+    url = f"https://asia.api.riotgames.com/lol/match/v5/matches/{matchId}"
+
+    return requests.get(url, headers=request_header).json()
+
+# pp.pprint(match_v5_get_match_history('KR_6244514829'))
+
+
 
 def index(request):
     API_KEY = getattr(settings, "API_KEY", "API_KEY")
@@ -43,6 +80,7 @@ def result(request):
         solo_tier = {}
         team_tier = {}
         store_list = []
+        
         api_key = getattr(settings, "API_KEY", "API_KEY")
 
         summoner_url = (
@@ -62,7 +100,7 @@ def result(request):
                 sum_result["level"] = summoners_result["summonerLevel"]
                 sum_result["profileIconId"] = summoners_result["profileIconId"]
                 # 최근 10게임 조회에 사용할 puuid
-                sum_result["puuid"] = summoners_result["puuid"]
+                puuid = summoners_result["puuid"]
                 tier_url = (
                     "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/"
                     + summoners_result["id"]
@@ -188,6 +226,7 @@ def result(request):
                 "players": players,
                 "games": games,
             },
+
         )
 
 

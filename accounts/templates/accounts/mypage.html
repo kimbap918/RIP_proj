@@ -212,12 +212,107 @@ input[type="checkbox"] {
  
 }
 
-.submitBnt{
+.submitBtn{
   font-size: 14px;
 }
 
-.submitBnt:hover{
+.submitBtn:hover{
   color: #1ea1f7;
+}
+
+/* 반응형 */
+@media (max-width: 768px){
+body {
+    background-color: white !important;
+}
+}
+
+
+@media (max-width: 768px){
+.container {
+    width: 100%;
+    padding: 14px;
+}
+}
+
+@media (max-width: 768px){
+  .member-settings-layout__title {
+      padding: 16px 8px 0;
+      line-height: 32px;
+  }
+}
+
+@media (max-width: 768px){
+.member-settings-layout__content-inner {
+    width: 100% !important;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;    
+}
+}
+
+@media (max-width: 768px){
+.member-settings-layout__content-inner {
+    margin-top: 16px;
+    width: auto;
+    box-shadow: none;  
+  }
+}
+@media (max-width: 768px) {  
+  .edit {
+      margin-top: 16px;
+      min-width: auto;
+  }
+}
+
+@media (max-width: 768px) {  
+  .edit__inner {
+      margin: 10px;
+      min-width: auto;
+  }
+}
+
+@media (max-width: 768px){  
+  .edit__th {
+      display: block;
+      width: auto;
+      background: none;
+      border: 0;
+      padding-left: 0;
+      color: #98a0a7;
+      font-size: 12px;
+      height: auto;
+  }
+}
+
+@media (max-width: 768px){
+  .edit__td {
+      display: block;
+      padding: 8px 0;
+  }
+}
+
+@media (max-width: 768px){
+  .inputInfo input,
+  .inputInfo textarea {
+    width: 100%;
+  }
+}
+
+
+@media (max-width: 768px){
+  .form-text {
+      font-size: 12px;
+      padding: 5px 50px 0 0 ;
+  }
+}
+
+@media (max-width: 768px){
+  .submitBtn {
+      font-size: 12px;
+      padding: 8px 10px;
+  }
 }
 </style>
 {% endblock style %}
@@ -259,10 +354,10 @@ input[type="checkbox"] {
                       <div class="d-flex justify-content-between">
                         <div class="inputInfo">
                           <input type="text" name="username" value="{{ user.username }}" maxlength="150" class="inpform" placeholder="닉네임" required="" id="id_username">
-                          <div class="form-text">개인 정보 기입으로 문제가 될 상황은 RIP.GG에서 책임지지 않습니다.</div>
+                          <div class="form-text">개인정보를 기입하여 발생될 수 있는 피해는 RIP.GG가 일절 책임지지 않습니다.</div>
                         </div>
                         <div class="submitBtn">
-                          <input type="submit" class="submitBnt btn" value="변경" style="">
+                          <input type="submit" class="submitBtn btn" value="변경" style="">
                         </div>
                       </div>
                     <!-- </form> -->
@@ -281,10 +376,10 @@ input[type="checkbox"] {
                   <div class="member-box-input__state member-edit-box-input__input member-box-input__state--value">
                       <div class="d-flex justify-content-between">
                         <div class="inputInfo">
-                          <textarea name="intro" cols="40" rows="2" class="" placeholder="소개글" id="id_intro">{{ user.profile.intro }}</textarea>
+                          <textarea name="intro" cols="60" rows="2" class="" placeholder="소개글" id="id_intro">{{ user.profile.intro }}</textarea>
                         </div>
                         <div class="submitBtn">
-                          <input type="submit" class="submitBnt btn" value="변경" style="">
+                          <input type="submit" class="submitBtn btn" value="변경" style="">
                         </div>
                       </div>
                     </form>
