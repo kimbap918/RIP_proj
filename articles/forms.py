@@ -14,7 +14,7 @@ from django_summernote.widgets import SummernoteWidget
 class ArticleForm(forms.ModelForm):
     class Meta:
         model = Article
-        fields = ["title", "content", "photo", "category"]
+        fields = ["title", "content", "photo", "category", "top_fixed"]
         labels = {
             "title": "제목",
             "content": "내용",

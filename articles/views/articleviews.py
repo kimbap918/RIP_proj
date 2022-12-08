@@ -5,6 +5,8 @@ from ..forms import *
 from ..models import *
 from accounts.models import *
 from django.http import JsonResponse, HttpResponseForbidden
+from django.views.generic import ListView
+
 # Create your views here.
 # 게시물 생성
 # @login_required(login_url='accounts:login')
@@ -32,7 +34,7 @@ def article_update(request, article_pk):
     #     message.error(request,'수정권한이 없습니다.')
     #     return redirect('articles:detail',pk=article_pk)
     if request.method == "POST":
-        form = ArticleForm(request.POST,request.FILES,  instance=article)
+        form = ArticleForm(request.POST, request.FILES, instance=article)
         if form.is_valid():
             article = form.save(commit=False)
             article.save()
@@ -78,6 +80,7 @@ def article_delete(request, pk):
             messages.success(request, "삭제되었습니다.")
     return redirect("articles:index")
 
+
 # 게시글 좋아요
 def like(request, pk):
     article = get_object_or_404(Article, pk=pk)
@@ -89,6 +92,7 @@ def like(request, pk):
         is_liked = True
     context = {"isLiked": is_liked, "likeCount": article.like_user.count()}
     return JsonResponse(context)
+
 
 # 게시물 북마크
 def bookmark(request, pk):
@@ -104,9 +108,17 @@ def bookmark(request, pk):
         article.bookmark_user.add(request.user)
         isBookmark = True
     # 상세 페이지로 redirect
-    context = {
-        "isBookmark": isBookmark,
-        "bookMarkCount": article.bookmark_user.count()
-    }
+    context = {"isBookmark": isBookmark, "bookMarkCount": article.bookmark_user.count()}
     print(context)
     return JsonResponse(context)
+
+
+class AriticleListView(ListView):
+    model = Article
+    context_object_name = "article_list"
+
+
+def get_context_data(self, **kwargs):
+    context = get_context_data(**kwargs)
+    article_fixed = Article.objects.filter(top_fixed=True).order_by("-registered_date")
+    context["article_fixed"] = article_fixed
