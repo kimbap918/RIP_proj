@@ -172,3 +172,134 @@
     {{ detail.easy_win.4 }}
     <hr>
 </div>
+
+<div class="cont_area">
+    <div id="top" class="cont" style="display:block;">
+        <div class="tbl-header">
+            <table cellpadding="0" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th scope="col" class="c-rank">순위</th>
+                        <th scope="col" class="c-name">챔피언</th>
+                        <th scope="col" class="c-rank">티어</th>
+                        <th scope="col" class="c-percent">승률</th>
+                        <th scope="col" class="c-percent">픽률</th>
+                        <th scope="col" class="c-percent">밴률</th>
+                        <th scope="col" class="c-name">어려운 챔피언</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="tbl-content">
+            <table cellpadding="0" cellspacing="0">
+                <tbody class="text-center">
+                    {% for t in top %}
+                    <tr>
+                        <td scope="col" class="c-name-t"><img src="{{ t.img }}" alt=""
+                                style="width: 25px; height: 25px; border-radius: 5px;">
+                            {{ t.name}}</td>
+                        <td scope="col" class="c-rank-t">
+                            {% if t.tier == '0' %}
+                            <img src="/static/images/t_op.png" alt="" style="width: 24px; height: 24px;">
+                            {% elif t.tier == '1' %}
+                            <img src="/static/images/t_1.png" alt="" style="width: 24px; height: 24px;">
+                            {% elif t.tier == '2' %}
+                            <img src="/static/images/t_2.png" alt="" style="width: 24px; height: 24px;">
+                            {% elif t.tier == '3' %}
+                            <img src="/static/images/t_3.png" alt="" style="width: 24px; height: 24px;">
+                            {% elif t.tier == '4' %}
+                            <img src="/static/images/t_4.png" alt="" style="width: 24px; height: 24px;">
+                            {% else %}
+                            <img src="/static/images/t_5.png" alt="" style="width: 24px; height: 24px;">
+                            {% endif %}
+                        </td>
+                        <td scope="col" class="c-percent-t">{{ t.win }}</td>
+                        <td scope="col" class="c-percent-t">{{ t.pick }}</td>
+                        <td scope="col" class="c-percent-t">{{ t.ben }}</td>
+                        <td scope="col" class="c-name-t"><img src="{{ t.hard.0 }}" alt=""
+                                style="border-radius: 100%; width: 25px;"><img src="{{ t.hard.1 }}" alt=""
+                                style="border-radius: 100%; width: 25px; margin-left: 5px; margin-right: 5px;"><img
+                                src="{{ t.hard.2 }}" alt="" style="border-radius: 100%; width: 25px;">
+                        </td>
+                        <td scope="col">
+                            <div class="dropsdown">
+                                <button class="dropsbtn">{{ t.c_title }} <i class="bi bi-droplet-fill"></i></button>
+                                <div class="dropsdown-content">
+                                    <a href="#">Link 1</a>
+                                    <a href="#">Link 2</a>
+                                    <a href="#">Link 3</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="jungle" class="cont" style="display:none;">
+        <div class="tbl-header">
+            <table cellpadding="0" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th scope="col" class="c-rank">순위</th>
+                        <th scope="col" class="c-name">챔피언</th>
+                        <th scope="col" class="c-rank">티어</th>
+                        <th scope="col" class="c-percent">승률</th>
+                        <th scope="col" class="c-percent">픽률</th>
+                        <th scope="col" class="c-percent">밴률</th>
+                        <th scope="col" class="c-name">어려운 챔피언</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="tbl-content">
+
+        </div>
+    </div>
+    <div id="mid" class="cont" style="display:none;">
+        <div class="tbl-header">
+            <table cellpadding="0" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th scope="col" class="c-rank">순위</th>
+                        <th scope="col" class="c-name">챔피언</th>
+                        <th scope="col" class="c-rank">티어</th>
+                        <th scope="col" class="c-percent">승률</th>
+                        <th scope="col" class="c-percent">픽률</th>
+                        <th scope="col" class="c-percent">밴률</th>
+                        <th scope="col" class="c-name">어려운 챔피언</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="tbl-content">
+
+        </div>
+    </div>
+    <div id="adc" class="cont" style="display:none;">
+        <div class="tbl-header">
+            <table cellpadding="0" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th scope="col" class="c-rank">순위</th>
+                        <th scope="col" class="c-name">챔피언</th>
+                        <th scope="col" class="c-rank">티어</th>
+                        <th scope="col" class="c-percent">승률</th>
+                        <th scope="col" class="c-percent">픽률</th>
+                        <th scope="col" class="c-percent">밴률</th>
+                        <th scope="col" class="c-name">어려운 챔피언</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="tbl-content">
+
+        </div>
+    </div>
+    <div id="support" class="cont" style="display:none;">
+        <div class="tbl-header">
+
+        </div>
+    </div>
+</div>
