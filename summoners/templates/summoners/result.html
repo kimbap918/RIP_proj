@@ -5,7 +5,6 @@
 {% block content %}
 
 {% load static %}
-
 <head>
     <link href="https://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
@@ -16,7 +15,21 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
         integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
         crossorigin="anonymous"></script>
-
+    <style>
+        .css-win {
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+            height: 96px;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+            border-bottom-left-radius: 4px;
+            border-left-width: 6px;
+            border-left-style: solid;
+            background-color: var(--main100);
+    }
+    </style>
 </head>
 <div class="container">
     <div class="row">
@@ -89,25 +102,28 @@
     사용자가 존재하지않습니다.
     {% endif %}
 
-    <div class="d-flex m-3">
-        <div class="w-20">
-            {% for g in games %}
+    <div class="css-win">
+        <div class="w-20 me-2">
+        {% for g in games %}
+            <p>games는 어떨까 {{ games }}</p>
+            <p>뽑히는거 맞지?? {{ g }}</p>
             {% if g.queue_id == 420 %}
             <h5>솔랭</h5>
             {% elif g.queue_id == 430 %}
             <h5>노말</h5>
+            {% elif g.queue_id == 450 %}
+            <h5>칼바람 나락</h5>
             {% else %}
             <h5>팀랭</h5>
             {% endif %}
             <h5 class="fw-bold" style="font-size: 13px;">{{ g.play_time }}</h5>
-            {% endfor %}
+        {% endfor %}
         </div>
-
+        {% for p in players %}
         <div class="w-80">
             <div class="d-flex">
-                {% for p in players %}
                 {% if p.summonerName == summoners_result.name %}
-                <div class="w-20 me-2">
+                <div class="w-20 me-1">
                     {% if p.win == True %}
                     <p style="color: blue;">승리</p>
                     {% elif p.win == False %}
@@ -117,13 +133,15 @@
                     {% endif %}
                 </div>
                 <div class="w-80 me-2">
-                    <div>
-                        <img src="/static/images/champion/{{ p.championName }}.png" alt=""
-                            style="border-radius: 100%; width: 40px;">
-                        킬 : {{ p.kills }} |
-                        데스 : {{ p.deaths }} |
-                        도움 : {{ p.assists }} |
-                        kda : {{ p.kda1 }}
+                    <div class="d-flex mb-1">
+                        <img class="me-1" src="/static/images/champion/{{ p.championName }}.png" alt=""
+                            style="border-radius: 100%; width: 50px;">
+                        <p>스펠 1 : {{ p.summoner1Id }}</p>
+                        <p>스펠 2 : {{ p.summoner2Id }}</p>
+                        <div>
+                            {{ p.kills }} / {{ p.deaths }} / {{ p.assists }} <br>
+                            {{ p.kda1 }}:1 평점
+                        </div>
                     </div>
                     <div>
                         <img src="/static/images/item/{{ p.item0 }}.png" alt="" style="height: 30px;">
@@ -136,15 +154,13 @@
                     </div>
                 </div>
                 <div class="w-20">
-                    {{ p.visionScore }}
-                    {{ p.totalMinionsKilled }}
-                    {{ p.stealthWardsPlaced }}
-                    {{ p.totalDamageDealtToChampions }}
+                    <p class="mb-0">시야 점수 : {{ p.visionScore }}</ㄴp>
+                    <p class="mb-0">cs : {{ p.totalMinionsKilled }}</p>
+                    <p class="mb-0">제어와드 : {{ p.stealthWardsPlaced }}</p>
                 </div>
                 {% endif %}
-                {% endfor %}
                 <div>
-                    <div class="ms-3">
+                    <!-- <div class="ms-3">
                         {% for pp in players %}
                         <img src="/static/images/champion/{{ pp.championName }}.png" alt=""
                             style="border-radius: 100%; width: 30px;">
@@ -154,10 +170,11 @@
                         <p>{{ pp.summonerName }}</p>
                         {% endif %}
                         {% endfor %}
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
 </div>
 
