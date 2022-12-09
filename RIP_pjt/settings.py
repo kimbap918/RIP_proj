@@ -48,7 +48,7 @@ API_KEY = get_secret("API_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["127.0.0.1","localhost","ripggbeanstalk-env.eba-s3vhvfzm.ap-northeast-2.elasticbeanstalk.com"]
 
 # Application definition
 
@@ -117,12 +117,12 @@ WSGI_APPLICATION = "RIP_pjt.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
 
 
 # Password validation
@@ -184,10 +184,18 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 #     AWS_STORAGE_BUCKET_NAME,
 #     AWS_REGION,
 # )
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": "rip_gg_rds", # 코드 블럭 아래 이미지 참고하여 입력
+#         "USER": "postgres",
+#         "PASSWORD": "7aa0329*", # 데이터베이스 생성 시 작성한 패스워드
+#         "HOST": "rip-gg-rds.ckmcvzkpzzbf.ap-northeast-2.rds.amazonaws.com", # 코드 블럭 아래 이미지 참고하여 입력
+#         "PORT": "5432",
+#     }
+# }
 
-# DEBUG = os.getenv("DEBUG") == "True"
-
-DEBUG = False
+DEBUG = os.getenv("DEBUG") == "True"
 
 if DEBUG: 
     MEDIA_URL = "/media/"
@@ -205,6 +213,18 @@ else:
         AWS_STORAGE_BUCKET_NAME,
         AWS_REGION,
     )
+
+    DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "rip_gg_rds", # 코드 블럭 아래 이미지 참고하여 입력
+        "USER": "postgres",
+        "PASSWORD": "7aa0329*", # 데이터베이스 생성 시 작성한 패스워드
+        "HOST": "rip-gg-rds.ckmcvzkpzzbf.ap-northeast-2.rds.amazonaws.com", # 코드 블럭 아래 이미지 참고하여 입력
+        "PORT": "5432",
+    }
+}
+
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
