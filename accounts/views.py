@@ -160,7 +160,7 @@ def password(request, user_pk):
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
             form.save()
-            update_session_auth_hash(request, user_pk)  # 로그인 유지
+            update_session_auth_hash(request, form.user)  # 로그인 유지
             return redirect("accounts:mypage", user_pk)
 
     else:

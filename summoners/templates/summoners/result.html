@@ -18,6 +18,7 @@
         crossorigin="anonymous"></script>
 
 </head>
+{% comment %} <body class="m-0 p-0" style="background-color: #0A323C;"> {% endcomment %}
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
@@ -147,9 +148,9 @@
                     <div class="ms-3">
                         {% for pp in players %}
                         <img src="/static/images/champion/{{ pp.championName }}.png" alt=""
-                            style="border-radius: 100%; width: 30px;">
+                            style="border-radius: 100%; width: 10px;">
                         {% if pp.summonerName == summoners_result.name %}
-                        <p class="fw-bold">{{ pp.summonerName }}</p>
+                        <p class="fw-bold" style="font-size:10px;">{{ pp.summonerName }}</p>
                         {% else %}
                         <p>{{ pp.summonerName }}</p>
                         {% endif %}
@@ -193,5 +194,6 @@
     {{ p.stealthWardsPlaced }}
     {{ p.totalDamageDealtToChampions }}
 </div> -->
+</body>
 
 {% endblock content %}
