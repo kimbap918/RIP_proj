@@ -45,14 +45,15 @@
                         class="d-flex align-items-center mb-md-0 me-md-auto text-dark text-decoration-none">
                         <span class=""><img src="/static/images/흰로고.png" width="80" alt=""></span>
                     </a>
+                    {% if request.user.is_authenticated %}
                     <div class="dropdown sm:display md:display">
                         <button class="dropbtn">
-                            {{ user.username }}님
+                            {{ request.user.username }}님
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <i class="px-1 fa-solid fa-chevron-down"></i>
                         </button>
                         <div class="dropdown-content">
-                            <a href="{% url 'accounts:detail' user.pk %}">내 정보</a>
+                            <a href="{% url 'accounts:detail' request.user.pk %}">내 정보</a>
                             <a href="{% url 'accounts:logout' %}">로그아웃</a>
                         </div>
                     </div>
@@ -66,9 +67,24 @@
                             <a href="{% url 'accounts:logout' %}">로그아웃</a>
                         </div>
                     </div>
+                    {% else %}
+                    <div class="sm:display2 md:display lg:display">
+                        <div class="">
+                          <div class="login">
+                            <a class="" href="{% url 'accounts:login' %}">로그인</a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="sm:display md:display2 lg:display2">
+                        <div class="smallinfo">
+                            <a style="text-decoration: none;" href="{% url 'accounts:login' %}">로그인</a>
+                        </div>
+                      </div>
+                    {% endif %}
                 </header>
             </nav>
     </header>
+    {% if user == request.user %}
     <nav class="mynav">
         <ul>
             <li><a href="{% url 'accounts:mypage' user.pk %}" >개인정보 관리</a></li>
@@ -76,6 +92,7 @@
             <li><a href="{% url 'accounts:pre_delete' user.pk %}" >탈퇴하기</a></li>
         </ul>
     </nav>
+    {% endif %}
     <span class="target"></span>
 
     <main class="container">
