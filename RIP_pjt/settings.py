@@ -48,7 +48,11 @@ API_KEY = get_secret("API_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1","localhost","ripggbeanstalk-env.eba-s3vhvfzm.ap-northeast-2.elasticbeanstalk.com"]
+ALLOWED_HOSTS = [
+    "Ripggbeanstalk-env.eba-s3vhvfzm.ap-northeast-2.elasticbeanstalk.com",
+    "127.0.0.1",
+    "localhost",
+]
 
 # Application definition
 
