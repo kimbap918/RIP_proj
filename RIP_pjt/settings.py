@@ -46,9 +46,9 @@ SECRET_KEY = get_secret("SECRET_KEY")
 API_KEY = get_secret("API_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -173,17 +173,38 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
-DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+# DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 
-AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
-AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
-AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
+# AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+# AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+# AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
 
-AWS_REGION = "ap-northeast-2"
-AWS_S3_CUSTOM_DOMAIN = "%s.s3.%s.amazonaws.com" % (
-    AWS_STORAGE_BUCKET_NAME,
-    AWS_REGION,
-)
+# AWS_REGION = "ap-northeast-2"
+# AWS_S3_CUSTOM_DOMAIN = "%s.s3.%s.amazonaws.com" % (
+#     AWS_STORAGE_BUCKET_NAME,
+#     AWS_REGION,
+# )
+
+# DEBUG = os.getenv("DEBUG") == "True"
+
+DEBUG = False
+
+if DEBUG: 
+    MEDIA_URL = "/media/"
+    MEDIA_ROOT = BASE_DIR / "media"
+
+else:   
+    DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+
+    AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+    AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
+
+    AWS_REGION = "ap-northeast-2"
+    AWS_S3_CUSTOM_DOMAIN = "%s.s3.%s.amazonaws.com" % (
+        AWS_STORAGE_BUCKET_NAME,
+        AWS_REGION,
+    )
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
