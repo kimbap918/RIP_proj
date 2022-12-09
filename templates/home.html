@@ -9,29 +9,21 @@
         <div class="first_box">
             <div class="first_box-inner">
                 <img src="/static/images/검정로고.png" alt="">
+                <!-- 검색창 -->
                 <div class="search_box">
                     <div class="search_box-inner">
                         <input type="text" value="" class="" placeholder="챔피언, 챔피언..">
                         <i type="submit" class="fa-regular fa-chess-queen"></i>
                         <input  style="display: none" />
-
-                        <div class="tuty9o-5 iuPjAe">
-                            <ol class="sc-154wmor-0 ekerqK"></ol>
-                        </div>
-
                     </div>         
                 </div>
             </div>
-            <!-- <div class="search_box">
-                <div class="search_box-inner">
-                    서치박스
-                </div>
-            </div> -->
         </div>
     </div>
+    <!-- 최신글 목록 -->
     <section class="articles_list">
-        <div class="row" style="margin: 0 450px;">            
-            <div class="col col-lg-6 col-sm-12">
+        <div class="articles_list-inner">            
+            <div class="">
                 <div class="article_list_box">
                     <h5>최신글 목록</h5>
                     {% if lately_a %}
@@ -61,10 +53,10 @@
                                     {{ article.like_user.count }}
                                     {{ article.created_at|date:'m월 d일' }}
                                     {{ article.created_string }}
-                                    {{ article.comment_set.count }}
+                                    {{ articles.comment_set.count }}
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                     {% endfor %}
                     {% else %}
@@ -74,7 +66,8 @@
                     {% endif %}
                 </div>
             </div>
-            <div class="col col-lg-6 col-sm-12">
+            <!-- 인기순 글 목록 -->
+            <div class="">
                 <div class="article_list_box">
                     <h5>인기글 목록</h5>
                     {% if best_a %}
