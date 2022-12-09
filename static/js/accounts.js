@@ -45,52 +45,66 @@ function showCurrentStep() {
   })
 }
 
-// input값에 따른 버튼 비활성화
-const formWrap = document.querySelector('.form_wrap_line');
-const idForm = document.querySelector('#user_id');
-const pwForm = document.querySelector('#user_pw');
-const loginButton = document.querySelector('#btn_sign');
 
-idForm.addEventListener('keyup', activeEvent);
-pwForm.addEventListener('keyup', activeEvent);
-loginButton.addEventListener('click', errorEvent);
+// 체크박스
 
-function activeEvent() {
-  switch(!(idForm.value && pwForm.value)){
-    case true : loginButton.disabled = true; break;
-    case false : loginButton.disabled = false; break
+"use strict";
+
+const form = document.querySelector("#form__wrap");
+const checkAll = document.querySelector(".checkall input");
+const checkBoxes = document.querySelectorAll(".input__check input");
+// const submitButton = document.querySelector('button');
+
+const s = {
+  termsOfService: false,
+  privacyPolicy: false,
+  allowPromotions: false,
+};
+
+// form.addEventListener("submit", (e) => e.preventDefault()); // 새로고침(submit) 되는 것 막음
+
+checkBoxes.forEach((item) => item.addEventListener("input", toggleCheckbox));
+
+function toggleCheckbox(e) {
+  const { checked, id } = e.target;
+  s[id] = checked;
+  this.parentNode.classList.toggle("active");
+  checkAllStatus();
+  toggleSubmitButton();
+}
+
+function checkAllStatus() {
+  const { termsOfService, privacyPolicy, allowPromotions } = s;
+  if (termsOfService && privacyPolicy && allowPromotions) {
+    checkAll.checked = true;
+  } else {
+    checkAll.checked = false;
   }
 }
-// function activeEvent() {
-//   switch(!(ckForm.value)){
-//     case true : checkButton.disabled = true; break;
-//     case false : checkButton.disabled = false; break
+
+// function toggleSubmitButton() {
+//   const { termsOfService, privacyPolicy } = s;
+//   if (termsOfService && privacyPolicy) {
+//     submitButton.disabled = false;
+//   } else {
+//     submitButton.disabled = true;
 //   }
 // }
 
-function activeEvent() {
-  switch(!(idForm.value && pwForm.value && nickForm.value)){
-    case true : signupButton.disabled = true; break;
-    case false : signupButton.disabled = false; break
-  }
-}
-
-function errorEvent() { 
-    formWrap.classList.add('error');
-}
-
-// 이메일 유효성검사
-$("button").click(function () {
-  email = $("input").val();
-
-  var regEmail = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
-
-  //test 함수 == 문자열이 정규식을 만족하는지 판별하는 함수
-  //조건을 만족하면 true를 반환, 만족하지 못하면 false반환
-  if (regEmail.test(email)) {
-    $("p").text("이메일 인증에 성공하였습니다.");
+checkAll.addEventListener("click", (e) => {
+  const { checked } = e.target;
+  if (checked) {
+    checkBoxes.forEach((item) => {
+      item.checked = true;
+      s[item.id] = true;
+      item.parentNode.classList.add("active");
+    });
   } else {
-    $("p").text("이메일이 유효하지 않습니다.");
+    checkBoxes.forEach((item) => {
+      item.checked = false;
+      s[item.id] = false;
+      item.parentNode.classList.remove("active");
+    });
   }
+  //   toggleSubmitButton();
 });
-
