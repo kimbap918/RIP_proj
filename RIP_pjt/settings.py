@@ -51,7 +51,8 @@ API_KEY = get_secret("API_KEY")
 # DEBUG = True
 
 ALLOWED_HOSTS = [
-    "Ripggbeanstalk-env.eba-s3vhvfzm.ap-northeast-2.elasticbeanstalk.com",
+    "ripggbeanstalk-env.eba-s3vhvfzm.ap-northeast-2.elasticbeanstalk.com",
+    #http://ripggbeanstalk-env.eba-s3vhvfzm.ap-northeast-2.elasticbeanstalk.com/
     "127.0.0.1",
     "localhost",
 ]
@@ -64,7 +65,7 @@ INSTALLED_APPS = [
     "accounts",
     "summoners",
     "champions",
-    # "storages",
+    "storages",
     # requirements extension
     "imagekit",
     "django_bootstrap5",
