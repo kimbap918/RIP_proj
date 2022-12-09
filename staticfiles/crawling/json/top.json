@@ -1,0 +1,842 @@
+[
+	{
+		"rank": "1",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Fiora.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "피오라",
+		"tier": "0",
+		"win": "52.46%",
+		"pick": "11.72%",
+		"ben": "33.13%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Rengar.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Poppy.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Akshan.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "2",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Aatrox.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "아트록스",
+		"tier": "1",
+		"win": "50.35%",
+		"pick": "13.28%",
+		"ben": "26.97%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Quinn.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Heimerdinger.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Singed.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "3",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Camille.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "카밀",
+		"tier": "1",
+		"win": "51.77%",
+		"pick": "7.41%",
+		"ben": "2.95%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Warwick.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Shen.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Zac.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "4",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Darius.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "다리우스",
+		"tier": "1",
+		"win": "51.08%",
+		"pick": "7.49%",
+		"ben": "24.17%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Kled.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Trundle.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Heimerdinger.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "5",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Shen.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "쉔",
+		"tier": "1",
+		"win": "52.31%",
+		"pick": "4.70%",
+		"ben": "0.95%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Urgot.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Illaoi.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Heimerdinger.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "6",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Mordekaiser.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "모데카이저",
+		"tier": "1",
+		"win": "51.51%",
+		"pick": "5.58%",
+		"ben": "5.38%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Fiora.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Vayne.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Warwick.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "7",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Gangplank.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "갱플랭크",
+		"tier": "2",
+		"win": "50.59%",
+		"pick": "7.41%",
+		"ben": "4.86%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Akshan.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Olaf.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Tryndamere.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "8",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Riven.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "리븐",
+		"tier": "2",
+		"win": "51.18%",
+		"pick": "5.79%",
+		"ben": "1.40%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Poppy.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Pantheon.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Warwick.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "9",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Nasus.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "나서스",
+		"tier": "2",
+		"win": "51.54%",
+		"pick": "4.21%",
+		"ben": "4.61%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Rumble.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Sylas.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Shen.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "10",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Jax.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "잭스",
+		"tier": "2",
+		"win": "49.72%",
+		"pick": "7.54%",
+		"ben": "7.03%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Lillia.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Singed.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Poppy.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "11",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Warwick.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "워윅",
+		"tier": "2",
+		"win": "52.70%",
+		"pick": "2.01%",
+		"ben": "0.73%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Heimerdinger.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Rammus.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Quinn.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "12",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Illaoi.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "일라오이",
+		"tier": "2",
+		"win": "51.52%",
+		"pick": "3.37%",
+		"ben": "2.68%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Heimerdinger.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Lillia.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Yasuo.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "13",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Kled.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "클레드",
+		"tier": "2",
+		"win": "52.82%",
+		"pick": "1.81%",
+		"ben": "0.59%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Zac.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Fiora.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Quinn.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "14",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Sett.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "세트",
+		"tier": "3",
+		"win": "49.54%",
+		"pick": "7.07%",
+		"ben": "2.82%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Warwick.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Lillia.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Aatrox.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "15",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Garen.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "가렌",
+		"tier": "3",
+		"win": "50.92%",
+		"pick": "3.86%",
+		"ben": "1.65%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Camille.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Urgot.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Udyr.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "16",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Irelia.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "이렐리아",
+		"tier": "3",
+		"win": "49.70%",
+		"pick": "5.38%",
+		"ben": "7.21%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/MonkeyKing.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Warwick.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Rammus.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "17",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Olaf.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "올라프",
+		"tier": "3",
+		"win": "52.18%",
+		"pick": "2.00%",
+		"ben": "1.25%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Kled.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Yorick.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Tryndamere.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "18",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Tryndamere.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "트린다미어",
+		"tier": "3",
+		"win": "51.45%",
+		"pick": "2.29%",
+		"ben": "1.56%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Rammus.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Warwick.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Quinn.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "19",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Singed.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "신지드",
+		"tier": "3",
+		"win": "51.88%",
+		"pick": "1.90%",
+		"ben": "0.31%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Heimerdinger.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Riven.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Lillia.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "20",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/KSante.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "크산테",
+		"tier": "3",
+		"win": "48.14%",
+		"pick": "9.20%",
+		"ben": "15.47%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Lillia.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Fiora.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Olaf.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "21",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Ornn.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "오른",
+		"tier": "3",
+		"win": "49.71%",
+		"pick": "4.54%",
+		"ben": "1.05%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Heimerdinger.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Shen.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Fiora.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "22",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Rengar.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "렝가",
+		"tier": "3",
+		"win": "52.07%",
+		"pick": "1.47%",
+		"ben": "1.15%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Warwick.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Zac.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Darius.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "23",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Urgot.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "우르곳",
+		"tier": "3",
+		"win": "51.24%",
+		"pick": "2.18%",
+		"ben": "0.51%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Rammus.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Olaf.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Kled.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "24",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Teemo.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "티모",
+		"tier": "3",
+		"win": "50.44%",
+		"pick": "2.78%",
+		"ben": "2.17%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Rammus.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Heimerdinger.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Olaf.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "25",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/MonkeyKing.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "오공",
+		"tier": "4",
+		"win": "51.74%",
+		"pick": "1.36%",
+		"ben": "0.57%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Poppy.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Warwick.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Heimerdinger.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "26",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Gwen.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "그웬",
+		"tier": "4",
+		"win": "50.31%",
+		"pick": "2.34%",
+		"ben": "0.64%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Quinn.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Yasuo.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Kled.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "27",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Renekton.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "레넥톤",
+		"tier": "4",
+		"win": "48.64%",
+		"pick": "4.57%",
+		"ben": "2.85%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Warwick.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Rammus.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Illaoi.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "28",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Pantheon.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "판테온",
+		"tier": "4",
+		"win": "51.65%",
+		"pick": "1.17%",
+		"ben": "0.17%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/MonkeyKing.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Kled.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Nasus.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "29",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/DrMundo.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "문도 박사",
+		"tier": "4",
+		"win": "49.30%",
+		"pick": "3.26%",
+		"ben": "1.54%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Kled.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Warwick.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/MonkeyKing.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "30",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Kayle.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "케일",
+		"tier": "4",
+		"win": "50.18%",
+		"pick": "1.98%",
+		"ben": "0.46%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Nasus.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Rammus.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Olaf.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "31",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Quinn.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "퀸",
+		"tier": "4",
+		"win": "51.72%",
+		"pick": "0.98%",
+		"ben": "0.50%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Poppy.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Swain.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Rengar.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "32",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Yorick.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "요릭",
+		"tier": "4",
+		"win": "50.05%",
+		"pick": "2.08%",
+		"ben": "1.50%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Akshan.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Tryndamere.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Jax.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "33",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Jayce.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "제이스",
+		"tier": "4",
+		"win": "49.42%",
+		"pick": "2.39%",
+		"ben": "0.31%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Rengar.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/MonkeyKing.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Heimerdinger.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "34",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Akshan.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "아크샨",
+		"tier": "4",
+		"win": "51.46%",
+		"pick": "0.79%",
+		"ben": "0.97%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Poppy.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Udyr.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Kled.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "35",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Lillia.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "릴리아",
+		"tier": "4",
+		"win": "50.87%",
+		"pick": "0.96%",
+		"ben": "0.49%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Akshan.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Quinn.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Kennen.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "36",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Heimerdinger.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "하이머딩거",
+		"tier": "4",
+		"win": "51.77%",
+		"pick": "0.57%",
+		"ben": "0.80%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Yorick.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Nasus.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/DrMundo.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "37",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Poppy.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "뽀삐",
+		"tier": "4",
+		"win": "50.64%",
+		"pick": "0.99%",
+		"ben": "0.64%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Udyr.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/TahmKench.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Olaf.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "38",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Sejuani.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "세주아니",
+		"tier": "4",
+		"win": "49.03%",
+		"pick": "1.90%",
+		"ben": "0.74%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Poppy.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Zac.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Heimerdinger.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "39",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Yone.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "요네",
+		"tier": "4",
+		"win": "46.75%",
+		"pick": "4.52%",
+		"ben": "3.66%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Pantheon.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Warwick.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Kled.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "40",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Gnar.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "나르",
+		"tier": "5",
+		"win": "48.55%",
+		"pick": "2.02%",
+		"ben": "0.46%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Kled.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Irelia.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Urgot.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "41",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Sion.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "사이온",
+		"tier": "5",
+		"win": "46.21%",
+		"pick": "5.50%",
+		"ben": "2.04%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Mordekaiser.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Shen.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Illaoi.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "42",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Malphite.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "말파이트",
+		"tier": "5",
+		"win": "48.44%",
+		"pick": "1.95%",
+		"ben": "1.52%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Rengar.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Warwick.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Shen.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "43",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Volibear.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "볼리베어",
+		"tier": "5",
+		"win": "48.34%",
+		"pick": "2.01%",
+		"ben": "0.57%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Quinn.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Lillia.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Urgot.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "44",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Vayne.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "베인",
+		"tier": "5",
+		"win": "48.75%",
+		"pick": "1.39%",
+		"ben": "1.31%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Udyr.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Kennen.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Pantheon.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "45",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/TahmKench.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "탐 켄치",
+		"tier": "5",
+		"win": "48.91%",
+		"pick": "1.38%",
+		"ben": "0.37%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Heimerdinger.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Quinn.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Singed.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "46",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Trundle.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "트런들",
+		"tier": "5",
+		"win": "50.06%",
+		"pick": "0.76%",
+		"ben": "0.43%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Teemo.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Urgot.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Kennen.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "47",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Yasuo.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "야스오",
+		"tier": "5",
+		"win": "47.77%",
+		"pick": "1.76%",
+		"ben": "2.18%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Rammus.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Singed.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Kled.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "48",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Zac.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "자크",
+		"tier": "5",
+		"win": "49.93%",
+		"pick": "0.73%",
+		"ben": "0.49%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Olaf.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Akshan.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Poppy.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "49",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Rumble.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "럼블",
+		"tier": "5",
+		"win": "48.90%",
+		"pick": "1.02%",
+		"ben": "0.24%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Vladimir.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Rengar.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Shen.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "50",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Akali.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "아칼리",
+		"tier": "5",
+		"win": "45.81%",
+		"pick": "3.08%",
+		"ben": "3.89%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Rengar.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Lillia.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Pantheon.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "51",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Chogath.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "초가스",
+		"tier": "5",
+		"win": "46.42%",
+		"pick": "2.81%",
+		"ben": "0.95%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Zac.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Heimerdinger.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Gwen.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "52",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Sylas.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "사일러스",
+		"tier": "5",
+		"win": "47.20%",
+		"pick": "1.48%",
+		"ben": "1.02%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Quinn.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Olaf.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Heimerdinger.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "53",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Vladimir.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "블라디미르",
+		"tier": "5",
+		"win": "48.04%",
+		"pick": "1.11%",
+		"ben": "1.40%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/MonkeyKing.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Lillia.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Shen.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "54",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Kennen.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "케넨",
+		"tier": "5",
+		"win": "48.61%",
+		"pick": "0.90%",
+		"ben": "0.31%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/DrMundo.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Rumble.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Maokai.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "55",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Gragas.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "그라가스",
+		"tier": "5",
+		"win": "46.92%",
+		"pick": "1.76%",
+		"ben": "0.19%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Rammus.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Urgot.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Akshan.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "56",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Udyr.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "우디르",
+		"tier": "5",
+		"win": "48.18%",
+		"pick": "0.79%",
+		"ben": "1.82%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Swain.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Teemo.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Zac.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "57",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Rammus.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "람머스",
+		"tier": "5",
+		"win": "49.17%",
+		"pick": "0.55%",
+		"ben": "1.46%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Akshan.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Singed.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Quinn.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "58",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Maokai.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "마오카이",
+		"tier": "5",
+		"win": "48.11%",
+		"pick": "0.80%",
+		"ben": "0.16%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Olaf.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Illaoi.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Gnar.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "59",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Swain.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "스웨인",
+		"tier": "5",
+		"win": "47.36%",
+		"pick": "0.70%",
+		"ben": "0.20%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Kayle.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Jayce.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Yasuo.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	},
+	{
+		"rank": "60",
+		"img": "https://opgg-static.akamaized.net/meta/images/lol/champion/Ryze.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_64&v=1669867001194",
+		"name": "라이즈",
+		"tier": "5",
+		"win": "45.59%",
+		"pick": "1.03%",
+		"ben": "0.09%",
+		"hard": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/MonkeyKing.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Maokai.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Rengar.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_48&v=1669867001194"
+		]
+	}
+]
