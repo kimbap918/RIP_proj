@@ -9,62 +9,64 @@
         <div class="first_box">
             <div class="first_box-inner">
                 <img src="/static/images/검정로고.png" alt="">
+                <!-- 검색창 -->
                 <div class="search_box">
                     <div class="search_box-inner">
                         <input type="text" value="" class="" placeholder="챔피언, 챔피언..">
                         <i type="submit" class="fa-regular fa-chess-queen"></i>
                         <input  style="display: none" />
-
-                        <div class="tuty9o-5 iuPjAe">
-                            <ol class="sc-154wmor-0 ekerqK"></ol>
-                        </div>
-
                     </div>         
                 </div>
             </div>
-            <!-- <div class="search_box">
-                <div class="search_box-inner">
-                    서치박스
-                </div>
-            </div> -->
         </div>
     </div>
+    <!-- 최신글 목록 -->
     <section class="articles_list">
-        <div class="row" style="margin: 0 450px;">            
-            <div class="col col-lg-6 col-sm-12">
+        <div class="articles_list-inner">            
+            <div class="">
                 <div class="article_list_box">
                     <h5>최신글 목록</h5>
                     {% if lately_a %}
                     {% for article in lately_a %}
                     <div class="article_new_list">
-                        <div class="article1">
-                            <div class="article_new_num">
-                                {{article.id}}
+                        <a href="{% url 'articles:detail' article.pk %}">
+                            <div class="article1">
+                                <div class="article_new_num">
+                                    {{article.id}}
+                                </div>
+                                <div class="article_img_box">
+                                    {% if articles.photo %}
+                                    <div class="" style="float:right;">
+                                        <img style="width:100%; height:100%;" src="{{ articles.photo.url|safe }}" alt="">
+                                    </div>
+                                    {% else %}
+                                    <div class="" style="float:right;">
+                                        <img style="width:100%; height:100%;" src="https://dummyimage.com/100x80/000000/c4c4c4" alt="">
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div class="article_content-box">
+                                    <div class="article_info">
+                                        <div class="article_title">
+                                            {{ article.title|safe }}
+                                        </div>
+                                        <div class="article_coment">
+                                            [{{ articles.comment_set.count }}]                                    
+                                        </div>
+                                    </div>
+                                    <div class="article_info-sub">
+                                        <!-- 인기글 사용할 때 주석 풀기 -->
+                                        <!-- {{ article.like_user.count }} -->
+                                        <div class="created_string">
+                                            {{ article.created_string }}
+                                        </div>
+                                        <div>
+                                            {{ article.user.username }}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="article_img_box">
-                                {% if articles.photo %}
-                                <div class="" style="float:right;">
-                                    <img style="width:100%; height:100%;" src="{{ articles.photo.url }}" alt="">
-                                </div>
-                                {% else %}
-                                <div class="" style="float:right;">
-                                    <img style="width:100%; height:100%;" src="https://dummyimage.com/100x80/000000/c4c4c4" alt="">
-                                </div>
-                                {% endif %}
-                            </div>
-                            <div class="article_content-box">
-                                <div class="article_title">
-                                    {{ article.title|safe }}
-                                </div>
-                                <div class="article_info">
-                                    {{ article.user.username }}
-                                    {{ article.like_user.count }}
-                                    {{ article.created_at|date:'m월 d일' }}
-                                    {{ article.created_string }}
-                                    {{ articles.comment_set.count }}
-                                </div>
-                            </div>
-                        </div>
+                        </a>
                     </div>
                     {% endfor %}
                     {% else %}
@@ -74,7 +76,8 @@
                     {% endif %}
                 </div>
             </div>
-            <div class="col col-lg-6 col-sm-12">
+            <!-- 인기순 글 목록 -->
+            <div class="">
                 <div class="article_list_box">
                     <h5>최신글 목록</h5>
                     {% if lately_a %}
