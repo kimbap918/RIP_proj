@@ -121,22 +121,22 @@ body {
                         기본정보 입력
                     </div>
                     <p class="">
-                        <input id="user_id" type="text" name="email" maxlength="100" required=" "id="id_email"  autocomplete="off" required>
+                        <input id="user_id" type="text" name="email" maxlength="100" required=" autocomplete="off" required>
                         <label for="user_id"><span>이메일</span></label>
                     </p>
                     <p class="">
-                        <input id="user_nick" type="text" name="username" maxlength="150" autofocus="" required="" id="id_username">
+                        <input id="user_nick" type="text" name="username" maxlength="150" autofocus="" required="">
                         <label for="user_nick"><span>닉네임</span></label>
                     </p>
                     <div class="form-text">
                         개인정보를 기입하여 발생될 수 있는 피해는 RIP.GG가 일절 책임지지 않습니다.
                     </div>
                     <p class="">
-                        <input id="user_pw" type="password" name="password1" autocomplete="new-password" required="" id="id_password1">
+                        <input id="user_pw" type="password" name="password1" autocomplete="new-password" required="">
                         <label for="user_pw"><span>비밀번호</span></label>
                     </p>
                     <p class="">
-                        <input id="pwFormT" type="password" name="password2" autocomplete="new-password" required="" id="id_password2">
+                        <input id="pwFormT" type="password" name="password2" autocomplete="new-password" required="">
                         <label for="pwFormT"><span>비밀번호확인</span></label>
                     </p>
                     <div class="progBtn2">
@@ -151,6 +151,7 @@ body {
 {% block script %}
 
 <script src="/static/js/accounts.js" defer></script>
+
 
 {% endblock %}
 {% endblock %}
