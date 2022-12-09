@@ -325,9 +325,7 @@ def kakao_callback(request):
     # kakao_profile_image = kakao_user_information["properties"]["profile_image"]
     if get_user_model().objects.filter(kakao_id=kakao_id).exists():
         kakao_user = get_user_model().objects.get(kakao_id=kakao_id)
-        # print(kakao_user)
-        # print(kakao_id)
-        # print(kakao_nickname)
+        # Profile.objects.create(user=kakao_user)  # 프로필 생성
 
     else:
         kakao_login_user = get_user_model()()
@@ -337,6 +335,8 @@ def kakao_callback(request):
         kakao_login_user.password = str(state_token)
         kakao_login_user.save()
         kakao_user = get_user_model().objects.get(kakao_id=kakao_id)
+        Profile.objects.create(user=kakao_user)  # 프로필 생성
+
     auth_login(request, kakao_user, backend="django.contrib.auth.backends.ModelBackend")
     return redirect(request.GET.get("next") or "articles:index")
 
