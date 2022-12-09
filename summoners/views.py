@@ -156,8 +156,7 @@ def result(request):
 
         mat = requests.get(matches_url)
         matches = mat.json()
-
-        for match in matches[:1]:
+        for match in matches[:10]:
             request_url = (
                 "https://asia.api.riotgames.com/lol/match/v5/matches/"
                 + match
@@ -177,7 +176,7 @@ def result(request):
             queue_id = data["info"]["queueId"]
 
             games.append({"play_time": play_time, "queue_id": queue_id})
-
+            print(games)
             players = []
 
             for part in data["info"]["participants"]:
@@ -193,9 +192,9 @@ def result(request):
                 player["deaths"] = part["deaths"]
                 player["assists"] = part["assists"]
                 # player["kda"] = part["challenges"]["kda"]
-                player["kda1"] = round(
-                    (player["kills"] + player["assists"]) / player["deaths"],
-                )
+                # player["kda1"] = round(
+                #     (player["kills"] + player["assists"]) / player["deaths"],
+                # )
                 player["item0"] = part["item0"]
                 player["item1"] = part["item1"]
                 player["item2"] = part["item2"]
@@ -212,7 +211,7 @@ def result(request):
                 ]
 
                 players.append(player)
-
+        print(players)
         return render(
             request,
             "summoners/result.html",
