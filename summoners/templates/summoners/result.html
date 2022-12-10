@@ -16,19 +16,30 @@
         integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
         crossorigin="anonymous"></script>
     <style>
+        .css-lose {
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        height: 96px;
+        border-radius: 4px;
+        border-left-width: 6px;
+        border-left-style: solid;
+        border-color: #E84057;
+        background-color: #59343B;
+        color: #8E8796;
+        }
         .css-win {
             display: flex;
             -webkit-box-align: center;
             align-items: center;
             height: 96px;
-            border-top-left-radius: 4px;
-            border-top-right-radius: 4px;
-            border-bottom-right-radius: 4px;
-            border-bottom-left-radius: 4px;
+            border-radius: 4px;
             border-left-width: 6px;
             border-left-style: solid;
-            background-color: var(--main100);
-    }
+            border-color: #5383E8;
+            background-color: #27344E;
+            color: #8E8796;
+        }      
     </style>
 </head>
 {% comment %} <body class="m-0 p-0" style="background-color: #0A323C;"> {% endcomment %}
@@ -103,61 +114,61 @@
     사용자가 존재하지않습니다.
     {% endif %}
 
+    {% for games, players in game_list %}
+
+    {% if players.win == True %}
     <div class="css-win">
-        <div class="w-20 me-2">
-        {% for g in games %}
-            <p>games는 어떨까 {{ games }}</p>
-            <p>뽑히는거 맞지?? {{ g }}</p>
-            {% if g.queue_id == 420 %}
-            <h5>솔랭</h5>
-            {% elif g.queue_id == 430 %}
-            <h5>노말</h5>
-            {% elif g.queue_id == 450 %}
-            <h5>칼바람 나락</h5>
+        {% if players.summonerName == summoners_result.name %}
+        <div class="w-20 me-1 board_color">
+            {% if players.win == True %}
+            <p class="mb-0" style="color: #5383E8;">승리</p>
+            {% elif players.win == False %}
+            <p class="mb-0" style="color: #E84057;">패배</p>
             {% else %}
-            <h5>팀랭</h5>
+            <p>다시하기</p>
             {% endif %}
-            <h5 class="fw-bold" style="font-size: 13px;">{{ g.play_time }}</h5>
-        {% endfor %}
         </div>
-        {% for p in players %}
+        <div class="w-20 me-2">
+            <div class="mb-0" style="color: #5383E8;">
+                {% if games.queue_id == 420 %}
+                <p class="mb-0">솔랭</p>
+                {% elif games.queue_id == 430 %}
+                <p class="mb-0">일반</p>
+                {% elif games.queue_id == 450 %}
+                <p class="mb-0">무작위 총력전</p>
+                {% else %}
+                <p class="mb-0">자랭</p>
+                {% endif %}
+            </div>
+            <h5 class="fw-bold" style="font-size: 13px;">{{ games.play_time }}</h5>
+        </div>
         <div class="w-80">
             <div class="d-flex">
-                {% if p.summonerName == summoners_result.name %}
-                <div class="w-20 me-1">
-                    {% if p.win == True %}
-                    <p style="color: blue;">승리</p>
-                    {% elif p.win == False %}
-                    <p style="color: red;">패배</p>
-                    {% else %}
-                    <p>다시하기</p>
-                    {% endif %}
-                </div>
                 <div class="w-80 me-2">
                     <div class="d-flex mb-1">
-                        <img class="me-1" src="/static/images/champion/{{ p.championName }}.png" alt=""
+                        <img class="me-1" src="/static/images/champion/{{ players.championName }}.png" alt=""
                             style="border-radius: 100%; width: 50px;">
-                        <p>스펠 1 : {{ p.summoner1Id }}</p>
-                        <p>스펠 2 : {{ p.summoner2Id }}</p>
+                        <p>스펠 1 : {{ players.summoner1Id }}</p>
+                        <p>스펠 2 : {{ players.summoner2Id }}</p>
                         <div>
-                            {{ p.kills }} / {{ p.deaths }} / {{ p.assists }} <br>
-                            {{ p.kda1 }}:1 평점
+                            {{ players.kills }} / {{ players.deaths }} / {{ players.assists }} <br>
+                            {{ players.kda }}:1 평점
                         </div>
                     </div>
                     <div>
-                        <img src="/static/images/item/{{ p.item0 }}.png" alt="" style="height: 30px;">
-                        <img src="/static/images/item/{{ p.item1 }}.png" alt="" style="height: 30px;">
-                        <img src="/static/images/item/{{ p.item2 }}.png" alt="" style="height: 30px;">
-                        <img src="/static/images/item/{{ p.item3 }}.png" alt="" style="height: 30px;">
-                        <img src="/static/images/item/{{ p.item4 }}.png" alt="" style="height: 30px;">
-                        <img src="/static/images/item/{{ p.item5 }}.png" alt="" style="height: 30px;">
-                        <img src="/static/images/item/{{ p.item6 }}.png" alt="" style="height: 30px;">
+                        <img src="/static/images/item/{{ players.item0 }}.png" alt="" style="height: 30px;">
+                        <img src="/static/images/item/{{ players.item1 }}.png" alt="" style="height: 30px;">
+                        <img src="/static/images/item/{{ players.item2 }}.png" alt="" style="height: 30px;">
+                        <img src="/static/images/item/{{ players.item3 }}.png" alt="" style="height: 30px;">
+                        <img src="/static/images/item/{{ players.item4 }}.png" alt="" style="height: 30px;">
+                        <img src="/static/images/item/{{ players.item5 }}.png" alt="" style="height: 30px;">
+                        <img src="/static/images/item/{{ players.item6 }}.png" alt="" style="height: 30px;">
                     </div>
                 </div>
                 <div class="w-20">
-                    <p class="mb-0">시야 점수 : {{ p.visionScore }}</ㄴp>
-                    <p class="mb-0">cs : {{ p.totalMinionsKilled }}</p>
-                    <p class="mb-0">제어와드 : {{ p.stealthWardsPlaced }}</p>
+                    <p class="mb-0">시야 점수 : {{ players.visionScore }}</ㄴp>
+                    <p class="mb-0">cs : {{ players.totalMinionsKilled }}</p>
+                    <p class="mb-0">제어와드 : {{ players.stealthWardsPlaced }}</p>
                 </div>
                 {% endif %}
                 <div>
@@ -175,8 +186,81 @@
                 </div>
             </div>
         </div>
-        {% endfor %}
     </div>
+    {% else %}
+    <div class="css-lose">
+        {% if players.summonerName == summoners_result.name %}
+        <div class="w-20 me-1 board_color">
+            {% if players.win == True %}
+            <p class="mb-0" style="color: #5383E8;">승리</p>
+            {% elif players.win == False %}
+            <p class="mb-0" style="color: #E84057;">패배</p>
+            {% else %}
+            <p>다시하기</p>
+            {% endif %}
+        </div>
+        <div class="w-20 me-2">
+            <div class="mb-0" style="color: #E84057;" >
+                {% if games.queue_id == 420 %}
+                <p class="mb-0">솔랭</p>
+                {% elif games.queue_id == 430 %}
+                <p class="mb-0">일반</p>
+                {% elif games.queue_id == 450 %}
+                <p class="mb-0">무작위 총력전</p>
+                {% else %}
+                <p class="mb-0">자랭</p>
+                {% endif %}
+            </div>
+            <h5 class="fw-bold" style="font-size: 13px;">{{ games.play_time }}</h5>
+        </div>
+        <div class="w-80">
+            <div class="d-flex">
+                <div class="w-80 me-2">
+                    <div class="d-flex mb-1">
+                        <img class="me-1" src="/static/images/champion/{{ players.championName }}.png" alt=""
+                            style="border-radius: 100%; width: 50px;">
+                        <p>스펠 1 : {{ players.summoner1Id }}</p>
+                        <p>스펠 2 : {{ players.summoner2Id }}</p>
+                        <div>
+                            {{ players.kills }} / {{ players.deaths }} / {{ players.assists }} <br>
+                            {{ players.kda }}:1 평점
+                        </div>
+                    </div>
+                    <div>
+                        <img src="/static/images/item/{{ players.item0 }}.png" alt="" style="height: 30px;">
+                        <img src="/static/images/item/{{ players.item1 }}.png" alt="" style="height: 30px;">
+                        <img src="/static/images/item/{{ players.item2 }}.png" alt="" style="height: 30px;">
+                        <img src="/static/images/item/{{ players.item3 }}.png" alt="" style="height: 30px;">
+                        <img src="/static/images/item/{{ players.item4 }}.png" alt="" style="height: 30px;">
+                        <img src="/static/images/item/{{ players.item5 }}.png" alt="" style="height: 30px;">
+                        <img src="/static/images/item/{{ players.item6 }}.png" alt="" style="height: 30px;">
+                    </div>
+                </div>
+                <div class="w-20">
+                    <p class="mb-0">시야 점수 : {{ players.visionScore }}</ㄴp>
+                    <p class="mb-0">cs : {{ players.totalMinionsKilled }}</p>
+                    <p class="mb-0">제어와드 : {{ players.stealthWardsPlaced }}</p>
+                </div>
+                {% endif %}
+                <div>
+                    <!-- <div class="ms-3">
+                        {% for pp in players %}
+                        <img src="/static/images/champion/{{ pp.championName }}.png" alt=""
+                            style="border-radius: 100%; width: 10px;">
+                        {% if pp.summonerName == summoners_result.name %}
+                        <p class="fw-bold" style="font-size:10px;">{{ pp.summonerName }}</p>
+                        {% else %}
+                        <p>{{ pp.summonerName }}</p>
+                        {% endif %}
+                        {% endfor %}
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>    
+    {% endif %}
+    {% endfor %}
+
 </div>
 
 
