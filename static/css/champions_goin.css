@@ -86,12 +86,6 @@ a.btn:hover {
     margin-right: 14px;
 }
 
-.tab_menu .list li.is_on .btn {
-    font-weight: bold;
-    color: gold;
-    font-family: 'S-bold';
-}
-
 .tab_menu .list .btn {
     font-size: 20px;
     color: #fff;
