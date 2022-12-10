@@ -174,8 +174,10 @@ def password(request, user_pk):
 
 # 회원 탈퇴
 
-def pre_delete(request,user_pk):
+
+def pre_delete(request, user_pk):
     return render(request, "accounts/pre_delete.html")
+
 
 def delete(request):
     if request.user.is_authenticated:
