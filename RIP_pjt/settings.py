@@ -140,6 +140,7 @@ WSGI_APPLICATION = "RIP_pjt.wsgi.application"
 #     }
 # }
 
+DEBUG = os.getenv("DEBUG") == "True"
 	
 if DEBUG:
     MEDIA_URL = "/media/"
