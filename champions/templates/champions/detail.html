@@ -310,26 +310,40 @@
                                 <div class="m-2 pe-3 ps-3" style="width: 35%;">
                                     <div class="text-center mb-2"><img class="rune1" src="{{ detail.rune_j }}" alt="">
                                     </div>
+
                                     <div class="d-flex mb-2" style="justify-content: space-evenly;">
-                                        <img class="rune1" src="{{ detail.rune_js.0 }}" alt="">
-                                        <img class="rune1" src="{{ detail.rune_js.1 }}" alt="">
-                                        <img class="rune1" src="{{ detail.rune_js.2 }}" alt="">
+                                        {% if runes.0 == 3 %}
+                                        <img class="rune1" src="{{ runes.1.0 }}" alt="">
+                                        <img class="rune1" src="{{ runes.1.1 }}" alt="">
+                                        <img class="rune1" src="{{ runes.1.2 }}" alt="">
+                                        {% else %}
+                                        <img class="rune1" src="{{ runes.1.0 }}" alt="">
+                                        <img class="rune1" src="{{ runes.1.1 }}" alt="">
+                                        <img class="rune1" src="{{ runes.1.2 }}" alt="">
+                                        <img class="rune1" src="{{ runes.1.3 }}" alt="">
+                                        {% endif %}
                                     </div>
                                     <div class="d-flex mb-2" style="justify-content: space-evenly;">
-                                        <img class="rune1" src="{{ detail.rune_js.3 }}" alt="">
-                                        <img class="rune1" src="{{ detail.rune_js.4 }}" alt="">
-                                        <img class="rune1" src="{{ detail.rune_js.5 }}" alt="">
+                                        <img class="rune1" src="{{ runes.2.0 }}" alt="">
+                                        <img class="rune1" src="{{ runes.2.1 }}" alt="">
+                                        <img class="rune1" src="{{ runes.2.2 }}" alt="">
                                     </div>
                                     <div class="d-flex mb-2" style="justify-content: space-evenly;">
-                                        <img class="rune1" src="{{ detail.rune_js.6 }}" alt="">
-                                        <img class="rune1" src="{{ detail.rune_js.7 }}" alt="">
-                                        <img class="rune1" src="{{ detail.rune_js.8 }}" alt="">
+                                        <img class="rune1" src="{{ runes.3.0 }}" alt="">
+                                        <img class="rune1" src="{{ runes.3.1 }}" alt="">
+                                        <img class="rune1" src="{{ runes.3.2 }}" alt="">
                                     </div>
                                     <div class="d-flex mb-2" style="justify-content: space-evenly;">
-                                        <img class="rune1" src="{{ detail.rune_js.9 }}" alt="">
-                                        <img class="rune1" src="{{ detail.rune_js.10 }}" alt="">
-                                        <img class="rune1" src="{{ detail.rune_js.11 }}" alt="">
-                                        <img class="rune1" src="{{ detail.rune_js.12 }}" alt="">
+                                        {% if runes.4 == 3 %}
+                                        <img class="rune1" src="{{ runes.5.0 }}" alt="">
+                                        <img class="rune1" src="{{ runes.5.1 }}" alt="">
+                                        <img class="rune1" src="{{ runes.5.2 }}" alt="">
+                                        {% else %}
+                                        <img class="rune1" src="{{ runes.5.0 }}" alt="">
+                                        <img class="rune1" src="{{ runes.5.1 }}" alt="">
+                                        <img class="rune1" src="{{ runes.5.2 }}" alt="">
+                                        <img class="rune1" src="{{ runes.5.3 }}" alt="">
+                                        {% endif %}
                                     </div>
                                     <div class="text-center pt-2" style="color: gray;">{{ detail.rune_j_name }}</div>
                                 </div>
@@ -338,25 +352,31 @@
                                     <div class="text-center mb-2"><img class="rune1" src="{{ detail.rune_k }}" alt="">
                                     </div>
                                     <div class="d-flex mb-2" style="justify-content: space-evenly;">
-                                        <img class="rune1" src="{{ detail.rune_ks.0 }}" alt="">
-                                        <img class="rune1" src="{{ detail.rune_ks.1 }}" alt="">
-                                        <img class="rune1" src="{{ detail.rune_ks.2 }}" alt="">
+                                        <img class="rune1" src="{{ runes.6.0 }}" alt="">
+                                        <img class="rune1" src="{{ runes.6.1 }}" alt="">
+                                        <img class="rune1" src="{{ runes.6.2 }}" alt="">
                                     </div>
                                     <div class="d-flex mb-2" style="justify-content: space-evenly;">
-                                        <img class="rune1" src="{{ detail.rune_ks.3 }}" alt="">
-                                        <img class="rune1" src="{{ detail.rune_ks.4 }}" alt="">
-                                        <img class="rune1" src="{{ detail.rune_ks.5 }}" alt="">
+                                        <img class="rune1" src="{{ runes.7.0 }}" alt="">
+                                        <img class="rune1" src="{{ runes.7.1 }}" alt="">
+                                        <img class="rune1" src="{{ runes.7.2 }}" alt="">
                                     </div>
                                     <div class="d-flex mb-2" style="justify-content: space-evenly;">
-                                        <img class="rune1" src="{{ detail.rune_ks.6 }}" alt="">
-                                        <img class="rune1" src="{{ detail.rune_ks.7 }}" alt="">
-                                        <img class="rune1" src="{{ detail.rune_ks.8 }}" alt="">
+                                        {% if runes.8 == 3 %}
+                                        <img class="rune1" src="{{ runes.9.0 }}" alt="">
+                                        <img class="rune1" src="{{ runes.9.1 }}" alt="">
+                                        <img class="rune1" src="{{ runes.9.2 }}" alt="">
+                                        {% else %}
+                                        <img class="rune1" src="{{ runes.9.0 }}" alt="">
+                                        <img class="rune1" src="{{ runes.9.1 }}" alt="">
+                                        <img class="rune1" src="{{ runes.9.2 }}" alt="">
+                                        <img class="rune1" src="{{ runes.9.3 }}" alt="">
+                                        {% endif %}
                                     </div>
                                     <div class="d-flex mb-2" style="justify-content: space-evenly;">
-                                        <img class="rune1" src="{{ detail.rune_ks.9 }}" alt="">
-                                        <img class="rune1" src="{{ detail.rune_ks.10 }}" alt="">
-                                        <img class="rune1" src="{{ detail.rune_ks.11 }}" alt="">
-                                        <img class="rune1" src="{{ detail.rune_ks.12 }}" alt="">
+                                        <img class="rune1" src="" alt="">
+                                        <img class="rune1" src="" alt="">
+                                        <img class="rune1" src="" alt="">
                                     </div>
                                     <div class="text-center pt-2" style="color: gray;">{{ detail.rune_k_name }}</div>
                                 </div>

@@ -33,6 +33,9 @@ with open(os.path.join(BASE_DIR, "champ_detail.json"), "r", encoding="UTF-8") as
 # 고인물 디테일 정보
 with open(os.path.join(BASE_DIR, "goin.json"), "r", encoding="UTF-8") as goin:
     goin = json.load(goin)
+# 룬 정보
+with open(os.path.join(BASE_DIR, "rune.json"), "r", encoding="UTF-8") as rune:
+    rune = json.load(rune)
 
 top_g = []
 for g in goin:
@@ -90,6 +93,7 @@ def detail(request, name):
 
     detail = {}
     info_d = []  # 승률, 픽률, 밴률, 티어
+    runes = []  # r1_1 개수, r1_1, r1_2, r1_3, r1_4 개수, r1_4, r2_1, r2_2, r2_3 개수, r2_3
 
     for champ in champs:
         if champ["name"] == name:
@@ -176,10 +180,25 @@ def detail(request, name):
             info_d.append(t["pick"])
             info_d.append(t["ben"])
             info_d.append(t["tier"])
+
+    for r in rune:
+        if r["name"][0] == name:
+            runes.append(len(r["r1_1"]))
+            runes.append(r["r1_1"])
+            runes.append(r["r1_2"])
+            runes.append(r["r1_3"])
+            runes.append(len(r["r1_4"]))
+            runes.append(r["r1_4"])
+            runes.append(r["r2_1"])
+            runes.append(r["r2_2"])
+            runes.append(len(r["r2_3"]))
+            runes.append(r["r2_3"])
+
     context = {
         "detail": detail,
         "info": info_d,
         "champs": champs,
         "name": name,
+        "runes": runes,
     }
     return render(request, "champions/detail.html", context)
