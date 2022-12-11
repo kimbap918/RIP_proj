@@ -17,9 +17,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-DEBUG = os.getenv("DEBUG") == "True"
-
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -140,10 +137,12 @@ WSGI_APPLICATION = "RIP_pjt.wsgi.application"
 #     }
 # }
 
+DEBUG = os.getenv("DEBUG") == "True"
+
 	
 if DEBUG:
     MEDIA_URL = "/media/"
-    MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+    MEDIA_ROOT = BASE_DIR / "media"
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
