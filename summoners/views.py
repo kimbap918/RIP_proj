@@ -103,8 +103,7 @@ def result(request):
                 sum_result["name"] = summoners_result["name"]
                 sum_result["level"] = summoners_result["summonerLevel"]
                 sum_result["profileIconId"] = summoners_result["profileIconId"]
-                # 최근 10게임 조회에 사용할 puuid
-                puuid = summoners_result["puuid"]
+
                 tier_url = (
                     "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/"
                     + summoners_result["id"]
@@ -116,14 +115,14 @@ def result(request):
                 if len(tier_info) == 1:  # 자유랭크 또는 솔로랭크 둘중 하나만 있는경우
                     tier_info = tier_info.pop()
                     if tier_info["queueType"] == "RANKED_FLEX_SR":  # 자유랭크인 경우
-                        team_tier["rank_type"] = "솔로랭크 5:5"
+                        team_tier["rank_type"] = "자유랭크 5:5"
                         team_tier["tier"] = tier_info["tier"]
                         team_tier["rank"] = tier_info["rank"]
                         team_tier["points"] = tier_info["leaguePoints"]
                         team_tier["wins"] = tier_info["wins"]
                         team_tier["losses"] = tier_info["losses"]
                     else:  # 솔로랭크인 경우
-                        solo_tier["rank_type"] = "자유랭크 5:5"
+                        solo_tier["rank_type"] = "솔로랭크 5:5"
                         solo_tier["tier"] = tier_info["tier"]
                         solo_tier["rank"] = tier_info["rank"]
                         solo_tier["points"] = tier_info["leaguePoints"]
@@ -132,14 +131,14 @@ def result(request):
                 if len(tier_info) == 2:  # 자유랭크, 솔로랭크 둘다 전적이 있는경우
                     for item in tier_info:
                         store_list.append(item)
-                    solo_tier["rank_type"] = "솔로랭크 5:5"
+                    solo_tier["rank_type"] = "자유랭크 5:5"
                     solo_tier["tier"] = store_list[0]["tier"]
                     solo_tier["rank"] = store_list[0]["rank"]
                     solo_tier["points"] = store_list[0]["leaguePoints"]
                     solo_tier["wins"] = store_list[0]["wins"]
                     solo_tier["losses"] = store_list[0]["losses"]
 
-                    team_tier["rank_type"] = "자유랭크 5:5"
+                    team_tier["rank_type"] = "솔로랭크 5:5"
                     team_tier["tier"] = store_list[1]["tier"]
                     team_tier["rank"] = store_list[1]["rank"]
                     team_tier["points"] = store_list[1]["leaguePoints"]
@@ -179,7 +178,7 @@ def result(request):
 
             games.append({"play_time": play_time, "queue_id": queue_id, "min": min})
             # print(games)
-        
+
             for part in data["info"]["participants"]:
                 if  username == part["summonerName"]:
                     player = dict()
@@ -194,9 +193,18 @@ def result(request):
                     player["deaths"] = part["deaths"]
                     player["assists"] = part["assists"]
                     player["kda"] = round(part["challenges"]["kda"], 2)
-                    # player["kda1"] = round(
-                    #     (player["kills"] + player["assists"]) / player["deaths"],
-                    # )
+                    player["goldEarned"] = part["goldEarned"]
+                    player["goldEarnedPerMinute"] = round(part["goldEarned"] / min, 1)
+                    player["totalDamageDealtToChampions"] = part["totalDamageDealtToChampions"]
+                    player["magicDamageDealtToChampions"] = part["magicDamageDealtToChampions"]
+                    player["physicalDamageDealtToChampions"] = part["physicalDamageDealtToChampions"]
+                    player["trueDamageDealtToChampions"] = part["trueDamageDealtToChampions"]
+                    player["totalDamageTaken"] = part["totalDamageTaken"]
+                    player["totalHeal"] = part["totalHeal"]
+                    player["doubleKills"] = part["doubleKills"]
+                    player["tripleKills"] = part["tripleKills"]
+                    player["quadraKills"] = part["quadraKills"]
+                    player["pentaKills"] = part["pentaKills"]
                     player["item0"] = part["item0"]
                     player["item1"] = part["item1"]
                     player["item2"] = part["item2"]
@@ -207,6 +215,7 @@ def result(request):
                     player["win"] = part["win"]
                     player["visionScore"] = part["visionScore"]
                     player["totalMinionsKilled"] = part["totalMinionsKilled"]
+                    player["totalMinionsKilledPerMinute"] = round(part["totalMinionsKilled"] / min, 1)
                     player["stealthWardsPlaced"] = part["challenges"]["stealthWardsPlaced"]
                     player["totalDamageDealtToChampions"] = part["totalDamageDealtToChampions"]
                     
