@@ -31,7 +31,7 @@
                     <div class="article_new_list">
                         <div class="article1">
                             <div class="article_new_num">
-                                {{article.id}}
+                                {{forloop.counter}}
                             </div>
                             <div class="article_img_box">
                                 {% if article.photo %}
@@ -75,7 +75,7 @@
                     <div class="article_new_list">
                         <div class="article1">
                             <div class="article_new_num">
-                                {{ article.id }}
+                                {{ forloop.counter }}
                             </div>
                             <div class="article_img_box">
                                 {% if article.photo %}
