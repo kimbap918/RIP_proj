@@ -132,14 +132,14 @@ def result(request):
                 if len(tier_info) == 2:  # 자유랭크, 솔로랭크 둘다 전적이 있는경우
                     for item in tier_info:
                         store_list.append(item)
-                    solo_tier["rank_type"] = "자유랭크 5:5"
+                    solo_tier["rank_type"] = "솔로랭크 5:5"
                     solo_tier["tier"] = store_list[0]["tier"]
                     solo_tier["rank"] = store_list[0]["rank"]
                     solo_tier["points"] = store_list[0]["leaguePoints"]
                     solo_tier["wins"] = store_list[0]["wins"]
                     solo_tier["losses"] = store_list[0]["losses"]
 
-                    team_tier["rank_type"] = "솔로랭크 5:5"
+                    team_tier["rank_type"] = "자유랭크 5:5"
                     team_tier["tier"] = store_list[1]["tier"]
                     team_tier["rank"] = store_list[1]["rank"]
                     team_tier["points"] = store_list[1]["leaguePoints"]
@@ -160,7 +160,7 @@ def result(request):
 
         mat = requests.get(matches_url)
         matches = mat.json()
-        for match in matches[:10]:
+        for match in matches[:20]:
             request_url = (
                 "https://asia.api.riotgames.com/lol/match/v5/matches/"
                 + match
@@ -177,7 +177,7 @@ def result(request):
             play_time = f"{min}분 {sec}초"
             queue_id = data["info"]["queueId"]
 
-            games.append({"play_time": play_time, "queue_id": queue_id})
+            games.append({"play_time": play_time, "queue_id": queue_id, "min": min})
             # print(games)
         
             for part in data["info"]["participants"]:
