@@ -171,10 +171,10 @@ else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "NAME": os.getenv("DATABASE_NAME"),  # 코드 블럭 아래 이미지 참고하여 입력
+            "NAME": os.getenv("DATABASE_NAME"),  # .env 파일에 value 작성
             "USER": "postgres",
-            "PASSWORD": os.getenv("DATABASE_PASSWORD"),  # 데이터베이스 생성 시 작성한 패스워드
-            "HOST": os.getenv("DATABASE_HOST"),  # 코드 블럭 아래 이미지 참고하여 입력
+            "PASSWORD": os.getenv("DATABASE_PASSWORD"),  # .env 파일에 value 작성
+            "HOST": os.getenv("DATABASE_HOST"),  # .env 파일에 value 작성
             "PORT": "5432",
         }
     }
@@ -225,7 +225,8 @@ SUMMERNOTE_CONFIG = {"attachment_filesize_limit": 5 * 1024 * 1024}
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = "/static/"
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = "staticfiles"
+#STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
