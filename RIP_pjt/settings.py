@@ -50,7 +50,7 @@ API_KEY = os.getenv("API_KEY")
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
-    "ripdjangobean-env.eba-sgxvx6yc.ap-northeast-2.elasticbeanstalk.com",
+    "ripdjangobean-env-1.eba-wpxmegvb.ap-northeast-2.elasticbeanstalk.com",
 ]
 
 # Application definition
@@ -223,7 +223,6 @@ SUMMERNOTE_CONFIG = {"attachment_filesize_limit": 5 * 1024 * 1024}
 
 STATIC_URL = "/static/"
 STATIC_ROOT = "staticfiles"
-#STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
