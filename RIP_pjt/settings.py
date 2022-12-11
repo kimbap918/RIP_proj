@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os, json
 from django.core.exceptions import ImproperlyConfigured
-import os
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -50,7 +49,7 @@ API_KEY = os.getenv("API_KEY")
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
-    "ripdjangobean-env-1.eba-wpxmegvb.ap-northeast-2.elasticbeanstalk.com",
+    "ripdjangobean-env-2.eba-2rxnzfx7.ap-northeast-2.elasticbeanstalk.com",
 ]
 
 # Application definition
@@ -153,7 +152,7 @@ else:
     # 기본 파일 저장소
     # DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
     # 커스텀 파일 저장소
-    DEFAULT_FILE_STORAGE = "RIP_pjt.storages.MediaStorage"
+    DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 
     AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
