@@ -9,10 +9,16 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
 from pathlib import Path
 import os, json
 from django.core.exceptions import ImproperlyConfigured
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+DEBUG = os.getenv("DEBUG") == "True"
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,27 +30,32 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY 파일 위치
-secret_file = os.path.join(BASE_DIR, "secrets.json")
+# secret_file = os.path.join(BASE_DIR, "secrets.json")
 
-with open(secret_file) as f:
-    secrets = json.loads(f.read())
+# with open(secret_file) as f:
+#     secrets = json.loads(f.read())
 
-# secrets.json 파일에서 SECRET_KEY 가져오기
-def get_secret(setting, secrets=secrets):
-    try:
-        return secrets[setting]
-    except KeyError:
-        error_msg = "Set the {} environment variable".format(setting)
-        raise ImproperlyConfigured(error_msg)
+# # secrets.json 파일에서 SECRET_KEY 가져오기
+# def os.getenv(setting, secrets=secrets):
+#     try:
+#         return secrets[setting]
+#     except KeyError:
+#         error_msg = "Set the {} environment variable".format(setting)
+#         raise ImproperlyConfigured(error_msg)
 
 
-SECRET_KEY = get_secret("SECRET_KEY")
-API_KEY = get_secret("API_KEY")
+SECRET_KEY = os.getenv("SECRET_KEY")
+API_KEY = os.getenv("API_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "ripggbeanstalk-env.eba-s3vhvfzm.ap-northeast-2.elasticbeanstalk.com",
+    #http://ripggbeanstalk-env.eba-s3vhvfzm.ap-northeast-2.elasticbeanstalk.com/
+    "127.0.0.1",
+    "localhost",
+]
 
 # Application definition
 
@@ -54,6 +65,7 @@ INSTALLED_APPS = [
     "accounts",
     "summoners",
     "champions",
+    "storages",
     # requirements extension
     "imagekit",
     "django_bootstrap5",
@@ -112,12 +124,62 @@ WSGI_APPLICATION = "RIP_pjt.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
+
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+DEBUG = os.getenv("DEBUG") == "True"
+	
+if DEBUG:
+    MEDIA_URL = "/media/"
+    MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
     }
-}
+
+else:
+    # 기본 파일 저장소
+    # DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+    # 커스텀 파일 저장소
+    DEFAULT_FILE_STORAGE = "RIP_pjt.storages.MediaStorage"
+
+    AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+    AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
+
+    AWS_REGION = "ap-northeast-2"
+    AWS_S3_CUSTOM_DOMAIN = "%s.s3.%s.amazonaws.com" % (
+        AWS_STORAGE_BUCKET_NAME,
+        AWS_REGION,
+    )
+
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.getenv("DATABASE_NAME"),  # 코드 블럭 아래 이미지 참고하여 입력
+            "USER": "postgres",
+            "PASSWORD": os.getenv("DATABASE_PASSWORD"),  # 데이터베이스 생성 시 작성한 패스워드
+            "HOST": os.getenv("DATABASE_HOST"),  # 코드 블럭 아래 이미지 참고하여 입력
+            "PORT": "5432",
+        }
+    }
+
+
 
 
 # Password validation
@@ -156,8 +218,8 @@ USE_TZ = True
 SUMMERNOTE_CONFIG = {"attachment_filesize_limit": 5 * 1024 * 1024}
 
 # MEDIA files
-MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
+# MEDIA_URL = "/media/"
+# MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
@@ -167,6 +229,21 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+
+# DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+
+# AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+# AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+# AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
+
+# AWS_REGION = "ap-northeast-2"
+# AWS_S3_CUSTOM_DOMAIN = "%s.s3.%s.amazonaws.com" % (
+#     AWS_STORAGE_BUCKET_NAME,
+#     AWS_REGION,
+# )
+
+
+# DEBUG = os.getenv("DEBUG") == "True"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
@@ -195,7 +272,7 @@ EMAIL_PORT = "587"
 EMAIL_HOST_USER = "rip.gg.Official@gmail.com"
 
 # 발신할 메일의 비밀번호
-EMAIL_HOST_PASSWORD = get_secret("EMAIL_HOST_PASSWORD")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 
 # TLS 보안 방법
 EMAIL_USE_TLS = True

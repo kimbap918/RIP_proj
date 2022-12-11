@@ -160,7 +160,7 @@ def password(request, user_pk):
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
             form.save()
-            update_session_auth_hash(request, user_pk)  # 로그인 유지
+            update_session_auth_hash(request, form.user)  # 로그인 유지
             return redirect("accounts:mypage", user_pk)
 
     else:
@@ -174,8 +174,10 @@ def password(request, user_pk):
 
 # 회원 탈퇴
 
-def pre_delete(request,user_pk):
+
+def pre_delete(request, user_pk):
     return render(request, "accounts/pre_delete.html")
+
 
 def delete(request):
     if request.user.is_authenticated:
@@ -325,9 +327,7 @@ def kakao_callback(request):
     # kakao_profile_image = kakao_user_information["properties"]["profile_image"]
     if get_user_model().objects.filter(kakao_id=kakao_id).exists():
         kakao_user = get_user_model().objects.get(kakao_id=kakao_id)
-        # print(kakao_user)
-        # print(kakao_id)
-        # print(kakao_nickname)
+        # Profile.objects.create(user=kakao_user)  # 프로필 생성
 
     else:
         kakao_login_user = get_user_model()()
@@ -337,6 +337,8 @@ def kakao_callback(request):
         kakao_login_user.password = str(state_token)
         kakao_login_user.save()
         kakao_user = get_user_model().objects.get(kakao_id=kakao_id)
+        Profile.objects.create(user=kakao_user)  # 프로필 생성
+
     auth_login(request, kakao_user, backend="django.contrib.auth.backends.ModelBackend")
     return redirect(request.GET.get("next") or "articles:index")
 
