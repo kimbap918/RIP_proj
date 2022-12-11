@@ -1,227 +1,201 @@
 {% load static %} {% load widget_tweaks %} {% load django_bootstrap5 %}
 <!DOCTYPE html>
 <html lang="kr">
-  <head>
-    <link rel="shortcut icon" type="image/x-icon" href="#" />
-    <title>RIP.gg {% block title %}{% endblock title %}</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <!-- CSS only -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-      crossorigin="anonymous" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" />
-    <!-- 부트스트랩 icon -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css%22%3E" />
-    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"> -->
-    <!-- 파비콘 -->
-    <link
-      rel="icon"
-      type="image/png"
-      href="/static/images/logo.png"
-      sizes="16x16" />
-    <!-- 폰트어썸 -->
-    <script
-      src="https://kit.fontawesome.com/9dfbf66130.js"
-      crossorigin="anonymous"></script>
-    <!-- 폰트 CSS -->
-    <link rel="stylesheet" href="{% static 'css/font.css' %}" type="text/css" />
-    <!-- 로고 폰트 -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Black+Han+Sans:400"
-      rel="stylesheet" />
-    <!-- base -->
-    <link rel="stylesheet" href="{% static 'css/base.css'%}" type="text/css" />
-    {% block style %}{% endblock style %}
 
-    <style></style>
-  </head>
+<head>
+  <link rel="shortcut icon" type="image/x-icon" href="#" />
+  <title>RIP.gg {% block title %}{% endblock title %}</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" />
+  <!-- 부트스트랩 icon -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css%22%3E" />
+  <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"> -->
+  <!-- 파비콘 -->
+  <link rel="icon" type="image/png" href="/static/images/logo.png" sizes="16x16" />
+  <!-- 폰트어썸 -->
+  <script src="https://kit.fontawesome.com/9dfbf66130.js" crossorigin="anonymous"></script>
+  <!-- 폰트 CSS -->
+  <link rel="stylesheet" href="{% static 'css/font.css' %}" type="text/css" />
+  <!-- 로고 폰트 -->
+  <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans:400" rel="stylesheet" />
+  <!-- base -->
+  <link rel="stylesheet" href="{% static 'css/base.css'%}" type="text/css" />
+  {% block style %}{% endblock style %}
 
-  <body data-spy="scroll" data-target="#scroll-spy">
-    <header>
-      <nav
-        class="navbar navbar-expand-lg"
-        style="background-color: #5383e8; width: auto"
-        aria-label="Eighth navbar example">
-        <div class="container">
-          <a
-            href="{% url 'home' %}"
-            class="d-flex align-items-center mb-md-0 me-md-auto text-dark text-decoration-none">
-            <span class=""
-              ><img src="/static/images/흰로고.png" width="80" alt=""
-            /></span>
-          </a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarsExample07"
-            aria-controls="navbarsExample07"
-            aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+  <style></style>
+</head>
 
-          <div class="collapse navbar-collapse" id="navbarsExample07">
-            <ul class="mynav navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a href="{% url 'champions:index' %}">챔피언</a>
-              </li>
-              <li class="nav-item">
-                <a href="{% url 'champions:goin' %}">고인</a>
-              </li>
-              <li class="nav-item">
-                <a href="">통계</a>
-              </li>
-              <li class="nav-item">
-                <a href="{% url 'articles:index' %}">커뮤니티</a>
-              </li>
-            </ul>
-            <div class="searchBox">
-              <form role="search">
-                <i
-                  class="position-absolute fa-solid fa-magnifying-glass"
-                  style="left: 1rem; bottom: 12px"></i>
-                <input
-                  class="form-control"
-                  type="search"
-                  placeholder="롤 전적.."
-                  aria-label="Search"
-                  style="padding-left: 2.5rem" />
-              </form>
-            </div>
-            {% if request.user.is_authenticated %}
-            <div class="sm:display2 md:display lg:display">
-              <div class="dropdown">
-                <button class="dropbtn">
-                  <span style="font-size: 14px">{{ user.username }}님</span>
-                  <i class="px-1 fa-solid fa-chevron-down"></i>
-                </button>
-                <div class="dropdown-content">
-                  <a href="{% url 'accounts:detail' user.pk %}">내 정보</a>
-                  <a href="{% url 'accounts:logout' %}">로그아웃</a>
-                </div>
-              </div>
-            </div>
-            <div class="sm:display md:display2 lg:display2">
-              <div class="smallinfo">
+<body data-spy="scroll" data-target="#scroll-spy">
+  <header>
+    <nav class="navbar navbar-expand-lg" style="background-color: #5383e8; width: auto"
+      aria-label="Eighth navbar example">
+      <div class="container">
+        <a href="{% url 'home' %}" class="d-flex align-items-center mb-md-0 me-md-auto text-dark text-decoration-none">
+          <span class=""><img src="/static/images/흰로고.png" width="80" alt="" /></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07"
+          aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExample07">
+          <ul class="mynav navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a href="{% url 'champions:index' %}">챔피언</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'champions:goin' %}">고인</a>
+            </li>
+            <li class="nav-item">
+              <a href="">통계</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'articles:index' %}">커뮤니티</a>
+            </li>
+          </ul>
+          <div class="searchBox">
+            <form role="search">
+              <i class="position-absolute fa-solid fa-magnifying-glass" style="left: 1rem; bottom: 12px"></i>
+              <input class="form-control" type="search" placeholder="롤 전적.." aria-label="Search"
+                style="padding-left: 2.5rem" />
+            </form>
+          </div>
+          {% if request.user.is_authenticated %}
+          <div class="sm:display2 md:display lg:display">
+            <div class="dropdown">
+              <button class="dropbtn">
+                <span style="font-size: 14px">{{ user.username }}님</span>
+                <i class="px-1 fa-solid fa-chevron-down"></i>
+              </button>
+              <div class="dropdown-content">
                 <a href="{% url 'accounts:detail' user.pk %}">내 정보</a>
                 <a href="{% url 'accounts:logout' %}">로그아웃</a>
               </div>
             </div>
-            {% else %}
-            <div class="sm:display2 md:display lg:display">
-              <div class="">
-                <div class="login">
-                  <a class="" href="{% url 'accounts:login' %}">로그인</a>
-                </div>
+          </div>
+          <div class="sm:display md:display2 lg:display2">
+            <div class="smallinfo">
+              <a href="{% url 'accounts:detail' user.pk %}">내 정보</a>
+              <a href="{% url 'accounts:logout' %}">로그아웃</a>
+            </div>
+          </div>
+          {% else %}
+          <div class="sm:display2 md:display lg:display">
+            <div class="">
+              <div class="login">
+                <a class="" href="{% url 'accounts:login' %}">로그인</a>
               </div>
             </div>
-            <div class="sm:display md:display2 lg:display2">
-              <div class="smallinfo">
-                  <a style="text-decoration: none;" href="{% url 'accounts:login' %}">로그인</a>
-              </div>
+          </div>
+          <div class="sm:display md:display2 lg:display2">
+            <div class="smallinfo">
+              <a style="text-decoration: none;" href="{% url 'accounts:login' %}">로그인</a>
             </div>
-            {% endif %}
+          </div>
+          {% endif %}
         </div>
-      </nav>
-      <!-- /.fixed navigation -->
-    </header>
-    <main class="container">{% block content %}{% endblock content %}</main>
-    <footer class="text-center mt-5 w-100" style="bottom: 0">
-      <!-- place footer here -->
-      <span class="me-5">footer</span>
-      <img width="50px" src="{% static 'images/logo.png' %}" alt="footerlogo" />
-    </footer>
+    </nav>
+    <!-- /.fixed navigation -->
+  </header>
+  <main class="container">{% block content %}{% endblock content %}</main>
+  <footer class="text-center mt-5 w-100 mb-2" style="bottom: 0">
+    <!-- place footer here -->
+    <span class="me-1" style="font-family: basic-ko; color: gray;">Final Project <span
+        class="fw-bold">RIP.GG</span></span>
+    <a class="me-1" href="https://github.com/na-hyeong9" style="text-decoration: none; color: gray;"><img
+        src="/static/images/nh.png" alt="" height="30px"></a>
+    <a class="me-1" href="https://github.com/jelly12paw" style="text-decoration: none; color: gray;"><img
+        src="/static/images/hj.png" alt="" height="30px"></a>
+    <a class="me-1" href="https://github.com/kimbap918" style="text-decoration: none; color: gray;"><img
+        src="/static/images/tl.png" alt="" height="30px"></a>
+    <a class="me-1" href="https://github.com/wnsghd14" style="text-decoration: none; color: gray;"><img
+        src="/static/images/jh.png" alt="" height="30px"></a>
+    <a href="https://github.com/hady1024" style="text-decoration: none; color: gray;"><img src="/static/images/du.png"
+        alt="" height="30px"></a>
+  </footer>
 
-    <!-- JavaScript Bundle with Popper -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-      crossorigin="anonymous"></script>
-    <!-- Jquery needed -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-    <script type="text/javascript"></script>
-    <!-- AJAX CDN -->
-    <script
-      type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!-- Function used to shrink nav bar removing paddings and adding black background -->
-    <script>
-      const target = document.querySelector(".target");
-      const links = document.querySelectorAll(".mynav a");
-      const colors = ["black", "#1ea1f7"];
-      for (let i = 0; i < links.length; i++) {
-        //links[i].addEventListener('click', (e) => e.preventDefault());
-        links[i].addEventListener("mouseenter", mouseenterFunc);
-        links[i].addEventListener("click", () => {
-          let targetLink = this.getAttribute("href");
-          location.href = targetLink;
-        });
-      }
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
+  <!-- Jquery needed -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <script type="text/javascript"></script>
+  <!-- AJAX CDN -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!-- Function used to shrink nav bar removing paddings and adding black background -->
+  <script>
+    const target = document.querySelector(".target");
+    const links = document.querySelectorAll(".mynav a");
+    const colors = ["black", "#1ea1f7"];
+    for (let i = 0; i < links.length; i++) {
+      //links[i].addEventListener('click', (e) => e.preventDefault());
+      links[i].addEventListener("mouseenter", mouseenterFunc);
+      links[i].addEventListener("click", () => {
+        let targetLink = this.getAttribute("href");
+        location.href = targetLink;
+      });
+    }
 
-      //parentNode 바로 위 부모요소
-      function mouseenterFunc() {
-        if (!this.parentNode.classList.contains("active")) {
-          for (let i = 0; i < links.length; i++) {
-            if (links[i].parentNode.classList.contains("active")) {
-              links[i].parentNode.classList.remove("active");
-            }
-            links[i].style.opacity = "0.25";
+    //parentNode 바로 위 부모요소
+    function mouseenterFunc() {
+      if (!this.parentNode.classList.contains("active")) {
+        for (let i = 0; i < links.length; i++) {
+          if (links[i].parentNode.classList.contains("active")) {
+            links[i].parentNode.classList.remove("active");
           }
-
-          //마우스가 올라갔을 때
-          this.parentNode.classList.add("active");
-          this.style.opacity = "1";
-
-          const width = this.getBoundingClientRect().width;
-          const height = this.getBoundingClientRect().height;
-          const left = this.getBoundingClientRect().left + window.pageXOffset;
-          const top = this.getBoundingClientRect().top + window.pageYOffset;
-          // console.log(left);
-          // console.log(top);
-          const color = colors[Math.floor(Math.random() * links.length)];
-          //target.style.width = width + 'px';
-          target.style.width = width + "px";
-          target.style.height = height + "px";
-          target.style.left = left + "px";
-          target.style.top = top + "px";
-          target.style.borderColor = color;
+          links[i].style.opacity = "0.25";
         }
+
+        //마우스가 올라갔을 때
+        this.parentNode.classList.add("active");
+        this.style.opacity = "1";
+
+        const width = this.getBoundingClientRect().width;
+        const height = this.getBoundingClientRect().height;
+        const left = this.getBoundingClientRect().left + window.pageXOffset;
+        const top = this.getBoundingClientRect().top + window.pageYOffset;
+        // console.log(left);
+        // console.log(top);
+        const color = colors[Math.floor(Math.random() * links.length)];
+        //target.style.width = width + 'px';
+        target.style.width = width + "px";
+        target.style.height = height + "px";
+        target.style.left = left + "px";
+        target.style.top = top + "px";
+        target.style.borderColor = color;
       }
+    }
 
-      function resizeFunc() {
-        const active = document.querySelector(".mynav li.active");
+    function resizeFunc() {
+      const active = document.querySelector(".mynav li.active");
 
-        if (active) {
-          const left = this.getBoundingClientRect().left + window.pageXOffset;
-          const top = this.getBoundingClientRect().top + window.pageYOffset;
+      if (active) {
+        const left = this.getBoundingClientRect().left + window.pageXOffset;
+        const top = this.getBoundingClientRect().top + window.pageYOffset;
 
-          target.style.left = `$(left)px`;
-          target.style.left = `$(top)px`;
-        }
+        target.style.left = `$(left)px`;
+        target.style.left = `$(top)px`;
       }
+    }
 
-      window.addEventListener("resize", resizeFunc);
+    window.addEventListener("resize", resizeFunc);
 
-      var url = window.location.pathname;
-      $(".mynav")
-        .find("a")
-        .each(function () {
-          $(this).toggleClass("active", $(this).attr("href") == url);
-        });
-    </script>
+    var url = window.location.pathname;
+    $(".mynav")
+      .find("a")
+      .each(function () {
+        $(this).toggleClass("active", $(this).attr("href") == url);
+      });
+  </script>
 
-    {% block script %}{% endblock script %}
-  </body>
+  {% block script %}{% endblock script %}
+</body>
+
 </html>
