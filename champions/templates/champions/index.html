@@ -65,9 +65,13 @@
                                         {% for t in top %}
                                         <tr>
                                             <td scope="col" class="c-rank-t">{{ t.rank }}</td>
-                                            <td scope="col" class="c-name-t"><img src="{{ t.img }}" alt=""
-                                                    style="width: 25px; height: 25px; border-radius: 5px;">
-                                                {{ t.name}}</td>
+                                            <td scope="col" class="c-name-t">
+                                                <a href="{% url 'champions:detail' t.name %}" style="color: white;">
+                                                    <img src="{{ t.img }}" alt=""
+                                                        style="width: 25px; height: 25px; border-radius: 5px;">
+                                                    {{ t.name}}
+                                                </a>
+                                            </td>
                                             <td scope="col" class="c-rank-t">
                                                 {% if t.tier == '0' %}
                                                 <img src="/static/images/t_op.png" alt=""
@@ -127,9 +131,13 @@
                                         {% for t in jungle %}
                                         <tr>
                                             <td scope="col" class="c-rank-t">{{ t.rank }}</td>
-                                            <td scope="col" class="c-name-t"><img src="{{ t.img }}" alt=""
-                                                    style="width: 25px; height: 25px; border-radius: 5px;">
-                                                {{ t.name}}</td>
+                                            <td scope="col" class="c-name-t">
+                                                <a href="{% url 'champions:detail' t.name %}" style="color: white;">
+                                                    <img src="{{ t.img }}" alt=""
+                                                        style="width: 25px; height: 25px; border-radius: 5px;">
+                                                    {{ t.name}}
+                                                </a>
+                                            </td>
                                             <td scope="col" class="c-rank-t">
                                                 {% if t.tier == '0' %}
                                                 <img src="/static/images/t_op.png" alt=""
@@ -189,9 +197,13 @@
                                         {% for t in mid %}
                                         <tr>
                                             <td scope="col" class="c-rank-t">{{ t.rank }}</td>
-                                            <td scope="col" class="c-name-t"><img src="{{ t.img }}" alt=""
-                                                    style="width: 25px; height: 25px; border-radius: 5px;">
-                                                {{ t.name}}</td>
+                                            <td scope="col" class="c-name-t">
+                                                <a href="{% url 'champions:detail' t.name %}" style="color: white;">
+                                                    <img src="{{ t.img }}" alt=""
+                                                        style="width: 25px; height: 25px; border-radius: 5px;">
+                                                    {{ t.name}}
+                                                </a>
+                                            </td>
                                             <td scope="col" class="c-rank-t">
                                                 {% if t.tier == '0' %}
                                                 <img src="/static/images/t_op.png" alt=""
@@ -251,9 +263,13 @@
                                         {% for t in adc %}
                                         <tr>
                                             <td scope="col" class="c-rank-t">{{ t.rank }}</td>
-                                            <td scope="col" class="c-name-t"><img src="{{ t.img }}" alt=""
-                                                    style="width: 25px; height: 25px; border-radius: 5px;">
-                                                {{ t.name}}</td>
+                                            <td scope="col" class="c-name-t">
+                                                <a href="{% url 'champions:detail' t.name %}" style="color: white;">
+                                                    <img src="{{ t.img }}" alt=""
+                                                        style="width: 25px; height: 25px; border-radius: 5px;">
+                                                    {{ t.name}}
+                                                </a>
+                                            </td>
                                             <td scope="col" class="c-rank-t">
                                                 {% if t.tier == '0' %}
                                                 <img src="/static/images/t_op.png" alt=""
@@ -313,9 +329,13 @@
                                         {% for t in support %}
                                         <tr>
                                             <td scope="col" class="c-rank-t">{{ t.rank }}</td>
-                                            <td scope="col" class="c-name-t"><img src="{{ t.img }}" alt=""
-                                                    style="width: 25px; height: 25px; border-radius: 5px;">
-                                                {{ t.name}}</td>
+                                            <td scope="col" class="c-name-t">
+                                                <a href="{% url 'champions:detail' t.name %}" style="color: white;">
+                                                    <img src="{{ t.img }}" alt=""
+                                                        style="width: 25px; height: 25px; border-radius: 5px;">
+                                                    {{ t.name}}
+                                                </a>
+                                            </td>
                                             <td scope="col" class="c-rank-t">
                                                 {% if t.tier == '0' %}
                                                 <img src="/static/images/t_op.png" alt=""

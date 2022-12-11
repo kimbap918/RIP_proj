@@ -6,14 +6,6 @@
 }
 
 /* 드롭다운 */
-.dropsbtn {
-    background-color: #0A323C;
-    /* color: white; */
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-}
 
 .dropsbtn:hover {
     font-weight: bold;
@@ -88,7 +80,7 @@ a.btn:hover {
 
 .tab_menu .list .btn {
     font-size: 20px;
-    color: #fff;
+    color: #041F2A;
     font-family: 'S-bold';
     font-weight: bold;
 }
