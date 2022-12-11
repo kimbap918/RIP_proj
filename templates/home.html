@@ -29,10 +29,19 @@
                     {% if lately_a %}
                     {% for article in lately_a %}
                     <div class="article_new_list">
-                        <a href="{% url 'articles:detail' article.pk %}">
-                            <div class="article1">
-                                <div class="article_new_num">
-                                    {{article.id}}
+                      <a href="{% url 'articles:detail' article.pk %}">
+                        <div class="article1">
+                            <div class="article_new_num">
+                                {{forloop.counter}}
+                            </div>
+                            <div class="article_img_box">
+                                {% if article.photo %}
+                                <div class="" style="float:right;">
+                                    <img style="width:100%; height:100%;" src="{{ article.photo.url }}" alt="">
+                                </div>
+                                {% else %}
+                                <div class="" style="float:right;">
+                                    <img style="width:100%; height:100%;" src="https://dummyimage.com/100x80/000000/c4c4c4" alt="">
                                 </div>
                                 <div class="article_img_box">
                                     {% if article.photo %}
@@ -84,10 +93,15 @@
                     {% if best_a %}
                     {% for article in best_a %}
                     <div class="article_new_list">
-                        <a href="{% url 'articles:detail' article.pk %}">
-                            <div class="article1">
-                                <div class="article_new_num">
-                                    {{article.id}}
+                      <a href="{% url 'articles:detail' article.pk %}">
+                        <div class="article1">
+                            <div class="article_new_num">
+                                {{ forloop.counter }}
+                            </div>
+                            <div class="article_img_box">
+                                {% if article.photo %}
+                                <div class="" style="float:right;">
+                                    <img style="width:100%; height:100%;" src="{{ article.photo.url }}" alt="">
                                 </div>
                                 <div class="article_img_box">
                                     {% if article.photo %}

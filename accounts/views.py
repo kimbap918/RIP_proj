@@ -255,6 +255,18 @@ def update(request, pk):
     #     profile_form = ProfileForm()
     #     change_form = CustomUserChangeForm(instance=user)
 
+@login_required
+def report(request, pk):
+    # 프로필에 해당하는 유저를 로그인한 유저가!
+    user = get_object_or_404(get_user_model(), pk=pk)
+    if request.user == user:
+        messages.warning(request, '스스로 신고 할 수 없습니다.')
+        return redirect('accounts:detail', pk)
+    if request.user in user.reported.all():
+        messages.warning(request, '이미 신고한 게시글입니다.')
+    else:
+        user.reported.add(request.user)
+    return redirect('accounts:detail', pk)
 
 def send_email(request):
     subject = "RIP.gg 비밀번호 재설정"

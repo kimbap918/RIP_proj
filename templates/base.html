@@ -112,9 +112,17 @@
           </div>
           {% endif %}
         </div>
-    </nav>
+      </nav>
+      <!-- /.fixed navigation -->
+    </header>
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    {% endif %}
     <!-- /.fixed navigation -->
-  </header>
   <main class="container">{% block content %}{% endblock content %}</main>
   <footer class="text-center mt-5 w-100 mb-2" style="bottom: 0">
     <!-- place footer here -->
