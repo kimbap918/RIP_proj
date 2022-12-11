@@ -76,12 +76,14 @@ def result(request):
     if request.method == "GET":
         username = request.GET.get("search_text")
         summoner_name = parse.quote(username)
-
         summoner_exist = False
         sum_result = {}
         solo_tier = {}
         team_tier = {}
         store_list = []
+        play_list = []
+        games = []
+        players = []
 
         api_key = getattr(settings, "API_KEY", "API_KEY")
 
@@ -169,8 +171,6 @@ def result(request):
             data = requests.get(request_url)
             data = data.json()
 
-            games = []
-
             p = data["info"]["gameDuration"]
             sec = int(p) % 60
             min = int(p) // 60
@@ -178,56 +178,58 @@ def result(request):
             queue_id = data["info"]["queueId"]
 
             games.append({"play_time": play_time, "queue_id": queue_id})
-            print(games)
-            players = []
-
+            # print(games)
+        
             for part in data["info"]["participants"]:
-                player = dict()
-                player["participantId"] = part["participantId"]
-                player["championId"] = part["championId"]
-                player["championName"] = part["championName"]
-                player["summoner1Id"] = part["summoner1Id"]
-                player["summoner2Id"] = part["summoner2Id"]
-                player["summonerName"] = part["summonerName"]
-                player["summonerId"] = part["summonerId"]
-                player["kills"] = part["kills"]
-                player["deaths"] = part["deaths"]
-                player["assists"] = part["assists"]
-                # player["kda"] = part["challenges"]["kda"]
-                # player["kda1"] = round(
-                #     (player["kills"] + player["assists"]) / player["deaths"],
-                # )
-                player["item0"] = part["item0"]
-                player["item1"] = part["item1"]
-                player["item2"] = part["item2"]
-                player["item3"] = part["item3"]
-                player["item4"] = part["item4"]
-                player["item5"] = part["item5"]
-                player["item6"] = part["item6"]
-                player["win"] = part["win"]
-                player["visionScore"] = part["visionScore"]
-                player["totalMinionsKilled"] = part["totalMinionsKilled"]
-                player["stealthWardsPlaced"] = part["challenges"]["stealthWardsPlaced"]
-                player["totalDamageDealtToChampions"] = part[
-                    "totalDamageDealtToChampions"
-                ]
+                if  username == part["summonerName"]:
+                    player = dict()
+                    player["participantId"] = part["participantId"]
+                    player["championId"] = part["championId"]
+                    player["championName"] = part["championName"]
+                    player["summoner1Id"] = part["summoner1Id"]
+                    player["summoner2Id"] = part["summoner2Id"]
+                    player["summonerName"] = part["summonerName"]
+                    player["summonerId"] = part["summonerId"]
+                    player["kills"] = part["kills"]
+                    player["deaths"] = part["deaths"]
+                    player["assists"] = part["assists"]
+                    player["kda"] = round(part["challenges"]["kda"], 2)
+                    # player["kda1"] = round(
+                    #     (player["kills"] + player["assists"]) / player["deaths"],
+                    # )
+                    player["item0"] = part["item0"]
+                    player["item1"] = part["item1"]
+                    player["item2"] = part["item2"]
+                    player["item3"] = part["item3"]
+                    player["item4"] = part["item4"]
+                    player["item5"] = part["item5"]
+                    player["item6"] = part["item6"]
+                    player["win"] = part["win"]
+                    player["visionScore"] = part["visionScore"]
+                    player["totalMinionsKilled"] = part["totalMinionsKilled"]
+                    player["stealthWardsPlaced"] = part["challenges"]["stealthWardsPlaced"]
+                    player["totalDamageDealtToChampions"] = part["totalDamageDealtToChampions"]
+                    
+                    players.append(player) # 1챔프당 데이터
 
-                players.append(player)
-        print(players)
-        return render(
-            request,
-            "summoners/result.html",
-            {
-                "summoner_exist": summoner_exist,
-                "summoners_result": sum_result,
-                "solo_tier": solo_tier,
-                "team_tier": team_tier,
-                "play_time": play_time,
-                "queue_id": queue_id,
-                "players": players,
-                "games": games,
-            },
-        )
+        #pp.pprint(players)
+        # play_list.append(players) # 1게임당 모든 챔프 데이터
+        game_list = zip(games, players)
+        # pp.pprint(players)
+        # print(games)
+        return render(request, "summoners/result.html",
+                {
+                    "summoner_exist": summoner_exist,
+                    "summoners_result": sum_result,
+                    "solo_tier": solo_tier,
+                    "team_tier": team_tier,
+                    "play_time": play_time,
+                    "queue_id": queue_id,
+                    # "games": games,
+                    # "players": players,
+                    "game_list": game_list,
+                },
+            )
 
 
 # 1. https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/ 에서 puuid 값을 가져온다.
@@ -242,9 +244,9 @@ def result(request):
 # puuid : 소환사 고유 puuid
 # start : 가장 최근 경기부터 알고 싶으면 0, (예 : 가장 최근에 했던 3번째 경기부터 알고 싶다면 3)
 # count : 결과를 몇개 까지 받을지 (max : 100)
-def match_v5_get_list_match_id(puuid, start, count):
-    url = f"https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids?start={start}&count={count}"
-    return requests.get(url, headers=request_header).json()
+# def match_v5_get_list_match_id(puuid, start, count):
+#     url = f"https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids?start={start}&count={count}"
+#     return requests.get(url, headers=request_header).json()
 
 
 # queueId : 솔랭 - 420, 노말 - 430, 팀랭 - 440
@@ -264,10 +266,10 @@ def match_v5_get_list_match_id(puuid, start, count):
 # win : 승패여부
 # visionScore : 시야점수
 # stealthWardsPlaced : 제어와드 설치 개수
-def match_v5_get_match_history(matchId):
-    url = f"https://asia.api.riotgames.com/lol/match/v5/matches/{matchId}"
+# def match_v5_get_match_history(matchId):
+#     url = f"https://asia.api.riotgames.com/lol/match/v5/matches/{matchId}"
 
-    return requests.get(url, headers=request_header).json()
+#     return requests.get(url, headers=request_header).json()
 
 
 # pp.pprint(match_v5_get_match_history('KR_6244514829'))
