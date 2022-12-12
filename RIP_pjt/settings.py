@@ -49,7 +49,7 @@ API_KEY = os.getenv("API_KEY")
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
-    "ripdjangobean-env-2.eba-2rxnzfx7.ap-northeast-2.elasticbeanstalk.com",
+    "ripggbean-env.eba-tprx3bfx.ap-northeast-2.elasticbeanstalk.com",
 ]
 
 # Application definition
