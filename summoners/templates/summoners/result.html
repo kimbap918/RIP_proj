@@ -5,7 +5,6 @@
 {% block content %}
 
 {% load static %}
-
 <head>
     <link href="https://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
@@ -16,11 +15,52 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
         integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
         crossorigin="anonymous"></script>
-
+    <style>
+        .css-win {
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+            height: 8rem;
+            border-radius: 4px;
+            border-left-width: 0.375rem;
+            border-left-style: solid;
+            border-color: #5383E8;
+            background-color: #27344E;
+            color: #8E8796;
+            min-width: 50rem;
+        }  
+        .css-lose {
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+            height: 8rem;
+            border-radius: 4px;
+            border-left-width: 0.375rem;
+            border-left-style: solid;
+            border-color: #E84057;
+            background-color: #59343B;
+            color: #8E8796;
+            min-width: 50rem;
+        }
+        .css-replay {
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+            height: 8rem;
+            border-radius: 4px;
+            border-left-width: 0.375rem;
+            border-left-style: solid;
+            border-color: #9E9EB0;
+            background-color: #282830;
+            color: #8E8796;
+            min-width: 50rem;
+        }      
+    </style>
 </head>
+<body class="m-0 p-0" style="background-color: #1C1C1F;">
 <div class="container">
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12 mt-3">
             <form method="get" name="search_form" action="{% url 'summoners:result' %}">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="소환사명" name="search_text"
@@ -37,48 +77,47 @@
 
         <img style="display: block; margin: 0px; height: 70px; width: 70px;" class="img-thumbnail"
             src="{% static 'images/profileicon/' %}{{summoners_result.profileIconId}}.png">
-        <span style="margin: 20 0 0 20; font-size: 32px;">{{ summoners_result.name }}<br>
-            <span style="font-size: 20px; ">LV: {{ summoners_result.level }}</span>
+        <span style="padding-left: 0px; font-size: 32px; color: #FFFFFF;">{{ summoners_result.name }}<br>
+            <span style="padding-left: 0px; font-size: 20px; color: #FFFFFF;">LV: {{ summoners_result.level }}</span>
         </span>
 
 
     </div>
     <div class="row">
-        <div style="float: none; margin: 0 auto" class="col-5 border border-secondary">
+        <div style="float: none; margin: 0 auto" class="col-5 border border-secondary mb-3">
             <div class="row">
                 {% if solo_tier %}
                 <div class="col-4">
                     <img src="{% static 'images/ranked-emblems/' %}{{solo_tier.tier}}.png" width="100%">
                 </div>
-                <div>
+                <div style="color: #FFFFFF;">
                     리그: {{ solo_tier.rank_type }}<br>
                     티어: {{ solo_tier.tier }} {{ solo_tier.rank }}<br>
                     포인트: {{ solo_tier.points }}<br>
-                    전적: {{ solo_tier.wins|add:solo_tier.losses}}전 {{ solo_tier.wins }}승 {{ solo_tier.losses }}패
+                    전적: <span style="color: #80e840;">{{ solo_tier.wins|add:solo_tier.losses}}</span>전 <span style="color: #5383E8;">{{ solo_tier.wins }}승</span> <span style="color: #E84057;">{{ solo_tier.losses }}</span>패
                 </div>
             </div>
             {% else %}
-            <div>
+            <div style="color: #FFFFFF;">
                 배치&전적정보없음
             </div>
             {% endif %}
         </div>
 
-        <div style="float: none; margin: 0 auto" class="col-5 border border-secondary">
+        <div style="float: none; margin: 0 auto" class="col-5 border border-secondary mb-3">
             <div class="row">
-
                 {% if team_tier %}
                 <div class="col-4">
                     <img src="{% static 'images/ranked-emblems/' %}{{team_tier.tier}}.png" width="100%">
                 </div>
-                <div>
+                <div style="color: #FFFFFF;">
                     리그: {{ team_tier.rank_type }}<br>
                     티어: {{ team_tier.tier }} {{ team_tier.rank }}<br>
                     포인트: {{ team_tier.points }}<br>
-                    전적: {{ team_tier.wins|add:team_tier.losses}}전 {{ team_tier.wins }}승 {{ team_tier.losses }}패
+                    전적: <span style="color: #80e840;">{{ team_tier.wins|add:team_tier.losses}}</span>전 <span style="color: #5383E8;">{{ team_tier.wins }}</span>승 <span style="color: #E84057;">{{ team_tier.losses }}</span>패
                 </div>
                 {% else %}
-                <div>
+                <div style="color: #FFFFFF;">
                     배치&전적정보없음
                 </div>
                 {% endif %}
@@ -89,109 +128,324 @@
     사용자가 존재하지않습니다.
     {% endif %}
 
-    <div class="d-flex m-3">
-        <div class="w-20">
-            {% for g in games %}
-            {% if g.queue_id == 420 %}
-            <h5>솔랭</h5>
-            {% elif g.queue_id == 430 %}
-            <h5>노말</h5>
-            {% else %}
-            <h5>팀랭</h5>
-            {% endif %}
-            <h5 class="fw-bold" style="font-size: 13px;">{{ g.play_time }}</h5>
-            {% endfor %}
+    {% for games, players in game_list %}
+    {% if players.win == True %}
+    <div class="css-win mb-2">
+        {% if players.summonerName == summoners_result.name %}
+        <div class="w-20 mx-1" style="width: 3.5rem;">
+            <p class="mb-0 ml-3" style="color: #5383E8;">승리</p>
         </div>
-
+        <div class="w-20 me-2" style="width: 5.5rem; min-width: 2rem;">
+            <div class="mb-0" style="color: #5383E8;">
+                {% if games.queue_id == 420 %}
+                <p class="mb-0">솔랭</p>
+                {% elif games.queue_id == 430 %}
+                <p class="mb-0">일반</p>
+                {% elif games.queue_id == 450 %}
+                <p class="mb-0">무작위 총력전</p>
+                {% else %}
+                <p class="mb-0">자랭</p>
+                {% endif %}
+            </div>
+            <h5 class="fw-bold" style="font-size: 13px;">{{ games.play_time }}</h5>
+        </div>
         <div class="w-80">
             <div class="d-flex">
-                {% for p in players %}
-                {% if p.summonerName == summoners_result.name %}
-                <div class="w-20 me-2">
-                    {% if p.win == True %}
-                    <p style="color: blue;">승리</p>
-                    {% elif p.win == False %}
-                    <p style="color: red;">패배</p>
-                    {% else %}
-                    <p>다시하기</p>
-                    {% endif %}
-                </div>
-                <div class="w-80 me-2">
-                    <div>
-                        <img src="/static/images/champion/{{ p.championName }}.png" alt=""
-                            style="border-radius: 100%; width: 40px;">
-                        킬 : {{ p.kills }} |
-                        데스 : {{ p.deaths }} |
-                        도움 : {{ p.assists }} |
-                        kda : {{ p.kda1 }}
+                <div class="w-80 me-2 mt-2">
+                    <div class="d-flex mb-1">
+                        <img class="me-1" src="/static/images/champion/{{ players.championName }}.png" alt=""
+                            style="border-radius: 100%; width: 50px;">
+                        <div class="mt-2">
+                            <img class="me-0" src="/static/images/spell/{{ players.summoner1Id }}.png" alt=""
+                                style="height: 30px;">
+                            <img class="me-1" src="/static/images/spell/{{ players.summoner2Id }}.png" alt=""
+                                style="height: 30px;">   
+                        </div>
+                        <div class="ml-2">
+                            <span style="color: #5383E8;">{{ players.kills }}</span> / <span style="color: #E84057;">{{ players.deaths }}</span> / <span style="color: #80e840;">{{ players.assists }}</span> <br>
+                            {{ players.kda }}:1 평점
+                        </div>
                     </div>
-                    <div>
-                        <img src="/static/images/item/{{ p.item0 }}.png" alt="" style="height: 30px;">
-                        <img src="/static/images/item/{{ p.item1 }}.png" alt="" style="height: 30px;">
-                        <img src="/static/images/item/{{ p.item2 }}.png" alt="" style="height: 30px;">
-                        <img src="/static/images/item/{{ p.item3 }}.png" alt="" style="height: 30px;">
-                        <img src="/static/images/item/{{ p.item4 }}.png" alt="" style="height: 30px;">
-                        <img src="/static/images/item/{{ p.item5 }}.png" alt="" style="height: 30px;">
-                        <img src="/static/images/item/{{ p.item6 }}.png" alt="" style="height: 30px;">
+                    <div style="width: 14.7rem;">
+                        <img src="/static/images/item/{{ players.item0 }}.png" alt="" style="height: 30px;">
+                        <img src="/static/images/item/{{ players.item1 }}.png" alt="" style="height: 30px;">
+                        <img src="/static/images/item/{{ players.item2 }}.png" alt="" style="height: 30px;">
+                        <img src="/static/images/item/{{ players.item3 }}.png" alt="" style="height: 30px;">
+                        <img src="/static/images/item/{{ players.item4 }}.png" alt="" style="height: 30px;">
+                        <img src="/static/images/item/{{ players.item5 }}.png" alt="" style="height: 30px;">
+                        <img src="/static/images/item/{{ players.item6 }}.png" alt="" style="height: 30px;">
                     </div>
                 </div>
-                <div class="w-20">
-                    {{ p.visionScore }}
-                    {{ p.totalMinionsKilled }}
-                    {{ p.stealthWardsPlaced }}
-                    {{ p.totalDamageDealtToChampions }}
+                <div class="d-flex" style="font-size: 1rem;">
+                    <div class="mr-2" style="width: 11rem;">
+                        <div>
+                            <img src="/static/images/summoners/cs.png" alt="" style="height: 2rem; width: 2rem;">
+                            <span class="mb-0">{{ players.totalMinionsKilled }}(분당 {{ players.totalMinionsKilledPerMinute }})</span>
+                        </div>
+                        <div>
+                            <img src="/static/images/summoners/gold.png" alt="" style="height: 1.5rem; width: 1.8rem;">
+                            <span class="mb-0">{{ players.goldEarned }}(분당 {{ players.goldEarnedPerMinute }})</span>
+                        </div>
+                    </div>
+                    <div class="mr-2" style="width: 5rem;">
+                        <div>
+                            <img src="/static/images/summoners/ward.png" alt="" style="height: 2rem; width: 2rem;">
+                            <span class="mb-0">{{ players.visionScore }}점</span>
+                        </div>
+                        <div>
+                            <img src="/static/images/summoners/controlWard.png" alt="" style="height: 1.8rem; width: 2rem; border-radius: 0.3125rem;">
+                            <span class="mb-0">{{ players.stealthWardsPlaced }}회</span>                    
+                        </div>
+                    </div>
+                    <div class="mr-2" style="width: 6rem;">
+                        <div>
+                            <img src="/static/images/summoners/ap.png" alt="" style="height: 1.8rem; width: 0.666rem; margin-right: -4px;">
+                            <img src="/static/images/summoners/ad.png" alt="" style="height: 1.8rem; width: 0.666rem; margin-right: -4px;">
+                            <img src="/static/images/summoners/trueDamage.png" alt="" style="height: 1.8rem; width: 0.666rem;">                            
+                            <span class="mb-0">{{ players.totalDamageDealtToChampions }}</span>
+                        </div>
+                        <div>
+                            <img src="/static/images/summoners/ap.png" alt="" style="height: 1.8rem; width: 2rem; border-radius: 0.3125rem;">
+                            <span class="mb-0">{{ players.magicDamageDealtToChampions }}</ㄴp>
+                        </div>
+                        <div>
+                            <img src="/static/images/summoners/ad.png" alt="" style="height: 1.8rem; width: 2rem; border-radius: 0.3125rem;">
+                            <span class="mb-0">{{ players.physicalDamageDealtToChampions }}</span>
+                        </div>
+                        <div>
+                            <img src="/static/images/summoners/trueDamage.png" alt="" style="height: 1.8rem; width: 2rem; border-radius: 0.3125rem;">
+                            <span class="mb-0">{{ players.trueDamageDealtToChampions }}</span>
+                        </div>
+                    </div>
+                    <div class="mr-2" style="width: 6rem;">
+                        <div>
+                            <img src="/static/images/summoners/damaged.png" alt="" style="height: 1.8rem; width: 2rem; border-radius: 0.3125rem;">                
+                            <span class="mb-0">{{ players.totalDamageTaken }}</span>
+                        </div>
+                        <div>
+                            <img src="/static/images/summoners/heal.png" alt="" style="height: 1.8rem; width: 2rem; border-radius: 0.3125rem;">
+                            <span class="mb-0">{{ players.totalHeal }}</span>
+                        </div>
+                    </div>
                 </div>
                 {% endif %}
-                {% endfor %}
-                <div>
-                    <div class="ms-3">
-                        {% for pp in players %}
-                        <img src="/static/images/champion/{{ pp.championName }}.png" alt=""
-                            style="border-radius: 100%; width: 30px;">
-                        {% if pp.summonerName == summoners_result.name %}
-                        <p class="fw-bold">{{ pp.summonerName }}</p>
-                        {% else %}
-                        <p>{{ pp.summonerName }}</p>
-                        {% endif %}
-                        {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% elif players.win == False %}
+    <div class="css-lose mb-2">
+        {% if players.summonerName == summoners_result.name %}
+        <div class="w-20 mx-1" style="width: 3.5rem;">
+            <p class="mb-0 ml-3" style="color: #E84057;">패배</p>
+        </div>
+        <div class="w-20 me-2" style="width: 5.5rem; min-width: 2rem;">
+            <div class="mb-0" style="color: #E84057;" >
+                {% if games.queue_id == 420 %}
+                <p class="mb-0">솔랭</p>
+                {% elif games.queue_id == 430 %}
+                <p class="mb-0">일반</p>
+                {% elif games.queue_id == 450 %}
+                <p class="mb-0">무작위 총력전</p>
+                {% else %}
+                <p class="mb-0">자랭</p>
+                {% endif %}
+            </div>
+            <h5 class="fw-bold" style="font-size: 13px;">{{ games.play_time }}</h5>
+        </div>
+        <div class="w-80">
+            <div class="d-flex">
+                <div class="w-80 me-2 mt-2">
+                    <div class="d-flex mb-1">
+                        <img class="me-1" src="/static/images/champion/{{ players.championName }}.png" alt=""
+                            style="border-radius: 100%; width: 50px;">
+                        <div class="mt-2">
+                            <img class="me-0" src="/static/images/spell/{{ players.summoner1Id }}.png" alt=""
+                                style="height: 30px;">
+                            <img class="me-1" src="/static/images/spell/{{ players.summoner2Id }}.png" alt=""
+                                style="height: 30px;">   
+                        </div> 
+                        <div class="ml-2">
+                            <span style="color: #5383E8;">{{ players.kills }}</span> / <span style="color: #E84057;">{{ players.deaths }}</span> / <span style="color: #80e840;">{{ players.assists }}</span> <br>
+                            {{ players.kda }}:1 평점
+                        </div>
                     </div>
+                    <div style="width: 14.7rem;">
+                        <img src="/static/images/item/{{ players.item0 }}.png" alt="" style="height: 30px;">
+                        <img src="/static/images/item/{{ players.item1 }}.png" alt="" style="height: 30px;">
+                        <img src="/static/images/item/{{ players.item2 }}.png" alt="" style="height: 30px;">
+                        <img src="/static/images/item/{{ players.item3 }}.png" alt="" style="height: 30px;">
+                        <img src="/static/images/item/{{ players.item4 }}.png" alt="" style="height: 30px;">
+                        <img src="/static/images/item/{{ players.item5 }}.png" alt="" style="height: 30px;">
+                        <img src="/static/images/item/{{ players.item6 }}.png" alt="" style="height: 30px;">
+                    </div>
+                </div>
+                <div class="d-flex" style="font-size: 1rem;">
+                    <div class="mr-2" style="width: 11rem;">
+                        <div>
+                            <img src="/static/images/summoners/cs.png" alt="" style="height: 2rem; width: 2rem;">
+                            <span class="mb-0">{{ players.totalMinionsKilled }}(분당 {{ players.totalMinionsKilledPerMinute }})</span>
+                        </div>
+                        <div>
+                            <img src="/static/images/summoners/gold.png" alt="" style="height: 1.5rem; width: 1.8rem;">
+                            <span class="mb-0">{{ players.goldEarned }}(분당 {{ players.goldEarnedPerMinute }})</span>
+                        </div>
+                    </div>
+                    <div class="mr-2" style="width: 5rem;">
+                        <div>
+                            <img src="/static/images/summoners/ward.png" alt="" style="height: 2rem; width: 2rem;">
+                            <span class="mb-0">{{ players.visionScore }}점</span>
+                        </div>
+                        <div>
+                            <img src="/static/images/summoners/controlWard.png" alt="" style="height: 1.8rem; width: 2rem; border-radius: 0.3125rem;">
+                            <span class="mb-0">{{ players.stealthWardsPlaced }}회</span>                    
+                        </div>
+                    </div>
+                    <div class="mr-2" style="width: 6rem;">
+                        <div>
+                            <img src="/static/images/summoners/ap.png" alt="" style="height: 1.8rem; width: 0.666rem; margin-right: -4px;">
+                            <img src="/static/images/summoners/ad.png" alt="" style="height: 1.8rem; width: 0.666rem; margin-right: -4px;">
+                            <img src="/static/images/summoners/trueDamage.png" alt="" style="height: 1.8rem; width: 0.666rem;">                            
+                            <span class="mb-0">{{ players.totalDamageDealtToChampions }}</span>
+                        </div>
+                        <div>
+                            <img src="/static/images/summoners/ap.png" alt="" style="height: 1.8rem; width: 2rem; border-radius: 0.3125rem;">
+                            <span class="mb-0">{{ players.magicDamageDealtToChampions }}</ㄴp>
+                        </div>
+                        <div>
+                            <img src="/static/images/summoners/ad.png" alt="" style="height: 1.8rem; width: 2rem; border-radius: 0.3125rem;">
+                            <span class="mb-0">{{ players.physicalDamageDealtToChampions }}</span>
+                        </div>
+                        <div>
+                            <img src="/static/images/summoners/trueDamage.png" alt="" style="height: 1.8rem; width: 2rem; border-radius: 0.3125rem;">
+                            <span class="mb-0">{{ players.trueDamageDealtToChampions }}</span>
+                        </div>
+                    </div>
+                    <div class="mr-2" style="width: 6rem;">
+                        <div>
+                            <img src="/static/images/summoners/damaged.png" alt="" style="height: 1.8rem; width: 2rem; border-radius: 0.3125rem;">                
+                            <span class="mb-0">{{ players.totalDamageTaken }}</span>
+                        </div>
+                        <div>
+                            <img src="/static/images/summoners/heal.png" alt="" style="height: 1.8rem; width: 2rem; border-radius: 0.3125rem;">
+                            <span class="mb-0">{{ players.totalHeal }}</span>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                <div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-
-<!-- <div>
-    {{ p.participantId }}
-    {{ p.championId }}
-    {{ p.summoner1Id }}
-    {{ p.summoner2Id }}
-    <img src="/static/images/champion/{{ p.championName }}.png" alt="">
-    {{ p.summonerId }}
-    {{ p.summonerName }}
-    {{ p.kills }}
-    {{ p.deaths }}
-    {{ p.assists }}
-    {{ p.kda1 }}
-    <img src="/static/images/item/{{ p.item0 }}.png" alt="">
-    <img src="/static/images/item/{{ p.item1 }}.png" alt="">
-    <img src="/static/images/item/{{ p.item2 }}.png" alt="">
-    <img src="/static/images/item/{{ p.item3 }}.png" alt="">
-    <img src="/static/images/item/{{ p.item4 }}.png" alt="">
-    <img src="/static/images/item/{{ p.item5 }}.png" alt="">
-    <img src="/static/images/item/{{ p.item6 }}.png" alt="">
-    {% if p.win == 'True' %}
-    <p>승리</p>
-    {% elif p.win == 'False' %}
-    <p>패배</p>
-    {% else %}
-    <p>다시하기</p>
+    {% endif %}    
+    {% if games.min <= 4  %}
+    <div class="css-replay mb-2">
+        {% if players.summonerName == summoners_result.name %}
+        <div class="w-20 mx-1" style="width: 3.5rem;">
+            <p>다시하기</p>
+        </div>
+        <div class="w-20 me-2" style="width: 5.5rem; min-width: 2rem;">
+            <div class="mb-0" style="color: #9E9EB0;" >
+                {% if games.queue_id == 420 %}
+                <p class="mb-0">솔랭</p>
+                {% elif games.queue_id == 430 %}
+                <p class="mb-0">일반</p>
+                {% elif games.queue_id == 450 %}
+                <p class="mb-0">무작위 총력전</p>
+                {% else %}
+                <p class="mb-0">자랭</p>
+                {% endif %}
+            </div>
+            <h5 class="fw-bold" style="font-size: 13px;">{{ games.play_time }}</h5>
+        </div>
+        <div class="w-80">
+            <div class="d-flex">
+                <div class="w-80 me-2 mt-2">
+                    <div class="d-flex mb-1">
+                        <img class="me-1" src="/static/images/champion/{{ players.championName }}.png" alt=""
+                            style="border-radius: 100%; width: 50px;">
+                        <div class="mt-2">
+                            <img class="me-0" src="/static/images/spell/{{ players.summoner1Id }}.png" alt=""
+                                style="height: 30px;">
+                            <img class="me-1" src="/static/images/spell/{{ players.summoner2Id }}.png" alt=""
+                                style="height: 30px;">   
+                        </div> 
+                        <div class="ml-2">
+                            <span style="color: #5383E8;">{{ players.kills }}</span> / <span style="color: #E84057;">{{ players.deaths }}</span> / <span style="color: #80e840;">{{ players.assists }}</span> <br>
+                            {{ players.kda }}:1 평점
+                        </div>
+                    </div>
+                    <div style="width: 14.7rem;">
+                        <img src="/static/images/item/{{ players.item0 }}.png" alt="" style="height: 30px;">
+                        <img src="/static/images/item/{{ players.item1 }}.png" alt="" style="height: 30px;">
+                        <img src="/static/images/item/{{ players.item2 }}.png" alt="" style="height: 30px;">
+                        <img src="/static/images/item/{{ players.item3 }}.png" alt="" style="height: 30px;">
+                        <img src="/static/images/item/{{ players.item4 }}.png" alt="" style="height: 30px;">
+                        <img src="/static/images/item/{{ players.item5 }}.png" alt="" style="height: 30px;">
+                        <img src="/static/images/item/{{ players.item6 }}.png" alt="" style="height: 30px;">
+                    </div>
+                </div>
+                <div class="d-flex" style="font-size: 1rem;">
+                    <div class="mr-2" style="width: 11rem;">
+                        <div>
+                            <img src="/static/images/summoners/cs.png" alt="" style="height: 2rem; width: 2rem;">
+                            <span class="mb-0">{{ players.totalMinionsKilled }}(분당 {{ players.totalMinionsKilledPerMinute }})</span>
+                        </div>
+                        <div>
+                            <img src="/static/images/summoners/gold.png" alt="" style="height: 1.5rem; width: 1.8rem;">
+                            <span class="mb-0">{{ players.goldEarned }}(분당 {{ players.goldEarnedPerMinute }})</span>
+                        </div>
+                    </div>
+                    <div class="mr-2" style="width: 5rem;">
+                        <div>
+                            <img src="/static/images/summoners/ward.png" alt="" style="height: 2rem; width: 2rem;">
+                            <span class="mb-0">{{ players.visionScore }}점</span>
+                        </div>
+                        <div>
+                            <img src="/static/images/summoners/controlWard.png" alt="" style="height: 1.8rem; width: 2rem; border-radius: 0.3125rem;">
+                            <span class="mb-0">{{ players.stealthWardsPlaced }}회</span>                    
+                        </div>
+                    </div>
+                    <div class="mr-2" style="width: 6rem;">
+                        <div>
+                            <img src="/static/images/summoners/ap.png" alt="" style="height: 1.8rem; width: 0.666rem; margin-right: -4px;">
+                            <img src="/static/images/summoners/ad.png" alt="" style="height: 1.8rem; width: 0.666rem; margin-right: -4px;">
+                            <img src="/static/images/summoners/trueDamage.png" alt="" style="height: 1.8rem; width: 0.666rem;">                            
+                            <span class="mb-0">{{ players.totalDamageDealtToChampions }}</span>
+                        </div>
+                        <div>
+                            <img src="/static/images/summoners/ap.png" alt="" style="height: 1.8rem; width: 2rem; border-radius: 0.3125rem;">
+                            <span class="mb-0">{{ players.magicDamageDealtToChampions }}</ㄴp>
+                        </div>
+                        <div>
+                            <img src="/static/images/summoners/ad.png" alt="" style="height: 1.8rem; width: 2rem; border-radius: 0.3125rem;">
+                            <span class="mb-0">{{ players.physicalDamageDealtToChampions }}</span>
+                        </div>
+                        <div>
+                            <img src="/static/images/summoners/trueDamage.png" alt="" style="height: 1.8rem; width: 2rem; border-radius: 0.3125rem;">
+                            <span class="mb-0">{{ players.trueDamageDealtToChampions }}</span>
+                        </div>
+                    </div>
+                    <div class="mr-2" style="width: 6rem;">
+                        <div>
+                            <img src="/static/images/summoners/damaged.png" alt="" style="height: 1.8rem; width: 2rem; border-radius: 0.3125rem;">                
+                            <span class="mb-0">{{ players.totalDamageTaken }}</span>
+                        </div>
+                        <div>
+                            <img src="/static/images/summoners/heal.png" alt="" style="height: 1.8rem; width: 2rem; border-radius: 0.3125rem;">
+                            <span class="mb-0">{{ players.totalHeal }}</span>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                <div>
+                </div>
+            </div>
+        </div>
+    </div>     
     {% endif %}
-    {{ p.visionScore }}
-    {{ p.totalMinionsKilled }}
-    {{ p.stealthWardsPlaced }}
-    {{ p.totalDamageDealtToChampions }}
-</div> -->
+    {% endfor %}
+</div>
+</body>
 
 {% endblock content %}

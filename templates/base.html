@@ -42,37 +42,50 @@
           aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-
-        <div class="collapse navbar-collapse" id="navbarsExample07">
-          <ul class="mynav navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a href="{% url 'champions:index' %}">챔피언</a>
-            </li>
-            <li class="nav-item">
-              <a href="{% url 'champions:goin' %}">고인</a>
-            </li>
-            <li class="nav-item">
-              <a href="{% url 'summoners:index' %}">소환사</a>
-            </li>
-            <li class="nav-item">
-              <a href="{% url 'articles:index' %}">커뮤니티</a>
-            </li>
-          </ul>
-          <div class="searchBox">
-            <form role="search">
-              <i class="position-absolute fa-solid fa-magnifying-glass" style="left: 1rem; bottom: 12px"></i>
-              <input class="form-control" type="search" placeholder="롤 전적.." aria-label="Search"
-                style="padding-left: 2.5rem" />
-            </form>
-          </div>
-          {% if request.user.is_authenticated %}
-          <div class="sm:display2 md:display lg:display">
-            <div class="dropdown">
-              <button class="dropbtn">
-                <span style="font-size: 14px">{{ user.username }}님</span>
-                <i class="px-1 fa-solid fa-chevron-down"></i>
-              </button>
-              <div class="dropdown-content">
+          <div class="collapse navbar-collapse" id="navbarsExample07">
+            <ul class="mynav navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a href="{% url 'champions:index' %}">챔피언</a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'champions:goin' %}">고인</a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'summoners:index' %}">소환사</a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'articles:index' %}">커뮤니티</a>
+              </li>
+            </ul>
+            <div class="searchBox">
+              <form role="search">
+                <i
+                  class="position-absolute fa-solid fa-magnifying-glass"
+                  style="left: 1rem; bottom: 12px"></i>
+                <input
+                  class="form-control"
+                  type="search"
+                  placeholder="롤 전적.."
+                  aria-label="Search"
+                  style="padding-left: 2.5rem" />
+              </form>
+            </div>
+            {% if request.user.is_authenticated %}
+            <div class="sm:display2 md:display lg:display">
+              <div class="dropdown">
+                <button class="dropbtn">
+                  <span style="font-size: 14px">{{ user.username }}님</span>          
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            
+                  <i class="px-1 fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="dropdown-content">
+                  <a href="{% url 'accounts:detail' user.pk %}">내 정보</a>
+                  <a href="{% url 'accounts:logout' %}">로그아웃</a>
+                </div>
+              </div>
+            </div>
+            <div class="sm:display md:display2 lg:display2">
+              <div class="smallinfo">
                 <a href="{% url 'accounts:detail' user.pk %}">내 정보</a>
                 <a href="{% url 'accounts:logout' %}">로그아웃</a>
               </div>
@@ -99,9 +112,17 @@
           </div>
           {% endif %}
         </div>
-    </nav>
+      </nav>
+      <!-- /.fixed navigation -->
+    </header>
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    {% endif %}
     <!-- /.fixed navigation -->
-  </header>
   <main class="container">{% block content %}{% endblock content %}</main>
   <footer class="text-center mt-5 w-100 mb-2" style="bottom: 0">
     <!-- place footer here -->

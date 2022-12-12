@@ -160,7 +160,7 @@ def password(request, user_pk):
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
             form.save()
-            update_session_auth_hash(request, user_pk)  # 로그인 유지
+            update_session_auth_hash(request, form.user)  # 로그인 유지
             return redirect("accounts:mypage", user_pk)
 
     else:
@@ -174,8 +174,10 @@ def password(request, user_pk):
 
 # 회원 탈퇴
 
-def pre_delete(request,user_pk):
+
+def pre_delete(request, user_pk):
     return render(request, "accounts/pre_delete.html")
+
 
 def delete(request):
     if request.user.is_authenticated:
@@ -253,6 +255,18 @@ def update(request, pk):
     #     profile_form = ProfileForm()
     #     change_form = CustomUserChangeForm(instance=user)
 
+@login_required
+def report(request, pk):
+    # 프로필에 해당하는 유저를 로그인한 유저가!
+    user = get_object_or_404(get_user_model(), pk=pk)
+    if request.user == user:
+        messages.warning(request, '스스로 신고 할 수 없습니다.')
+        return redirect('accounts:detail', pk)
+    if request.user in user.reported.all():
+        messages.warning(request, '이미 신고한 게시글입니다.')
+    else:
+        user.reported.add(request.user)
+    return redirect('accounts:detail', pk)
 
 def send_email(request):
     subject = "RIP.gg 비밀번호 재설정"
@@ -325,9 +339,7 @@ def kakao_callback(request):
     # kakao_profile_image = kakao_user_information["properties"]["profile_image"]
     if get_user_model().objects.filter(kakao_id=kakao_id).exists():
         kakao_user = get_user_model().objects.get(kakao_id=kakao_id)
-        # print(kakao_user)
-        # print(kakao_id)
-        # print(kakao_nickname)
+        # Profile.objects.create(user=kakao_user)  # 프로필 생성
 
     else:
         kakao_login_user = get_user_model()()
@@ -337,6 +349,8 @@ def kakao_callback(request):
         kakao_login_user.password = str(state_token)
         kakao_login_user.save()
         kakao_user = get_user_model().objects.get(kakao_id=kakao_id)
+        Profile.objects.create(user=kakao_user)  # 프로필 생성
+
     auth_login(request, kakao_user, backend="django.contrib.auth.backends.ModelBackend")
     return redirect(request.GET.get("next") or "articles:index")
 

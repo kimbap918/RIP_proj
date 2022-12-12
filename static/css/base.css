@@ -28,7 +28,7 @@ body {
 .dropdown-content {
   display: none;
   position: absolute;
-  left: 0px;
+  left: 15px;
   background-color: #fff9f9;
   min-width: 125px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -182,12 +182,12 @@ body {
 
 .login a:hover {
   text-decoration: none;
-  color: #29437a
+  color: #29437a;
   font-size: 14px;
 }
 
 /* home */
-
+/* 기본세팅 */
 .main_box {
   display: flex;
     flex-direction: column;
@@ -207,6 +207,7 @@ body {
     max-width: 250px;
 }
 
+/* 검색창 */
 .search_box {
     background: rgb(255, 255, 255);
     width: 500px;
@@ -240,7 +241,6 @@ body {
     outline: none;
     padding: 13px 12px 13px 14px;
 }
-
 .first_box-inner {
     display: flex;
     flex-direction: column;
@@ -251,11 +251,13 @@ body {
     padding: 0px 66px;
 }
 
+
 .first_box-inner img {
     height: 50px;
     margin-bottom: 33px;
 }
 
+/* 게시판 */
 .article_box-new{
   background-color: var(--gray0);
   border-radius: 4px;
@@ -266,13 +268,18 @@ body {
   margin: 100px;
 }
 
+.articles_list-inner{
+  display: flex;
+  justify-content: center
+}
+
 .article_list_box {
   margin: 0px 20px;
   background-color: white;
   border-radius: 4px;
-  min-height: 405px;
-  width: auto;
-  padding: 40px 50px;
+  min-height: 450px;
+  width: 450px;
+  padding: 20px 20px;
 }
 
 .article_new_list{
@@ -280,12 +287,43 @@ body {
 
 }
 
+.article_new_list a{
+  text-decoration: none;
+
+}
+
+.article_new_list a:hover{
+  color: #5383e8;
+}
+
+
+.article_content-box{
+  display: flex;
+  flex-direction: column
+}
+
 .article_title{
   font-size: 16px;
   font-weight: 700;
 }
 
+.article_coment{
+  color: #5383e8;
+}
+
 .article_info{
+  display: flex;
+  flex-direction: row;
+  font-size: 16px;
+  font-weight: 700;
+  color: black;
+}
+
+
+
+.article_info-sub{
+  display: flex;
+  flex-direction: row;
   font-size: 14px;
   font-weight: 400;
   color: #7b858e;
@@ -294,13 +332,79 @@ body {
 .article1{
   display: flex;
   flex-direction: row;
+  padding: 10px 12px;
+  margin: 0 10px;
 }
 
 .article_new_num{
   padding: 15px 25px 15px 0;
+  font-size: 16px;
+  font-weight: 900;
 }
 
 .article_img_box{
   max-width: 80px;
   padding-right: 15px;
+}
+
+.created_string{
+
+}
+
+
+/* home반응형 */
+@media (max-width: 768px){
+    .articles_list {
+      margin: 0;
+      padding: 0;
+    }
+}
+
+@media (max-width: 768px){
+    .article_list_box {
+      margin: 20px 0;
+      padding: 10px;
+      width: 100%;
+      height: auto;
+    }
+}
+
+@media (max-width: 768px){
+  .main_box{
+    min-width: 100%;
+  }
+  .first_box {
+      margin: 0;
+      padding: 0;
+  }
+
+  .articles_list-inner {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+  }
+  .first_box-inner {
+      display: flex;
+      padding: 0px;
+      margin: 20px 0;
+      width: 100%;
+  }
+
+
+  .first_box-inner img {
+    display: none;
+  }
+  
+  .search_box{
+    margin: 0;
+  }
+
+  .search_box-inner {
+    width: 100%;
+  }
+  
+  .search_box-inner input {
+    width: 100%;
+  }
+
 }

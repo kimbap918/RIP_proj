@@ -645,3 +645,8 @@ password */
 .pw_btn_box a:hover{
     color: white;
 }
+
+.form-text{
+    margin-bottom: 10px;
+}
+

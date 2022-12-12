@@ -6,11 +6,14 @@ app_name = "articles"
 urlpatterns = [
     path("", baseviews.index, name="index"),
     # 카테고리
-    path("category/<int:pk>/", baseviews.category, name="category"),
-    path("create/", articleviews.article_create, name="create"),
-    path("<int:article_pk>/update", articleviews.article_update, name="update"),
-    path("<int:pk>/", articleviews.article_detail, name="detail"),
-    path("<int:pk>/delete", articleviews.article_delete, name="delete"),
+    path('category/<int:pk>/', baseviews.category, name="category"),
+    # 아티클
+    path('create/', articleviews.article_create, name="create"),
+    path('<int:article_pk>/update', articleviews.article_update, name="update"),
+    path('<int:pk>/',articleviews.article_detail, name='detail'),
+    path('<int:pk>/delete',articleviews.article_delete, name='delete'),
+    # 신고
+    path('<int:pk>/report',articleviews.article_report, name='article_report'),
     # 댓글 생성
     path("<int:pk>/comments/", commentviews.comment_create, name="comment_create"),
     # 댓글 삭제

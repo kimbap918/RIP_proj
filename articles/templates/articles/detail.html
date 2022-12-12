@@ -17,6 +17,7 @@
 <div class="container">
     <div class="row my-3 justify-content-center">
         <!-- 왼쪽 어사이드 -->
+
         {% if request.user.is_authenticated %}
         <div class="d-none d-xl-block col-xl-3 border my-3 rounded-2" style="max-height:600px; position:sticky; top:0; background-color:RGB(255, 255, 255);">
             <div class="my-2 container">
@@ -88,7 +89,15 @@
                 </div>
             </div>
                 {% endif %}
-    
+        {% if article.report.count >= 2 %}
+        <div class="col-lg-7 col-md-12" >
+            <div class="border d-flex flex-column my-3 rounded-3" style="background-color:RGB(255, 255, 255);">
+                <h4 class="m-3">
+                    신고내용에 따라 이 글은 블락 처리 되었습니다.
+                </h4>
+            </div>
+        </div>
+        {% else %}
         <!-- 게시판 내용 -->
     <div class="col-lg-7 col-md-12" >
         <div class="border d-flex flex-column my-3 rounded-3" style="background-color:RGB(255, 255, 255);">
@@ -128,15 +137,41 @@
                 {% if article.created_string == False %}
                 <span style="font-size:12px;">{{ article.created_at|date:'m월 d일' }}</span>
                 {% else %}
-                <span style="font-size:12px;">{{ article.created_string }}</span>
+                <span style="font-size:12px;">{{ article.created_string }}</span> | 
                 {% endif %}
+                <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-whatever="@getbootstrap">
+                    <i class="fa-solid fa-light-emergency"></i></button>
                 <span class="me-3" style="float:right;">
                     댓글 {{ article.comment_set.count }} |
                     <span>추천 {{ article.like_user.count }}</span>
                 </span>
-
             </p>
-        
+            <!--신고 모달 -->
+            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel1">작성자신고</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form action="{% url 'articles:article_report' article.pk %}">
+                        <div class="mb-3">
+                            {{ report_form.category|add_class:"form-control" }}
+                        </div>
+                        <div class="mb-3">
+                          {{ report_form.content|add_class:"form-control" }}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                            <button type="submit" class="btn btn-danger">신고</button>
+                        </div>
+                      </form>
+                    </div>
+                 
+                  </div>
+                </div>
+              </div>
         <hr>
         <div class="mx-3">
             <p >{{ article.content|safe|linebreaks }}</p>
@@ -224,6 +259,7 @@
         </div>
     </div> 
 </div>  
+{% endif %}
 {% endblock content %}
 
     {% block script %}
