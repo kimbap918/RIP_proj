@@ -76,17 +76,15 @@ def result(request):
     if request.method == "GET":
         username = request.GET.get("search_text")
         summoner_name = parse.quote(username)
+        print(summoner_name)
         summoner_exist = False
         sum_result = {}
         solo_tier = {}
         team_tier = {}
         store_list = []
-        play_list = []
         games = []
         players = []
-
         api_key = getattr(settings, "API_KEY", "API_KEY")
-
         summoner_url = (
             "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/"
             + summoner_name
@@ -101,9 +99,11 @@ def result(request):
             summoners_result = res.json()  # response 값을 json 형태로 변환시키는 함수
             if summoners_result:
                 sum_result["name"] = summoners_result["name"]
+                print(summoners_result["name"])
+                print(sum_result["name"])
+                print(summoners_result["puuid"])
                 sum_result["level"] = summoners_result["summonerLevel"]
                 sum_result["profileIconId"] = summoners_result["profileIconId"]
-
                 tier_url = (
                     "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/"
                     + summoners_result["id"]
@@ -159,7 +159,8 @@ def result(request):
 
         mat = requests.get(matches_url)
         matches = mat.json()
-        for match in matches[:20]:
+    try:    
+        for match in matches[:10]:
             request_url = (
                 "https://asia.api.riotgames.com/lol/match/v5/matches/"
                 + match
@@ -192,7 +193,6 @@ def result(request):
                     player["kills"] = part["kills"]
                     player["deaths"] = part["deaths"]
                     player["assists"] = part["assists"]
-                    player["kda"] = round(part["challenges"]["kda"], 2)
                     player["goldEarned"] = part["goldEarned"]
                     player["goldEarnedPerMinute"] = round(part["goldEarned"] / min, 1)
                     player["totalDamageDealtToChampions"] = part["totalDamageDealtToChampions"]
@@ -216,11 +216,13 @@ def result(request):
                     player["visionScore"] = part["visionScore"]
                     player["totalMinionsKilled"] = part["totalMinionsKilled"]
                     player["totalMinionsKilledPerMinute"] = round(part["totalMinionsKilled"] / min, 1)
+                    player["totalDamageDealtToChampions"] = part["totalDamageDealtToChampions"]                         
                     player["stealthWardsPlaced"] = part["challenges"]["stealthWardsPlaced"]
-                    player["totalDamageDealtToChampions"] = part["totalDamageDealtToChampions"]
-                    
-                    players.append(player) # 1챔프당 데이터
+                    player["kda"] = round(part["challenges"]["kda"], 2)
 
+                    players.append(player) # 1챔프당 데이터
+    except:
+        print("해당 값 없음") 
         #pp.pprint(players)
         # play_list.append(players) # 1게임당 모든 챔프 데이터
         game_list = zip(games, players)
