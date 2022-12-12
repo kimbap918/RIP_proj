@@ -77,13 +77,16 @@
                 <a href="{% url 'champions:index' %}">챔피언</a>
               </li>
               <li class="nav-item">
-                <a href="{% url 'articles:index' %}">커뮤니티</a>
+                <a href="{% url 'champions:goin' %}">고인</a>
               </li>
               <li class="nav-item">
-                <a href="">통계</a>
+                <a href="{% url 'summoners:index' %}">소환사</a>              
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'articles:index' %}">커뮤니티</a>
               </li>
             </ul>
-            <div class="searchBox">
+            <!-- <div class="searchBox">
               <form role="search">
                 <i
                   class="position-absolute fa-solid fa-magnifying-glass"
@@ -95,7 +98,7 @@
                   aria-label="Search"
                   style="padding-left: 2.5rem" />
               </form>
-            </div>
+            </div> -->
             {% if request.user.is_authenticated %}
             <div class="sm:display2 md:display lg:display">
               <div class="dropdown">
@@ -135,10 +138,26 @@
       <!-- /.fixed navigation -->
     </header>
     {% block content %}{% endblock content %}
-    <footer class="text-center mt-5 w-100" style="bottom: 0">
-      <!-- place footer here -->
-      <span class="me-5">footer</span>
-      <img width="50px" src="{% static 'images/logo.png' %}" alt="footerlogo" />
+    <footer class="text-center mt-5 w-100 mb-2" style="bottom: 0">
+        <!-- place footer here -->
+        <span class="me-1" style="font-family: basic-ko; color: gray;">Final Project
+            <span class="fw-bold">RIP.GG</span>
+        </span>
+        <a class="me-1" href="https://github.com/na-hyeong9" style="text-decoration: none; color: gray;">
+            <img src="/static/images/nh.png" alt="" height="30px">
+        </a>
+        <a class="me-1" href="https://github.com/jelly12paw" style="text-decoration: none; color: gray;">
+            <img src="/static/images/hj.png" alt="" height="30px">
+        </a>
+        <a class="me-1" href="https://github.com/kimbap918" style="text-decoration: none; color: gray;">
+            <img src="/static/images/tl.png" alt="" height="30px">
+        </a>
+        <a class="me-1" href="https://github.com/wnsghd14" style="text-decoration: none; color: gray;">
+            <img src="/static/images/jh.png" alt="" height="30px">
+        </a>
+        <a href="https://github.com/hady1024" style="text-decoration: none; color: gray;">
+            <img src="/static/images/du.png" alt="" height="30px">
+        </a>
     </footer>
 
     <!-- JavaScript Bundle with Popper -->
