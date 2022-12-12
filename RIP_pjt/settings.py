@@ -49,7 +49,7 @@ API_KEY = os.getenv("API_KEY")
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
-    "ripdjangobean-env-2.eba-2rxnzfx7.ap-northeast-2.elasticbeanstalk.com",
+    "ripggbean-env.eba-tprx3bfx.ap-northeast-2.elasticbeanstalk.com",
 ]
 
 # Application definition
@@ -139,12 +139,34 @@ DEBUG = os.getenv("DEBUG") == "True"
 
 	
 if DEBUG:
-    MEDIA_URL = "/media/"
-    MEDIA_ROOT = BASE_DIR / "media"
+    # MEDIA_URL = "/media/"
+    # MEDIA_ROOT = BASE_DIR / "media"
+    # DATABASES = {
+    #     "default": {
+    #         "ENGINE": "django.db.backends.sqlite3",
+    #         "NAME": BASE_DIR / "db.sqlite3",
+    #     }
+    # }
+    DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+
+    AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+    AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
+
+    AWS_REGION = "ap-northeast-2"
+    AWS_S3_CUSTOM_DOMAIN = "%s.s3.%s.amazonaws.com" % (
+        AWS_STORAGE_BUCKET_NAME,
+        AWS_REGION,
+    )
+
     DATABASES = {
         "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.getenv("DATABASE_NAME"),  # .env 파일에 value 작성
+            "USER": "postgres",
+            "PASSWORD": os.getenv("DATABASE_PASSWORD"),  # .env 파일에 value 작성
+            "HOST": os.getenv("DATABASE_HOST"),  # .env 파일에 value 작성
+            "PORT": "5432",
         }
     }
 
@@ -202,7 +224,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "ko-kr"
 
-TIME_ZONE = "Asia/seoul"
+TIME_ZONE = "Asia/Seoul"
 
 USE_I18N = True
 
