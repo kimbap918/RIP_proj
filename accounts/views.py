@@ -341,7 +341,7 @@ def kakao_callback(request):
     if get_user_model().objects.filter(kakao_id=kakao_id).exists():
         kakao_user = get_user_model().objects.get(kakao_id=kakao_id)
         # Profile.objects.create(user=kakao_user)  # 프로필 생성
-        Grade.objects.create(user=kakao_user)
+        # Grade.objects.create(user=kakao_user)
 
 
     else:
