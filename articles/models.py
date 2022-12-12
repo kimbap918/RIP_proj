@@ -32,7 +32,7 @@ class Article(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
-    report = models.ManyToManyField(settings.AUTH_USER_MODEL,related_name="reported")
+    report = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="reported")
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     photo = ProcessedImageField(
         upload_to="images/",
@@ -75,26 +75,38 @@ class Article(models.Model):
     def get_absolute_url(self):
         return reverse("articles:index")
 
-    # class Meta:
-    #     db_table = "공지사항"
-    #     verbose_name = "공지사항"
-    #     verbose_name_plural = "공지사항"
-
 
 class CategorySelect1(models.IntegerChoices):
-    one = 1,'스팸홍보/도배글입니다.',
-    two = 2, '음란물 입니다.',
-    three = 3, '청소년에게 유해한 내용입니다.',
-    four = 4, '불법정보를 포함하고 있습니다.',
-    five = 5, '개인정보 노출 게시물입니다.',
-    six = 6, '불쾌한 표현이 있습니다.'
+    one = (
+        1,
+        "스팸홍보/도배글입니다.",
+    )
+    two = (
+        2,
+        "음란물 입니다.",
+    )
+    three = (
+        3,
+        "청소년에게 유해한 내용입니다.",
+    )
+    four = (
+        4,
+        "불법정보를 포함하고 있습니다.",
+    )
+    five = (
+        5,
+        "개인정보 노출 게시물입니다.",
+    )
+    six = 6, "불쾌한 표현이 있습니다."
+
 
 class Reported(models.Model):
-    report = models.ForeignKey(Article,on_delete=models.CASCADE)
+    report = models.ForeignKey(Article, on_delete=models.CASCADE)
     category = models.IntegerField(
         default=CategorySelect1.one, choices=CategorySelect1.choices
     )
     content = models.TextField()
+
 
 class Comment(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
@@ -120,6 +132,7 @@ class Comment(models.Model):
     #         return str(time.days) + '일 전'
     #     else:
     #         return False
+
 
 class Grade(models.Model):
     user = models.CharField(max_length=20)
