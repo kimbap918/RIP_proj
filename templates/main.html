@@ -28,10 +28,11 @@
 </head>
 
 <style>
-body {
-  margin: 0;
-  padding: 0;
-}
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
   .letter {
     position: absolute;
   }
@@ -49,9 +50,9 @@ body {
     position: relative;
   }
 
-/* 비디오 전체 화면 처리 */
+  /* 비디오 전체 화면 처리 */
 
-video#bgvid {
+  video#bgvid {
     position: fixed;
     right: 0;
     bottom: 50;
@@ -61,9 +62,9 @@ video#bgvid {
     height: auto;
     z-index: -100;
     background-size: cover;
-}
+  }
 
-/* 메인 텍스트 */
+  /* 메인 텍스트 */
   .jb-text {
     position: absolute;
     top: 30%;
@@ -78,105 +79,122 @@ video#bgvid {
     color: #ffffff;
   }
 
-@media (max-width: 991px) {
-  .md\:title {
-    display: none;
+  @media (max-width: 991px) {
+    .md\:title {
+      display: none;
+    }
   }
-}
 
-.main_title {
+  .main_title {
     animation: fadein 2s;
-    -moz-animation: fadein 2s; /* Firefox */
-    -webkit-animation: fadein 2s; /* Safari and Chrome */
-    -o-animation: fadein 2s; /* Opera */
-}
-@keyframes fadein {
+    -moz-animation: fadein 2s;
+    /* Firefox */
+    -webkit-animation: fadein 2s;
+    /* Safari and Chrome */
+    -o-animation: fadein 2s;
+    /* Opera */
+  }
+
+  @keyframes fadein {
     from {
-        opacity:0;
+      opacity: 0;
     }
+
     to {
-        opacity:1;
+      opacity: 1;
     }
-}
-@-moz-keyframes fadein { /* Firefox */
+  }
+
+  @-moz-keyframes fadein {
+
+    /* Firefox */
     from {
-        opacity:0;
+      opacity: 0;
     }
+
     to {
-        opacity:1;
+      opacity: 1;
     }
-}
-@-webkit-keyframes fadein { /* Safari and Chrome */
+  }
+
+  @-webkit-keyframes fadein {
+
+    /* Safari and Chrome */
     from {
-        opacity:0;
+      opacity: 0;
     }
+
     to {
-        opacity:1;
+      opacity: 1;
     }
-}
-@-o-keyframes fadein { /* Opera */
+  }
+
+  @-o-keyframes fadein {
+
+    /* Opera */
     from {
-        opacity:0;
+      opacity: 0;
     }
+
     to {
-        opacity: 1;
+      opacity: 1;
     }
-}
-
-
-/* 메인 로그인 */
-@media (min-width: 1280px) {
-  .lg\:login1 {
-    display: block;
   }
-}
 
-@media (max-width: 991px) {
-  .md\:login1 {
-    display: none;
+
+  /* 메인 로그인 */
+  @media (min-width: 1280px) {
+    .lg\:login1 {
+      display: block;
+    }
   }
-}
 
-
-/* 991이하 일 때 폼 따로 만들기 (center) */
-
-@media (min-width: 1280px) {
-  .lg\:login2 {
-    display:none;
+  @media (max-width: 991px) {
+    .md\:login1 {
+      display: none;
+    }
   }
-}
 
-@media (min-width: 991px) {
-  .md\:login2 {
-    display:none;
+
+  /* 991이하 일 때 폼 따로 만들기 (center) */
+
+  @media (min-width: 1280px) {
+    .lg\:login2 {
+      display: none;
+    }
   }
-}
 
-@media (max-width: 320px) {
-  .sm\:login2 {
-    display:block;
+  @media (min-width: 991px) {
+    .md\:login2 {
+      display: none;
+    }
   }
-}
 
-.jb_loginBox {
-  position: absolute;
-  top: 35%;
-  left: 22%;
-  margin-top: 30px;
-  padding: 100px;
-  border: 3px solid #fff;
-  border-radius: 50px;
-}
+  @media (max-width: 320px) {
+    .sm\:login2 {
+      display: block;
+    }
+  }
 
-.jb_loginBox2 {
-  position: relative;
-  top: 50%;
-  border-radius: 50px;
-  padding: 35vh 30px;
+  .jb_loginBox {
+    position: absolute;
+    top: 35%;
+    left: 22%;
+    margin-top: 30px;
+    padding: 100px;
+    border: 3px solid #fff;
+    border-radius: 50px;
+  }
 
-}
+  .jb_loginBox2 {
+    position: relative;
+    top: 50%;
+    border-radius: 50px;
+    padding: 35vh 30px;
 
-.login__email-title {
+  }
+
+  .login__email-title {
     /* margin-top: 42px; */
     margin-bottom: 42px;
     font-weight: 400;
@@ -184,44 +202,98 @@ video#bgvid {
     line-height: 19px;
     color: #fff;
 
-}
+  }
 
-.signup_link {
-  color: rgb(160, 160, 160);
-  font-size: 14px;
-}
+  .signup_link {
+    color: rgb(160, 160, 160);
+    font-size: 14px;
+  }
 
-.signup_link:hover {
-  color: #fff;
-}
+  .signup_link:hover {
+    color: #fff;
+  }
 
-.video-main {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
+  .video-main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 
 
-/* 로그인 폼 스타일 */
-p { position:relative; width:100%; height:50px;  color:#ffffff;} /* 기본세팅 */
-p input { 
-  box-sizing:border-box; padding-bottom: 20px; width:100%; height:100%; border:0 none; color:#fff;  background-color: transparent; outline:none; margin-top: 20px;}
-p label { position:absolute; left:0%; bottom:0; width:100%; height:100%; border-bottom:1px solid white; text-align:left; pointer-events:none; margin-top: 20px;}
-p label:after { content:""; position:absolute; left:0; bottom:-1px; width:0; height:100%; border-bottom:3px solid #1ea1f7; transition:all .3s ease; } /* 파란색 가로줄 */
-p label span { position:absolute; left:0; bottom:5px; transition:all .3s ease; }
-p input:focus + label span, 
-p input:valid + label span { transform:translateY(-150%); font-size:14px; color:#1ea1f7; }  /* input에 글을 입력하고 포커스가 지나간 상태에서 제어하려면 valid 선택자를 써야한다. */
-/* 포커스 될 때 label span(name)이 위로 올라감 */
-p input:focus + label::after,
-p input:valid + label::after { width:100%; transform:translateX(0); } 
-/* 포커스 될 때 파란색 가로줄이 생김 */
+  /* 로그인 폼 스타일 */
+  p {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    color: #ffffff;
+  }
 
-body{
-  font-family: ""
-}
+  /* 기본세팅 */
+  p input {
+    box-sizing: border-box;
+    padding-bottom: 20px;
+    width: 100%;
+    height: 100%;
+    border: 0 none;
+    color: #fff;
+    background-color: transparent;
+    outline: none;
+    margin-top: 20px;
+  }
 
+  p label {
+    position: absolute;
+    left: 0%;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    border-bottom: 1px solid white;
+    text-align: left;
+    pointer-events: none;
+    margin-top: 20px;
+  }
+
+  p label:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 0;
+    height: 100%;
+    border-bottom: 3px solid #1ea1f7;
+    transition: all .3s ease;
+  }
+
+  /* 파란색 가로줄 */
+  p label span {
+    position: absolute;
+    left: 0;
+    bottom: 5px;
+    transition: all .3s ease;
+  }
+
+  p input:focus+label span,
+  p input:valid+label span {
+    transform: translateY(-150%);
+    font-size: 14px;
+    color: #1ea1f7;
+  }
+
+  /* input에 글을 입력하고 포커스가 지나간 상태에서 제어하려면 valid 선택자를 써야한다. */
+  /* 포커스 될 때 label span(name)이 위로 올라감 */
+  p input:focus+label::after,
+  p input:valid+label::after {
+    width: 100%;
+    transform: translateX(0);
+  }
+
+  /* 포커스 될 때 파란색 가로줄이 생김 */
+
+  body {
+    font-family: ""
+  }
 </style>
 
 
@@ -241,7 +313,8 @@ body{
     </video>
     <div class="md:title jb-text main_title">
       <p><span class="" style="font-weight: 900;">Welcome to</span>
-        <a href="{% url 'home' %}"><img src="/static/images/흰로고.png" alt="" style="width: 200px; padding-bottom: 15px;"></a>
+        <a href="{% url 'home' %}"><img src="/static/images/흰로고.png" alt=""
+            style="width: 200px; padding-bottom: 15px;"></a>
       </p>
     </div>
     <div class="lg:login1 md:login1 jb_loginBox">
@@ -259,9 +332,11 @@ body{
             <input type="password" id="user_password" autocomplete="off" name="password" required>
             <label for="user_password"><span>비밀번호</span></label>
           </p>
-          <input type="submit" class="btn py-2 form-control text-center" style="font-size:15px; font-weight: 900; height: 40px; background-color: #fff; color: black"
-                value="LOGIN" />
-          <p class="d-flex justify-content-center" style="padding-top: 20px; margin-bottom: 0;"><a class="signup_link text-decoration-none" href="{% url 'accounts:member' %}">계정생성</a>
+          <input type="submit" class="btn py-2 form-control text-center"
+            style="font-size:15px; font-weight: 900; height: 40px; background-color: #fff; color: black"
+            value="LOGIN" />
+          <p class="d-flex justify-content-center" style="padding-top: 20px; margin-bottom: 0;"><a
+              class="signup_link text-decoration-none" href="{% url 'accounts:member' %}">계정생성</a>
           </p>
           <p class="d-flex justify-content-center"><a class="signup_link text-decoration-none"
               href="{% url 'home' %}">비회원으로 이용하기</a>
@@ -271,7 +346,7 @@ body{
       </form>
     </div>
 
-    <div class="lg:login2 md:login2 sm:login2 ">   
+    <div class="lg:login2 md:login2 sm:login2 ">
       <div class="jb_loginBox2">
         <form action="" method='POST'>
           {% csrf_token %}
@@ -288,11 +363,13 @@ body{
               <label for="user_password"><span>비밀번호</span></label>
             </p>
             <input type="submit" class="btn py-2 form-control text-center"
-              style="font-size:15px; font-weight: 900; height: 40px; background-color: #fff; color: black" value="LOGIN" />
+              style="font-size:15px; font-weight: 900; height: 40px; background-color: #fff; color: black"
+              value="LOGIN" />
             <p class="d-flex justify-content-center" style="padding-top: 20px; margin-bottom: 0;"><a
                 class="signup_link text-decoration-none" href="{% url 'accounts:member' %}">계정생성</a>
             </p>
-            <p class="d-flex justify-content-center"><a class="signup_link text-decoration-none" href="{% url 'home' %}">비회원으로
+            <p class="d-flex justify-content-center"><a class="signup_link text-decoration-none"
+                href="{% url 'home' %}">비회원으로
                 이용하기</a>
             </p>
           </div>
