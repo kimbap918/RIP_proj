@@ -27,45 +27,6 @@ def test(request):
     return render(request, "summoners/test.html")
 
 
-# 1. https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/ 에서 puuid 값을 가져온다.
-# 2. 가져온 puuid값을 https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids?start={start}&count={count} 에 넘겨준다.
-#    여기서 puuid : 소환사 고유 puuid, start : 가장 최근 경기부터 알고 싶으면 0, (예 : 가장 최근에 했던 3번째 경기부터 알고 싶다면 3), count : 결과를 몇개 까지 받을지 (max : 100)
-# 3. 2에서 받은 결과 값은 KR_6244514829의 형태로(matchId) 저장되는데, https://asia.api.riotgames.com/lol/match/v5/matches/{matchId} 를 통해 게임 상세정보를 알수있다.
-
-# puuid : 소환사 고유 puuid
-# start : 가장 최근 경기부터 알고 싶으면 0, (예 : 가장 최근에 했던 3번째 경기부터 알고 싶다면 3)
-# count : 결과를 몇개 까지 받을지 (max : 100)
-def match_v5_get_list_match_id(puuid, start, count):
-    url = f"https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids?start={start}&count={count}"
-    return requests.get(url, headers=request_header).json()
-
-
-# queueId : 솔랭 - 420, 노말 - 430, 팀랭 - 440
-# gameDuration : 게임 길이
-# championId : 챔프명
-# summoner1Id : D키에 해당하는 서머너스펠
-# summoner2Id : F키에 해당하는 서머너스펠
-# summonerName : 소환사 닉네임
-# puuid : 소환사 고유 이름
-# kills : K
-# deaths : D
-# assists : A
-# kda : KDA((kill + assist) / death,)
-# totalMinionsKilled : cs
-# item0 ~ 6 : 장비한 아이템 코드(총 7개)
-# totalDamageDealtToChampions : 챔피언에게 가한 피해
-# win : 승패여부
-# visionScore : 시야점수
-# stealthWardsPlaced : 제어와드 설치 개수
-def match_v5_get_match_history(matchId):
-    url = f"https://asia.api.riotgames.com/lol/match/v5/matches/{matchId}"
-
-    return requests.get(url, headers=request_header).json()
-
-
-# pp.pprint(match_v5_get_match_history('KR_6244514829'))
-
-
 def index(request):
     API_KEY = getattr(settings, "API_KEY", "API_KEY")
 
@@ -76,7 +37,6 @@ def result(request):
     if request.method == "GET":
         username = request.GET.get("search_text")
         summoner_name = parse.quote(username)
-        print(summoner_name)
         summoner_exist = False
         sum_result = {}
         solo_tier = {}
@@ -99,9 +59,8 @@ def result(request):
             summoners_result = res.json()  # response 값을 json 형태로 변환시키는 함수
             if summoners_result:
                 sum_result["name"] = summoners_result["name"]
-                print(summoners_result["name"])
-                print(sum_result["name"])
                 print(summoners_result["puuid"])
+                print(summoners_result["id"])
                 sum_result["level"] = summoners_result["summonerLevel"]
                 sum_result["profileIconId"] = summoners_result["profileIconId"]
                 tier_url = (
@@ -111,6 +70,7 @@ def result(request):
                 # print(tier_url)
                 tier_info = requests.get(tier_url, params=params)
                 tier_info = tier_info.json()
+                print(tier_info)
                 # print(tier_info)
                 if len(tier_info) == 1:  # 자유랭크 또는 솔로랭크 둘중 하나만 있는경우
                     tier_info = tier_info.pop()
@@ -149,6 +109,7 @@ def result(request):
         data = res.json()
 
         puu_id = data["puuid"]
+        print(puu_id)
         matches_url = (
             "https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/"
             + puu_id
@@ -159,7 +120,7 @@ def result(request):
 
         mat = requests.get(matches_url)
         matches = mat.json()
-    try:    
+        
         for match in matches[:10]:
             request_url = (
                 "https://asia.api.riotgames.com/lol/match/v5/matches/"
@@ -181,7 +142,7 @@ def result(request):
             # print(games)
 
             for part in data["info"]["participants"]:
-                if  username == part["summonerName"]:
+                if  sum_result["name"] == part["summonerName"]:
                     player = dict()
                     player["participantId"] = part["participantId"]
                     player["championId"] = part["championId"]
@@ -216,13 +177,13 @@ def result(request):
                     player["visionScore"] = part["visionScore"]
                     player["totalMinionsKilled"] = part["totalMinionsKilled"]
                     player["totalMinionsKilledPerMinute"] = round(part["totalMinionsKilled"] / min, 1)
-                    player["totalDamageDealtToChampions"] = part["totalDamageDealtToChampions"]                         
-                    player["stealthWardsPlaced"] = part["challenges"]["stealthWardsPlaced"]
-                    player["kda"] = round(part["challenges"]["kda"], 2)
-
+                    player["totalDamageDealtToChampions"] = part["totalDamageDealtToChampions"]
+                    try:                            
+                        player["stealthWardsPlaced"] = part["challenges"]["stealthWardsPlaced"]
+                        player["kda"] = round(part["challenges"]["kda"], 2)
+                    except KeyError:
+                        print("해당 값 없음")
                     players.append(player) # 1챔프당 데이터
-    except:
-        print("해당 값 없음") 
         #pp.pprint(players)
         # play_list.append(players) # 1게임당 모든 챔프 데이터
         game_list = zip(games, players)
@@ -241,46 +202,3 @@ def result(request):
                     "game_list": game_list,
                 },
             )
-
-
-# 1. https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/ 에서 puuid 값을 가져온다.
-
-# 2. 가져온 puuid값을https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids?start={start}&count={count} 에 넘겨준다.
-
-#    여기서 puuid : 소환사 고유 puuid, start : 가장 최근 경기부터 알고 싶으면 0, (예 : 가장 최근에 했던 3번째 경기부터 알고 싶다면 3), count : 결과를 몇개 까지 받을지 (max : 100)
-
-# 3. 2에서 받은 결과 값은 KR_6244514829의 형태로(matchId) 저장되는데, https://asia.api.riotgames.com/lol/match/v5/matches/{matchId} 를 통해 게임 상세정보를 알수있다.
-
-
-# puuid : 소환사 고유 puuid
-# start : 가장 최근 경기부터 알고 싶으면 0, (예 : 가장 최근에 했던 3번째 경기부터 알고 싶다면 3)
-# count : 결과를 몇개 까지 받을지 (max : 100)
-# def match_v5_get_list_match_id(puuid, start, count):
-#     url = f"https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids?start={start}&count={count}"
-#     return requests.get(url, headers=request_header).json()
-
-
-# queueId : 솔랭 - 420, 노말 - 430, 팀랭 - 440
-# gameDuration : 게임 길이
-# championId : 챔프명
-# summoner1Id : D키에 해당하는 서머너스펠
-# summoner2Id : F키에 해당하는 서머너스펠
-# summonerName : 소환사 닉네임
-# puuid : 소환사 고유 이름
-# kills : K
-# deaths : D
-# assists : A
-# kda : KDA((kill + assist) / death,)
-# totalMinionsKilled : cs
-# item0 ~ 6 : 장비한 아이템 코드(총 7개)
-# totalDamageDealtToChampions : 챔피언에게 가한 피해
-# win : 승패여부
-# visionScore : 시야점수
-# stealthWardsPlaced : 제어와드 설치 개수
-# def match_v5_get_match_history(matchId):
-#     url = f"https://asia.api.riotgames.com/lol/match/v5/matches/{matchId}"
-
-#     return requests.get(url, headers=request_header).json()
-
-
-# pp.pprint(match_v5_get_match_history('KR_6244514829'))
