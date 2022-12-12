@@ -10,20 +10,12 @@ from django.http import HttpResponseForbidden
 from django.db.models import Q, Avg, Count
 
 # Create your views here.
-
-# index
 def index(request):
     page = request.GET.get("page", "1")
     article = Article.objects.order_by("-created_at")
     kw = request.GET.get("kw", "")
     search_kind = request.GET.get("searchKind", "전체")
     sort = request.GET.get("sort", "")
-
-    list1 = []
-    for articles in article:
-        if articles.top_fixed == True:
-            list1.append(articles)
-
     # 추천순
     if sort == "1":
         article = (
@@ -67,46 +59,16 @@ def index(request):
     paginator = Paginator(article, 10)
     page_obj = paginator.get_page(page)
     categories = ["자유", "유머", "팬아트", "유저찾기", "유저뉴스", "팁과노하우", "기획", "사건사고"]
-
-    # 회원등급 표시
-    users = get_user_model().objects.get(pk=request.user.pk)
-    articles = users.article_set.all()
-    comments = users.comment_set.all()
-    c_count = comments.count()
-    a_count = articles.count()
-
-    if c_count > 20 and a_count > 10:
-        a = "썩은물"
-    elif c_count > 10 and a_count > 4:
-        a = "고인물"
-    elif c_count > 2 and a_count > 2:
-        a = "탁한물"
-    elif c_count > 0 and a_count > 0:
-        a = "맑은물"
-    elif c_count >= 0 and a_count == 0:
-        a = "신선한물"
-    g = Grade()
-    if Grade.objects.get(user=users):
-        Grade.objects.get(user=users).delete()
-
-    Grade.objects.create(user=users, grades=a)
-    g.save()
-
-    if Grade.objects.get(user=users):
-        grade = Grade.objects.get(user=users)
-
+    
     context = {
         "sort": sort,
         "article": page_obj,
         "page": page,
         "categories": categories,
         "kw": kw,
-        "top_fixed": list1,
-        "grade": grade,
     }
 
     return render(request, "articles/index.html", context)
-
 
 def category(request, pk):
     sort = request.GET.get("sort", "")
