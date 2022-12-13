@@ -16,6 +16,10 @@ def index(request):
     kw = request.GET.get("kw", "")
     search_kind = request.GET.get("searchKind", "전체")
     sort = request.GET.get("sort", "")
+    list1 = []
+    for articles in article:
+        if articles.top_fixed == True:
+            list1.append(articles)
     # 추천순
     if sort == "1":
         article = (
@@ -66,6 +70,7 @@ def index(request):
         "page": page,
         "categories": categories,
         "kw": kw,
+        "top_fixed": list1,
     }
 
     return render(request, "articles/index.html", context)
