@@ -44,13 +44,33 @@
 
 /* 개인정보란 */
 /* 타이틀 */
-.member-settings-layout__title {
+.member-settings-layout__title{
+  display: flex;
+  align-items: center;
+}
+
+.member-settings-layout__title_sub {
+  padding: 20px;
+}
+.member-settings-layout_name {
     font-weight: 400;
     font-size: 24px;
     line-height: 32px;
-    padding: 40px 40px 0;
+    padding: 40px 10px 0 40px;
     line-height: 1;
     color: #1e2022;
+}
+
+.member-settings-layout_tier{
+  font-size: 12px;
+  padding: 40px 0 0 0;
+  color: #98a0a7;
+  margin: 8px 0;
+  font-weight: 700;
+}
+.member-settings-layout_tier img{
+  width: 25px;
+  height:25px;
 }
 
 /* 수신동의 */
