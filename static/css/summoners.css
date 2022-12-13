@@ -161,15 +161,19 @@
     font-size: 14px;
 }
 
-@media (max-width: 768px){
 
 
 @media (max-width: 768px){
-        .rank_box {
+    .rank_box {
         margin: 0;
         padding: 0;
         display: flex;
-        flex-direction: column
+        flex-direction: column;
+        width: 100%;        
+    }
+
+    .rank_box_content{
+
     }
 
     .rank_content_box {
