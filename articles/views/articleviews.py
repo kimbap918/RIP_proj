@@ -6,6 +6,7 @@ from ..models import *
 from accounts.models import *
 from django.http import JsonResponse, HttpResponseForbidden
 from django.views.generic import ListView
+from django.contrib.auth import get_user_model
 
 # Create your views here.
 # 게시물 생성
@@ -58,6 +59,25 @@ def article_detail(request, pk):
     comments_form = CommentForm()
     comments = Comment.objects.filter(article_id=pk).order_by("-created_at")
     # template에 객체 전달
+
+    grade = ''
+    if request.user.is_authenticated:
+        user = get_user_model().objects.get(pk=request.user.pk)
+        article_set = user.article_set.all()
+        comment_set = user.comment_set.all()
+        a_count = article_set.count()
+        c_count = comment_set.count()
+
+        if c_count > 20 and a_count > 10:
+            grade = '썩은물'
+        elif c_count > 10 and a_count > 4:
+            grade = '고인물'
+        elif c_count > 2 and a_count > 2:
+            grade = '탁한물'
+        elif c_count > 0 and a_count > 0:
+            grade = '맑은물'
+        elif c_count >= 0 and a_count == 0:
+            grade = '신선한물'
     context = {
         "article": article,
         # 역참조 (articles에 포함된 comments data를 전부 불러온다.)
@@ -67,6 +87,7 @@ def article_detail(request, pk):
         "categories":['자유','유머','팬아트','유저찾기','유저뉴스','팁과노하우','기획','사건사고'],
         # "user_articles":user_articles,
         # "user":user,
+        "grade" : grade,
     }
     return render(request, "articles/detail.html", context)
 

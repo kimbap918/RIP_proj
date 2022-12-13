@@ -4,278 +4,234 @@
 {% load article_filter %}
 {% load widget_tweaks %}
 {% block content %}
-<script src="https://kit.fontawesome.com/9dfbf66130.js" crossorigin="anonymous"></script>
+<script
+src="https://kit.fontawesome.com/9dfbf66130.js"
+crossorigin="anonymous"></script>
 <style>
-    a {
-        text-decoration: none;
-        color: black;
+    a{
+        text-decoration:none;
+        color:black;
     }
-
-    .hvr {
-        background: #cdcdcd;
-
+    .hvr{
+        background:#cdcdcd;
+        
     }
-
-    .hvr:hover {
-        background: RGB(243, 245, 247);
+    .hvr:hover{
+        background:RGB(243, 245, 247);
     }
 </style>
-
 <body>
+    
 
-
-    <!-- 게시판 -->
-    <div class="container">
-        <div class="row my-3 justify-content-center">
-            <!-- 왼쪽 어사이드 -->
-            {% if request.user.is_authenticated %}
-            <div class="d-none d-xl-block col-xl-3 border my-3 rounded-2"
-                style="max-height:600px; position:sticky; top:0; background-color:RGB(255, 255, 255);">
-                <div class="my-2 container">
-                    <p>
-                        <img style="width: 20%; height:20%;" src="/static/images/grade/{{ grade.grades }}.png" alt=""> <span><a
-                                href="{% url 'accounts:detail' user.pk %}">{{ user.username }} {{ grade.grades }}</a></span>
-                        <span>
-                            <div class="progress" style="height: 3px;">
-                                <div class="progress-bar" role="progressbar" aria-label="Basic example"
-                                    style="width:30%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </span>
-                    </p>
-                    <hr>
-                    <div class="d-flex justify-content-between my-2">
-                        <div>
-                            <a href="?sort=3" class="btn"
-                                style="font-size:14px; border-color:RGB(70, 207, 167); color:RGB(70, 207, 167);">내가 쓴
-                                글</a>
+<!-- 게시판 -->
+<div class="container">
+    <div class="row my-3 justify-content-center">
+        <!-- 왼쪽 어사이드 -->
+        {% if request.user.is_authenticated %}
+        <div class="d-none d-xl-block col-xl-3 border my-3 rounded-2" style="max-height:600px; position:sticky; top:0; background-color:RGB(255, 255, 255);">
+            <div class="my-2 container">
+                <p>
+                    <img style="width: 20%; height:20%;" src="/static/images/grade/{{ grade }}.png" alt=""><span><a
+                        href="{% url 'accounts:detail' user.pk %}">{{ user.username }} {{ grade }}</a></span>
+                    <span>
+                        <div class="progress" style="height: 3px;">
+                            <div class="progress-bar" role="progressbar" aria-label="Basic example"
+                                style="width:30%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
-                        <div>
-                            <a href="?sort=4" class="btn"
-                                style="font-size:14px; border-color:RGB(70, 207, 167); color:RGB(70, 207, 167);">내
-                                와드</a>
-                        </div>
-                        <div>
-                            <a href="?sort=5" class="btn"
-                                style="font-size:14px; border-color:RGB(70, 207, 167); color:RGB(70, 207, 167);">좋아요</a>
-                        </div>
+                    </span>
+                </p>
+                <hr>
+                <div class="d-flex justify-content-between my-2">
+                    <div>
+                    <a href="?sort=3" class="btn" style="font-size:14px; border-color:RGB(70, 207, 167); color:RGB(70, 207, 167);">내가 쓴 글</a>
                     </div>
-                    <a href="{% url 'articles:create' %}" class="btn w-100"
-                        style="color:RGB(248, 249, 250); background-color:RGB(70, 207, 167);"><span><i
-                                class="bi bi-pencil-square"></i></span> 글쓰기</a>
-                    <hr style="margin:10px;">
-
-                    <ul class="nav nav-tabs d-flex flex-column" id="myTab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <a href=" {% url 'articles:index' %}" class="small"><button
-                                    class="w-100 nav-link text-start active"
-                                    style="background-color:RGB(248, 249, 250); color:RGB(64, 188, 151);" type="button"
-                                    role="tab" aria-controls="home-tab-pane" aria-selected="true">전체</button></a>
-                        </li>
-                        {% for category in categories %}
-                        <li class="nav-item" role="presentation">
-                            <a class="my-1 small active" href="{% url 'articles:category' forloop.counter0 %} ">
-                                {% if category == category_name %}
-                                <button class="text-start nav-link text-black active w-100" type="button" role="tab"
-                                    aria-selected="true">
-                                    {% else %}
-                                    <button class="text-start nav-link text-black w-100" type="button" role="tab"
-                                        aria-selected="true">
-                                        {% endif %}
-                                        {{ category }}
-                                    </button></a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-
-                </div>
-            </div>
-            {% else %}
-            <div class="d-none d-lg-block col-lg-3 border my-3 rounded-3"
-                style="max-height:500px; position:sticky; top:0; background-color:RGB(255, 255, 255);">
-                <div class="my-2 container">
-                    <a href="{% url 'accounts:login' %}"
-                        style="color:RGB(183, 236, 221); background-color:RGB(70, 207, 167);"
-                        class="btn w-100 mt-2">로그인</a>
-                    <hr style="margin:10px;">
-
-                    <ul class="nav nav-tabs d-flex flex-column" id="myTab" role="tablist">
-                        <li class="nav-item" style="" role="presentation">
-                            <a href=" {% url 'articles:index' %}" style="" class="small"><button
-                                    class="active w-100 nav-link text-start"
-                                    style="background-color:RGB(248, 249, 250); color:RGB(64, 188, 151);" type="button"
-                                    role="tab" aria-controls="home-tab-pane" aria-selected="true">전체</button></a>
-                        </li>
-                        {% for category in categories %}
-                        <li class="nav-item" role="presentation">
-                            <a class="my-1 small active" href="{% url 'articles:category' forloop.counter0 %} ">
-                                {% if category == category_name %}
-                                <button class="text-start nav-link text-black active w-100"
-                                    style="background-color:RGB(70, 207, 167);" type="button" role="tab"
-                                    aria-selected="true">
-                                    {% else %}
-                                    <button class="text-start nav-link text-black w-100" type="button" role="tab"
-                                        aria-selected="true">
-                                        {% endif %}
-                                        {{ category }}
-                                    </button></a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-
-                </div>
-            </div>
-
-            {% endif %}
-
-            <!-- 게시판 내용 -->
-            <div class="col-lg-7 col-md-12">
-                <div class="border d-flex flex-column my-3 rounded-3" style="background-color:RGB(255, 255, 255);">
-                    <h6 class="mx-3 mt-3"><a href="{% url 'articles:index' %}">전체</a>
-                        <span class="d-flex" style="float:right;">
-                            <a class="me-3 d-md-none d-sm-block">
-                                <i class="bi bi-search"></i>
-                            </a>
-                        </span>
-                    </h6>
-                    <div class="d-flex justify-content-between my-3">
-                        <div class="d-flex justify-content-between col-7">
-                            <a href="?sort=1" style="min-width:65px;" class="col-2 mx-3 d-flex align-items-center"><i
-                                    class="bi bi-fire"></i>인기순</a>
-                            <a href="{% url 'articles:index' %}" style="min-width:65px;"
-                                class="col-2 mx-3 d-flex align-items-center"><i class="bi bi-hand-thumbs-up"></i>최신순</a>
-                            <a href="?sort=2" style="min-width:65px;" class="col-2 mx-3 d-flex align-items-center"><i
-                                    class="bi bi-chat-dots"></i>댓글순</a>
-
-                        </div>
-                        <div class="d-none d-md-block col-4 me-2">
-                            <div class="input-group">
-                                <select class="selectpicker border rounded-2" name="search_kinds" id="search_kind">
-                                    <option value="전체" selected="selected">전체</option>
-                                    <option value="제목">제목</option>
-                                    <option value="내용">내용</option>
-                                    <option value="작성자">작성자</option>
-                                </select>
-                                <input type="text" id="search_kw" class="form-control border rounded-2"
-                                    style="background-color:RGB(243, 245, 247)" value="{{ kw|default_if_none:'' }}">
-                                <div class="input-group-append">
-                                    <button class="btn"
-                                        style="color:RGB(152, 160, 167); border-color:RGB(152, 160, 167);" type="button"
-                                        id="btn_search"><i class="bi bi-search"></i></button>
-                                </div>
-                            </div>
-                        </div>
-
+                    <div>
+                    <a href="?sort=4" class="btn" style="font-size:14px; border-color:RGB(70, 207, 167); color:RGB(70, 207, 167);">내 와드</a>
+                    </div>
+                    <div>
+                    <a href="?sort=5" class="btn" style="font-size:14px; border-color:RGB(70, 207, 167); color:RGB(70, 207, 167);">좋아요</a>
                     </div>
                 </div>
-                <table class="table" style="background-color:RGB(255, 255, 255);">
-                    <tbody>
-                        {% if article %}
-                        <!-- 기본 전체 -->
-                        {% for articles in article %}
-                        <tr class="border">
-                            <td class="d-flex justify-content-between hvr">
-                                <div></div>
-                                <div class="col-md-1 col-1 d-flex justify-content-center align-items-center">
-                                    <p class="d-flex align-items-center flex-column text-center"
-                                        style="color:RGB(152, 160, 167);"><span
-                                            style="font-size: 8px; color:RGB(221, 223, 228);"><i
-                                                class="bi bi-triangle-fill"></i></span>{{ articles.like_user.count }}
-                                    </p>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center col-md-9 col-9">
-                                    <a href="{% url 'articles:detail' articles.pk %}" class="small">{{ articles.title }}
-                                        {% if articles.comment_set.count > 0 %}
-                                        <span class="text-success small mx-2">[{{ articles.comment_set.count }}]</span>
-                                        {% endif %}
-                                    </a>
-                                    <p style="font-size:13px; color:RGB(152, 160, 167);"><span>
-                                        {{ articles.get_category_display }}</span> | <a
-                                            style="font-size:13px; color:RGB(152, 160, 167);"
-                                            href="{% url 'accounts:detail' articles.user.pk %}">
-                                            {{ articles.user.username }}</a> |
-                                        {% if articles.created_string == False %}
-                                        <span style="font-size:13px;">{{ articles.created_at|date:'m월 d일' }}</span>
-                                        {% else %}
-                                        <span style="font-size:13px;">{{ articles.created_string }}</span>
-                                        {% endif %}
-                                    </p>
-                                </div>
-
-                                {% if articles.photo %}
-                                <div class="col-md-2 col-sm-2" style="float:right; max-height:78px;">
-                                    <img style="width:100%; height:100%;" src="{{ articles.photo.url }}" alt="">
-                                </div>
-                                {% else %}
-                                <div class="col-md-2 col-sm-2" style="float:right; max-height:78px;">
-                                    <img style="width:100%; height:100%;"
-                                        src="https://dummyimage.com/100x80/000000/c4c4c4" alt="">
-                                </div>
-                                {% endif %}
-                            </td>
-
-                        </tr>
-
-                        {% endfor %}
-                        {% else %}
-                        <tr>
-                            <td colspan='4'>글이 없습니다.</td>
-                        </tr>
-                        {% endif %}
-                    </tbody>
-                </table>
-
-
-                <ul class="pagination justify-content-center">
-                    <!-- 이전페이지 -->
-                    {% if article.has_previous %}
-                    <li class="page-item">
-                        <a href="javascript:void(0)" data-page="{{article.previous_page_number }}"
-                            class="page-link">이전</a>
+                <a href="{% url 'articles:create' %}" class="btn w-100" style="color:RGB(248, 249, 250); background-color:RGB(70, 207, 167);"><span><i class="bi bi-pencil-square"></i></span> 글쓰기</a>
+                <hr style="margin:10px;">
+                
+                <ul class="nav nav-tabs d-flex flex-column" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a href=" {% url 'articles:index' %}" class="small"><button class="w-100 nav-link text-start active" style="background-color:RGB(248, 249, 250); color:RGB(64, 188, 151);" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">전체</button></a>
                     </li>
+                {% for category in categories %}
+                <li class="nav-item" role="presentation">
+                    <a class="my-1 small active" href="{% url 'articles:category' forloop.counter0 %} ">
+                    {% if category == category_name %}
+                    <button class="text-start nav-link text-black active w-100" type="button" role="tab" aria-selected="true">
                     {% else %}
-                    <li class="page-item disabled">
-                        <a href="#" class="page-link" tabindex="-1" aria-disabled="true">이전</a>
-                    </li>
+                    <button class="text-start nav-link text-black w-100" type="button" role="tab" aria-selected="true">
                     {% endif %}
-                    <!-- 페이지 리스트-->
-                    {% for page_number in article.paginator.page_range %}
-                    {% if page_number >= article.number|add:-5 and page_number <= article.number|add:5 %} 
-                    {% if page_number == article.number %} <li class="page-item active" aria-current="page">
-                        <a href="javascript:void(0)" data-page="{{ page_number }}" class="page-link">
-                            {{ page_number }}
-                        </a>
-                        </li>
-                        {% else %}
-                        <li class="page-item">
-                            <a href="javascript:void(0)" data-page="{{ page_number }}" class="page-link">
-                                {{ page_number }}
-                            </a>
-                        </li>
-                        {% endif %}
-                        {% endif %}
-                        {% endfor %}
-                        <!-- 다음페이지-->
-                        {% if article.has_next %}
-                        <li class="page-item">
-                            <a href="javascript:void(0)" data-page="{{ article.next_page_number }}"
-                                class="page-link">다음</a>
-                        </li>
-                        {% else %}
-                        <li class="page-item disabled">
-                            <a href="#" class="page-link" tabindex="1" aria-disabled="true">다음</a>
-                        </li>
-                        {% endif %}
-                </ul>
-                <!-- 페이징처리 end-->
+                    {{ category }}
+                    </button></a></li>
+                {% endfor %}
+            </ul>
+
+        </div>
+    </div>
+    {% else %}
+    <div class="d-none d-lg-block col-lg-3 border my-3 rounded-3" style="max-height:500px; position:sticky; top:0; background-color:RGB(255, 255, 255);">
+        <div class="my-2 container">
+            <a href="{% url 'accounts:login' %}" style="color:RGB(183, 236, 221); background-color:RGB(70, 207, 167);" class="btn w-100 mt-2">로그인</a>
+            <hr style="margin:10px;">
+            
+            <ul class="nav nav-tabs d-flex flex-column" id="myTab" role="tablist">
+                <li class="nav-item" style="" role="presentation">
+                    <a href=" {% url 'articles:index' %}" style="" class="small"><button class="active w-100 nav-link text-start" style="background-color:RGB(248, 249, 250); color:RGB(64, 188, 151);" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">전체</button></a>
+                </li>
+                {% for category in categories %}
+                <li class="nav-item" role="presentation">
+                    <a class="my-1 small active" href="{% url 'articles:category' forloop.counter0 %} ">
+                    {% if category == category_name %}
+                    <button class="text-start nav-link text-black active w-100" style="background-color:RGB(70, 207, 167);" type="button" role="tab" aria-selected="true">
+                    {% else %}
+                    <button class="text-start nav-link text-black w-100" type="button" role="tab" aria-selected="true">
+                    {% endif %}
+                    {{ category }}
+                    </button></a></li>
+                {% endfor %}
+            </ul>
 
             </div>
         </div>
+  
+            {% endif %}
+  
+    <!-- 게시판 내용 -->
+    <div class="col-lg-7 col-md-12" >
+        <div class="border d-flex flex-column my-3 rounded-3" style="background-color:RGB(255, 255, 255);">
+            <h6 class="mx-3 mt-3"><a href="{% url 'articles:index' %}">전체</a>
+                <span class="d-flex"style="float:right;">
+                    <a class="me-3 d-md-none d-sm-block">
+                        <i class="bi bi-search"></i>
+                    </a>
+                </span>
+            </h6>
+            <div class="d-flex justify-content-between my-3">
+                <div class="d-flex justify-content-between col-7">
+                    <a href="?sort=1" style="min-width:65px;" class="col-2 mx-3 d-flex align-items-center"><i
+                            class="bi bi-fire"></i>인기순</a>
+                    <a href="{% url 'articles:index' %}" style="min-width:65px;"
+                        class="col-2 mx-3 d-flex align-items-center"><i class="bi bi-hand-thumbs-up"></i>최신순</a>
+                    <a href="?sort=2" style="min-width:65px;" class="col-2 mx-3 d-flex align-items-center"><i class="bi bi-chat-dots"></i>댓글순</a>
+
+                </div>
+                <div class="d-none d-md-block col-4 me-2" >
+                    <div class="input-group">
+                            <select class="selectpicker border rounded-2" name="search_kinds" id="search_kind">
+                                <option value="전체" selected="selected">전체</option>
+                                <option value="제목">제목</option>
+                                <option value="내용">내용</option>
+                                <option value="작성자">작성자</option>
+                            </select>
+                        <input type="text" id="search_kw" class="form-control border rounded-2" style="background-color:RGB(243, 245, 247)" value="{{ kw|default_if_none:'' }}">
+                        <div class="input-group-append">
+                            <button class="btn" style="color:RGB(152, 160, 167); border-color:RGB(152, 160, 167);" type="button" id="btn_search"><i class="bi bi-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <table class="table" style="background-color:RGB(255, 255, 255);">
+            <tbody>
+                {% if article %}
+                <!-- 기본 전체 -->
+                {% for articles in article %}
+                <tr class="border">
+                    <td class="d-flex justify-content-between hvr">
+                        <div></div>
+                        <div class="col-md-1 col-1 d-flex justify-content-center align-items-center">
+                            <p class="d-flex align-items-center flex-column text-center" style="color:RGB(152, 160, 167);"><span style="font-size: 8px; color:RGB(221, 223, 228);"><i class="bi bi-triangle-fill"></i></span>{{ articles.like_user.count }}</p>
+                        </div>
+                        <div class="d-flex flex-column justify-content-center col-md-9 col-9">
+                            <a href="{% url 'articles:detail' articles.pk %}" class="small">{{ articles.title }}
+                                {% if articles.comment_set.count > 0 %}
+                                <span class="text-success small mx-2">[{{ articles.comment_set.count }}]</span>
+                                {% endif %}
+                            </a>
+                            <p style="font-size:13px; color:RGB(152, 160, 167);"><span>{{ articles.get_category_display }}</span>  |  <a style="font-size:13px; color:RGB(152, 160, 167);" href="{% url 'accounts:detail' articles.user.pk %}">{{ articles.user.username }}</a>  | 
+                            {% if articles.created_string == False %}
+                            <span style="font-size:13px;">{{ articles.created_at|date:'m월 d일' }}</span>
+                            {% else %}
+                            <span style="font-size:13px;">{{ articles.created_string }}</span>
+                            {% endif %}
+                            </p>
+                        </div>
+
+                        {% if articles.photo %}
+                        <div class="col-md-2 col-sm-2" style="float:right; max-height:78px;">
+                            <img style="width:100%; height:100%;" src="{{ articles.photo.url }}" alt="">
+                        </div>
+                        {% else %}
+                        <div class="col-md-2 col-sm-2" style="float:right; max-height:78px;">
+                            <img style="width:100%; height:100%;" src="https://dummyimage.com/100x80/000000/c4c4c4" alt="">
+                        </div>
+                        {% endif %}
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan='4'>글이 없습니다.</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+
+
+        <ul class="pagination justify-content-center">
+            <!-- 이전페이지 -->
+            {% if article.has_previous %}
+            <li class="page-item">
+                <a href="javascript:void(0)" data-page="{{article.previous_page_number }}" class="page-link">이전</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a href="#" class="page-link" tabindex="-1" aria-disabled="true">이전</a>
+            </li>
+            {% endif %}
+            <!-- 페이지 리스트-->
+            {% for page_number in article.paginator.page_range  %}
+            {% if page_number >= article.number|add:-5 and page_number <= article.number|add:5 %}
+            {% if page_number == article.number %}
+            <li class="page-item active" aria-current="page">
+                <a href="javascript:void(0)" data-page="{{ page_number }}" class="page-link">{{ page_number }}</a>
+            </li>
+            {% else %}
+            <li class="page-item">
+                <a href="javascript:void(0)" data-page="{{ page_number }}" class="page-link">{{ page_number }}</a>
+            </li>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            <!-- 다음페이지-->
+            {% if article.has_next %}
+            <li class="page-item">
+                <a href="javascript:void(0)" data-page="{{ article.next_page_number }}" class="page-link">다음</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a href="#" class="page-link" tabindex="1" aria-disabled="true">다음</a></li>
+            {% endif %}
+        </ul>
+        <!-- 페이징처리 end-->
+
     </div>
-    <form id="searchForm" method="get" action="{% url 'articles:index' %}">
-        <input type="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}">
-        <input type="hidden" id="page" name="page" value="{{ page }}">
-        <input type="hidden" id="searchKind" name="searchKind" value="{{ searchKind }}">
-    </form>
+</div>
+</div>
+<form id="searchForm" method="get" action="{% url 'articles:index' %}">
+    <input type="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}">
+    <input type="hidden" id="page" name="page" value="{{ page }}">
+    <input type="hidden" id="searchKind" name="searchKind" value="{{ searchKind }}">
+</form>
 </body>
 {% endblock content %}
 
@@ -285,39 +241,39 @@
     integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
 {% block script %}
-<script type='text/javascript'>
-
-    window.onload = function () {
-        const searchParams = new URLSearchParams(location.search)
+    <script type='text/javascript'>
+    
+    window.onload = function() {
+        const searchParams=new URLSearchParams(location.search)
         const search_kind = document.getElementById('search_kind')
-        for (i = 0; i < search_kind.options.length; i++) {
-            if (searchParams.get('searchKind') == search_kind.options[i].value) {
-                search_kind.value = search_kind.options[i].value
+        for (i = 0 ; i<search_kind.options.length ; i++){
+            if (searchParams.get('searchKind') == search_kind.options[i].value){
+                search_kind.value=search_kind.options[i].value
             }
         }
-        const search_keyword = document.getElementById('search_kw')
-        search_keyword.value = searchParams.get('kw')
+        const search_keyword=document.getElementById('search_kw')
+        search_keyword.value=searchParams.get('kw')
     }
 
     const page_elements = document.getElementsByClassName("page-link");
-    Array.from(page_elements).forEach(function (element) {
-        element.addEventListener('click', function () {
+    Array.from(page_elements).forEach(function(element) {
+        element.addEventListener('click', function() {
             document.getElementById('page').value = this.dataset.page;
             document.getElementById('searchForm').submit();
         });
     });
 
     const btn_search = document.getElementById("btn_search");
-    btn_search.addEventListener('click', function () {
+    btn_search.addEventListener('click', function() {
         document.getElementById('kw').value = document.getElementById('search_kw').value;
         document.getElementById('page').value = 1;  // 검색버튼을 클릭할 경우 1페이지부터 조회한다.
         var ser = document.getElementById('search_kind')
-        document.getElementById('searchKind').value = ser.options[ser.selectedIndex].value;
+        document.getElementById('searchKind').value=ser.options[ser.selectedIndex].value;
         document.getElementById('searchForm').submit();
 
     });
-</script>
-<script>
+    </script>
+    <script>
 
-</script>
-{% endblock %}
+    </script>
+    {% endblock %}
