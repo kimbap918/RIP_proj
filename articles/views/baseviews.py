@@ -63,6 +63,27 @@ def index(request):
     page_obj = paginator.get_page(page)
     categories = ["자유", "유머", "팬아트", "유저찾기", "유저뉴스", "팁과노하우", "기획", "사건사고"]
     
+    # users = get_user_model().objects.get(pk=request.user.pk)
+    # 회원등급 표시
+    grade = ''
+    if request.user.is_authenticated:
+        user = get_user_model().objects.get(pk=request.user.pk)
+        article_set = user.article_set.all()
+        comment_set = user.comment_set.all()
+        a_count = article_set.count()
+        c_count = comment_set.count()
+
+        if c_count > 20 and a_count > 10:
+            grade = '썩은물'
+        elif c_count > 10 and a_count > 4:
+            grade = '고인물'
+        elif c_count > 2 and a_count > 2:
+            grade = '탁한물'
+        elif c_count > 0 and a_count > 0:
+            grade = '맑은물'
+        elif c_count >= 0 and a_count == 0:
+            grade = '신선한물'
+
     context = {
         "sort": sort,
         "article": page_obj,
@@ -70,43 +91,39 @@ def index(request):
         "categories": categories,
         "kw": kw,
         "top_fixed": list1,
+        "grade" : grade,
     }
 
     return render(request, "articles/index.html", context)
 
 def category(request, pk):
-    sort = request.GET.get("sort", "")
     page = request.GET.get("page", "1")
-    article = Article.objects.filter(category=pk)
+    article = Article.objects.order_by("-created_at")
     kw = request.GET.get("kw", "")
     search_kind = request.GET.get("searchKind", "전체")
+    sort = request.GET.get("sort", "")
     # 추천순
     if sort == "1":
         article = (
-            Article.objects.filter(category=pk)
+            Article.objects.all()
             .annotate(like_cnt=Count("like_user"))
             .order_by("-like_cnt")
         )
     # 답글많은 순
     elif sort == "2":
         article = (
-            Article.objects.filter(category=pk)
+            Article.objects.all()
             .annotate(comments=Count("comment"))
             .order_by("-comments")
         )
-    # 내가 쓴 글
     elif sort == "3":
-        user = get_user_model().objects.get(pk=request.user.pk)
         article = user.article_set.all()
     # 내가 와드 한 글
     elif sort == "4":
-        user = get_user_model().objects.get(pk=request.user.pk)
         article = user.bookmark_post.all()
     # 내가 좋아요 한 글
     elif sort == "5":
-        user = get_user_model().objects.get(pk=request.user.pk)
         article = user.like_post.all()
-
     if kw:
         if search_kind == "전체":
             article = article.filter(
@@ -125,14 +142,34 @@ def category(request, pk):
     paginator = Paginator(article, 10)
     page_obj = paginator.get_page(page)
     categories = ["자유", "유머", "팬아트", "유저찾기", "유저뉴스", "팁과노하우", "기획", "사건사고"]
-    category_name = categories[pk]
+    
+    # users = get_user_model().objects.get(pk=request.user.pk)
+    # 회원등급 표시
+    grade = ''
+    if request.user.is_authenticated:
+        user = get_user_model().objects.get(pk=request.user.pk)
+        article_set = user.article_set.all()
+        comment_set = user.comment_set.all()
+        a_count = article_set.count()
+        c_count = comment_set.count()
+
+        if c_count > 20 and a_count > 10:
+            grade = '썩은물'
+        elif c_count > 10 and a_count > 4:
+            grade = '고인물'
+        elif c_count > 2 and a_count > 2:
+            grade = '탁한물'
+        elif c_count > 0 and a_count > 0:
+            grade = '맑은물'
+        elif c_count >= 0 and a_count == 0:
+            grade = '신선한물'
+
     context = {
         "sort": sort,
-        "pk": pk,
         "article": page_obj,
-        "categories": categories,
-        "category_name": category_name,
         "page": page,
+        "categories": categories,
         "kw": kw,
+        "grade" : grade,
     }
     return render(request, "articles/category.html", context)
