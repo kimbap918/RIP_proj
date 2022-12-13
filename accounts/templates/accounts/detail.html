@@ -17,17 +17,25 @@
 {% block content %}
 
 <div class="member-settings-layout__content-inner">
-    {% if grade == '신선한물' %}
-    <h2 class="member-settings-layout__title"><img style="width: 30px; height:30px;" src="/static/images/grade/{{ grade }}.png" alt="">{{ grade }}  {{user.username}}님의 프로필</h2>
-    {% elif grade  == '맑은물' %}
-    <h2 class="member-settings-layout__title"><img style="width: 30px; height:30px;" src="/static/images/grade/{{ grade }}.png" alt="">{{ grade }}  {{user.username}}님의 프로필</h2>
-    {% elif grade  == '탁한물' %}
-    <h2 class="member-settings-layout__title"><img style="width: 30px; height:30px;" src="/static/images/grade/{{ grade }}.png" alt="">{{ grade }}  {{user.username}}님의 프로필</h2>
-    {% elif grade  == '고인물' %}
-    <h2 class="member-settings-layout__title"><img style="width: 30px; height:30px;" src="/static/images/grade/{{ grade }}.png" alt="">{{ grade }}  {{user.username}}님의 프로필</h2>
-    {% elif grade  == '썩은물' %}
-    <h2 class="member-settings-layout__title"><img style="width: 30px; height:30px;" src="/static/images/grade/{{ grade }}.png" alt="">{{ grade }}  {{user.username}}님의 프로필</h2>
-    {% endif %}
+  <div class="member-settings-layout__title">
+    <h2 class="member-settings-layout_name">
+      {{user.username}}님의 프로필
+    </h2>
+    <div class="member-settings-layout_name member-settings-layout_tier">
+      {% if grade == '신선한물' %}
+      <img src="/static/images/grade/{{ grade }}.png" alt="">{{ grade }}
+      {% elif grade  == '맑은물' %}
+      <img src="/static/images/grade/{{ grade }}.png" alt="">{{ grade }}
+      {% elif grade  == '탁한물' %}
+      <img src="/static/images/grade/{{ grade }}.png" alt="">{{ grade }}
+      {% elif grade  == '고인물' %}
+      <img src="/static/images/grade/{{ grade }}.png" alt="">{{ grade }}
+      {% elif grade  == '썩은물' %}
+      <img src="/static/images/grade/{{ grade }}.png" alt="">{{ grade }}<
+      {% endif %}
+    </div>
+  </div>
+  <div class="member-settings-layout__title_sub">게시물을 아래에서 확인하세요</div>
   <div class="edit">
     <div class="list" style="font-size: 14px;">
       <a class="tab-button" id="link_user_articles" data-bs-toggle="collapse" href="#user_articles" role="button" aria-expanded="false" aria-controls="collapseExample">작성한 글</a>

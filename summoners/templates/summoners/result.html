@@ -59,7 +59,7 @@ body {
                 <div class="rank_title">{{ team_tier.rank_type }}</div>
                 <div class="rank_box_content-inner">
                     <div class="summoners_thum_info rank_image_bg">
-                        <img src="{% static 'images/ranked-emblems/' %}{{solo_tier.tier}}.png">
+                        <img src="{% static 'images/ranked-emblems/' %}{{team_tier.tier}}.png">
                     </div>
                     <div class="rank_box_content-inner_sub">
                         <div class="rank-inner-tp">
@@ -75,13 +75,15 @@ body {
                             <span style="color: #5383E8;">{{ team_tier.wins }}승</span>
                             <span style="color: #E84057;">{{ team_tier.losses }}</span>패    
                         </div>
-                    </div>    
-                    {% else %}
-                    <div class="rank_title">
+                    </div>
+                </div>    
+                {% else %}
+                <div class="rank_box_content">
+                    <div class="rank_title" style="margin-top: 30px;">
                         배치&전적정보없음
                     </div>
-                    {% endif %}
                 </div>
+                {% endif %}
             </div>
             <div class="rank_box_content content_solo">
                 {% if solo_tier %}
@@ -106,7 +108,7 @@ body {
                         </div>
                     </div>    
                     {% else %}
-                    <div class="rank_title">
+                    <div class="rank_title" style="margin: auto 0;">
                         배치&전적정보없음
                     </div>
                     {% endif %}
@@ -143,7 +145,7 @@ body {
     {% if players.win == True %}
     <div class="css-win summoners_box per_box">
         {% if players.summonerName == summoners_result.name %}
-        <div class="w-20 mx-1" style="width: 3.5rem;">
+        <div class="w-20 mx-1" style="width: 4rem;">
             <p class="mb-0 ml-3" style="color: #5383E8;">승리</p>
         </div>
         <div class="w-20 me-2" style="width: 5.5rem; min-width: 2rem;">
@@ -177,7 +179,7 @@ body {
                             {{ players.kda }}:1 평점
                         </div>
                     </div>
-                    <div style="width: 14.7rem;">
+                    <div style="width: 16rem;">
                         <img src="/static/images/item/{{ players.item0 }}.png" alt="" style="height: 30px;">
                         <img src="/static/images/item/{{ players.item1 }}.png" alt="" style="height: 30px;">
                         <img src="/static/images/item/{{ players.item2 }}.png" alt="" style="height: 30px;">
@@ -242,10 +244,10 @@ body {
     {% elif players.win == False %}
     <div class="css-lose summoners_box per_box">
         {% if players.summonerName == summoners_result.name %}
-        <div class="w-20 mx-1" style="width: 3.5rem;">
+        <div class="w-20 mx-1" style="width: 4rem;">
             <p class="mb-0 ml-3" style="color: #E84057;">패배</p>
         </div>
-        <div class="w-20 me-2" style="width: 5.5rem; min-width: 2rem;">
+        <div class="w-20" style="width: 5.5rem; min-width: 2rem;">
             <div class="mb-0" style="color: #E84057;" >
                 {% if games.queue_id == 420 %}
                 <p class="mb-0">솔랭</p>
@@ -276,7 +278,7 @@ body {
                             {{ players.kda }}:1 평점
                         </div>
                     </div>
-                    <div style="width: 14.7rem;">
+                    <div style="width: 16rem;">
                         <img src="/static/images/item/{{ players.item0 }}.png" alt="" style="height: 30px;">
                         <img src="/static/images/item/{{ players.item1 }}.png" alt="" style="height: 30px;">
                         <img src="/static/images/item/{{ players.item2 }}.png" alt="" style="height: 30px;">
@@ -344,7 +346,7 @@ body {
     {% if games.min <= 4  %}
     <div class="css-replay summoners_box per_box">
         {% if players.summonerName == summoners_result.name %}
-        <div class="w-20 mx-1" style="width: 3.5rem;">
+        <div class="w-20 mx-1" style="width: 4rem;">
             <p>다시하기</p>
         </div>
         <div class="w-20 me-2" style="width: 5.5rem; min-width: 2rem;">
@@ -378,7 +380,7 @@ body {
                             {{ players.kda }}:1 평점
                         </div>
                     </div>
-                    <div style="width: 14.7rem;">
+                    <div style="width: 16rem;">
                         <img src="/static/images/item/{{ players.item0 }}.png" alt="" style="height: 30px;">
                         <img src="/static/images/item/{{ players.item1 }}.png" alt="" style="height: 30px;">
                         <img src="/static/images/item/{{ players.item2 }}.png" alt="" style="height: 30px;">
