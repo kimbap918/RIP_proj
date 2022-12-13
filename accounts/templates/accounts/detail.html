@@ -17,7 +17,17 @@
 {% block content %}
 
 <div class="member-settings-layout__content-inner">
-  <h2 class="member-settings-layout__title">{{user.username}}님의 프로필</h2>
+    {% if grade == '신선한물' %}
+    <h2 class="member-settings-layout__title"><img style="width: 30px; height:30px;" src="/static/images/grade/{{ grade }}.png" alt="">{{ grade }}  {{user.username}}님의 프로필</h2>
+    {% elif grade  == '맑은물' %}
+    <h2 class="member-settings-layout__title"><img style="width: 30px; height:30px;" src="/static/images/grade/{{ grade }}.png" alt="">{{ grade }}  {{user.username}}님의 프로필</h2>
+    {% elif grade  == '탁한물' %}
+    <h2 class="member-settings-layout__title"><img style="width: 30px; height:30px;" src="/static/images/grade/{{ grade }}.png" alt="">{{ grade }}  {{user.username}}님의 프로필</h2>
+    {% elif grade  == '고인물' %}
+    <h2 class="member-settings-layout__title"><img style="width: 30px; height:30px;" src="/static/images/grade/{{ grade }}.png" alt="">{{ grade }}  {{user.username}}님의 프로필</h2>
+    {% elif grade  == '썩은물' %}
+    <h2 class="member-settings-layout__title"><img style="width: 30px; height:30px;" src="/static/images/grade/{{ grade }}.png" alt="">{{ grade }}  {{user.username}}님의 프로필</h2>
+    {% endif %}
   <div class="edit">
     <div class="list" style="font-size: 14px;">
       <a class="tab-button" id="link_user_articles" data-bs-toggle="collapse" href="#user_articles" role="button" aria-expanded="false" aria-controls="collapseExample">작성한 글</a>

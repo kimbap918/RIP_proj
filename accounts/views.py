@@ -89,8 +89,25 @@ def detail(request, pk):
     articles = user.article_set.all()
     like_articles = user.like_post.all()
     bookmark_articles = user.bookmark_post.all()
+    grade = ''
 
+    article_set = user.article_set.all()
+    comment_set = user.comment_set.all()
+    a_count = article_set.count()
+    c_count = comment_set.count()
+
+    if c_count > 20 and a_count > 10:
+        grade = '썩은물'
+    elif c_count > 10 and a_count > 4:
+        grade = '고인물'
+    elif c_count > 2 and a_count > 2:
+        grade = '탁한물'
+    elif c_count > 2 or a_count > 0:
+        grade = '맑은물'
+    elif c_count <= 2 or a_count == 0:
+        grade = '신선한물'
     context = {
+        "grade":grade,
         "user": user,
         "articles": articles,
         "like_articles": like_articles,
