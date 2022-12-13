@@ -20,6 +20,25 @@ def index(request):
     for articles in article:
         if articles.top_fixed == True:
             list1.append(articles)
+    grade = ''
+    if request.user.is_authenticated:
+        user = get_user_model().objects.get(pk=request.user.pk)
+        article_set = user.article_set.all()
+        comment_set = user.comment_set.all()
+        a_count = article_set.count()
+        c_count = comment_set.count()
+
+        if c_count > 20 and a_count > 10:
+            grade = '썩은물'
+        elif c_count > 10 and a_count > 4:
+            grade = '고인물'
+        elif c_count > 2 and a_count > 2:
+            grade = '탁한물'
+        elif c_count > 2 or a_count > 0:
+            grade = '맑은물'
+        elif c_count <= 2 or a_count == 0:
+            grade = '신선한물'
+
     # 추천순
     if sort == "1":
         article = (
@@ -65,25 +84,7 @@ def index(request):
     
     # users = get_user_model().objects.get(pk=request.user.pk)
     # 회원등급 표시
-    grade = ''
-    if request.user.is_authenticated:
-        user = get_user_model().objects.get(pk=request.user.pk)
-        article_set = user.article_set.all()
-        comment_set = user.comment_set.all()
-        a_count = article_set.count()
-        c_count = comment_set.count()
-
-        if c_count > 20 and a_count > 10:
-            grade = '썩은물'
-        elif c_count > 10 and a_count > 4:
-            grade = '고인물'
-        elif c_count > 2 and a_count > 2:
-            grade = '탁한물'
-        elif c_count > 2 or a_count > 0:
-            grade = '맑은물'
-        elif c_count <= 2 or a_count == 0:
-            grade = '신선한물'
-
+    
     context = {
         "sort": sort,
         "article": page_obj,
@@ -106,6 +107,24 @@ def category(request, pk):
     for articles in article:
         if articles.top_fixed == True:
             list1.append(articles)
+    grade = ''
+    if request.user.is_authenticated:
+        user = get_user_model().objects.get(pk=request.user.pk)
+        article_set = user.article_set.all()
+        comment_set = user.comment_set.all()
+        a_count = article_set.count()
+        c_count = comment_set.count()
+
+        if c_count > 20 and a_count > 10:
+            grade = '썩은물'
+        elif c_count > 10 and a_count > 4:
+            grade = '고인물'
+        elif c_count > 2 and a_count > 2:
+            grade = '탁한물'
+        elif c_count > 2 or a_count > 0:
+            grade = '맑은물'
+        elif c_count <= 2 or a_count == 0:
+            grade = '신선한물'
     # 추천순
     if sort == "1":
         article = (
@@ -149,24 +168,7 @@ def category(request, pk):
     
     # users = get_user_model().objects.get(pk=request.user.pk)
     # 회원등급 표시
-    grade = ''
-    if request.user.is_authenticated:
-        user = get_user_model().objects.get(pk=request.user.pk)
-        article_set = user.article_set.all()
-        comment_set = user.comment_set.all()
-        a_count = article_set.count()
-        c_count = comment_set.count()
-
-        if c_count > 20 and a_count > 10:
-            grade = '썩은물'
-        elif c_count > 10 and a_count > 4:
-            grade = '고인물'
-        elif c_count > 2 and a_count > 2:
-            grade = '탁한물'
-        elif c_count > 2 or a_count > 0:
-            grade = '맑은물'
-        elif c_count <= 2 or a_count == 0:
-            grade = '신선한물'
+    
     category_name = categories[pk]
     context = {
         "sort": sort,
