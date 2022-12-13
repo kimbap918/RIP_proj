@@ -1,0 +1,980 @@
+[
+    {
+		"name": "케일",
+		"lane": "빌드 - 탑",
+		"skill": [
+			"https://opgg-static.akamaized.net/meta/images/lol/spell/KayleE.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/spell/KayleQ.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/spell/KayleW.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"스킬마스터순서": [
+			"E",
+			"W",
+            "R",
+			"Q"
+		],
+		"skilltrees": [
+			"E",
+			"W",
+			"Q",
+			"E",
+			"E",
+			"R",
+			"E",
+			"E",
+			"W",
+			"W",
+			"R",
+            "W",
+            "W",
+            "W",
+			"Q",
+			"Q",
+            "R",
+			"Q",
+			"Q"
+		],
+		"시작아이템": [
+			"https://static.inven.co.kr/image_2011/site_image/lol/dataninfo/icon/item/1083.png",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/2003.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"s_itempick1": "47.11%",
+		"s_itemwin1": "50.43%",
+        "핵심아이템":["https://static.inven.co.kr/image_2011/site_image/lol/dataninfo/icon/item/4644.png"],
+		"itme_pick":[
+            "https://static.inven.co.kr/image_2011/site_image/lol/dataninfo/icon/item/3091.png)","https://static.inven.co.kr/image_2011/site_image/lol/dataninfo/icon/item/4644.png)","https://static.inven.co.kr/image_2011/site_image/lol/dataninfo/icon/item/3006.png)","https://static.inven.co.kr/image_2011/site_image/lol/dataninfo/icon/item/3115.png)","https://static.inven.co.kr/image_2011/site_image/lol/dataninfo/icon/item/4645.png)","https://static.inven.co.kr/image_2011/site_image/lol/dataninfo/icon/item/3100.png)","https://static.inven.co.kr/image_2011/site_image/lol/dataninfo/icon/item/3363.png)"
+        ],
+		"hard_img": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Rammus.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Nasus.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Irelia.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/DrMundo.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Rengar.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967"
+		],
+		"hard_win": [
+			"41.77%",
+			"43.69%",
+			"44.16%",
+			"45.7%",
+			"45.8%"
+		],
+		"easy_img": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Ryze.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Heimerdinger.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/MonkeyKing.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Swain.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Vladimir.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967"
+		],
+		"easy_win": [
+			"62%",
+			"57.73%",
+			"57.36%",
+			"56.73%",
+			"55.32%"
+		],
+		"rune_j": "https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8000.png?image=q_auto,f_png,w_56&v=1670226786967",
+		"rune_js": [
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8005.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8008.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8021.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8010.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/9101.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/9111.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8009.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/9104.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/9105.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/9103.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8014.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8017.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8299.png?image=q_auto,f_png,w_56&v=1670226786967"
+		],
+		"rune_j_name": "정밀",
+		"rune_k": "https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8400.png?image=q_auto,f_png,w_56&v=1670226786967",
+		"rune_ks": [
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8446.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8463.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8401.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8429.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8444.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8473.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8451.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8453.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8242.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967"
+		],
+		"rune_k_name": "결의",
+		"rune_n": [
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5008.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5005.png?image=q_auto,f_png,w_48&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5007.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5008.png?image=q_auto,f_png,w_48&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5002.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5003.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5001.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5002.png?image=q_auto,f_png,w_48&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5003.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967"
+		],
+		"rune_n_name": "능력치 파편",
+		"rune_img1": [
+			"https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8000.png?image=q_auto,f_png,w_48&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8008.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8400.png?image=q_auto,f_png,w_48&v=1670226786967"
+		],
+		"rune_pick1": "80.34%",
+		"rune_win1": "50.90%",
+		"rune_img2": [
+			"https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8000.png?image=q_auto,f_png,w_48&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8008.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8200.png?image=q_auto,f_png,w_48&v=1670226786967"
+		],
+		"rune_pick2": "8.04%",
+		"rune_win2": "52.35%"
+	},
+    {
+		"name": "말파이트",
+		"lane": "빌드 - 탑",
+		"skill": [
+			"https://opgg-static.akamaized.net/meta/images/lol/spell/SeismicShard.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/spell/Landslide.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/spell/Obduracy.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"skilltree": [
+			"Q",
+			"E",
+			"W"
+		],
+		"skilltrees": [
+			"Q",
+			"E",
+			"W",
+			"Q",
+			"Q",
+			"R",
+			"Q",
+			"E",
+			"Q",
+			"E",
+			"R",
+			"E",
+			"E",
+			"W",
+			"W"
+		],
+		"skillpick": "50.65%",
+		"skillwin": "57.20%",
+		"s_item1": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/2033.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"s_itempick1": "46.8%",
+		"s_itemwin1": "48.18%",
+		"s_item2": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/1054.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/2003.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"s_itempick2": "24.88%",
+		"s_itemwin2": "48.34%",
+		"s_shoe1": "https://opgg-static.akamaized.net/meta/images/lol/item/3047.png?image=q_auto,f_png,w_64&v=1670226786967",
+		"s_shoepick1": "64.13%",
+		"s_shoewin1": "49.24%",
+		"s_shoe2": "https://opgg-static.akamaized.net/meta/images/lol/item/3111.png?image=q_auto,f_png,w_64&v=1670226786967",
+		"s_shoepick2": "22.2%",
+		"s_shoewin2": "47.68%",
+		"item1": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/6662.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3110.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3075.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"itempick1": "11.35%",
+		"itemwin1": "59.27%",
+		"item2": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/6662.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3068.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3075.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"itempick2": "4.35%",
+		"itemwin2": "57.88%",
+		"item3": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3068.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/6662.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3075.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"itempick3": "2.96%",
+		"itemwin3": "50.54%",
+		"item4": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/6662.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3110.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/4401.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"itempick4": "2.76%",
+		"itemwin4": "59.54%",
+		"item5": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/6662.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3110.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3068.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"itempick5": "2.1%",
+		"itemwin5": "59.85%",
+		"hard_img": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Singed.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Lillia.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Warwick.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Shen.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Swain.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967"
+		],
+		"hard_win": [
+			"38.76%",
+			"40.35%",
+			"40.39%",
+			"40.96%",
+			"41.03%"
+		],
+		"easy_img": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Vayne.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Maokai.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Gnar.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Renekton.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Yasuo.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967"
+		],
+		"easy_win": [
+			"58.82%",
+			"58.25%",
+			"55.07%",
+			"52.95%",
+			"52.72%"
+		],
+		"rune_j": "https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8200.png?image=q_auto,f_png,w_56&v=1670226786967",
+		"rune_js": [
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8214.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8229.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8230.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8224.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8226.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8275.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8210.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8234.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8233.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8237.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8232.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8236.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967"
+		],
+		"rune_j_name": "마법",
+		"rune_k": "https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8300.png?image=q_auto,f_png,w_56&v=1670226786967",
+		"rune_ks": [
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8306.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8304.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8313.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8321.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8316.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8345.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8347.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8410.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8352.png?image=q_auto,f_png,w_56&v=1670226786967"
+		],
+		"rune_k_name": "영감",
+		"rune_n": [
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5008.png?image=q_auto,f_png,w_48&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5005.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5007.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5008.png?image=q_auto,f_png,w_48&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5002.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5003.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5001.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5002.png?image=q_auto,f_png,w_48&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5003.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967"
+		],
+		"rune_n_name": "능력치 파편",
+		"rune_img1": [
+			"https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8200.png?image=q_auto,f_png,w_48&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8229.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8300.png?image=q_auto,f_png,w_48&v=1670226786967"
+		],
+		"rune_pick1": "62.42%",
+		"rune_win1": "47.21%",
+		"rune_img2": [
+			"https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8200.png?image=q_auto,f_png,w_48&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8229.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8400.png?image=q_auto,f_png,w_48&v=1670226786967"
+		],
+		"rune_pick2": "15.34%",
+		"rune_win2": "51.54%"
+	},
+    {
+		"name": "볼리베어",
+		"lane": "빌드 - 탑",
+		"skill": [
+			"https://opgg-static.akamaized.net/meta/images/lol/spell/VolibearW.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/spell/VolibearQ.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/spell/VolibearE.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"skilltree": [
+			"W",
+			"Q",
+			"E"
+		],
+		"skilltrees": [
+			"E",
+			"Q",
+			"W",
+			"W",
+			"W",
+			"R",
+			"W",
+			"Q",
+			"W",
+			"Q",
+			"R",
+			"Q",
+			"Q",
+			"E",
+			"E"
+		],
+		"skillpick": "61.92%",
+		"skillwin": "57.54%",
+		"s_item1": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/1056.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/2003.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"s_itempick1": "60.8%",
+		"s_itemwin1": "48.44%",
+		"s_item2": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/1054.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/2003.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"s_itempick2": "32.51%",
+		"s_itemwin2": "47.80%",
+		"s_shoe1": "https://opgg-static.akamaized.net/meta/images/lol/item/3047.png?image=q_auto,f_png,w_64&v=1670226786967",
+		"s_shoepick1": "49.11%",
+		"s_shoewin1": "47.06%",
+		"s_shoe2": "https://opgg-static.akamaized.net/meta/images/lol/item/3111.png?image=q_auto,f_png,w_64&v=1670226786967",
+		"s_shoepick2": "22.24%",
+		"s_shoewin2": "49.59%",
+		"item1": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/4633.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3115.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3181.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"itempick1": "6%",
+		"itemwin1": "56.53%",
+		"item2": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/6662.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3110.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3065.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"itempick2": "4.69%",
+		"itemwin2": "61.92%",
+		"item3": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/6662.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3110.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3075.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"itempick3": "4.21%",
+		"itemwin3": "54.88%",
+		"item4": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3115.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/4633.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3181.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"itempick4": "4.14%",
+		"itemwin4": "55.28%",
+		"item5": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3084.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3068.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3110.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"itempick5": "3.66%",
+		"itemwin5": "53.33%",
+		"hard_img": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Lillia.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Quinn.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Akshan.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Teemo.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Urgot.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967"
+		],
+		"hard_win": [
+			"38.35%",
+			"40.21%",
+			"40.91%",
+			"41.01%",
+			"41.86%"
+		],
+		"easy_img": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Kennen.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Udyr.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Rumble.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Chogath.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Gragas.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967"
+		],
+		"easy_win": [
+			"59.04%",
+			"56.58%",
+			"54.74%",
+			"54.71%",
+			"54.19%"
+		],
+		"rune_j": "https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8400.png?image=q_auto,f_png,w_56&v=1670226786967",
+		"rune_js": [
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8437.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8439.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8465.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8446.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8463.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8401.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8429.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8444.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8473.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8451.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8453.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8242.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967"
+		],
+		"rune_j_name": "결의",
+		"rune_k": "https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8000.png?image=q_auto,f_png,w_56&v=1670226786967",
+		"rune_ks": [
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/9101.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/9111.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8009.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/9104.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/9105.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/9103.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8014.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8017.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8299.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967"
+		],
+		"rune_k_name": "정밀",
+		"rune_n": [
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5008.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5005.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5007.png?image=q_auto,f_png,w_48&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5008.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5002.png?image=q_auto,f_png,w_48&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5003.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5001.png?image=q_auto,f_png,w_48&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5002.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5003.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967"
+		],
+		"rune_n_name": "능력치 파편",
+		"rune_img1": [
+			"https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8400.png?image=q_auto,f_png,w_48&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8437.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8000.png?image=q_auto,f_png,w_48&v=1670226786967"
+		],
+		"rune_pick1": "63.4%",
+		"rune_win1": "49.99%",
+		"rune_img2": [
+			"https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8000.png?image=q_auto,f_png,w_48&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8005.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8400.png?image=q_auto,f_png,w_48&v=1670226786967"
+		],
+		"rune_pick2": "16.68%",
+		"rune_win2": "52.00%"
+	},
+    {
+		"name": "탐 켄치",
+		"lane": "빌드 - 탑",
+		"skill": [
+			"https://opgg-static.akamaized.net/meta/images/lol/spell/TahmKenchQ.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/spell/TahmKenchW.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/spell/TahmKenchE.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"skilltree": [
+			"Q",
+			"W",
+			"E"
+		],
+		"skilltrees": [
+			"Q",
+			"W",
+			"E",
+			"Q",
+			"Q",
+			"R",
+			"Q",
+			"W",
+			"Q",
+			"W",
+			"R",
+			"W",
+			"W",
+			"E",
+			"E"
+		],
+		"skillpick": "60.45%",
+		"skillwin": "59.13%",
+		"s_item1": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/1054.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/2003.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"s_itempick1": "89.52%",
+		"s_itemwin1": "48.91%",
+		"s_item2": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/2033.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"s_itempick2": "5.77%",
+		"s_itemwin2": "44.85%",
+		"s_shoe1": "https://opgg-static.akamaized.net/meta/images/lol/item/3047.png?image=q_auto,f_png,w_64&v=1670226786967",
+		"s_shoepick1": "63.45%",
+		"s_shoewin1": "48.10%",
+		"s_shoe2": "https://opgg-static.akamaized.net/meta/images/lol/item/3111.png?image=q_auto,f_png,w_64&v=1670226786967",
+		"s_shoepick2": "32.11%",
+		"s_shoewin2": "50.80%",
+		"item1": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3084.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3068.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3075.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"itempick1": "19.57%",
+		"itemwin1": "56.60%",
+		"item2": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3084.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3068.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3065.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"itempick2": "13.57%",
+		"itemwin2": "60.53%",
+		"item3": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/6665.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3068.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3075.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"itempick3": "7.6%",
+		"itemwin3": "54.42%",
+		"item4": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3084.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3075.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3068.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"itempick4": "4.56%",
+		"itemwin4": "58.49%",
+		"item5": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/6665.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3068.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3065.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"itempick5": "4.13%",
+		"itemwin5": "59.58%",
+		"hard_img": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Heimerdinger.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Zac.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Quinn.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Gwen.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Singed.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967"
+		],
+		"hard_win": [
+			"34.15%",
+			"43.1%",
+			"43.33%",
+			"43.46%",
+			"43.62%"
+		],
+		"easy_img": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Kennen.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Vayne.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Sylas.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Maokai.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Vladimir.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967"
+		],
+		"easy_win": [
+			"60.32%",
+			"59.55%",
+			"57.35%",
+			"56.72%",
+			"55.91%"
+		],
+		"rune_j": "https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8400.png?image=q_auto,f_png,w_56&v=1670226786967",
+		"rune_js": [
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8437.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8439.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8465.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8446.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8463.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8401.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8429.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8444.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8473.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8451.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8453.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8242.png?image=q_auto,f_png,w_56&v=1670226786967"
+		],
+		"rune_j_name": "결의",
+		"rune_k": "https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8000.png?image=q_auto,f_png,w_56&v=1670226786967",
+		"rune_ks": [
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/9101.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/9111.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8009.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/9104.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/9105.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/9103.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8014.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8017.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8299.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967"
+		],
+		"rune_k_name": "정밀",
+		"rune_n": [
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5008.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5005.png?image=q_auto,f_png,w_48&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5007.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5008.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5002.png?image=q_auto,f_png,w_48&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5003.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5001.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5002.png?image=q_auto,f_png,w_48&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5003.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967"
+		],
+		"rune_n_name": "능력치 파편",
+		"rune_img1": [
+			"https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8400.png?image=q_auto,f_png,w_48&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8437.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8000.png?image=q_auto,f_png,w_48&v=1670226786967"
+		],
+		"rune_pick1": "91.29%",
+		"rune_win1": "50.09%",
+		"rune_img2": [
+			"https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8400.png?image=q_auto,f_png,w_48&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8437.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8300.png?image=q_auto,f_png,w_48&v=1670226786967"
+		],
+		"rune_pick2": "7.41%",
+		"rune_win2": "55.83%"
+	},
+    {
+		"name": "그라가스",
+		"lane": "빌드 - 탑",
+		"skill": [
+			"https://opgg-static.akamaized.net/meta/images/lol/spell/GragasQ.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/spell/GragasE.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/spell/GragasW.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"skilltree": [
+			"Q",
+			"E",
+			"W"
+		],
+		"skilltrees": [
+			"Q",
+			"E",
+			"W",
+			"Q",
+			"Q",
+			"R",
+			"Q",
+			"E",
+			"Q",
+			"E",
+			"R",
+			"E",
+			"E",
+			"W",
+			"W"
+		],
+		"skillpick": "54.48%",
+		"skillwin": "55.44%",
+		"s_item1": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/1056.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/2003.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"s_itempick1": "66.47%",
+		"s_itemwin1": "47.40%",
+		"s_item2": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/2003.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3070.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"s_itempick2": "24.97%",
+		"s_itemwin2": "46.42%",
+		"s_shoe1": "https://opgg-static.akamaized.net/meta/images/lol/item/3158.png?image=q_auto,f_png,w_64&v=1670226786967",
+		"s_shoepick1": "62.57%",
+		"s_shoewin1": "48.73%",
+		"s_shoe2": "https://opgg-static.akamaized.net/meta/images/lol/item/3020.png?image=q_auto,f_png,w_64&v=1670226786967",
+		"s_shoepick2": "20.49%",
+		"s_shoewin2": "48.32%",
+		"item1": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3070.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/6656.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3040.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3157.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"itempick1": "15.82%",
+		"itemwin1": "54.31%",
+		"item2": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3070.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/6656.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3040.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/4629.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"itempick2": "8.65%",
+		"itemwin2": "55.73%",
+		"item3": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/6656.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/4629.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3157.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"itempick3": "8.4%",
+		"itemwin3": "59.25%",
+		"item4": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/6656.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3157.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/4629.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"itempick4": "3.86%",
+		"itemwin4": "55.39%",
+		"item5": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3070.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/6662.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3121.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3110.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"itempick5": "3.48%",
+		"itemwin5": "61.81%",
+		"hard_img": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Rammus.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Urgot.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Akshan.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Kled.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Kennen.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967"
+		],
+		"hard_win": [
+			"30.91%",
+			"39.26%",
+			"41.13%",
+			"41.46%",
+			"41.96%"
+		],
+		"easy_img": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Vayne.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Swain.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Heimerdinger.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Ryze.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Sylas.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967"
+		],
+		"easy_win": [
+			"56.13%",
+			"55.41%",
+			"54.43%",
+			"52.34%",
+			"51.98%"
+		],
+		"rune_j": "https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8200.png?image=q_auto,f_png,w_56&v=1670226786967",
+		"rune_js": [
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8214.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8229.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8230.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8224.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8226.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8275.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8210.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8234.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8233.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8237.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8232.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8236.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967"
+		],
+		"rune_j_name": "마법",
+		"rune_k": "https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8300.png?image=q_auto,f_png,w_56&v=1670226786967",
+		"rune_ks": [
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8306.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8304.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8313.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8321.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8316.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8345.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8347.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8410.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8352.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967"
+		],
+		"rune_k_name": "영감",
+		"rune_n": [
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5008.png?image=q_auto,f_png,w_48&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5005.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5007.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5008.png?image=q_auto,f_png,w_48&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5002.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5003.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5001.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5002.png?image=q_auto,f_png,w_48&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5003.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967"
+		],
+		"rune_n_name": "능력치 파편",
+		"rune_img1": [
+			"https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8200.png?image=q_auto,f_png,w_48&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8230.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8300.png?image=q_auto,f_png,w_48&v=1670226786967"
+		],
+		"rune_pick1": "47.44%",
+		"rune_win1": "46.39%",
+		"rune_img2": [
+			"https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8300.png?image=q_auto,f_png,w_48&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8369.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8200.png?image=q_auto,f_png,w_48&v=1670226786967"
+		],
+		"rune_pick2": "28.13%",
+		"rune_win2": "48.51%"
+	},
+	{
+		"name": "그레이브즈",
+		"lane": "빌드 - 정글",
+		"skill": [
+			"https://opgg-static.akamaized.net/meta/images/lol/spell/GravesQLineSpell.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/spell/GravesMove.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/spell/GravesSmokeGrenade.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"skilltree": [
+			"Q",
+			"E",
+			"W"
+		],
+		"skilltrees": [
+			"E",
+			"Q",
+			"W",
+			"Q",
+			"Q",
+			"R",
+			"Q",
+			"E",
+			"Q",
+			"E",
+			"R",
+			"E",
+			"E",
+			"W",
+			"W"
+		],
+		"skillpick": "71.01%",
+		"skillwin": "61.61%",
+		"s_item1": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/1101.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/2003.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"s_itempick1": "49.64%",
+		"s_itemwin1": "47.89%",
+		"s_item2": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/1103.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/2003.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"s_itempick2": "23.94%",
+		"s_itemwin2": "49.06%",
+		"s_shoe1": "https://opgg-static.akamaized.net/meta/images/lol/item/3047.png?image=q_auto,f_png,w_64&v=1670226786967",
+		"s_shoepick1": "53.34%",
+		"s_shoewin1": "48.04%",
+		"s_shoe2": "https://opgg-static.akamaized.net/meta/images/lol/item/3111.png?image=q_auto,f_png,w_64&v=1670226786967",
+		"s_shoepick2": "31.95%",
+		"s_shoewin2": "52.34%",
+		"item1": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3179.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/6692.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/6676.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"itempick1": "22.53%",
+		"itemwin1": "59.11%",
+		"item2": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3179.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/6630.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3071.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"itempick2": "11.3%",
+		"itemwin2": "56.64%",
+		"item3": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3179.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/6692.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/6694.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"itempick3": "6.45%",
+		"itemwin3": "53.20%",
+		"item4": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3074.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/6630.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3071.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"itempick4": "6.42%",
+		"itemwin4": "56.32%",
+		"item5": [
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3179.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/6692.png?image=q_auto,f_png,w_64&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/item/3156.png?image=q_auto,f_png,w_64&v=1670226786967"
+		],
+		"itempick5": "4.33%",
+		"itemwin5": "54.46%",
+		"hard_img": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Skarner.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Mordekaiser.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Shyvana.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Nocturne.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Fiddlesticks.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967"
+		],
+		"hard_win": [
+			"43.79%",
+			"43.94%",
+			"44.32%",
+			"45.04%",
+			"45.35%"
+		],
+		"easy_img": [
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Camille.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Qiyana.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Shaco.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Talon.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/champion/Kayn.png?image=c_crop,h_103,w_103,x_9,y_9/q_auto,f_png,w_72&v=1670226786967"
+		],
+		"easy_win": [
+			"56.48%",
+			"55.45%",
+			"53.41%",
+			"53.13%",
+			"51.63%"
+		],
+		"rune_j": "https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8000.png?image=q_auto,f_png,w_56&v=1670226786967",
+		"rune_js": [
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8005.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8008.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8021.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8010.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/9101.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/9111.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8009.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/9104.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/9105.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/9103.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8014.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8017.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8299.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967"
+		],
+		"rune_j_name": "정밀",
+		"rune_k": "https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8100.png?image=q_auto,f_png,w_56&v=1670226786967",
+		"rune_ks": [
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8126.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8139.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8143.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8136.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8120.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8138.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8135.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8134.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8105.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8106.png?image=q_auto,f_png,w_56,e_grayscale&v=1670226786967"
+		],
+		"rune_k_name": "지배",
+		"rune_n": [
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5008.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5005.png?image=q_auto,f_png,w_48&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5007.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5008.png?image=q_auto,f_png,w_48&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5002.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5003.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5001.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5002.png?image=q_auto,f_png,w_48&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkShard/5003.png?image=q_auto,f_png,w_48,e_grayscale&v=1670226786967"
+		],
+		"rune_n_name": "능력치 파편",
+		"rune_img1": [
+			"https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8000.png?image=q_auto,f_png,w_48&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8021.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8100.png?image=q_auto,f_png,w_48&v=1670226786967"
+		],
+		"rune_pick1": "81.82%",
+		"rune_win1": "49.02%",
+		"rune_img2": [
+			"https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8000.png?image=q_auto,f_png,w_48&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perk/8021.png?image=q_auto,f_png,w_56&v=1670226786967",
+			"https://opgg-static.akamaized.net/meta/images/lol/perkStyle/8300.png?image=q_auto,f_png,w_48&v=1670226786967"
+		],
+		"rune_pick2": "8.56%",
+		"rune_win2": "49.42%"
+	}
+]
