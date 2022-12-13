@@ -75,11 +75,6 @@ class Article(models.Model):
     def get_absolute_url(self):
         return reverse("articles:index")
 
-    class Meta:
-        db_table = "공지사항"
-        verbose_name = "공지사항"
-        verbose_name_plural = "공지사항"
-
 
 class CategorySelect1(models.IntegerChoices):
     one = 1,'스팸홍보/도배글입니다.',

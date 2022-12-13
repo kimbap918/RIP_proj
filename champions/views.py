@@ -1,6 +1,7 @@
 from django.shortcuts import render
 import operator
-from django.db.models import F, Func
+from django.db.models import F, Func,Q
+from .models import *
 
 # OP.GG 웹크롤링 json 파일
 import json
@@ -87,6 +88,122 @@ def goin(request):
         "support": support_g,
     }
     return render(request, "champions/goin.html", context)
+
+def search(request):
+    q = request.GET.get('name')
+    detail = {}
+    info_d = []  # 승률, 픽률, 밴률, 티어
+    runes = []  # r1_1 개수, r1_1, r1_2, r1_3, r1_4 개수, r1_4, r2_1, r2_2, r2_3 개수, r2_3
+    if q:
+        champions = Champ.objects.filter(Q(name__icontains=q))
+        for champion in champions:
+            name = champion.name 
+            for champ in champs:
+                if champ["name"] == name:
+                    detail["name"] = champ["name"]
+                    detail["lane"] = champ["lane"]
+                    detail["skill"] = champ["skill"]
+                    detail["skilltree"] = champ["skilltree"]
+                    detail["skilltrees"] = champ["skilltrees"]
+                    detail["skillpick"] = champ["skillpick"]
+                    detail["skillwin"] = champ["skillwin"]
+                    detail["s_item1"] = champ["s_item1"]
+                    detail["s_itempick1"] = champ["s_itempick1"]
+                    detail["s_itemwin1"] = champ["s_itemwin1"]
+                    detail["s_item2"] = champ["s_item2"]
+                    detail["s_itempick2"] = champ["s_itempick2"]
+                    detail["s_itemwin2"] = champ["s_itemwin2"]
+                    detail["s_shoe1"] = champ["s_shoe1"]
+                    detail["s_shoepick1"] = champ["s_shoepick1"]
+                    detail["s_shoewin1"] = champ["s_shoewin1"]
+                    detail["s_shoe2"] = champ["s_shoe2"]
+                    detail["s_shoepick2"] = champ["s_shoepick2"]
+                    detail["s_shoewin2"] = champ["s_shoewin2"]
+                    detail["item1"] = champ["item1"]
+                    detail["itempick1"] = champ["itempick1"]
+                    detail["itemwin1"] = champ["itemwin1"]
+                    detail["item2"] = champ["item2"]
+                    detail["itempick2"] = champ["itempick2"]
+                    detail["itemwin2"] = champ["itemwin2"]
+                    detail["item3"] = champ["item3"]
+                    detail["itempick3"] = champ["itempick3"]
+                    detail["itemwin3"] = champ["itemwin3"]
+                    detail["item4"] = champ["item4"]
+                    detail["itempick4"] = champ["itempick4"]
+                    detail["itemwin4"] = champ["itemwin4"]
+                    detail["item5"] = champ["item5"]
+                    detail["itempick5"] = champ["itempick5"]
+                    detail["itemwin5"] = champ["itemwin5"]
+                    detail["hard_img"] = champ["hard_img"]
+                    detail["hard_win"] = champ["hard_win"]
+                    detail["easy_img"] = champ["easy_img"]
+                    detail["easy_win"] = champ["easy_win"]
+                    detail["rune_j"] = champ["rune_j"]
+                    detail["rune_js"] = champ["rune_js"]
+                    detail["rune_j_name"] = champ["rune_j_name"]
+                    detail["rune_k"] = champ["rune_k"]
+                    detail["rune_ks"] = champ["rune_ks"]
+                    detail["rune_k_name"] = champ["rune_k_name"]
+                    detail["rune_n"] = champ["rune_n"]
+                    detail["rune_n_name"] = champ["rune_n_name"]
+                    detail["rune_img1"] = champ["rune_img1"]
+                    detail["rune_pick1"] = champ["rune_pick1"]
+                    detail["rune_win1"] = champ["rune_win1"]
+                    detail["rune_img2"] = champ["rune_img2"]
+                    detail["rune_pick2"] = champ["rune_pick2"]
+                    detail["rune_win2"] = champ["rune_win2"]
+            for t in top:
+                if t["name"] == name:
+                    info_d.append(t["win"])
+                    info_d.append(t["pick"])
+                    info_d.append(t["ben"])
+                    info_d.append(t["tier"])
+            for t in jungle:
+                if t["name"] == name:
+                    info_d.append(t["win"])
+                    info_d.append(t["pick"])
+                    info_d.append(t["ben"])
+                    info_d.append(t["tier"])
+            for t in mid:
+                if t["name"] == name:
+                    info_d.append(t["win"])
+                    info_d.append(t["pick"])
+                    info_d.append(t["ben"])
+                    info_d.append(t["tier"])
+            for t in adc:
+                if t["name"] == name:
+                    info_d.append(t["win"])
+                    info_d.append(t["pick"])
+                    info_d.append(t["ben"])
+                    info_d.append(t["tier"])
+            for t in support:
+                if t["name"] == name:
+                    info_d.append(t["win"])
+                    info_d.append(t["pick"])
+                    info_d.append(t["ben"])
+                    info_d.append(t["tier"])
+
+            for r in rune:
+                if r["name"][0] == name:
+                    runes.append(len(r["r1_1"]))
+                    runes.append(r["r1_1"])
+                    runes.append(r["r1_2"])
+                    runes.append(r["r1_3"])
+                    runes.append(len(r["r1_4"]))
+                    runes.append(r["r1_4"])
+                    runes.append(r["r2_1"])
+                    runes.append(r["r2_2"])
+                    runes.append(len(r["r2_3"]))
+                    runes.append(r["r2_3"])
+    
+        context ={
+            "detail":detail,
+            "info": info_d,
+            "champs": champs,
+            "name": name,
+            "runes": runes,
+        }
+        return render(request, 'champions/search.html',context)
 
 
 def detail(request, name):

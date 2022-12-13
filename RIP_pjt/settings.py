@@ -141,12 +141,12 @@ DEBUG = os.getenv("DEBUG") == "True"
 if DEBUG:
     # MEDIA_URL = "/media/"
     # MEDIA_ROOT = BASE_DIR / "media"
-    # DATABASES = {
-    #     "default": {
-    #         "ENGINE": "django.db.backends.sqlite3",
-    #         "NAME": BASE_DIR / "db.sqlite3",
-    #     }
-    # }
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
     DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 
     AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
@@ -159,16 +159,16 @@ if DEBUG:
         AWS_REGION,
     )
 
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": os.getenv("DATABASE_NAME"),  # .env 파일에 value 작성
-            "USER": "postgres",
-            "PASSWORD": os.getenv("DATABASE_PASSWORD"),  # .env 파일에 value 작성
-            "HOST": os.getenv("DATABASE_HOST"),  # .env 파일에 value 작성
-            "PORT": "5432",
-        }
-    }
+    # DATABASES = {
+    #     "default": {
+    #         "ENGINE": "django.db.backends.postgresql",
+    #         "NAME": os.getenv("DATABASE_NAME"),  # .env 파일에 value 작성
+    #         "USER": "postgres",
+    #         "PASSWORD": os.getenv("DATABASE_PASSWORD"),  # .env 파일에 value 작성
+    #         "HOST": os.getenv("DATABASE_HOST"),  # .env 파일에 value 작성
+    #         "PORT": "5432",
+    #     }
+    # }
 
 else:
     # 기본 파일 저장소
