@@ -357,7 +357,7 @@ body {
                           <div class="form-text">개인정보를 기입하여 발생될 수 있는 피해는 RIP.GG가 일절 책임지지 않습니다.</div>
                         </div>
                         <div class="submitBtn">
-                          <input type="submit" class="submitBtn btn" value="변경" style="">
+                          <input type="submit" class="submitBtn btn" value="변경">
                         </div>
                       </div>
                     <!-- </form> -->
@@ -366,7 +366,7 @@ body {
               </div>
             </div>
           </div>
-          <!-- <div class="edit__tr">
+          <div class="edit__tr">
             <div class="edit__th">
               소개
             </div>
@@ -376,10 +376,10 @@ body {
                   <div class="member-box-input__state member-edit-box-input__input member-box-input__state--value">
                       <div class="d-flex justify-content-between">
                         <div class="inputInfo">
-                          <textarea name="intro" cols="60" rows="2" class="" placeholder="소개글" id="id_intro"></textarea>
+                          <textarea name="intro" cols="60" rows="2" class="" placeholder="소개글" id="id_intro">{{ user.profile.intro }}</textarea>
                         </div>
                         <div class="submitBtn">
-                          <input type="submit" class="submitBtn btn" value="변경" style="">
+                          <input type="submit" class="submitBtn btn" value="변경">
                         </div>
                       </div>
                     </form>
@@ -387,25 +387,25 @@ body {
                 </div>
               </div>
             </div>
-          </div> -->
-        </form>
-        <div class="edit__tr">
-          <div class="edit__th">
-            이메일 수신 동의
           </div>
-          <div class="edit__td">
-            <div class="edit__l-email-term">
-              <div class="member-checkbox member-circle-checkbox">
-                <span class="member-checkbox__state">
-                  <input type="checkbox" type="checkbox" class="cb2">
-                </span>
-                <label for="memberInput1" class="member-checkbox__label">
-                  <span class="edit__email-term-title">OP.GG 소식 혹은 이벤트 알림 메일을 받겠습니다.</span>
-                  <span class="edit__email-term-sub">주요 공지사항 및 이벤트 당첨 안내 등은 알림 설정에 관계없이 발송됩니다.</span></label>
+          <div class="edit__tr">
+            <div class="edit__th">
+              이메일 수신 동의
+            </div>
+            <div class="edit__td">
+              <div class="edit__l-email-term">
+                <div class="member-checkbox member-circle-checkbox">
+                  <span class="member-checkbox__state">
+                    <input name="agree_mail"type="checkbox" type="checkbox" class="cb2">
+                  </span>
+                  <label for="memberInput1" class="member-checkbox__label">
+                    <span class="edit__email-term-title">OP.GG 소식 혹은 이벤트 알림 메일을 받겠습니다.</span>
+                    <span class="edit__email-term-sub">주요 공지사항 및 이벤트 당첨 안내 등은 알림 설정에 관계없이 발송됩니다.</span></label>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>

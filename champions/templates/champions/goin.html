@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'homeBase.html' %}
 {% load static %}
 {% load django_bootstrap5 %}
 {% load widget_tweaks %}
@@ -21,531 +21,534 @@
 
 <body style="background-color: #195853;">
     <div class="mt-1">
-        <img src="/static/images/goin.png" alt="" class="w-100">
+        <img src="/static/images/goin.png" alt="" style="height: 300px;" class="w-100">
     </div>
-    <div class="wrap mt-3">
-        <div class="tab_menu d-flex w-100 justify-content-center">
-            <ul class="list">
-                <li class="is_on">
-                    <a href="#top" class="btn">탑 고인물</a>
-                </li>
-                <li>
-                    <a href="#jungle" class="btn">정글 고인물</a>
-                </li>
-                <li>
-                    <a href="#mid" class="btn">미드 고인물</a>
-                </li>
-                <li>
-                    <a href="#adc" class="btn">바텀 고인물</a>
-                </li>
-                <li>
-                    <a href="#support" class="btn">서포터 고인물</a>
-                </li>
-            </ul>
-        </div>
-        <div class="cont_area" style="margin: 0px 100px;">
-            <div id="top" class="cont" style="display:block;">
-                <div class="tbl-header">
-                    <table cellpadding="0" cellspacing="0">
-                        <thead>
-                            <tr class="text-center">
-                                <th scope="col" class="c-champ">챔피언</th>
-                                <th scope="col" class="c-tier">티어</th>
-                                <th scope="col" class="c-percent">승률</th>
-                                <th scope="col" class="c-percent">픽률</th>
-                                <th scope="col" class="c-percent">밴률</th>
-                                <th scope="col" class="c-tip">공략</th>
-                                <th scope="col" class="c-rank">장인 랭킹</th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-                <div class="tbl-content">
-                    <table cellpadding="0" cellspacing="0">
-                        <tbody class="text-center">
-                            {% for t in top %}
-                            <tr>
-                                <td scope="col" class="c-champ-t">
-                                    <a href="{% url 'champions:detail' t.name %}" style="color: white;">
-                                        <img src="{{ t.img }}" alt=""
-                                            style="width: 25px; height: 25px; border-radius: 5px;">
-                                        　{{ t.name }}
-                                    </a>
-                                </td>
-                                <td scope="col" class="c-tier-t">
-                                    {% if t.tier == '0' %}
-                                    <img src="/static/images/t_op.png" alt="" style="width: 24px; height: 24px;">
-                                    {% elif t.tier == '1' %}
-                                    <img src="/static/images/t_1.png" alt="" style="width: 24px; height: 24px;">
-                                    {% elif t.tier == '2' %}
-                                    <img src="/static/images/t_2.png" alt="" style="width: 24px; height: 24px;">
-                                    {% elif t.tier == '3' %}
-                                    <img src="/static/images/t_3.png" alt="" style="width: 24px; height: 24px;">
-                                    {% elif t.tier == '4' %}
-                                    <img src="/static/images/t_4.png" alt="" style="width: 24px; height: 24px;">
-                                    {% else %}
-                                    <img src="/static/images/t_5.png" alt="" style="width: 24px; height: 24px;">
-                                    {% endif %}
-                                </td>
-                                <td scope="col" class="c-percent-t">{{ t.win }}</td>
-                                <td scope="col" class="c-percent-t">{{ t.pick }}</td>
-                                <td scope="col" class="c-percent-t">{{ t.ben }}</td>
-                                <td scope="col" class="c-tip-t">
-                                    <div class="dropsdown">
-                                        <button class="dropsbtn">{{ t.name }} 공략 <i class="bi bi-joystick"></i></button>
-                                        <div class="dropsdown-content">
-                                            <iframe width="400" height="250" src="{{ t.link }}" frameborder="0"
-                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                allowfullscreen></iframe>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td scope="col" class="c-rank-t">
-                                    <div class="dropsdown">
-                                        <button class="dropsbtn">{{ t.c_title }} <i
-                                                class="bi bi-droplet-fill water"></i></button>
-                                        <div class="dropsdown-content">
-                                            <a href="/summoners/result/?search_text={{ t.jname.0 }}">
-                                                <span class="fw-bold" style="color: black;">{{ t.rank.0 }}　</span>
-                                                <img src="{{ t.imgs.0 }}" alt="" style="height: 20px;">
-                                                <span style="color: black;">{{ t.jname.0 }} </span>
-                                                <span style="color: dimgray; font-size: 12px;"> {{ t.count.0 }}겜</span>
-                                            </a>
-                                            <a href="/summoners/result/?search_text={{ t.jname.1 }}">
-                                                <span class="fw-bold" style="color: black;">{{ t.rank.1 }}　</span>
-                                                <img src="{{ t.imgs.1 }}" alt="" style="height: 20px;">
-                                                <span style="color: black;">{{ t.jname.1 }} </span>
-                                                <span style="color: dimgray; font-size: 12px;"> {{ t.count.1 }}겜</span>
-                                            </a>
-                                            <a href="/summoners/result/?search_text={{ t.jname.2 }}">
-                                                <span class="fw-bold" style="color: black;">{{ t.rank.2 }}　</span>
-                                                <img src="{{ t.imgs.2 }}" alt="" style="height: 20px;">
-                                                <span style="color: black;">{{ t.jname.2 }} </span>
-                                                <span style="color: dimgray; font-size: 12px;"> {{ t.count.2 }}겜</span>
-                                            </a>
-                                            <a href="/summoners/result/?search_text={{ t.jname.3 }}">
-                                                <span class="fw-bold" style="color: black;">{{ t.rank.3 }}　</span>
-                                                <img src="{{ t.imgs.3 }}" alt="" style="height: 20px;">
-                                                <span style="color: black;">{{ t.jname.3 }} </span>
-                                                <span style="color: dimgray; font-size: 12px;"> {{ t.count.3 }}겜</span>
-                                            </a>
-                                            <a href="/summoners/result/?search_text={{ t.jname.4 }}">
-                                                <span class="fw-bold" style="color: black;">{{ t.rank.4 }}　</span>
-                                                <img src="{{ t.imgs.4 }}" alt="" style="height: 20px;">
-                                                <span style="color: black;">{{ t.jname.4 }} </span>
-                                                <span style="color: dimgray; font-size: 12px;"> {{ t.count.4 }}겜</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
+    <div class="container">
+        <div class="wrap mt-3">
+            <div class="tab_menu d-flex w-100 justify-content-center">
+                <ul class="list">
+                    <li class="is_on">
+                        <a href="#top" class="btn">탑 고인물</a>
+                    </li>
+                    <li>
+                        <a href="#jungle" class="btn">정글 고인물</a>
+                    </li>
+                    <li>
+                        <a href="#mid" class="btn">미드 고인물</a>
+                    </li>
+                    <li>
+                        <a href="#adc" class="btn">바텀 고인물</a>
+                    </li>
+                    <li>
+                        <a href="#support" class="btn">서포터 고인물</a>
+                    </li>
+                </ul>
             </div>
-            <div id="jungle" class="cont" style="display:none;">
-                <div class="tbl-header table-responsive-xl">
-                    <table cellpadding="0" cellspacing="0">
-                        <thead>
-                            <tr class="text-center">
-                                <th scope="col" class="c-champ">챔피언</th>
-                                <th scope="col" class="c-tier">티어</th>
-                                <th scope="col" class="c-percent">승률</th>
-                                <th scope="col" class="c-percent">픽률</th>
-                                <th scope="col" class="c-percent">밴률</th>
-                                <th scope="col" class="c-tip">공략</th>
-                                <th scope="col" class="c-rank">장인 랭킹</th>
-                            </tr>
-                        </thead>
-                    </table>
+            <div class="cont_area" style="margin: 0px 100px;">
+                <div id="top" class="cont" style="display:block;">
+                    <div class="tbl-header">
+                        <table cellpadding="0" cellspacing="0">
+                            <thead>
+                                <tr class="text-center">
+                                    <th scope="col" class="c-champ">챔피언</th>
+                                    <th scope="col" class="c-tier">티어</th>
+                                    <th scope="col" class="c-percent">승률</th>
+                                    <th scope="col" class="c-percent">픽률</th>
+                                    <th scope="col" class="c-percent">밴률</th>
+                                    <th scope="col" class="c-tip">공략</th>
+                                    <th scope="col" class="c-rank">장인 랭킹</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="tbl-content">
+                        <table cellpadding="0" cellspacing="0">
+                            <tbody class="text-center">
+                                {% for t in top %}
+                                <tr>
+                                    <td scope="col" class="c-champ-t">
+                                        <a href="{% url 'champions:detail' t.name %}" style="color: white;">
+                                            <img src="{{ t.img }}" alt=""
+                                                style="width: 25px; height: 25px; border-radius: 5px;">
+                                            　{{ t.name }}
+                                        </a>
+                                    </td>
+                                    <td scope="col" class="c-tier-t">
+                                        {% if t.tier == '0' %}
+                                        <img src="/static/images/t_op.png" alt="" style="width: 24px; height: 24px;">
+                                        {% elif t.tier == '1' %}
+                                        <img src="/static/images/t_1.png" alt="" style="width: 24px; height: 24px;">
+                                        {% elif t.tier == '2' %}
+                                        <img src="/static/images/t_2.png" alt="" style="width: 24px; height: 24px;">
+                                        {% elif t.tier == '3' %}
+                                        <img src="/static/images/t_3.png" alt="" style="width: 24px; height: 24px;">
+                                        {% elif t.tier == '4' %}
+                                        <img src="/static/images/t_4.png" alt="" style="width: 24px; height: 24px;">
+                                        {% else %}
+                                        <img src="/static/images/t_5.png" alt="" style="width: 24px; height: 24px;">
+                                        {% endif %}
+                                    </td>
+                                    <td scope="col" class="c-percent-t">{{ t.win }}</td>
+                                    <td scope="col" class="c-percent-t">{{ t.pick }}</td>
+                                    <td scope="col" class="c-percent-t">{{ t.ben }}</td>
+                                    <td scope="col" class="c-tip-t">
+                                        <div class="dropsdown">
+                                            <button class="dropsbtn">{{ t.name }} 공략 <i class="bi bi-joystick"></i></button>
+                                            <div class="dropsdown-content">
+                                                <iframe width="400" height="250" src="{{ t.link }}" frameborder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                    allowfullscreen></iframe>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td scope="col" class="c-rank-t">
+                                        <div class="dropsdown">
+                                            <button class="dropsbtn">{{ t.c_title }} <i
+                                                    class="bi bi-droplet-fill water"></i></button>
+                                            <div class="dropsdown-content">
+                                                <a href="/summoners/result/?search_text={{ t.jname.0 }}">
+                                                    <span class="fw-bold" style="color: black;">{{ t.rank.0 }}　</span>
+                                                    <img src="{{ t.imgs.0 }}" alt="" style="height: 20px;">
+                                                    <span style="color: black;">{{ t.jname.0 }} </span>
+                                                    <span style="color: dimgray; font-size: 12px;"> {{ t.count.0 }}겜</span>
+                                                </a>
+                                                <a href="/summoners/result/?search_text={{ t.jname.1 }}">
+                                                    <span class="fw-bold" style="color: black;">{{ t.rank.1 }}　</span>
+                                                    <img src="{{ t.imgs.1 }}" alt="" style="height: 20px;">
+                                                    <span style="color: black;">{{ t.jname.1 }} </span>
+                                                    <span style="color: dimgray; font-size: 12px;"> {{ t.count.1 }}겜</span>
+                                                </a>
+                                                <a href="/summoners/result/?search_text={{ t.jname.2 }}">
+                                                    <span class="fw-bold" style="color: black;">{{ t.rank.2 }}　</span>
+                                                    <img src="{{ t.imgs.2 }}" alt="" style="height: 20px;">
+                                                    <span style="color: black;">{{ t.jname.2 }} </span>
+                                                    <span style="color: dimgray; font-size: 12px;"> {{ t.count.2 }}겜</span>
+                                                </a>
+                                                <a href="/summoners/result/?search_text={{ t.jname.3 }}">
+                                                    <span class="fw-bold" style="color: black;">{{ t.rank.3 }}　</span>
+                                                    <img src="{{ t.imgs.3 }}" alt="" style="height: 20px;">
+                                                    <span style="color: black;">{{ t.jname.3 }} </span>
+                                                    <span style="color: dimgray; font-size: 12px;"> {{ t.count.3 }}겜</span>
+                                                </a>
+                                                <a href="/summoners/result/?search_text={{ t.jname.4 }}">
+                                                    <span class="fw-bold" style="color: black;">{{ t.rank.4 }}　</span>
+                                                    <img src="{{ t.imgs.4 }}" alt="" style="height: 20px;">
+                                                    <span style="color: black;">{{ t.jname.4 }} </span>
+                                                    <span style="color: dimgray; font-size: 12px;"> {{ t.count.4 }}겜</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="tbl-content">
-                    <table cellpadding="0" cellspacing="0">
-                        <tbody class="text-center">
-                            {% for t in jungle %}
-                            <tr>
-                                <td scope="col" class="c-champ-t">
-                                    <a href="{% url 'champions:detail' t.name %}" style="color: white;">
-                                        <img src="{{ t.img }}" alt=""
-                                            style="width: 25px; height: 25px; border-radius: 5px;">
-                                        　{{ t.name }}
-                                    </a>
-                                </td>
-                                <td scope="col" class="c-tier-t">
-                                    {% if t.tier == '0' %}
-                                    <img src="/static/images/t_op.png" alt="" style="width: 24px; height: 24px;">
-                                    {% elif t.tier == '1' %}
-                                    <img src="/static/images/t_1.png" alt="" style="width: 24px; height: 24px;">
-                                    {% elif t.tier == '2' %}
-                                    <img src="/static/images/t_2.png" alt="" style="width: 24px; height: 24px;">
-                                    {% elif t.tier == '3' %}
-                                    <img src="/static/images/t_3.png" alt="" style="width: 24px; height: 24px;">
-                                    {% elif t.tier == '4' %}
-                                    <img src="/static/images/t_4.png" alt="" style="width: 24px; height: 24px;">
-                                    {% else %}
-                                    <img src="/static/images/t_5.png" alt="" style="width: 24px; height: 24px;">
-                                    {% endif %}
-                                </td>
-                                <td scope="col" class="c-percent-t">{{ t.win }}</td>
-                                <td scope="col" class="c-percent-t">{{ t.pick }}</td>
-                                <td scope="col" class="c-percent-t">{{ t.ben }}</td>
-                                <td scope="col" class="c-tip-t">
-                                    <div class="dropsdown">
-                                        <button class="dropsbtn">{{ t.name }} 공략 <i class="bi bi-joystick"></i></button>
-                                        <div class="dropsdown-content">
-                                            <iframe width="400" height="250" src="{{ t.link }}" frameborder="0"
-                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                allowfullscreen></iframe>
+                <div id="jungle" class="cont" style="display:none;">
+                    <div class="tbl-header">
+                        <table cellpadding="0" cellspacing="0">
+                            <thead>
+                                <tr class="text-center">
+                                    <th scope="col" class="c-champ">챔피언</th>
+                                    <th scope="col" class="c-tier">티어</th>
+                                    <th scope="col" class="c-percent">승률</th>
+                                    <th scope="col" class="c-percent">픽률</th>
+                                    <th scope="col" class="c-percent">밴률</th>
+                                    <th scope="col" class="c-tip">공략</th>
+                                    <th scope="col" class="c-rank">장인 랭킹</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="tbl-content">
+                        <table cellpadding="0" cellspacing="0">
+                            <tbody class="text-center">
+                                {% for t in jungle %}
+                                <tr>
+                                    <td scope="col" class="c-champ-t">
+                                        <a href="{% url 'champions:detail' t.name %}" style="color: white;">
+                                            <img src="{{ t.img }}" alt=""
+                                                style="width: 25px; height: 25px; border-radius: 5px;">
+                                            　{{ t.name }}
+                                        </a>
+                                    </td>
+                                    <td scope="col" class="c-tier-t">
+                                        {% if t.tier == '0' %}
+                                        <img src="/static/images/t_op.png" alt="" style="width: 24px; height: 24px;">
+                                        {% elif t.tier == '1' %}
+                                        <img src="/static/images/t_1.png" alt="" style="width: 24px; height: 24px;">
+                                        {% elif t.tier == '2' %}
+                                        <img src="/static/images/t_2.png" alt="" style="width: 24px; height: 24px;">
+                                        {% elif t.tier == '3' %}
+                                        <img src="/static/images/t_3.png" alt="" style="width: 24px; height: 24px;">
+                                        {% elif t.tier == '4' %}
+                                        <img src="/static/images/t_4.png" alt="" style="width: 24px; height: 24px;">
+                                        {% else %}
+                                        <img src="/static/images/t_5.png" alt="" style="width: 24px; height: 24px;">
+                                        {% endif %}
+                                    </td>
+                                    <td scope="col" class="c-percent-t">{{ t.win }}</td>
+                                    <td scope="col" class="c-percent-t">{{ t.pick }}</td>
+                                    <td scope="col" class="c-percent-t">{{ t.ben }}</td>
+                                    <td scope="col" class="c-tip-t">
+                                        <div class="dropsdown">
+                                            <button class="dropsbtn">{{ t.name }} 공략 <i class="bi bi-joystick"></i></button>
+                                            <div class="dropsdown-content">
+                                                <iframe width="400" height="250" src="{{ t.link }}" frameborder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                    allowfullscreen></iframe>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td scope="col" class="c-rank-t">
-                                    <div class="dropsdown">
-                                        <button class="dropsbtn">{{ t.c_title }} <i
-                                                class="bi bi-droplet-fill water"></i></button>
-                                        <div class="dropsdown-content">
-                                            <a href="/summoners/result/?search_text={{ t.jname.0 }}">
-                                                <span class="fw-bold" style="color: black;">{{ t.rank.0 }}　</span>
-                                                <img src="{{ t.imgs.0 }}" alt="" style="height: 20px;">
-                                                <span style="color: black;">{{ t.jname.0 }} </span>
-                                                <span style="color: dimgray; font-size: 12px;"> {{ t.count.0 }}겜</span>
-                                            </a>
-                                            <a href="/summoners/result/?search_text={{ t.jname.1 }}">
-                                                <span class="fw-bold" style="color: black;">{{ t.rank.1 }}　</span>
-                                                <img src="{{ t.imgs.1 }}" alt="" style="height: 20px;">
-                                                <span style="color: black;">{{ t.jname.1 }} </span>
-                                                <span style="color: dimgray; font-size: 12px;"> {{ t.count.1 }}겜</span>
-                                            </a>
-                                            <a href="/summoners/result/?search_text={{ t.jname.2 }}">
-                                                <span class="fw-bold" style="color: black;">{{ t.rank.2 }}　</span>
-                                                <img src="{{ t.imgs.2 }}" alt="" style="height: 20px;">
-                                                <span style="color: black;">{{ t.jname.2 }} </span>
-                                                <span style="color: dimgray; font-size: 12px;"> {{ t.count.2 }}겜</span>
-                                            </a>
-                                            <a href="/summoners/result/?search_text={{ t.jname.3 }}">
-                                                <span class="fw-bold" style="color: black;">{{ t.rank.3 }}　</span>
-                                                <img src="{{ t.imgs.3 }}" alt="" style="height: 20px;">
-                                                <span style="color: black;">{{ t.jname.3 }} </span>
-                                                <span style="color: dimgray; font-size: 12px;"> {{ t.count.3 }}겜</span>
-                                            </a>
-                                            <a href="/summoners/result/?search_text={{ t.jname.4 }}">
-                                                <span class="fw-bold" style="color: black;">{{ t.rank.4 }}　</span>
-                                                <img src="{{ t.imgs.4 }}" alt="" style="height: 20px;">
-                                                <span style="color: black;">{{ t.jname.4 }} </span>
-                                                <span style="color: dimgray; font-size: 12px;"> {{ t.count.4 }}겜</span>
-                                            </a>
+                                    </td>
+                                    <td scope="col" class="c-rank-t">
+                                        <div class="dropsdown">
+                                            <button class="dropsbtn">{{ t.c_title }} <i
+                                                    class="bi bi-droplet-fill water"></i></button>
+                                            <div class="dropsdown-content">
+                                                <a href="/summoners/result/?search_text={{ t.jname.0 }}">
+                                                    <span class="fw-bold" style="color: black;">{{ t.rank.0 }}　</span>
+                                                    <img src="{{ t.imgs.0 }}" alt="" style="height: 20px;">
+                                                    <span style="color: black;">{{ t.jname.0 }} </span>
+                                                    <span style="color: dimgray; font-size: 12px;"> {{ t.count.0 }}겜</span>
+                                                </a>
+                                                <a href="/summoners/result/?search_text={{ t.jname.1 }}">
+                                                    <span class="fw-bold" style="color: black;">{{ t.rank.1 }}　</span>
+                                                    <img src="{{ t.imgs.1 }}" alt="" style="height: 20px;">
+                                                    <span style="color: black;">{{ t.jname.1 }} </span>
+                                                    <span style="color: dimgray; font-size: 12px;"> {{ t.count.1 }}겜</span>
+                                                </a>
+                                                <a href="/summoners/result/?search_text={{ t.jname.2 }}">
+                                                    <span class="fw-bold" style="color: black;">{{ t.rank.2 }}　</span>
+                                                    <img src="{{ t.imgs.2 }}" alt="" style="height: 20px;">
+                                                    <span style="color: black;">{{ t.jname.2 }} </span>
+                                                    <span style="color: dimgray; font-size: 12px;"> {{ t.count.2 }}겜</span>
+                                                </a>
+                                                <a href="/summoners/result/?search_text={{ t.jname.3 }}">
+                                                    <span class="fw-bold" style="color: black;">{{ t.rank.3 }}　</span>
+                                                    <img src="{{ t.imgs.3 }}" alt="" style="height: 20px;">
+                                                    <span style="color: black;">{{ t.jname.3 }} </span>
+                                                    <span style="color: dimgray; font-size: 12px;"> {{ t.count.3 }}겜</span>
+                                                </a>
+                                                <a href="/summoners/result/?search_text={{ t.jname.4 }}">
+                                                    <span class="fw-bold" style="color: black;">{{ t.rank.4 }}　</span>
+                                                    <img src="{{ t.imgs.4 }}" alt="" style="height: 20px;">
+                                                    <span style="color: black;">{{ t.jname.4 }} </span>
+                                                    <span style="color: dimgray; font-size: 12px;"> {{ t.count.4 }}겜</span>
+                                                </a>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
-            <div id="mid" class="cont" style="display:none;">
-                <div class="tbl-header table-responsive-xl">
-                    <table cellpadding="0" cellspacing="0">
-                        <thead>
-                            <tr class="text-center">
-                                <th scope="col" class="c-champ">챔피언</th>
-                                <th scope="col" class="c-tier">티어</th>
-                                <th scope="col" class="c-percent">승률</th>
-                                <th scope="col" class="c-percent">픽률</th>
-                                <th scope="col" class="c-percent">밴률</th>
-                                <th scope="col" class="c-tip">공략</th>
-                                <th scope="col" class="c-rank">장인 랭킹</th>
-                            </tr>
-                        </thead>
-                    </table>
+                <div id="mid" class="cont" style="display:none;">
+                    <div class="tbl-header">
+                        <table cellpadding="0" cellspacing="0">
+                            <thead>
+                                <tr class="text-center">
+                                    <th scope="col" class="c-champ">챔피언</th>
+                                    <th scope="col" class="c-tier">티어</th>
+                                    <th scope="col" class="c-percent">승률</th>
+                                    <th scope="col" class="c-percent">픽률</th>
+                                    <th scope="col" class="c-percent">밴률</th>
+                                    <th scope="col" class="c-tip">공략</th>
+                                    <th scope="col" class="c-rank">장인 랭킹</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="tbl-content">
+                        <table cellpadding="0" cellspacing="0">
+                            <tbody class="text-center">
+                                {% for t in mid %}
+                                <tr>
+                                    <td scope="col" class="c-champ-t">
+                                        <a href="{% url 'champions:detail' t.name %}" style="color: white;">
+                                            <img src="{{ t.img }}" alt=""
+                                                style="width: 25px; height: 25px; border-radius: 5px;">
+                                            　{{ t.name }}
+                                        </a>
+                                    </td>
+                                    <td scope="col" class="c-tier-t">
+                                        {% if t.tier == '0' %}
+                                        <img src="/static/images/t_op.png" alt="" style="width: 24px; height: 24px;">
+                                        {% elif t.tier == '1' %}
+                                        <img src="/static/images/t_1.png" alt="" style="width: 24px; height: 24px;">
+                                        {% elif t.tier == '2' %}
+                                        <img src="/static/images/t_2.png" alt="" style="width: 24px; height: 24px;">
+                                        {% elif t.tier == '3' %}
+                                        <img src="/static/images/t_3.png" alt="" style="width: 24px; height: 24px;">
+                                        {% elif t.tier == '4' %}
+                                        <img src="/static/images/t_4.png" alt="" style="width: 24px; height: 24px;">
+                                        {% else %}
+                                        <img src="/static/images/t_5.png" alt="" style="width: 24px; height: 24px;">
+                                        {% endif %}
+                                    </td>
+                                    <td scope="col" class="c-percent-t">{{ t.win }}</td>
+                                    <td scope="col" class="c-percent-t">{{ t.pick }}</td>
+                                    <td scope="col" class="c-percent-t">{{ t.ben }}</td>
+                                    <td scope="col" class="c-tip-t">
+                                        <div class="dropsdown">
+                                            <button class="dropsbtn">{{ t.name }} 공략 <i class="bi bi-joystick"></i></button>
+                                            <div class="dropsdown-content">
+                                                <iframe width="400" height="250" src="{{ t.link }}" frameborder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                    allowfullscreen></iframe>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td scope="col" class="c-rank-t">
+                                        <div class="dropsdown">
+                                            <button class="dropsbtn">{{ t.c_title }} <i
+                                                    class="bi bi-droplet-fill water"></i></button>
+                                            <div class="dropsdown-content">
+                                                <a href="/summoners/result/?search_text={{ t.jname.0 }}">
+                                                    <span class="fw-bold" style="color: black;">{{ t.rank.0 }}　</span>
+                                                    <img src="{{ t.imgs.0 }}" alt="" style="height: 20px;">
+                                                    <span style="color: black;">{{ t.jname.0 }} </span>
+                                                    <span style="color: dimgray; font-size: 12px;"> {{ t.count.0 }}겜</span>
+                                                </a>
+                                                <a href="/summoners/result/?search_text={{ t.jname.1 }}">
+                                                    <span class="fw-bold" style="color: black;">{{ t.rank.1 }}　</span>
+                                                    <img src="{{ t.imgs.1 }}" alt="" style="height: 20px;">
+                                                    <span style="color: black;">{{ t.jname.1 }} </span>
+                                                    <span style="color: dimgray; font-size: 12px;"> {{ t.count.1 }}겜</span>
+                                                </a>
+                                                <a href="/summoners/result/?search_text={{ t.jname.2 }}">
+                                                    <span class="fw-bold" style="color: black;">{{ t.rank.2 }}　</span>
+                                                    <img src="{{ t.imgs.2 }}" alt="" style="height: 20px;">
+                                                    <span style="color: black;">{{ t.jname.2 }} </span>
+                                                    <span style="color: dimgray; font-size: 12px;"> {{ t.count.2 }}겜</span>
+                                                </a>
+                                                <a href="/summoners/result/?search_text={{ t.jname.3 }}">
+                                                    <span class="fw-bold" style="color: black;">{{ t.rank.3 }}　</span>
+                                                    <img src="{{ t.imgs.3 }}" alt="" style="height: 20px;">
+                                                    <span style="color: black;">{{ t.jname.3 }} </span>
+                                                    <span style="color: dimgray; font-size: 12px;"> {{ t.count.3 }}겜</span>
+                                                </a>
+                                                <a href="/summoners/result/?search_text={{ t.jname.4 }}">
+                                                    <span class="fw-bold" style="color: black;">{{ t.rank.4 }}　</span>
+                                                    <img src="{{ t.imgs.4 }}" alt="" style="height: 20px;">
+                                                    <span style="color: black;">{{ t.jname.4 }} </span>
+                                                    <span style="color: dimgray; font-size: 12px;"> {{ t.count.4 }}겜</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="tbl-content">
-                    <table cellpadding="0" cellspacing="0">
-                        <tbody class="text-center">
-                            {% for t in mid %}
-                            <tr>
-                                <td scope="col" class="c-champ-t">
-                                    <a href="{% url 'champions:detail' t.name %}" style="color: white;">
-                                        <img src="{{ t.img }}" alt=""
-                                            style="width: 25px; height: 25px; border-radius: 5px;">
-                                        　{{ t.name }}
-                                    </a>
-                                </td>
-                                <td scope="col" class="c-tier-t">
-                                    {% if t.tier == '0' %}
-                                    <img src="/static/images/t_op.png" alt="" style="width: 24px; height: 24px;">
-                                    {% elif t.tier == '1' %}
-                                    <img src="/static/images/t_1.png" alt="" style="width: 24px; height: 24px;">
-                                    {% elif t.tier == '2' %}
-                                    <img src="/static/images/t_2.png" alt="" style="width: 24px; height: 24px;">
-                                    {% elif t.tier == '3' %}
-                                    <img src="/static/images/t_3.png" alt="" style="width: 24px; height: 24px;">
-                                    {% elif t.tier == '4' %}
-                                    <img src="/static/images/t_4.png" alt="" style="width: 24px; height: 24px;">
-                                    {% else %}
-                                    <img src="/static/images/t_5.png" alt="" style="width: 24px; height: 24px;">
-                                    {% endif %}
-                                </td>
-                                <td scope="col" class="c-percent-t">{{ t.win }}</td>
-                                <td scope="col" class="c-percent-t">{{ t.pick }}</td>
-                                <td scope="col" class="c-percent-t">{{ t.ben }}</td>
-                                <td scope="col" class="c-tip-t">
-                                    <div class="dropsdown">
-                                        <button class="dropsbtn">{{ t.name }} 공략 <i class="bi bi-joystick"></i></button>
-                                        <div class="dropsdown-content">
-                                            <iframe width="400" height="250" src="{{ t.link }}" frameborder="0"
-                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                allowfullscreen></iframe>
+                <div id="adc" class="cont" style="display:none;">
+                    <div class="tbl-header">
+                        <table cellpadding="0" cellspacing="0">
+                            <thead>
+                                <tr class="text-center">
+                                    <th scope="col" class="c-champ">챔피언</th>
+                                    <th scope="col" class="c-tier">티어</th>
+                                    <th scope="col" class="c-percent">승률</th>
+                                    <th scope="col" class="c-percent">픽률</th>
+                                    <th scope="col" class="c-percent">밴률</th>
+                                    <th scope="col" class="c-tip">공략</th>
+                                    <th scope="col" class="c-rank">장인 랭킹</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="tbl-content">
+                        <table cellpadding="0" cellspacing="0">
+                            <tbody class="text-center">
+                                {% for t in adc %}
+                                <tr>
+                                    <td scope="col" class="c-champ-t">
+                                        <a href="{% url 'champions:detail' t.name %}" style="color: white;">
+                                            <img src="{{ t.img }}" alt=""
+                                                style="width: 25px; height: 25px; border-radius: 5px;">
+                                            　{{ t.name }}
+                                        </a>
+                                    </td>
+                                    <td scope="col" class="c-tier-t">
+                                        {% if t.tier == '0' %}
+                                        <img src="/static/images/t_op.png" alt="" style="width: 24px; height: 24px;">
+                                        {% elif t.tier == '1' %}
+                                        <img src="/static/images/t_1.png" alt="" style="width: 24px; height: 24px;">
+                                        {% elif t.tier == '2' %}
+                                        <img src="/static/images/t_2.png" alt="" style="width: 24px; height: 24px;">
+                                        {% elif t.tier == '3' %}
+                                        <img src="/static/images/t_3.png" alt="" style="width: 24px; height: 24px;">
+                                        {% elif t.tier == '4' %}
+                                        <img src="/static/images/t_4.png" alt="" style="width: 24px; height: 24px;">
+                                        {% else %}
+                                        <img src="/static/images/t_5.png" alt="" style="width: 24px; height: 24px;">
+                                        {% endif %}
+                                    </td>
+                                    <td scope="col" class="c-percent-t">{{ t.win }}</td>
+                                    <td scope="col" class="c-percent-t">{{ t.pick }}</td>
+                                    <td scope="col" class="c-percent-t">{{ t.ben }}</td>
+                                    <td scope="col" class="c-tip-t">
+                                        <div class="dropsdown">
+                                            <button class="dropsbtn">{{ t.name }} 공략 <i class="bi bi-joystick"></i></button>
+                                            <div class="dropsdown-content">
+                                                <iframe width="400" height="250" src="{{ t.link }}" frameborder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                    allowfullscreen></iframe>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td scope="col" class="c-rank-t">
-                                    <div class="dropsdown">
-                                        <button class="dropsbtn">{{ t.c_title }} <i
-                                                class="bi bi-droplet-fill water"></i></button>
-                                        <div class="dropsdown-content">
-                                            <a href="/summoners/result/?search_text={{ t.jname.0 }}">
-                                                <span class="fw-bold" style="color: black;">{{ t.rank.0 }}　</span>
-                                                <img src="{{ t.imgs.0 }}" alt="" style="height: 20px;">
-                                                <span style="color: black;">{{ t.jname.0 }} </span>
-                                                <span style="color: dimgray; font-size: 12px;"> {{ t.count.0 }}겜</span>
-                                            </a>
-                                            <a href="/summoners/result/?search_text={{ t.jname.1 }}">
-                                                <span class="fw-bold" style="color: black;">{{ t.rank.1 }}　</span>
-                                                <img src="{{ t.imgs.1 }}" alt="" style="height: 20px;">
-                                                <span style="color: black;">{{ t.jname.1 }} </span>
-                                                <span style="color: dimgray; font-size: 12px;"> {{ t.count.1 }}겜</span>
-                                            </a>
-                                            <a href="/summoners/result/?search_text={{ t.jname.2 }}">
-                                                <span class="fw-bold" style="color: black;">{{ t.rank.2 }}　</span>
-                                                <img src="{{ t.imgs.2 }}" alt="" style="height: 20px;">
-                                                <span style="color: black;">{{ t.jname.2 }} </span>
-                                                <span style="color: dimgray; font-size: 12px;"> {{ t.count.2 }}겜</span>
-                                            </a>
-                                            <a href="/summoners/result/?search_text={{ t.jname.3 }}">
-                                                <span class="fw-bold" style="color: black;">{{ t.rank.3 }}　</span>
-                                                <img src="{{ t.imgs.3 }}" alt="" style="height: 20px;">
-                                                <span style="color: black;">{{ t.jname.3 }} </span>
-                                                <span style="color: dimgray; font-size: 12px;"> {{ t.count.3 }}겜</span>
-                                            </a>
-                                            <a href="/summoners/result/?search_text={{ t.jname.4 }}">
-                                                <span class="fw-bold" style="color: black;">{{ t.rank.4 }}　</span>
-                                                <img src="{{ t.imgs.4 }}" alt="" style="height: 20px;">
-                                                <span style="color: black;">{{ t.jname.4 }} </span>
-                                                <span style="color: dimgray; font-size: 12px;"> {{ t.count.4 }}겜</span>
-                                            </a>
+                                    </td>
+                                    <td scope="col" class="c-rank-t">
+                                        <div class="dropsdown">
+                                            <button class="dropsbtn">{{ t.c_title }} <i
+                                                    class="bi bi-droplet-fill water"></i></button>
+                                            <div class="dropsdown-content">
+                                                <a href="/summoners/result/?search_text={{ t.jname.0 }}">
+                                                    <span class="fw-bold" style="color: black;">{{ t.rank.0 }}　</span>
+                                                    <img src="{{ t.imgs.0 }}" alt="" style="height: 20px;">
+                                                    <span style="color: black;">{{ t.jname.0 }} </span>
+                                                    <span style="color: dimgray; font-size: 12px;"> {{ t.count.0 }}겜</span>
+                                                </a>
+                                                <a href="/summoners/result/?search_text={{ t.jname.1 }}">
+                                                    <span class="fw-bold" style="color: black;">{{ t.rank.1 }}　</span>
+                                                    <img src="{{ t.imgs.1 }}" alt="" style="height: 20px;">
+                                                    <span style="color: black;">{{ t.jname.1 }} </span>
+                                                    <span style="color: dimgray; font-size: 12px;"> {{ t.count.1 }}겜</span>
+                                                </a>
+                                                <a href="/summoners/result/?search_text={{ t.jname.2 }}">
+                                                    <span class="fw-bold" style="color: black;">{{ t.rank.2 }}　</span>
+                                                    <img src="{{ t.imgs.2 }}" alt="" style="height: 20px;">
+                                                    <span style="color: black;">{{ t.jname.2 }} </span>
+                                                    <span style="color: dimgray; font-size: 12px;"> {{ t.count.2 }}겜</span>
+                                                </a>
+                                                <a href="/summoners/result/?search_text={{ t.jname.3 }}">
+                                                    <span class="fw-bold" style="color: black;">{{ t.rank.3 }}　</span>
+                                                    <img src="{{ t.imgs.3 }}" alt="" style="height: 20px;">
+                                                    <span style="color: black;">{{ t.jname.3 }} </span>
+                                                    <span style="color: dimgray; font-size: 12px;"> {{ t.count.3 }}겜</span>
+                                                </a>
+                                                <a href="/summoners/result/?search_text={{ t.jname.4 }}">
+                                                    <span class="fw-bold" style="color: black;">{{ t.rank.4 }}　</span>
+                                                    <img src="{{ t.imgs.4 }}" alt="" style="height: 20px;">
+                                                    <span style="color: black;">{{ t.jname.4 }} </span>
+                                                    <span style="color: dimgray; font-size: 12px;"> {{ t.count.4 }}겜</span>
+                                                </a>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
-            <div id="adc" class="cont" style="display:none;">
-                <div class="tbl-header table-responsive-xl">
-                    <table cellpadding="0" cellspacing="0">
-                        <thead>
-                            <tr class="text-center">
-                                <th scope="col" class="c-champ">챔피언</th>
-                                <th scope="col" class="c-tier">티어</th>
-                                <th scope="col" class="c-percent">승률</th>
-                                <th scope="col" class="c-percent">픽률</th>
-                                <th scope="col" class="c-percent">밴률</th>
-                                <th scope="col" class="c-tip">공략</th>
-                                <th scope="col" class="c-rank">장인 랭킹</th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-                <div class="tbl-content">
-                    <table cellpadding="0" cellspacing="0">
-                        <tbody class="text-center">
-                            {% for t in adc %}
-                            <tr>
-                                <td scope="col" class="c-champ-t">
-                                    <a href="{% url 'champions:detail' t.name %}" style="color: white;">
-                                        <img src="{{ t.img }}" alt=""
-                                            style="width: 25px; height: 25px; border-radius: 5px;">
-                                        　{{ t.name }}
-                                    </a>
-                                </td>
-                                <td scope="col" class="c-tier-t">
-                                    {% if t.tier == '0' %}
-                                    <img src="/static/images/t_op.png" alt="" style="width: 24px; height: 24px;">
-                                    {% elif t.tier == '1' %}
-                                    <img src="/static/images/t_1.png" alt="" style="width: 24px; height: 24px;">
-                                    {% elif t.tier == '2' %}
-                                    <img src="/static/images/t_2.png" alt="" style="width: 24px; height: 24px;">
-                                    {% elif t.tier == '3' %}
-                                    <img src="/static/images/t_3.png" alt="" style="width: 24px; height: 24px;">
-                                    {% elif t.tier == '4' %}
-                                    <img src="/static/images/t_4.png" alt="" style="width: 24px; height: 24px;">
-                                    {% else %}
-                                    <img src="/static/images/t_5.png" alt="" style="width: 24px; height: 24px;">
-                                    {% endif %}
-                                </td>
-                                <td scope="col" class="c-percent-t">{{ t.win }}</td>
-                                <td scope="col" class="c-percent-t">{{ t.pick }}</td>
-                                <td scope="col" class="c-percent-t">{{ t.ben }}</td>
-                                <td scope="col" class="c-tip-t">
-                                    <div class="dropsdown">
-                                        <button class="dropsbtn">{{ t.name }} 공략 <i class="bi bi-joystick"></i></button>
-                                        <div class="dropsdown-content">
-                                            <iframe width="400" height="250" src="{{ t.link }}" frameborder="0"
-                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                allowfullscreen></iframe>
+                <div id="support" class="cont" style="display:none;">
+                    <div class="tbl-header">
+                        <table cellpadding="0" cellspacing="0">
+                            <thead>
+                                <tr class="text-center">
+                                    <th scope="col" class="c-champ">챔피언</th>
+                                    <th scope="col" class="c-tier">티어</th>
+                                    <th scope="col" class="c-percent">승률</th>
+                                    <th scope="col" class="c-percent">픽률</th>
+                                    <th scope="col" class="c-percent">밴률</th>
+                                    <th scope="col" class="c-tip">공략</th>
+                                    <th scope="col" class="c-rank">장인 랭킹</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="tbl-content">
+                        <table cellpadding="0" cellspacing="0">
+                            <tbody class="text-center">
+                                {% for t in support %}
+                                <tr>
+                                    <td scope="col" class="c-champ-t">
+                                        <a href="{% url 'champions:detail' t.name %}" style="color: white;">
+                                            <img src="{{ t.img }}" alt=""
+                                                style="width: 25px; height: 25px; border-radius: 5px;">
+                                            　{{ t.name }}
+                                        </a>
+                                    </td>
+                                    <td scope="col" class="c-tier-t">
+                                        {% if t.tier == '0' %}
+                                        <img src="/static/images/t_op.png" alt="" style="width: 24px; height: 24px;">
+                                        {% elif t.tier == '1' %}
+                                        <img src="/static/images/t_1.png" alt="" style="width: 24px; height: 24px;">
+                                        {% elif t.tier == '2' %}
+                                        <img src="/static/images/t_2.png" alt="" style="width: 24px; height: 24px;">
+                                        {% elif t.tier == '3' %}
+                                        <img src="/static/images/t_3.png" alt="" style="width: 24px; height: 24px;">
+                                        {% elif t.tier == '4' %}
+                                        <img src="/static/images/t_4.png" alt="" style="width: 24px; height: 24px;">
+                                        {% else %}
+                                        <img src="/static/images/t_5.png" alt="" style="width: 24px; height: 24px;">
+                                        {% endif %}
+                                    </td>
+                                    <td scope="col" class="c-percent-t">{{ t.win }}</td>
+                                    <td scope="col" class="c-percent-t">{{ t.pick }}</td>
+                                    <td scope="col" class="c-percent-t">{{ t.ben }}</td>
+                                    <td scope="col" class="c-tip-t">
+                                        <div class="dropsdown">
+                                            <button class="dropsbtn">{{ t.name }} 공략 <i class="bi bi-joystick"></i></button>
+                                            <div class="dropsdown-content">
+                                                <iframe width="400" height="250" src="{{ t.link }}" frameborder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                    allowfullscreen></iframe>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td scope="col" class="c-rank-t">
-                                    <div class="dropsdown">
-                                        <button class="dropsbtn">{{ t.c_title }} <i
-                                                class="bi bi-droplet-fill water"></i></button>
-                                        <div class="dropsdown-content">
-                                            <a href="/summoners/result/?search_text={{ t.jname.0 }}">
-                                                <span class="fw-bold" style="color: black;">{{ t.rank.0 }}　</span>
-                                                <img src="{{ t.imgs.0 }}" alt="" style="height: 20px;">
-                                                <span style="color: black;">{{ t.jname.0 }} </span>
-                                                <span style="color: dimgray; font-size: 12px;"> {{ t.count.0 }}겜</span>
-                                            </a>
-                                            <a href="/summoners/result/?search_text={{ t.jname.1 }}">
-                                                <span class="fw-bold" style="color: black;">{{ t.rank.1 }}　</span>
-                                                <img src="{{ t.imgs.1 }}" alt="" style="height: 20px;">
-                                                <span style="color: black;">{{ t.jname.1 }} </span>
-                                                <span style="color: dimgray; font-size: 12px;"> {{ t.count.1 }}겜</span>
-                                            </a>
-                                            <a href="/summoners/result/?search_text={{ t.jname.2 }}">
-                                                <span class="fw-bold" style="color: black;">{{ t.rank.2 }}　</span>
-                                                <img src="{{ t.imgs.2 }}" alt="" style="height: 20px;">
-                                                <span style="color: black;">{{ t.jname.2 }} </span>
-                                                <span style="color: dimgray; font-size: 12px;"> {{ t.count.2 }}겜</span>
-                                            </a>
-                                            <a href="/summoners/result/?search_text={{ t.jname.3 }}">
-                                                <span class="fw-bold" style="color: black;">{{ t.rank.3 }}　</span>
-                                                <img src="{{ t.imgs.3 }}" alt="" style="height: 20px;">
-                                                <span style="color: black;">{{ t.jname.3 }} </span>
-                                                <span style="color: dimgray; font-size: 12px;"> {{ t.count.3 }}겜</span>
-                                            </a>
-                                            <a href="/summoners/result/?search_text={{ t.jname.4 }}">
-                                                <span class="fw-bold" style="color: black;">{{ t.rank.4 }}　</span>
-                                                <img src="{{ t.imgs.4 }}" alt="" style="height: 20px;">
-                                                <span style="color: black;">{{ t.jname.4 }} </span>
-                                                <span style="color: dimgray; font-size: 12px;"> {{ t.count.4 }}겜</span>
-                                            </a>
+                                    </td>
+                                    <td scope="col" class="c-rank-t">
+                                        <div class="dropsdown">
+                                            <button class="dropsbtn">{{ t.c_title }} <i
+                                                    class="bi bi-droplet-fill water"></i></button>
+                                            <div class="dropsdown-content">
+                                                <a href="/summoners/result/?search_text={{ t.jname.0 }}">
+                                                    <span class="fw-bold" style="color: black;">{{ t.rank.0 }}　</span>
+                                                    <img src="{{ t.imgs.0 }}" alt="" style="height: 20px;">
+                                                    <span style="color: black;">{{ t.jname.0 }} </span>
+                                                    <span style="color: dimgray; font-size: 12px;"> {{ t.count.0 }}겜</span>
+                                                </a>
+                                                <a href="/summoners/result/?search_text={{ t.jname.1 }}">
+                                                    <span class="fw-bold" style="color: black;">{{ t.rank.1 }}　</span>
+                                                    <img src="{{ t.imgs.1 }}" alt="" style="height: 20px;">
+                                                    <span style="color: black;">{{ t.jname.1 }} </span>
+                                                    <span style="color: dimgray; font-size: 12px;"> {{ t.count.1 }}겜</span>
+                                                </a>
+                                                <a href="/summoners/result/?search_text={{ t.jname.2 }}">
+                                                    <span class="fw-bold" style="color: black;">{{ t.rank.2 }}　</span>
+                                                    <img src="{{ t.imgs.2 }}" alt="" style="height: 20px;">
+                                                    <span style="color: black;">{{ t.jname.2 }} </span>
+                                                    <span style="color: dimgray; font-size: 12px;"> {{ t.count.2 }}겜</span>
+                                                </a>
+                                                <a href="/summoners/result/?search_text={{ t.jname.3 }}">
+                                                    <span class="fw-bold" style="color: black;">{{ t.rank.3 }}　</span>
+                                                    <img src="{{ t.imgs.3 }}" alt="" style="height: 20px;">
+                                                    <span style="color: black;">{{ t.jname.3 }} </span>
+                                                    <span style="color: dimgray; font-size: 12px;"> {{ t.count.3 }}겜</span>
+                                                </a>
+                                                <a href="/summoners/result/?search_text={{ t.jname.4 }}">
+                                                    <span class="fw-bold" style="color: black;">{{ t.rank.4 }}　</span>
+                                                    <img src="{{ t.imgs.4 }}" alt="" style="height: 20px;">
+                                                    <span style="color: black;">{{ t.jname.4 }} </span>
+                                                    <span style="color: dimgray; font-size: 12px;"> {{ t.count.4 }}겜</span>
+                                                </a>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div id="support" class="cont" style="display:none;">
-                <div class="tbl-header table-responsive-xl">
-                    <table cellpadding="0" cellspacing="0">
-                        <thead>
-                            <tr class="text-center">
-                                <th scope="col" class="c-champ">챔피언</th>
-                                <th scope="col" class="c-tier">티어</th>
-                                <th scope="col" class="c-percent">승률</th>
-                                <th scope="col" class="c-percent">픽률</th>
-                                <th scope="col" class="c-percent">밴률</th>
-                                <th scope="col" class="c-tip">공략</th>
-                                <th scope="col" class="c-rank">장인 랭킹</th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-                <div class="tbl-content">
-                    <table cellpadding="0" cellspacing="0">
-                        <tbody class="text-center">
-                            {% for t in support %}
-                            <tr>
-                                <td scope="col" class="c-champ-t">
-                                    <a href="{% url 'champions:detail' t.name %}" style="color: white;">
-                                        <img src="{{ t.img }}" alt=""
-                                            style="width: 25px; height: 25px; border-radius: 5px;">
-                                        　{{ t.name }}
-                                    </a>
-                                </td>
-                                <td scope="col" class="c-tier-t">
-                                    {% if t.tier == '0' %}
-                                    <img src="/static/images/t_op.png" alt="" style="width: 24px; height: 24px;">
-                                    {% elif t.tier == '1' %}
-                                    <img src="/static/images/t_1.png" alt="" style="width: 24px; height: 24px;">
-                                    {% elif t.tier == '2' %}
-                                    <img src="/static/images/t_2.png" alt="" style="width: 24px; height: 24px;">
-                                    {% elif t.tier == '3' %}
-                                    <img src="/static/images/t_3.png" alt="" style="width: 24px; height: 24px;">
-                                    {% elif t.tier == '4' %}
-                                    <img src="/static/images/t_4.png" alt="" style="width: 24px; height: 24px;">
-                                    {% else %}
-                                    <img src="/static/images/t_5.png" alt="" style="width: 24px; height: 24px;">
-                                    {% endif %}
-                                </td>
-                                <td scope="col" class="c-percent-t">{{ t.win }}</td>
-                                <td scope="col" class="c-percent-t">{{ t.pick }}</td>
-                                <td scope="col" class="c-percent-t">{{ t.ben }}</td>
-                                <td scope="col" class="c-tip-t">
-                                    <div class="dropsdown">
-                                        <button class="dropsbtn">{{ t.name }} 공략 <i class="bi bi-joystick"></i></button>
-                                        <div class="dropsdown-content">
-                                            <iframe width="400" height="250" src="{{ t.link }}" frameborder="0"
-                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                allowfullscreen></iframe>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td scope="col" class="c-rank-t">
-                                    <div class="dropsdown">
-                                        <button class="dropsbtn">{{ t.c_title }} <i
-                                                class="bi bi-droplet-fill water"></i></button>
-                                        <div class="dropsdown-content">
-                                            <a href="/summoners/result/?search_text={{ t.jname.0 }}">
-                                                <span class="fw-bold" style="color: black;">{{ t.rank.0 }}　</span>
-                                                <img src="{{ t.imgs.0 }}" alt="" style="height: 20px;">
-                                                <span style="color: black;">{{ t.jname.0 }} </span>
-                                                <span style="color: dimgray; font-size: 12px;"> {{ t.count.0 }}겜</span>
-                                            </a>
-                                            <a href="/summoners/result/?search_text={{ t.jname.1 }}">
-                                                <span class="fw-bold" style="color: black;">{{ t.rank.1 }}　</span>
-                                                <img src="{{ t.imgs.1 }}" alt="" style="height: 20px;">
-                                                <span style="color: black;">{{ t.jname.1 }} </span>
-                                                <span style="color: dimgray; font-size: 12px;"> {{ t.count.1 }}겜</span>
-                                            </a>
-                                            <a href="/summoners/result/?search_text={{ t.jname.2 }}">
-                                                <span class="fw-bold" style="color: black;">{{ t.rank.2 }}　</span>
-                                                <img src="{{ t.imgs.2 }}" alt="" style="height: 20px;">
-                                                <span style="color: black;">{{ t.jname.2 }} </span>
-                                                <span style="color: dimgray; font-size: 12px;"> {{ t.count.2 }}겜</span>
-                                            </a>
-                                            <a href="/summoners/result/?search_text={{ t.jname.3 }}">
-                                                <span class="fw-bold" style="color: black;">{{ t.rank.3 }}　</span>
-                                                <img src="{{ t.imgs.3 }}" alt="" style="height: 20px;">
-                                                <span style="color: black;">{{ t.jname.3 }} </span>
-                                                <span style="color: dimgray; font-size: 12px;"> {{ t.count.3 }}겜</span>
-                                            </a>
-                                            <a href="/summoners/result/?search_text={{ t.jname.4 }}">
-                                                <span class="fw-bold" style="color: black;">{{ t.rank.4 }}　</span>
-                                                <img src="{{ t.imgs.4 }}" alt="" style="height: 20px;">
-                                                <span style="color: black;">{{ t.jname.4 }} </span>
-                                                <span style="color: dimgray; font-size: 12px;"> {{ t.count.4 }}겜</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 </body>
 
 

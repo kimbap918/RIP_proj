@@ -16,11 +16,11 @@ body {
 {% block content %}
 <div class="container">
     <div class="sign_box">
-        <div class="sign_box_bg form_wrap_line">
+        <div class="sign_box_bg">
             <div class="logo">
                 <img src="/static/images/검정로고.png" alt="" style="width: 200px; padding-bottom: 15px;">
             </div>
-            <form action="" method="POST" id="form__wrap" data-multi-step>
+            <form action="" method="POST" id="form__wrap" data-multi-step style="background-color: #fff;">
                 {% csrf_token %}
                 <!-- 생년월일 -->
                 <div class="card" data-step>
@@ -60,7 +60,7 @@ body {
                         <div class="">
                             <div class="check1 input__check">
                                 <span class="member-agree-checkbox_state">
-                                    <input type="checkbox" name="" id="termsOfService" value="termsOfService" required />
+                                    <input type="checkbox" name="agree_service" id="termsOfService" value="termsOfService" required />
                                 </span>
                                 <label for="privacyPolicy" class="member-agree-checkbox_label required">RIP.GG 이용약관 동의</label>
                             </div>
@@ -76,7 +76,7 @@ body {
                         <div class="">
                             <div class="check1 input__check">
                                 <span class="member-agree-checkbox_state">
-                                    <input type="checkbox" name="" id="privacyPolicy" value="privacyPolicy" required />
+                                    <input type="checkbox" name="agree_privacy" id="privacyPolicy" value="privacyPolicy" required />
                                 </span>
                                 <label for="privacyPolicy" class="member-agree-checkbox_label required">개인정보 수집 및 이용 동의</label>
                             </div>
@@ -92,7 +92,7 @@ body {
                         <div class="">
                             <div class="check1 input__check">
                                 <span class="member-agree-checkbox_state">
-                                    <input type="checkbox" name="" id="allowPromotions" value="allowPromotions" />
+                                    <input type="checkbox" name="agree_mail" id="allowPromotions" value="allowPromotions" />
                                 </span>
                                 <label for="allowPromotions" class="member-agree-checkbox_label"> 이벤트 등 프로모션 알림 및 푸시 알림 수신<span class="check2">(선택)</span></label>
                             </div>
@@ -121,23 +121,23 @@ body {
                         기본정보 입력
                     </div>
                     <p class="">
-                        <input id="user_id" type="text" name="email" maxlength="100" required=" "id="id_email"  autocomplete="off" required>
-                        <label for="id_email"><span>이메일</span></label>
+                        <input id="user_id" type="text" name="email" maxlength="100" required=" autocomplete="off" required>
+                        <label for="user_id"><span>이메일</span></label>
                     </p>
                     <p class="">
-                        <input id="user_nick" type="text" name="username" maxlength="150" autofocus="" required="" id="id_username">
-                        <label for="id_username"><span>닉네임</span></label>
+                        <input id="user_nick" type="text" name="username" maxlength="150" autofocus="" required="">
+                        <label for="user_nick"><span>닉네임</span></label>
                     </p>
                     <div class="form-text">
                         개인정보를 기입하여 발생될 수 있는 피해는 RIP.GG가 일절 책임지지 않습니다.
                     </div>
                     <p class="">
-                        <input id="user_pw" type="password" name="password1" autocomplete="new-password" required="" id="id_password1">
-                        <label for="id_username"><span>비밀번호</span></label>
+                        <input id="user_pw" type="password" name="password1" autocomplete="new-password" required="">
+                        <label for="user_pw"><span>비밀번호</span></label>
                     </p>
                     <p class="">
-                        <input id="pwFormT" type="password" name="password2" autocomplete="new-password" required="" id="id_password2">
-                        <label for="id_username"><span>비밀번호확인</span></label>
+                        <input id="pwFormT" type="password" name="password2" autocomplete="new-password" required="">
+                        <label for="pwFormT"><span>비밀번호확인</span></label>
                     </p>
                     <div class="progBtn2">
                         <a class="memberBtn previousBtn" href="{% url 'home' %}">취소</a>
@@ -149,67 +149,9 @@ body {
     </div>
 </div>
 {% block script %}
-<script>
-'use strict';
 
-const form = document.querySelector('#form__wrap');
-const checkAll = document.querySelector('.checkall input');
-const checkBoxes = document.querySelectorAll('.input__check input');
-const submitButton = document.querySelector('button');
+<script src="/static/js/accounts.js" defer></script>
 
-const s = {
-  termsOfService: false,
-  privacyPolicy: false,
-  allowPromotions: false,
-};
 
-form.addEventListener('submit', (e) => e.preventDefault()); // 새로고침(submit) 되는 것 막음
-
-checkBoxes.forEach((item) => item.addEventListener('input', toggleCheckbox));
-
-function toggleCheckbox(e) {
-  const { checked, id } = e.target;  
-  s[id] = checked;
-  this.parentNode.classList.toggle('active');
-  checkAllStatus();
-  toggleSubmitButton();
-}
-
-function checkAllStatus() {
-  const { termsOfService, privacyPolicy, allowPromotions } = s;
-  if (termsOfService && privacyPolicy && allowPromotions) {
-    checkAll.checked = true;
-  } else {
-    checkAll.checked = false;
-  }
-}
-
-// function toggleSubmitButton() {
-//   const { termsOfService, privacyPolicy } = s;
-//   if (termsOfService && privacyPolicy) {
-//     submitButton.disabled = false;
-//   } else {
-//     submitButton.disabled = true;
-//   }
-// }
-
-checkAll.addEventListener('click', (e) => {
-  const { checked } = e.target;
-  if (checked) {
-    checkBoxes.forEach((item) => {
-      item.checked = true;
-      s[item.id] = true;
-      item.parentNode.classList.add('active');
-    });
-  } else {
-    checkBoxes.forEach((item) => {
-      item.checked = false;
-      s[item.id] = false;
-      item.parentNode.classList.remove('active');
-    });
-  }
-  toggleSubmitButton();
-});
-</script>
 {% endblock %}
 {% endblock %}

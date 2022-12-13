@@ -35,3 +35,9 @@ class CommentForm(forms.ModelForm):
             "content",
         ]
         labels = {"content": "바르고 고운 말을 사용하세요! 댓글은 당신의 얼굴입니다."}
+
+
+class ReportForm(forms.ModelForm):
+    class Meta:
+        model = Reported
+        fields = ["category", "content"]

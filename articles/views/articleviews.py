@@ -57,6 +57,7 @@ def article_detail(request, pk):
     # user_articles = user.article_set.all()
     article_form = ArticleForm()
     comments_form = CommentForm()
+    report_form = ReportForm()
     comments = Comment.objects.filter(article_id=pk).order_by("-created_at")
     # template에 객체 전달
 
@@ -83,8 +84,9 @@ def article_detail(request, pk):
         # 역참조 (articles에 포함된 comments data를 전부 불러온다.)
         "articles_form": article_form,
         "comments_form": comments_form,
+        "report_form": report_form,
         "comments": comments,
-        "categories":['자유','유머','팬아트','유저찾기','유저뉴스','팁과노하우','기획','사건사고'],
+        "categories": ["자유", "유머", "팬아트", "유저찾기", "유저뉴스", "팁과노하우", "기획", "사건사고"],
         # "user_articles":user_articles,
         # "user":user,
         "grade" : grade,
@@ -115,6 +117,18 @@ def like(request, pk):
     return JsonResponse(context)
 
 
+@login_required
+def article_report(request, pk):
+    article = get_object_or_404(Article, pk=pk)
+    if request.user == article.user:
+        messages.warning(request, "스스로 신고 할수 없습니다.")
+        return redirect("articles:detail", pk)
+    else:
+        article.report.add(request.user)
+        messages.success(request, "신고완료")
+    return redirect("articles:detail", pk)
+
+
 # 게시물 북마크
 def bookmark(request, pk):
     article = get_object_or_404(Article, pk=pk)
@@ -132,14 +146,3 @@ def bookmark(request, pk):
     context = {"isBookmark": isBookmark, "bookMarkCount": article.bookmark_user.count()}
     print(context)
     return JsonResponse(context)
-
-
-class AriticleListView(ListView):
-    model = Article
-    context_object_name = "article_list"
-
-
-def get_context_data(self, **kwargs):
-    context = get_context_data(**kwargs)
-    article_fixed = Article.objects.filter(top_fixed=True).order_by("-registered_date")
-    context["article_fixed"] = article_fixed
