@@ -1,4 +1,6 @@
+
 from django.shortcuts import render, redirect
+
 
 # 라이엇 API 불러오기
 from urllib import parse
@@ -12,6 +14,9 @@ import pprint
 
 pp = pprint.PrettyPrinter(indent=4)
 
+# articles
+from articles.models import *
+from django.db.models import Count
 
 request_header = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36",
@@ -29,8 +34,16 @@ def test(request):
 
 def index(request):
     API_KEY = getattr(settings, "API_KEY", "API_KEY")
+    # 게시물 최근 순
+    lately_a = Article.objects.order_by("-pk")[:10]
+    best_a = Article.objects.all().annotate(like_cnt=Count('like_user')).order_by('-like_cnt')[:10]
 
-    return render(request, "summoners/index.html", {"api_key": API_KEY})
+    context = {
+        "lately_a": lately_a,
+        "best_a": best_a,
+        "api_key": API_KEY
+    }
+    return render(request, "summoners/index.html", context)
 
 def result(request):
     if request.method == "GET":
@@ -102,7 +115,7 @@ def result(request):
                     team_tier["losses"] = store_list[1]["losses"]
         
         data = res.json()
-        print(res.json())
+       
         if "status" not in res.json():
             # 최근 게임 10개 정보
             puu_id = data["puuid"]

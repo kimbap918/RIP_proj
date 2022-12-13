@@ -1,0 +1,188 @@
+.css-win {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 7rem;
+    border-radius: 4px;
+    border-left-width: 0.375rem;
+    border-left-style: solid;
+    border-color: #5383E8;
+    background-color: #27344E;
+    color: #8E8796;
+    min-width: 50rem;
+}  
+.css-lose {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 7rem;
+    border-radius: 4px;
+    border-left-width: 0.375rem;
+    border-left-style: solid;
+    border-color: #E84057;
+    background-color: #59343B;
+    color: #8E8796;
+    min-width: 50rem;
+}
+.css-replay {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 7rem;
+    border-radius: 4px;
+    border-left-width: 0.375rem;
+    border-left-style: solid;
+    border-color: #9E9EB0;
+    background-color: #282830;
+    color: #8E8796;
+    min-width: 50rem;
+}
+
+.summoners_user_box{
+    width: 100%;
+    height: 160px;
+    background-color: #31313c;
+
+}
+
+.summoners_box{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 1080px;
+    margin: 0 auto;
+    padding: 10px;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.per_box {
+    margin-top: 10px;
+}
+
+.summoners_box_search{
+    display: flex;
+    justify-content: end;
+}
+
+.summoners_user_box_noh{
+    width: 100%;    
+    background-color: #31313c;
+}
+
+.summoners_thum_info {
+    display: flex;
+    text-align: center;
+}
+
+.summoners_thum_info img{
+    margin: 0px;
+    height: 72px;
+    width: 72px;  
+}
+
+.summoners_info_sub {
+    text-align: left;
+    padding: 10px 0 10px 10px;
+}
+
+.summoners_name {
+    font-size: 24px;
+    color: white;
+    font-weight: 700;
+}
+
+.summoners_level {
+    font-size: 16px;
+    color: white;    
+}
+
+.rank_box {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 1080px;
+    margin: 0 auto;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    color: white;
+    margin: 0 auto;
+}
+
+.rank_box_content {
+    width: 100%;
+    padding: 20px;
+    background-color: #31313c;
+    margin-top: 10px;
+}
+
+.content_solo{
+    margin: 10px 0 0 10px;
+}
+
+.rank_box_content-inner {
+    display: flex;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -webkit-align-items: center;
+}
+
+.rank_box_content-inner_sub{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.rank_title{
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.rank_image_bg{
+    background: #282830;
+    border-radius: 50%;
+    height: 72px;
+    width: 72px;
+    margin-right: 15px;
+}
+
+.rank-inner-tp{
+    margin-right: 5px;
+}
+
+.rank-inner-tier{
+    font-size: 14px;
+}
+
+
+
+@media (max-width: 768px){
+    .rank_box {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        width: 100%;        
+    }
+
+    .rank_box_content{
+
+    }
+
+    .rank_content_box {
+        margin: 0;
+        padding: 0;
+        margin-left: 0;
+    }
+
+    .content_solo{
+        margin: 10px 0 0 0;
+    }
+}
