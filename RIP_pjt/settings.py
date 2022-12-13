@@ -131,15 +131,12 @@ DEBUG = os.getenv("DEBUG") == "True"
 
 	
 if DEBUG:
-
+    MEDIA_URL = "/media/"
+    MEDIA_ROOT = BASE_DIR / "media"
     DATABASES = {
         "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": os.getenv("DATABASE_NAME"),  # .env 파일에 value 작성
-            "USER": "postgres",
-            "PASSWORD": os.getenv("DATABASE_PASSWORD"),  # .env 파일에 value 작성
-            "HOST": os.getenv("DATABASE_HOST"),  # .env 파일에 value 작성
-            "PORT": "5432",
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
         }
     }
 
