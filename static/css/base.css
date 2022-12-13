@@ -182,7 +182,7 @@ body {
 
 .login a:hover {
   text-decoration: none;
-  color: #29437a;
+  color: white;
   font-size: 14px;
 }
 
@@ -212,7 +212,8 @@ body {
     background: rgb(255, 255, 255);
     width: 500px;
     height: 60px;
-    padding: 8px 21px 8px 8px;
+    padding: 8px;
+    border-radius: 50px;
 }
 
 .search_box input{
@@ -225,10 +226,10 @@ body {
   position: relative;
 }
 
-.search_box-inner i{
+.search_box-inner button{
   position: absolute;
   right: 20px;
-  bottom: 17px;
+  bottom: 5px;
 }
 
 .search_box-inner input{
@@ -241,6 +242,11 @@ body {
     outline: none;
     padding: 13px 12px 13px 14px;
 }
+
+.search_box-inner input:focus{
+  border: none;
+}
+
 .first_box-inner {
     display: flex;
     flex-direction: column;

@@ -5,8 +5,6 @@
 {% block title %}
 내 정보
 {% endblock %}
-<link rel="stylesheet" href="{% static 'css/accountsDetail.css'%}" type="text/css">
-
 {% block style %}
 <style>
 
@@ -18,7 +16,7 @@
 {% block content %}
 
 <div class="member-settings-layout__content-inner">
-  <h2 class="member-settings-layout__title">{{user.username}}님의 프로필</h2>    
+  <h2 class="member-settings-layout__title">{{user.username}}님의 프로필</h2>
   <div class="edit">
     <div class="list" style="font-size: 14px;">
       <a class="tab-button" id="link_user_articles" data-bs-toggle="collapse" href="#user_articles" role="button" aria-expanded="false" aria-controls="collapseExample">작성한 글</a>
