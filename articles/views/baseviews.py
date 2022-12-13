@@ -98,7 +98,7 @@ def index(request):
 
 def category(request, pk):
     page = request.GET.get("page", "1")
-    article = Article.objects.order_by("-created_at")
+    article = Article.objects.filter(category=pk).order_by("-created_at")
     kw = request.GET.get("kw", "")
     search_kind = request.GET.get("searchKind", "전체")
     sort = request.GET.get("sort", "")
