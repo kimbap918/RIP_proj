@@ -102,6 +102,10 @@ def category(request, pk):
     kw = request.GET.get("kw", "")
     search_kind = request.GET.get("searchKind", "전체")
     sort = request.GET.get("sort", "")
+    list1 = []
+    for articles in article:
+        if articles.top_fixed == True:
+            list1.append(articles)
     # 추천순
     if sort == "1":
         article = (
@@ -163,7 +167,7 @@ def category(request, pk):
             grade = '맑은물'
         elif c_count <= 2 or a_count == 0:
             grade = '신선한물'
-
+    category_name = categories[pk]
     context = {
         "sort": sort,
         "article": page_obj,
@@ -171,5 +175,7 @@ def category(request, pk):
         "categories": categories,
         "kw": kw,
         "grade" : grade,
+        "top_fixed": list1,
+        "category_name":category_name
     }
     return render(request, "articles/category.html", context)
