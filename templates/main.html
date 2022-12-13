@@ -311,11 +311,19 @@
       <source src="/static/images/Crystal-1.mp4" type="video/mp4">
       <strong>Your browser does not support the video tag.</strong>
     </video>
+    {% if request.user.is_authenticated %}
     <div class="md:title jb-text main_title">
-      <p><span class="" style="font-weight: 900;">Welcome to</span>
+      <p><span class="" style="font-weight: 900;">Let's dive into</span>
         <a href="{% url 'home' %}"><img src="/static/images/흰로고.png" alt=""
             style="width: 200px; padding-bottom: 15px;"></a>
       </p>
+    </div>
+    {% else %}
+    <div class="md:title jb-text main_title">
+        <p><span class="" style="font-weight: 900;">Welcome to</span>
+          <a href="{% url 'home' %}"><img src="/static/images/흰로고.png" alt=""
+              style="width: 200px; padding-bottom: 15px;"></a>
+        </p>
     </div>
     <div class="lg:login1 md:login1 jb_loginBox">
       <form action="" method='POST'>
@@ -345,6 +353,7 @@
         <!-- <input type="password"> -->
       </form>
     </div>
+    {% endif %}
 
     <div class="lg:login2 md:login2 sm:login2 ">
       <div class="jb_loginBox2">

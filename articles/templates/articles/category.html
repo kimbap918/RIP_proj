@@ -9,10 +9,13 @@
         text-decoration:none;
         color:black;
     }
-    a.active{
-        color:white;
+    .hvr{
+        background:#cdcdcd;
+        
     }
-    
+    .hvr:hover{
+        background:RGB(243, 245, 247);
+    }
 </style>
 <!-- 게시판 -->
 <div class="container">
@@ -22,8 +25,8 @@
         <div class="d-none d-xl-block col-xl-3 border my-3 rounded-2" style="max-height:600px; position:sticky; top:0; background-color:RGB(255, 255, 255);">
             <div class="my-2 container">
                 <p>
-                    <img style="width: 20%; height:20%;" src="/static/images/grade/{{ grade }}.png" alt=""><span><a
-                        href="{% url 'accounts:detail' user.pk %}">{{ user.username }} {{ grade }}</a></span>
+                    <img style="width: 20%; height:20%;" src="/static/images/grade/{{ grade }}.png" alt=""> <span><a
+                        href="{% url 'accounts:detail' user.pk %}">{{ user.username }}</a> {{ grade }}</span>
                     <span>
                         <div class="progress" style="height: 3px;">
                             <div class="progress-bar" role="progressbar" aria-label="Basic example"
@@ -130,9 +133,48 @@
         </div>
         <table class="table" style="background-color:RGB(255, 255, 255);">
             <tbody>
+                {% if top_fixed %}
+                {% for articles in top_fixed %}
+                <tr class="border" style="background-color:RGB(236, 248, 255);">
+                    <td class="d-flex justify-content-between">
+                        <div></div>
+                        <div class="col-md-1 col-1 d-flex justify-content-center align-items-center">
+                            <p class="d-flex align-items-center flex-column text-center" style="color:RGB(152, 160, 167);"><span style="font-size: 8px; color:RGB(221, 223, 228);"><i class="bi bi-triangle-fill" ></i></span>{{ articles.like_user.count }}</p>
+                        </div>
+                        <div class="d-flex flex-column justify-content-center col-md-9 col-9">
+                            <a href="{% url 'articles:detail' articles.pk %}" class="small"><i class="bi bi-megaphone-fill" style="color:RGB(83, 131, 232);"></i> {{ articles.title }}
+                                {% if articles.comment_set.count > 0 %}
+                                <span class="text-success small mx-2">[{{ articles.comment_set.count }}]</span>
+                                {% endif %}
+                            </a>
+                            <p style="font-size:13px; color:RGB(152, 160, 167);"><span>{{ articles.get_category_display }}</span>  |  <a style="font-size:13px; color:RGB(152, 160, 167);" href="{% url 'accounts:detail' articles.user.pk %}">{{ articles.user.username }}</a>  | 
+                            {% if articles.created_string == False %}
+                            <span style="font-size:13px;">{{ articles.created_at|date:'m월 d일' }}</span>
+                            {% else %}
+                            <span style="font-size:13px;">{{ articles.created_string }}</span>
+                            {% endif %}
+                            </p>
+                        </div>
+                        {% if articles.photo %}
+                        <div class="col-md-2 col-sm-2" style="float:right; max-height:78px;">
+                            <a href="{% url 'articles:detail' articles.pk %}">
+                            <img style="width:100%; height:100%;" src="{{ articles.photo.url }}" alt=""></a>
+                        </div>
+                        {% else %}
+                        <div class="col-md-2 col-sm-2" style="float:right; max-height:78px;">
+                            <a href="{% url 'articles:detail' articles.pk %}">
+                            <img style="width:100%; height:100%;" src="https://dummyimage.com/100x80/000000/c4c4c4" alt=""></a>
+                        </div>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+                {% endif %}
                 {% if article %}
                 <!-- 기본 전체 -->
                 {% for articles in article %}
+                {% if articles.top_fixed %}
+                {% else %}
                 <tr class="border">
                     <td class="d-flex justify-content-between hvr">
                         <div></div>
@@ -156,17 +198,19 @@
 
                         {% if articles.photo %}
                         <div class="col-md-2 col-sm-2" style="float:right; max-height:78px;">
-                            <img style="width:100%; height:100%;" src="{{ articles.photo.url }}" alt="">
+                            <a href="{% url 'articles:detail' articles.pk %}">
+                            <img style="width:100%; height:100%;" src="{{ articles.photo.url }}" alt=""></a>
                         </div>
                         {% else %}
                         <div class="col-md-2 col-sm-2" style="float:right; max-height:78px;">
-                            <img style="width:100%; height:100%;" src="https://dummyimage.com/100x80/000000/c4c4c4" alt="">
+                            <a href="{% url 'articles:detail' articles.pk %}">
+                            <img style="width:100%; height:100%;" src="https://dummyimage.com/100x80/000000/c4c4c4" alt=""></a>
                         </div>
                         {% endif %}
                     </td>
 
                 </tr>
-
+                {% endif %}
                 {% endfor %}
                 {% else %}
                 <tr>

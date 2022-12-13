@@ -22,8 +22,8 @@
         <div class="d-none d-xl-block col-xl-3 border my-3 rounded-2" style="max-height:600px; position:sticky; top:0; background-color:RGB(255, 255, 255);">
             <div class="my-2 container">
                 <p>
-                    <img style="width: 20%; height:20%;" src="/static/images/grade/{{ grade }}.png" alt=""><span><a
-                        href="{% url 'accounts:detail' user.pk %}">{{ user.username }} {{ grade }}</a></span>
+                    <img style="width: 20%; height:20%;" src="/static/images/grade/{{ grade }}.png" alt=""> <span><a
+                        href="{% url 'accounts:detail' user.pk %}">{{ user.username }}</a> {{ grade }}</span>
                     <span>
                         <div class="progress" style="height: 3px;">
                             <div class="progress-bar" role="progressbar" aria-label="Basic example"

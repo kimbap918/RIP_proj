@@ -1,8 +1,6 @@
 import random
 import requests
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Profile
-from .models import User
 # from articles.models import Grade
 from .forms import CustomUserCreationForm, ProfileForm
 from .models import *
@@ -355,7 +353,7 @@ def kakao_callback(request):
         kakao_login_user.save()
         kakao_user = get_user_model().objects.get(kakao_id=kakao_id)
         Profile.objects.create(user=kakao_user)  # 프로필 생성
-        Grade.objects.create(user=kakao_user)
+
 
     auth_login(request, kakao_user, backend="django.contrib.auth.backends.ModelBackend")
     return redirect(request.GET.get("next") or "articles:index")
