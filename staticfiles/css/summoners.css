@@ -1,3 +1,7 @@
+p{
+    margin-bottom: 0;
+}
+
 .css-win {
     display: flex;
     -webkit-box-align: center;
