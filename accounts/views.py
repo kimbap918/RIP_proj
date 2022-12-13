@@ -3,7 +3,7 @@ import requests
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Profile
 from .models import User
-from articles.models import Grade 
+# from articles.models import Grade
 from .forms import CustomUserCreationForm, ProfileForm
 from .models import *
 from .forms import *
