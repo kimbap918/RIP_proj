@@ -1,0 +1,1286 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+{% load widget_tweaks %}
+{% block content %}
+<head>
+    <link href="https://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+        integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+        integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+        crossorigin="anonymous"></script>
+    <style>
+        <style>
+            * {
+                font-family: 'basic-ko';
+                color: white;
+            }
+        
+            .rune1 {
+                border-radius: 100%;
+                background-color: black;
+                height: 33px;
+            }
+        
+            .skill {
+                position: absolute;
+                background-color: rgba(50, 50, 50, 0.8);
+                border-radius: 5px;
+                width: 23px;
+                height: 23px;
+                margin: 2px;
+                font-weight: bold;
+            }
+        
+            .skill-img {
+                border-radius: 5px;
+            }
+        
+            .arrow {
+                text-align: center;
+                font-weight: bold;
+                color: grey;
+                font-size: 40px;
+                padding: 0px 10px;
+        
+            }
+        
+            .skills {
+                background-color: black;
+                border-radius: 5px;
+                width: 40px;
+                height: 40px;
+                margin: 5px;
+                font-weight: bold;
+                font-size: 25px;
+            }
+        
+            .headers {
+                background-color: rgba(255, 255, 255, 0.6);
+                font-size: 20px;
+                text-align: center;
+                margin-top: 5px;
+                border-radius: 5px;
+                padding: 3px 0px;
+            }
+        
+            .item-img {
+                border-radius: 5px;
+                height: 45px;
+                margin-left: 10px;
+            }
+        
+            ul {
+                list-style: none;
+            }
+        
+            a {
+                text-decoration: none;
+            }
+        
+            a.btn:hover {
+                border-style: none;
+            }
+        
+            .wrap {
+                padding: 15px;
+                letter-spacing: -0.5px;
+            }
+        
+            .tab_menu {
+                position: relative;
+            }
+        
+            .tab_menu .list {
+                overflow: hidden;
+            }
+        
+            .tab_menu .list li {
+                float: left;
+                margin-right: 14px;
+            }
+        
+            .tab_menu .list li.is_on .btn {
+                font-weight: bold;
+                color: white;
+                font-family: 'basic-ko';
+            }
+        
+            .tab_menu .list .btn {
+                font-size: 20px;
+                color: gray;
+                font-family: 'basic-ko';
+                font-weight: bold;
+            }
+        
+            .tab_menu .cont_area .cont {
+                display: none;
+                position: absolute;
+                top: 25px;
+                left: 0;
+                background: #555;
+                color: gray;
+                text-align: center;
+                width: 100%;
+                height: 100%;
+                line-height: 100px;
+            }
+        
+            /* 테이블 CSS */
+        
+            table {
+                width: 100%;
+                table-layout: fixed;
+            }
+        
+            .tbl-header {
+                background-color: rgba(255, 255, 255, 0.3);
+            }
+        
+            .tbl-content {
+                overflow-x: auto;
+                margin-top: 0px;
+            }
+        
+            .champs {
+                height: 738px;
+                overflow-x: auto;
+                margin-top: 0px;
+                border: 1px solid rgba(255, 255, 255, 0.3);
+            }
+        
+            th {
+                padding: 20px 15px;
+                text-align: left;
+                /* font-weight: 500; */
+                /* font-size: 12px; */
+                color: #fff;
+                text-transform: uppercase;
+            }
+        
+            td {
+                padding: 15px;
+                text-align: left;
+                vertical-align: middle;
+                font-weight: 300;
+                font-size: 12px;
+                color: #fff;
+                border-bottom: solid 1px rgba(255, 255, 255, 0.1);
+            }
+        
+            /* for custom scrollbar for webkit browser*/
+        
+            ::-webkit-scrollbar {
+                width: 6px;
+            }
+        
+            ::-webkit-scrollbar-track {
+                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            }
+        
+            ::-webkit-scrollbar-thumb {
+                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            }
+        </style>
+<body style="background-color: #0A323C;">
+    <div class="d-flex">
+        <div class="m-4">
+            <img src="/static/images/detail/{{ name }}.jpg" alt="" style="border-radius: 5px;">
+        </div>
+        <main class="m-4 w-100">
+            <div class="d-flex">
+                <div>
+                    {% if info.3 == '0' %}
+                    <img src="/static/images/t_op.png" alt="" style="width: 33px; height: 40px;" class="mt-1 me-2">
+                    {% elif info.3 == '1' %}
+                    <img src="/static/images/t_1.png" alt="" style="width: 33px; height: 40px;" class="mt-1 me-2">
+                    {% elif info.3 == '2' %}
+                    <img src="/static/images/t_2.png" alt="" style="width: 33px; height: 40px;" class="mt-1 me-2">
+                    {% elif info.3 == '3' %}
+                    <img src="/static/images/t_3.png" alt="" style="width: 33px; height: 40px;" class="mt-1 me-2">
+                    {% elif info.3 == '4' %}
+                    <img src="/static/images/t_4.png" alt="" style="width: 33px; height: 40px;" class="mt-1 me-2">
+                    {% else %}
+                    <img src="/static/images/t_5.png" alt="" style="width: 33px; height: 40px;" class="mt-1 me-2">
+                    {% endif %}
+                </div>
+                <div>
+                    {% comment %} {% for detail in champions %} {% endcomment %}
+                    <h1 class="fw-bold" style="font-family: 'S-bold';">{{ detail.name }} <span
+                            style="color: gainsboro; font-weight: 200; font-size: 30px;">{{ detail.lane }}</span></h1>
+                </div>
+            </div>
+            <div class="d-flex mt-2">
+                <div class="ps-3 ms-2" style="width: 110px; border-left-style: solid; border-color: darkslategrey;">
+                    <div style="color:gray; font-size: 15px;">승률</div>
+                    <div style="font-size: 18px; font-weight: bold;">{{ info.0 }}</div>
+                </div>
+                <div class="ps-3" style="width: 110px; border-left-style: solid; border-color: darkslategrey;">
+                    <div style=" color:gray; font-size: 15px;">픽률</div>
+                    <div style="font-size: 18px; font-weight: bold;">{{ info.1 }}</div>
+                </div>
+                <div class="ps-3" style="width: 110px; border-left-style: solid; border-color: darkslategrey;">
+                    <div style=" color:gray; font-size: 15px;">밴률</div>
+                    <div style="font-size: 18px; font-weight: bold;">{{ info.2 }}</div>
+                </div>
+            </div>
+            <div class="wrap mt-2">
+                <div class="tab_menu d-flex w-100">
+                    <ul class="list">
+                        <li class="is_on">
+                            <a href="#rune" class="btn">룬</a>
+                        </li>
+                        <li>
+                            <a href="#skill" class="btn">스킬</a>
+                        </li>
+                        <li>
+                            <a href="#item" class="btn">아이템</a>
+                        </li>
+                        <li>
+                            <a href="#counter" class="btn">카운터</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="cont_area mt-1">
+                    <div id="rune" class="cont" style="display:block;">
+                        <div class="tbl-header">
+                            <h3 class="p-2 text-center">추천 룬 세팅</h2>
+                        </div>
+                        <div class="tbl-content">
+                            <div class="d-flex">
+                                <div class="w-50 m-2"
+                                    style="border-color: gold; border-style: solid; border-radius: 10px;">
+                                    <div class="text-center mt-3 mb-3">
+                                        <img src="{{ detail.rune_img1.0 }}" alt=""
+                                            style="border-radius: 100%; background-color: black; height: 30px;">
+                                        <img src="{{ detail.rune_img1.1 }}" alt=""
+                                            style="border-radius: 100%; background-color: black; height: 30px;"
+                                            class="ms-2 me-2">
+                                        <img src="{{ detail.rune_img1.2 }}" alt=""
+                                            style="border-radius: 100%; background-color: black; height: 30px;">
+                                    </div>
+                                    <div class="d-flex mt-2 mb-2" style="justify-content: space-evenly;">
+                                        <div>
+                                            
+                                            <div class="ps-3" style="width: 110px;">
+                                                <div style=" color:gray; font-size: 12px;">픽률 |
+                                                    <span style="font-size: 15px; font-weight: bold;">
+                                                        {{ detail.rune_pick1 }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="ps-3" style="width: 110px;">
+                                                <div style=" color:gray; font-size: 12px;">승률 |
+                                                    <span
+                                                        style="font-size: 15px; font-weight: bold; color: dodgerblue;">
+                                                        {{ detail.rune_win1 }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-50 m-2 ms-0"
+                                    style="border-color: darkslategrey; border-style: solid; border-radius: 10px;">
+                                    <div class="text-center mt-3 mb-3">
+                                        <img src="{{ detail.rune_img2.0 }}" alt=""
+                                            style="border-radius: 100%; background-color: black; height: 30px;">
+                                        <img src="{{ detail.rune_img2.1 }}" alt=""
+                                            style="border-radius: 100%; background-color: black; height: 30px;"
+                                            class="ms-2 me-2">
+                                        <img src="{{ detail.rune_img2.2 }}" alt=""
+                                            style="border-radius: 100%; background-color: black; height: 30px;">
+                                    </div>
+                                    <div class="d-flex mt-2 mb-2" style="justify-content: space-evenly;">
+                                        <div>
+                                            <div class="ps-3" style="width: 110px;">
+                                                <div style=" color:gray; font-size: 12px;">픽률 |
+                                                    <span style="font-size: 15px; font-weight: bold;">
+                                                        {{ detail.rune_pick2 }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="ps-3" style="width: 110px;">
+                                                <div style=" color:gray; font-size: 12px;">승률 |
+                                                    <span
+                                                        style="font-size: 15px; font-weight: bold; color: dodgerblue;">
+                                                        {{ detail.rune_win2 }}</span>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex mt-3">
+                                <div class="m-2 pe-3 ps-3" style="width: 35%;">
+                                    <div class="text-center mb-2"><img class="rune1" src="{{ detail.rune_j }}" alt="">
+                                    </div>
+
+                                    <div class="d-flex mb-2" style="justify-content: space-evenly;">
+                                        {% if runes.0 == 3 %}
+                                        <img class="rune1" src="{{ runes.1.0 }}" alt="">
+                                        <img class="rune1" src="{{ runes.1.1 }}" alt="">
+                                        <img class="rune1" src="{{ runes.1.2 }}" alt="">
+                                        {% else %}
+                                        <img class="rune1" src="{{ runes.1.0 }}" alt="">
+                                        <img class="rune1" src="{{ runes.1.1 }}" alt="">
+                                        <img class="rune1" src="{{ runes.1.2 }}" alt="">
+                                        <img class="rune1" src="{{ runes.1.3 }}" alt="">
+                                        {% endif %}
+                                    </div>
+                                    <div class="d-flex mb-2" style="justify-content: space-evenly;">
+                                        <img class="rune1" src="{{ runes.2.0 }}" alt="">
+                                        <img class="rune1" src="{{ runes.2.1 }}" alt="">
+                                        <img class="rune1" src="{{ runes.2.2 }}" alt="">
+                                    </div>
+                                    <div class="d-flex mb-2" style="justify-content: space-evenly;">
+                                        <img class="rune1" src="{{ runes.3.0 }}" alt="">
+                                        <img class="rune1" src="{{ runes.3.1 }}" alt="">
+                                        <img class="rune1" src="{{ runes.3.2 }}" alt="">
+                                    </div>
+                                    <div class="d-flex mb-2" style="justify-content: space-evenly;">
+                                        {% if runes.4 == 3 %}
+                                        <img class="rune1" src="{{ runes.5.0 }}" alt="">
+                                        <img class="rune1" src="{{ runes.5.1 }}" alt="">
+                                        <img class="rune1" src="{{ runes.5.2 }}" alt="">
+                                        {% else %}
+                                        <img class="rune1" src="{{ runes.5.0 }}" alt="">
+                                        <img class="rune1" src="{{ runes.5.1 }}" alt="">
+                                        <img class="rune1" src="{{ runes.5.2 }}" alt="">
+                                        <img class="rune1" src="{{ runes.5.3 }}" alt="">
+                                        {% endif %}
+                                    </div>
+                                    <div class="text-center pt-2" style="color: gray;">{{ detail.rune_j_name }}</div>
+                                </div>
+                                <div class="m-2 pe-3 ps-3"
+                                    style="width: 35%; border-left: solid; border-right: solid; border-color: darkslategray;">
+                                    <div class="text-center mb-2"><img class="rune1" src="{{ detail.rune_k }}" alt="">
+                                    </div>
+                                    <div class="d-flex mb-2" style="justify-content: space-evenly;">
+                                        <img class="rune1" src="{{ runes.6.0 }}" alt="">
+                                        <img class="rune1" src="{{ runes.6.1 }}" alt="">
+                                        <img class="rune1" src="{{ runes.6.2 }}" alt="">
+                                    </div>
+                                    <div class="d-flex mb-2" style="justify-content: space-evenly;">
+                                        <img class="rune1" src="{{ runes.7.0 }}" alt="">
+                                        <img class="rune1" src="{{ runes.7.1 }}" alt="">
+                                        <img class="rune1" src="{{ runes.7.2 }}" alt="">
+                                    </div>
+                                    <div class="d-flex mb-2" style="justify-content: space-evenly;">
+                                        {% if runes.8 == 3 %}
+                                        <img class="rune1" src="{{ runes.9.0 }}" alt="">
+                                        <img class="rune1" src="{{ runes.9.1 }}" alt="">
+                                        <img class="rune1" src="{{ runes.9.2 }}" alt="">
+                                        {% else %}
+                                        <img class="rune1" src="{{ runes.9.0 }}" alt="">
+                                        <img class="rune1" src="{{ runes.9.1 }}" alt="">
+                                        <img class="rune1" src="{{ runes.9.2 }}" alt="">
+                                        <img class="rune1" src="{{ runes.9.3 }}" alt="">
+                                        {% endif %}
+                                    </div>
+                                    <div class="d-flex mb-2" style="justify-content: space-evenly;">
+                                        <img class="rune1" src="" alt="">
+                                        <img class="rune1" src="" alt="">
+                                        <img class="rune1" src="" alt="">
+                                    </div>
+                                    <div class="text-center pt-2" style="color: gray;">{{ detail.rune_k_name }}</div>
+                                </div>
+                                <div class="m-2 pe-3 ps-3" style="width: 30%;">
+                                    <div class="text-center mb-2"><img class="rune1" src="{{ detail.rune_ns }}" alt="">
+                                    </div>
+                                    <div class="d-flex mb-2" style="justify-content: space-evenly;">
+                                        <img class="rune1" src="{{ detail.rune_n.0 }}" alt="">
+                                        <img class="rune1" src="{{ detail.rune_n.1 }}" alt="">
+                                        <img class="rune1" src="{{ detail.rune_n.2 }}" alt="">
+                                    </div>
+                                    <div class="d-flex mb-2" style="justify-content: space-evenly;">
+                                        <img class="rune1" src="{{ detail.rune_n.3 }}" alt="">
+                                        <img class="rune1" src="{{ detail.rune_n.4 }}" alt="">
+                                        <img class="rune1" src="{{ detail.rune_n.5 }}" alt="">
+                                    </div>
+                                    <div class="d-flex mb-2" style="justify-content: space-evenly;">
+                                        <img class="rune1" src="{{ detail.rune_n.6 }}" alt="">
+                                        <img class="rune1" src="{{ detail.rune_n.7 }}" alt="">
+                                        <img class="rune1" src="{{ detail.rune_n.8 }}" alt="">
+                                    </div>
+                                    <div class="d-flex mb-2" style="justify-content: space-evenly;">
+                                        <img class="rune1" src="{{ detail.rune_n.9 }}" alt="">
+                                        <img class="rune1" src="{{ detail.rune_n.10 }}" alt="">
+                                        <img class="rune1" src="{{ detail.rune_n.11 }}" alt="">
+                                        <img class="rune1" src="{{ detail.rune_n.12 }}" alt="">
+                                    </div>
+                                    
+                                    <div class="text-center pt-2" style="color: gray;">{{ detail.rune_n_name }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="skill" class="cont" style="display:none;">
+                        <div class="tbl-header">
+                            <h3 class="p-2 text-center">추천 스킬 빌드</h2>
+                        </div>
+                        <div class="tbl-content">
+                            <div class="d-flex justify-content-center mt-4 pb-3">
+                                <div>
+                                    {% if detail.skilltree.0 == 'E' %}
+                                    <div class="skill text-center mb-1" style="color: darkorange;">
+                                        {{ detail.skilltree.0 }}
+                                    </div>
+                                    {% elif detail.skilltree.0 == 'Q' %}
+                                    <div class="skill text-center mb-1" style="color: dodgerblue;">
+                                        {{ detail.skilltree.0 }}
+                                    </div>
+                                    {% else %}
+                                    <div class="skill text-center mb-1" style="color: greenyellow;">
+                                        {{ detail.skilltree.0 }}
+                                    </div>
+                                    {% endif %}
+                                    <img src="{{ detail.skill.0 }}" alt="" class="skill-img">
+                                </div>
+                                <div>
+                                    <i class="bi bi-arrow-right-short arrow"></i>
+                                </div>
+                                <div>
+                                    {% if detail.skilltree.1 == 'E' %}
+                                    <div class="skill text-center mb-1" style="color: darkorange;">
+                                        {{ detail.skilltree.1 }}
+                                    </div>
+                                    {% elif detail.skilltree.1 == 'Q' %}
+                                    <div class="skill text-center mb-1" style="color: dodgerblue;">
+                                        {{ detail.skilltree.1 }}
+                                    </div>
+                                    {% else %}
+                                    <div class="skill text-center mb-1" style="color: greenyellow;">
+                                        {{ detail.skilltree.1 }}
+                                    </div>
+                                    {% endif %}
+                                    <img src="{{ detail.skill.1 }}" alt="" class="skill-img">
+                                </div>
+                                <div>
+                                    <i class="bi bi-arrow-right-short arrow"></i>
+                                </div>
+                                <div>
+                                    {% if detail.skilltree.2 == 'E' %}
+                                    <div class="skill text-center mb-1" style="color: darkorange;">
+                                        {{ detail.skilltree.2 }}
+                                    </div>
+                                    {% elif detail.skilltree.2 == 'Q' %}
+                                    <div class="skill text-center mb-1" style="color: dodgerblue;">
+                                        {{ detail.skilltree.2 }}
+                                    </div>
+                                    {% else %}
+                                    <div class="skill text-center mb-1" style="color: greenyellow;">
+                                        {{ detail.skilltree.2 }}
+                                    </div>
+                                    {% endif %}
+                                    <img src="{{ detail.skill.2 }}" alt="" class="skill-img">
+                                </div>
+                                <div class="d-flex" style="align-items: flex-end;">
+                                    <div class="ps-3" style="width: 110px;">
+                                        <div style=" color:gray; font-size: 12px;">픽률 |
+                                            <span style="font-size: 15px; font-weight: bold;">
+                                                {{ detail.skillpick }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex" style="align-items: flex-end;">
+                                    <div class="ps-3" style="width: 110px;">
+                                        <div style=" color:gray; font-size: 12px;">승률 |
+                                            <span style="font-size: 15px; font-weight: bold; color: dodgerblue;">
+                                                {{ detail.skillwin }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="me-5 ms-5">
+                            <div class="d-flex justify-content-center mt-5">
+                                <div>
+                                    {% if detail.skilltrees.0 == 'E' %}
+                                    <div class="skills text-center mb-1" style="color: darkorange;">
+                                        {{ detail.skilltrees.0 }}
+                                    </div>
+                                    {% elif detail.skilltrees.0 == 'Q' %}
+                                    <div class="skills text-center mb-1" style="color: dodgerblue;">
+                                        {{ detail.skilltrees.0 }}
+                                    </div>
+                                    {% elif detail.skilltrees.0 == 'W' %}
+                                    <div class="skills text-center mb-1" style="color: greenyellow;">
+                                        {{ detail.skilltrees.0 }}
+                                    </div>
+                                    {% else %}
+                                    <div class="skills text-center mb-1"
+                                        style="color: white; background-color: dodgerblue;">
+                                        {{ detail.skilltrees.0 }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    {% if detail.skilltrees.1 == 'E' %}
+                                    <div class="skills text-center mb-1" style="color: darkorange;">
+                                        {{ detail.skilltrees.1 }}
+                                    </div>
+                                    {% elif detail.skilltrees.1 == 'Q' %}
+                                    <div class="skills text-center mb-1" style="color: dodgerblue;">
+                                        {{ detail.skilltrees.1 }}
+                                    </div>
+                                    {% elif detail.skilltrees.1 == 'W' %}
+                                    <div class="skills text-center mb-1" style="color: greenyellow;">
+                                        {{ detail.skilltrees.1 }}
+                                    </div>
+                                    {% else %}
+                                    <div class="skills text-center mb-1"
+                                        style="color: white; background-color: dodgerblue;">
+                                        {{ detail.skilltrees.1 }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    {% if detail.skilltrees.2 == 'E' %}
+                                    <div class="skills text-center mb-1" style="color: darkorange;">
+                                        {{ detail.skilltrees.2 }}
+                                    </div>
+                                    {% elif detail.skilltrees.2 == 'Q' %}
+                                    <div class="skills text-center mb-1" style="color: dodgerblue;">
+                                        {{ detail.skilltrees.2 }}
+                                    </div>
+                                    {% elif detail.skilltrees.2 == 'W' %}
+                                    <div class="skills text-center mb-1" style="color: greenyellow;">
+                                        {{ detail.skilltrees.2 }}
+                                    </div>
+                                    {% else %}
+                                    <div class="skills text-center mb-1"
+                                        style="color: white; background-color: dodgerblue;">
+                                        {{ detail.skilltrees.2 }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    {% if detail.skilltrees.3 == 'E' %}
+                                    <div class="skills text-center mb-1" style="color: darkorange;">
+                                        {{ detail.skilltrees.3 }}
+                                    </div>
+                                    {% elif detail.skilltrees.3 == 'Q' %}
+                                    <div class="skills text-center mb-1" style="color: dodgerblue;">
+                                        {{ detail.skilltrees.3 }}
+                                    </div>
+                                    {% elif detail.skilltrees.3 == 'W' %}
+                                    <div class="skills text-center mb-1" style="color: greenyellow;">
+                                        {{ detail.skilltrees.3 }}
+                                    </div>
+                                    {% else %}
+                                    <div class="skills text-center mb-1"
+                                        style="color: white; background-color: dodgerblue;">
+                                        {{ detail.skilltrees.3 }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    {% if detail.skilltrees.4 == 'E' %}
+                                    <div class="skills text-center mb-1" style="color: darkorange;">
+                                        {{ detail.skilltrees.4 }}
+                                    </div>
+                                    {% elif detail.skilltrees.4 == 'Q' %}
+                                    <div class="skills text-center mb-1" style="color: dodgerblue;">
+                                        {{ detail.skilltrees.4 }}
+                                    </div>
+                                    {% elif detail.skilltrees.4 == 'W' %}
+                                    <div class="skills text-center mb-1" style="color: greenyellow;">
+                                        {{ detail.skilltrees.4 }}
+                                    </div>
+                                    {% else %}
+                                    <div class="skills text-center mb-1"
+                                        style="color: white; background-color: dodgerblue;">
+                                        {{ detail.skilltrees.4 }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    {% if detail.skilltrees.5 == 'E' %}
+                                    <div class="skills text-center mb-1" style="color: darkorange;">
+                                        {{ detail.skilltrees.5 }}
+                                    </div>
+                                    {% elif detail.skilltrees.5 == 'Q' %}
+                                    <div class="skills text-center mb-1" style="color: dodgerblue;">
+                                        {{ detail.skilltrees.5 }}
+                                    </div>
+                                    {% elif detail.skilltrees.5 == 'W' %}
+                                    <div class="skills text-center mb-1" style="color: greenyellow;">
+                                        {{ detail.skilltrees.5 }}
+                                    </div>
+                                    {% else %}
+                                    <div class="skills text-center mb-1"
+                                        style="color: white; background-color: dodgerblue;">
+                                        {{ detail.skilltrees.5 }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    {% if detail.skilltrees.6 == 'E' %}
+                                    <div class="skills text-center mb-1" style="color: darkorange;">
+                                        {{ detail.skilltrees.6 }}
+                                    </div>
+                                    {% elif detail.skilltrees.6 == 'Q' %}
+                                    <div class="skills text-center mb-1" style="color: dodgerblue;">
+                                        {{ detail.skilltrees.6 }}
+                                    </div>
+                                    {% elif detail.skilltrees.6 == 'W' %}
+                                    <div class="skills text-center mb-1" style="color: greenyellow;">
+                                        {{ detail.skilltrees.6 }}
+                                    </div>
+                                    {% else %}
+                                    <div class="skills text-center mb-1"
+                                        style="color: white; background-color: dodgerblue;">
+                                        {{ detail.skilltrees.6 }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    {% if detail.skilltrees.7 == 'E' %}
+                                    <div class="skills text-center mb-1" style="color: darkorange;">
+                                        {{ detail.skilltrees.7 }}
+                                    </div>
+                                    {% elif detail.skilltrees.7 == 'Q' %}
+                                    <div class="skills text-center mb-1" style="color: dodgerblue;">
+                                        {{ detail.skilltrees.7 }}
+                                    </div>
+                                    {% elif detail.skilltrees.7 == 'W' %}
+                                    <div class="skills text-center mb-1" style="color: greenyellow;">
+                                        {{ detail.skilltrees.7 }}
+                                    </div>
+                                    {% else %}
+                                    <div class="skills text-center mb-1"
+                                        style="color: white; background-color: dodgerblue;">
+                                        {{ detail.skilltrees.7 }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    {% if detail.skilltrees.8 == 'E' %}
+                                    <div class="skills text-center mb-1" style="color: darkorange;">
+                                        {{ detail.skilltrees.8 }}
+                                    </div>
+                                    {% elif detail.skilltrees.8 == 'Q' %}
+                                    <div class="skills text-center mb-1" style="color: dodgerblue;">
+                                        {{ detail.skilltrees.8 }}
+                                    </div>
+                                    {% elif detail.skilltrees.8 == 'W' %}
+                                    <div class="skills text-center mb-1" style="color: greenyellow;">
+                                        {{ detail.skilltrees.8 }}
+                                    </div>
+                                    {% else %}
+                                    <div class="skills text-center mb-1"
+                                        style="color: white; background-color: dodgerblue;">
+                                        {{ detail.skilltrees.8 }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    {% if detail.skilltrees.9 == 'E' %}
+                                    <div class="skills text-center mb-1" style="color: darkorange;">
+                                        {{ detail.skilltrees.9 }}
+                                    </div>
+                                    {% elif detail.skilltrees.9 == 'Q' %}
+                                    <div class="skills text-center mb-1" style="color: dodgerblue;">
+                                        {{ detail.skilltrees.9 }}
+                                    </div>
+                                    {% elif detail.skilltrees.9 == 'W' %}
+                                    <div class="skills text-center mb-1" style="color: greenyellow;">
+                                        {{ detail.skilltrees.9 }}
+                                    </div>
+                                    {% else %}
+                                    <div class="skills text-center mb-1"
+                                        style="color: white; background-color: dodgerblue;">
+                                        {{ detail.skilltrees.9 }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    {% if detail.skilltrees.10 == 'E' %}
+                                    <div class="skills text-center mb-1" style="color: darkorange;">
+                                        {{ detail.skilltrees.10 }}
+                                    </div>
+                                    {% elif detail.skilltrees.10 == 'Q' %}
+                                    <div class="skills text-center mb-1" style="color: dodgerblue;">
+                                        {{ detail.skilltrees.10 }}
+                                    </div>
+                                    {% elif detail.skilltrees.10 == 'W' %}
+                                    <div class="skills text-center mb-1" style="color: greenyellow;">
+                                        {{ detail.skilltrees.10 }}
+                                    </div>
+                                    {% else %}
+                                    <div class="skills text-center mb-1"
+                                        style="color: white; background-color: dodgerblue;">
+                                        {{ detail.skilltrees.10 }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    {% if detail.skilltrees.11 == 'E' %}
+                                    <div class="skills text-center mb-1" style="color: darkorange;">
+                                        {{ detail.skilltrees.11 }}
+                                    </div>
+                                    {% elif detail.skilltrees.11 == 'Q' %}
+                                    <div class="skills text-center mb-1" style="color: dodgerblue;">
+                                        {{ detail.skilltrees.11 }}
+                                    </div>
+                                    {% elif detail.skilltrees.11 == 'W' %}
+                                    <div class="skills text-center mb-1" style="color: greenyellow;">
+                                        {{ detail.skilltrees.11 }}
+                                    </div>
+                                    {% else %}
+                                    <div class="skills text-center mb-1"
+                                        style="color: white; background-color: dodgerblue;">
+                                        {{ detail.skilltrees.11 }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    {% if detail.skilltrees.12 == 'E' %}
+                                    <div class="skills text-center mb-1" style="color: darkorange;">
+                                        {{ detail.skilltrees.12 }}
+                                    </div>
+                                    {% elif detail.skilltrees.12 == 'Q' %}
+                                    <div class="skills text-center mb-1" style="color: dodgerblue;">
+                                        {{ detail.skilltrees.12 }}
+                                    </div>
+                                    {% elif detail.skilltrees.12 == 'W' %}
+                                    <div class="skills text-center mb-1" style="color: greenyellow;">
+                                        {{ detail.skilltrees.12 }}
+                                    </div>
+                                    {% else %}
+                                    <div class="skills text-center mb-1"
+                                        style="color: white; background-color: dodgerblue;">
+                                        {{ detail.skilltrees.12 }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    {% if detail.skilltrees.13 == 'E' %}
+                                    <div class="skills text-center mb-1" style="color: darkorange;">
+                                        {{ detail.skilltrees.13 }}
+                                    </div>
+                                    {% elif detail.skilltrees.13 == 'Q' %}
+                                    <div class="skills text-center mb-1" style="color: dodgerblue;">
+                                        {{ detail.skilltrees.13 }}
+                                    </div>
+                                    {% elif detail.skilltrees.13 == 'W' %}
+                                    <div class="skills text-center mb-1" style="color: greenyellow;">
+                                        {{ detail.skilltrees.13 }}
+                                    </div>
+                                    {% else %}
+                                    <div class="skills text-center mb-1"
+                                        style="color: white; background-color: dodgerblue;">
+                                        {{ detail.skilltrees.13 }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    {% if detail.skilltrees.14 == 'E' %}
+                                    <div class="skills text-center mb-1" style="color: darkorange;">
+                                        {{ detail.skilltrees.14 }}
+                                    </div>
+                                    {% elif detail.skilltrees.14 == 'Q' %}
+                                    <div class="skills text-center mb-1" style="color: dodgerblue;">
+                                        {{ detail.skilltrees.14 }}
+                                    </div>
+                                    {% elif detail.skilltrees.14 == 'W' %}
+                                    <div class="skills text-center mb-1" style="color: greenyellow;">
+                                        {{ detail.skilltrees.14 }}
+                                    </div>
+                                    {% else %}
+                                    <div class="skills text-center mb-1"
+                                        style="color: white; background-color: dodgerblue;">
+                                        {{ detail.skilltrees.14 }}
+                                    </div>
+                                    {% endif %}
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="item" class="cont" style="display:none;">
+                        <div class="tbl-header">
+                            <h3 class="p-2 text-center">추천 아이템 빌드</h2>
+                        </div>
+                        <div class="tbl-content">
+                            <div class="d-flex">
+                                <div class="w-50 m-2 mt-0">
+                                    <div class="headers">
+                                        시작 아이템
+                                    </div>
+                                    <div class="m-3 d-flex" style="justify-content: space-evenly;">
+                                        <div>
+                                            <img src="{{ detail.s_item1.0 }}" alt="" class="item-img">
+                                            <img src="{{ detail.s_item1.1 }}" alt="" class="item-img">
+                                        </div>
+                                        <div class="d-flex" style="align-items: center;">
+                                            <div>
+                                                <div class="ps-3" style="width: 110px;">
+                                                    <div style=" color:gray; font-size: 13px;">픽률 |
+                                                        <span style="font-size: 17px; font-weight: bold;">
+                                                            {{ detail.s_itempick1 }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="ps-3" style="width: 110px;">
+                                                    <div style=" color:gray; font-size: 13px;">승률 |
+                                                        <span
+                                                            style="font-size: 17px; font-weight: bold; color: dodgerblue;">
+                                                            {{ detail.s_itemwin1 }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="m-3 d-flex" style="justify-content: space-evenly;">
+                                        <div>
+                                            <img src="{{ detail.s_item2.0 }}" alt="" class="item-img">
+                                            <img src="{{ detail.s_item2.1 }}" alt="" class="item-img">
+                                        </div>
+                                        <div class="d-flex" style="align-items: center;">
+                                            <div>
+                                                <div class="ps-3" style="width: 110px;">
+                                                    <div style=" color:gray; font-size: 13px;">픽률 |
+                                                        <span style="font-size: 17px; font-weight: bold;">
+                                                            {{ detail.s_itempick2 }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="ps-3" style="width: 110px;">
+                                                    <div style=" color:gray; font-size: 13px;">승률 |
+                                                        <span
+                                                            style="font-size: 17px; font-weight: bold; color: dodgerblue;">
+                                                            {{ detail.s_itemwin2 }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-50 m-2 mt-0 ms-0">
+                                    <div class="headers">
+                                        신발
+                                    </div>
+                                    <div class="m-3 d-flex" style="justify-content: space-evenly;">
+                                        <div>
+                                            <img src="{{ detail.s_shoe1 }}" alt="" class="item-img">
+                                        </div>
+                                        <div class="d-flex" style="align-items: center;">
+                                            <div>
+                                                <div class="ps-3" style="width: 110px;">
+                                                    <div style=" color:gray; font-size: 13px;">픽률 |
+                                                        <span style="font-size: 17px; font-weight: bold;">
+                                                            {{ detail.s_shoepick1 }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="ps-3" style="width: 110px;">
+                                                    <div style=" color:gray; font-size: 13px;">승률 |
+                                                        <span
+                                                            style="font-size: 17px; font-weight: bold; color: dodgerblue;">
+                                                            {{ detail.s_shoewin1 }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="m-3 d-flex" style="justify-content: space-evenly;">
+                                        <div>
+                                            <img src="{{ detail.s_shoe2 }}" alt="" class="item-img">
+                                        </div>
+                                        <div class="d-flex" style="align-items: center;">
+                                            <div>
+                                                <div class="ps-3" style="width: 110px;">
+                                                    <div style=" color:gray; font-size: 13px;">픽률 |
+                                                        <span style="font-size: 17px; font-weight: bold;">
+                                                            {{ detail.s_shoepick2 }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="ps-3" style="width: 110px;">
+                                                    <div style=" color:gray; font-size: 13px;">승률 |
+                                                        <span
+                                                            style="font-size: 17px; font-weight: bold; color: dodgerblue;">
+                                                            {{ detail.s_shoewin2 }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <div class="w-100 m-2 mt-0 ms-0">
+                                    <div class="headers">
+                                        빌드 추천
+                                    </div>
+                                    <div class="m-3 d-flex" style="justify-content: space-evenly;">
+                                        <div>
+                                            <img src="{{ detail.item1.0 }}" alt="" class="item-img">
+                                            <img src="{{ detail.item1.1 }}" alt="" class="item-img">
+                                            <img src="{{ detail.item1.2 }}" alt="" class="item-img">
+                                        </div>
+                                        <div class="d-flex" style="align-items: center;">
+                                            <div>
+                                                <div class="ps-3" style="width: 110px;">
+                                                    <div style=" color:gray; font-size: 13px;">픽률 |
+                                                        <span style="font-size: 17px; font-weight: bold;">
+                                                            {{ detail.itempick1 }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="ps-3" style="width: 110px;">
+                                                    <div style=" color:gray; font-size: 13px;">승률 |
+                                                        <span
+                                                            style="font-size: 17px; font-weight: bold; color: dodgerblue;">
+                                                            {{ detail.itemwin1 }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="m-3 d-flex" style="justify-content: space-evenly;">
+                                        <div>
+                                            <img src="{{ detail.item2.0 }}" alt="" class="item-img">
+                                            <img src="{{ detail.item2.1 }}" alt="" class="item-img">
+                                            <img src="{{ detail.item2.2 }}" alt="" class="item-img">
+                                        </div>
+                                        <div class="d-flex" style="align-items: center;">
+                                            <div>
+                                                <div class="ps-3" style="width: 110px;">
+                                                    <div style=" color:gray; font-size: 13px;">픽률 |
+                                                        <span style="font-size: 17px; font-weight: bold;">
+                                                            {{ detail.itempick2 }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="ps-3" style="width: 110px;">
+                                                    <div style=" color:gray; font-size: 13px;">승률 |
+                                                        <span
+                                                            style="font-size: 17px; font-weight: bold; color: dodgerblue;">
+                                                            {{ detail.itemwin2 }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="m-3 d-flex" style="justify-content: space-evenly;">
+                                        <div>
+                                            <img src="{{ detail.item3.0 }}" alt="" class="item-img">
+                                            <img src="{{ detail.item3.1 }}" alt="" class="item-img">
+                                            <img src="{{ detail.item3.2 }}" alt="" class="item-img">
+                                        </div>
+                                        <div class="d-flex" style="align-items: center;">
+                                            <div>
+                                                <div class="ps-3" style="width: 110px;">
+                                                    <div style=" color:gray; font-size: 13px;">픽률 |
+                                                        <span style="font-size: 17px; font-weight: bold;">
+                                                            {{ detail.itempick3 }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="ps-3" style="width: 110px;">
+                                                    <div style=" color:gray; font-size: 13px;">승률 |
+                                                        <span
+                                                            style="font-size: 17px; font-weight: bold; color: dodgerblue;">
+                                                            {{ detail.itemwin3 }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="m-3 d-flex" style="justify-content: space-evenly;">
+                                        <div>
+                                            <img src="{{ detail.item4.0 }}" alt="" class="item-img">
+                                            <img src="{{ detail.item4.1 }}" alt="" class="item-img">
+                                            <img src="{{ detail.item4.2 }}" alt="" class="item-img">
+                                        </div>
+                                        <div class="d-flex" style="align-items: center;">
+                                            <div>
+                                                <div class="ps-3" style="width: 110px;">
+                                                    <div style=" color:gray; font-size: 13px;">픽률 |
+                                                        <span style="font-size: 17px; font-weight: bold;">
+                                                            {{ detail.itempick4 }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="ps-3" style="width: 110px;">
+                                                    <div style=" color:gray; font-size: 13px;">승률 |
+                                                        <span
+                                                            style="font-size: 17px; font-weight: bold; color: dodgerblue;">
+                                                            {{ detail.itemwin4 }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="m-3 d-flex" style="justify-content: space-evenly;">
+                                        <div>
+                                            <img src="{{ detail.item5.0 }}" alt="" class="item-img">
+                                            <img src="{{ detail.item5.1 }}" alt="" class="item-img">
+                                            <img src="{{ detail.item5.2 }}" alt="" class="item-img">
+                                        </div>
+                                        <div class="d-flex" style="align-items: center;">
+                                            <div>
+                                                <div class="ps-3" style="width: 110px;">
+                                                    <div style=" color:gray; font-size: 13px;">픽률 |
+                                                        <span style="font-size: 17px; font-weight: bold;">
+                                                            {{ detail.itempick5 }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="ps-3" style="width: 110px;">
+                                                    <div style=" color:gray; font-size: 13px;">승률 |
+                                                        <span
+                                                            style="font-size: 17px; font-weight: bold; color: dodgerblue;">
+                                                            {{ detail.itemwin5 }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="counter" class="cont" style="display:none;">
+                        <div class="tbl-header">
+                            <h3 class="p-2 text-center">카운터</h2>
+                        </div>
+                        <div class="tbl-content">
+                            <div class="d-flex">
+                                <div class="w-50 m-2 mt-0">
+                                    <div class="headers" style="background-color: rgba(196, 52, 52, 0.9);">
+                                        상대하기 어려운 챔피언
+                                    </div>
+                                    <div class="m-3 d-flex" style="justify-content: space-evenly;">
+                                        <div>
+                                            <img src="{{ detail.hard_img.0 }}" alt="" class="item-img">
+                                        </div>
+                                        <div class="d-flex" style="align-items: center;">
+                                            <div>
+                                                <div class="ps-3" style="width: 110px;">
+                                                    <div style=" color:gray; font-size: 13px;">승률 |
+                                                        <span
+                                                            style="font-size: 17px; font-weight: bold; color: rgba(255, 55, 82, 0.9);">
+                                                            {{ detail.hard_win.0 }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="m-3 d-flex" style="justify-content: space-evenly;">
+                                        <div>
+                                            <img src="{{ detail.hard_img.1 }}" alt="" class="item-img">
+                                        </div>
+                                        <div class="d-flex" style="align-items: center;">
+                                            <div>
+                                                <div class="ps-3" style="width: 110px;">
+                                                    <div style=" color:gray; font-size: 13px;">승률 |
+                                                        <span
+                                                            style="font-size: 17px; font-weight: bold; color: rgba(255, 55, 82, 0.9);">
+                                                            {{ detail.hard_win.1 }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="m-3 d-flex" style="justify-content: space-evenly;">
+                                        <div>
+                                            <img src="{{ detail.hard_img.2 }}" alt="" class="item-img">
+                                        </div>
+                                        <div class="d-flex" style="align-items: center;">
+                                            <div>
+                                                <div class="ps-3" style="width: 110px;">
+                                                    <div style=" color:gray; font-size: 13px;">승률 |
+                                                        <span
+                                                            style="font-size: 17px; font-weight: bold; color: rgba(255, 55, 82, 0.9);">
+                                                            {{ detail.hard_win.2 }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="m-3 d-flex" style="justify-content: space-evenly;">
+                                        <div>
+                                            <img src="{{ detail.hard_img.3 }}" alt="" class="item-img">
+                                        </div>
+                                        <div class="d-flex" style="align-items: center;">
+                                            <div>
+                                                <div class="ps-3" style="width: 110px;">
+                                                    <div style=" color:gray; font-size: 13px;">승률 |
+                                                        <span
+                                                            style="font-size: 17px; font-weight: bold; color: rgba(255, 55, 82, 0.9);">
+                                                            {{ detail.hard_win.3 }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="m-3 d-flex" style="justify-content: space-evenly;">
+                                        <div>
+                                            <img src="{{ detail.hard_img.4 }}" alt="" class="item-img">
+                                        </div>
+                                        <div class="d-flex" style="align-items: center;">
+                                            <div>
+                                                <div class="ps-3" style="width: 110px;">
+                                                    <div style=" color:gray; font-size: 13px;">승률 |
+                                                        <span
+                                                            style="font-size: 17px; font-weight: bold; color: rgba(255, 55, 82, 0.9);">
+                                                            {{ detail.hard_win.4 }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-50 m-2 mt-0 ms-0">
+                                    <div class="headers" style="background-color: rgba(57, 52, 196, 0.9);">
+                                        상대하기 쉬운 챔피언
+                                    </div>
+                                    <div class="m-3 d-flex" style="justify-content: space-evenly;">
+                                        <div>
+                                            <img src="{{ detail.easy_img.0 }}" alt="" class="item-img">
+                                        </div>
+                                        <div class="d-flex" style="align-items: center;">
+                                            <div>
+                                                <div class="ps-3" style="width: 110px;">
+                                                    <div style=" color:gray; font-size: 13px;">승률 |
+                                                        <span
+                                                            style="font-size: 17px; font-weight: bold; color: rgb(52, 82, 255, 0.9);">
+                                                            {{ detail.easy_win.0 }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="m-3 d-flex" style="justify-content: space-evenly;">
+                                        <div>
+                                            <img src="{{ detail.easy_img.1 }}" alt="" class="item-img">
+                                        </div>
+                                        <div class="d-flex" style="align-items: center;">
+                                            <div>
+                                                <div class="ps-3" style="width: 110px;">
+                                                    <div style=" color:gray; font-size: 13px;">승률 |
+                                                        <span
+                                                            style="font-size: 17px; font-weight: bold; color: rgb(52, 82, 255, 0.9);">
+                                                            {{ detail.easy_win.1 }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="m-3 d-flex" style="justify-content: space-evenly;">
+                                        <div>
+                                            <img src="{{ detail.easy_img.2 }}" alt="" class="item-img">
+                                        </div>
+                                        <div class="d-flex" style="align-items: center;">
+                                            <div>
+                                                <div class="ps-3" style="width: 110px;">
+                                                    <div style=" color:gray; font-size: 13px;">승률 |
+                                                        <span
+                                                            style="font-size: 17px; font-weight: bold; color: rgb(52, 82, 255, 0.9);">
+                                                            {{ detail.easy_win.2 }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="m-3 d-flex" style="justify-content: space-evenly;">
+                                        <div>
+                                            <img src="{{ detail.easy_img.3 }}" alt="" class="item-img">
+                                        </div>
+                                        <div class="d-flex" style="align-items: center;">
+                                            <div>
+                                                <div class="ps-3" style="width: 110px;">
+                                                    <div style=" color:gray; font-size: 13px;">승률 |
+                                                        <span
+                                                            style="font-size: 17px; font-weight: bold; color: rgb(52, 82, 255, 0.9);">
+                                                            {{ detail.easy_win.3 }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="m-3 d-flex" style="justify-content: space-evenly;">
+                                        <div>
+                                            <img src="{{ detail.easy_img.4 }}" alt="" class="item-img">
+                                        </div>
+                                        <div class="d-flex" style="align-items: center;">
+                                            <div>
+                                                <div class="ps-3" style="width: 110px;">
+                                                    <div style=" color:gray; font-size: 13px;">승률 |
+                                                        <span
+                                                            style="font-size: 17px; font-weight: bold; color: rgb(52, 82, 255, 0.9);">
+                                                            {{ detail.easy_win.4 }}</span>
+                                                            {% comment %} {% endfor %} {% endcomment %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+<script>
+    const tabList = document.querySelectorAll('.tab_menu .list li');
+    const contents = document.querySelectorAll('.cont_area .cont')
+    let activeCont = ''; // 현재 활성화 된 컨텐츠 (기본:#tab1 활성화)
+
+    for (var i = 0; i < tabList.length; i++) {
+        tabList[i].querySelector('.btn').addEventListener('click', function (e) {
+            e.preventDefault();
+            for (var j = 0; j < tabList.length; j++) {
+                // 나머지 버튼 클래스 제거
+                tabList[j].classList.remove('is_on');
+
+                // 나머지 컨텐츠 display:none 처리
+                contents[j].style.display = 'none';
+            }
+
+            // 버튼 관련 이벤트
+            this.parentNode.classList.add('is_on');
+
+            // 버튼 클릭시 컨텐츠 전환
+            activeCont = this.getAttribute('href');
+            document.querySelector(activeCont).style.display = 'block';
+        });
+    }
+</script>
+{% endblock content %}
