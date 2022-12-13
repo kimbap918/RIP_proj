@@ -10,13 +10,19 @@
             <div class="first_box-inner">
                 <img src="/static/images/검정로고.png" alt="">
                 <!-- 검색창 -->
-                <div class="search_box">
-                    <div class="search_box-inner">
-                        <input type="text" value="" class="" placeholder="챔피언, 챔피언..">
-                        <i type="submit" class="fa-regular fa-chess-queen"></i>
-                        <input  style="display: none" />
-                    </div>         
-                </div>
+                <form method="get" name="search_form" action="{% url 'summoners:result' %}">
+                    <div class="search_box">
+                        <div class="search_box-inner">
+                            <input type="text" class="" placeholder="🧙🏻‍♂️ 소환사명을 입력해주세요." name="search_text"
+                                value="{{search_text}}" >
+                            <span class="input-group-btn">
+                                <button class="btn btn-secondary clear-btn" type="submit"
+                                    style="background-color: black; border-radius: 100%;">
+                                    <i class="fa fa-search"></i></button>
+                            </span>
+                        </div>         
+                    </div>
+                </form>
             </div>
         </div>
     </div>
