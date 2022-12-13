@@ -16,11 +16,11 @@ body {
 {% block content %}
 <div class="container">
     <div class="sign_box">
-        <div class="sign_box_bg form_wrap_line">
+        <div class="sign_box_bg">
             <div class="logo">
                 <img src="/static/images/검정로고.png" alt="" style="width: 200px; padding-bottom: 15px;">
             </div>
-            <form action="" method="POST" id="form__wrap" data-multi-step>
+            <form action="" method="POST" id="form__wrap" data-multi-step style="background-color: #fff;">
                 {% csrf_token %}
                 <!-- 생년월일 -->
                 <div class="card" data-step>
