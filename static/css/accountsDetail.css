@@ -90,7 +90,7 @@
     padding-bottom: 40px;
 }
 .edit {
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 .edit__inner {
@@ -251,17 +251,17 @@ input[type="checkbox"] {
     margin-top: 1.5rem;
 }
 
-@media (max-width: 768px)
+@media (max-width: 768px){
 .member-settings-layout__content-inner {
     margin-top: 16px;
     width: auto;
     box-shadow: none;
-}
+}}
 
 /* 탈퇴 이너박스 */
 
-.edit__inner > h5 {
-}
+/* .edit__inner > h5 {
+} */
 
 .edit__inner .leave_info {
     padding-bottom: 40PX;
@@ -393,7 +393,7 @@ body {
     width: auto;
     box-shadow: none;  
   }
-  
+}
 @media (max-width: 768px){
 .change-password__inner {
   margin: 0;

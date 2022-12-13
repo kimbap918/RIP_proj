@@ -141,9 +141,10 @@ body {
 
 .smallinfo {
   display: flex;
-  align-items: end;
+  align-items: start;
   flex-direction: column;
-  margin-top: 5px;
+  margin-top: auto;
+  margin-left: 14px;
 }
 
 .smallinfo a {
