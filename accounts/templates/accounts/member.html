@@ -16,11 +16,11 @@ body {
 {% block content %}
 <div class="container">
     <div class="sign_box">
-        <div class="sign_box_bg form_wrap_line">
+        <div class="sign_box_bg">
             <div class="logo">
                 <img src="/static/images/검정로고.png" alt="" style="width: 200px; padding-bottom: 15px;">
             </div>
-            <form action="" method="POST" id="form__wrap" data-multi-step>
+            <form action="" method="POST" id="form__wrap" data-multi-step style="background-color: #fff;">
                 {% csrf_token %}
                 <!-- 생년월일 -->
                 <div class="card" data-step>
@@ -60,7 +60,7 @@ body {
                         <div class="">
                             <div class="check1 input__check">
                                 <span class="member-agree-checkbox_state">
-                                    <input type="checkbox" name="" id="termsOfService" value="termsOfService" required />
+                                    <input type="checkbox" name="agree_service" id="termsOfService" value="termsOfService" required />
                                 </span>
                                 <label for="privacyPolicy" class="member-agree-checkbox_label required">RIP.GG 이용약관 동의</label>
                             </div>
@@ -76,7 +76,7 @@ body {
                         <div class="">
                             <div class="check1 input__check">
                                 <span class="member-agree-checkbox_state">
-                                    <input type="checkbox" name="" id="privacyPolicy" value="privacyPolicy" required />
+                                    <input type="checkbox" name="agree_privacy" id="privacyPolicy" value="privacyPolicy" required />
                                 </span>
                                 <label for="privacyPolicy" class="member-agree-checkbox_label required">개인정보 수집 및 이용 동의</label>
                             </div>
@@ -92,7 +92,7 @@ body {
                         <div class="">
                             <div class="check1 input__check">
                                 <span class="member-agree-checkbox_state">
-                                    <input type="checkbox" name="" id="allowPromotions" value="allowPromotions" />
+                                    <input type="checkbox" name="agree_mail" id="allowPromotions" value="allowPromotions" />
                                 </span>
                                 <label for="allowPromotions" class="member-agree-checkbox_label"> 이벤트 등 프로모션 알림 및 푸시 알림 수신<span class="check2">(선택)</span></label>
                             </div>
@@ -117,7 +117,7 @@ body {
                         <i class="fa-solid fa-circle" style="color: #e9edef"></i>
                         <i class="fa-solid fa-circle" style="color: #1ea1f7;"></i>
                     </div>
-                    <div class="pw_title" style="margin-bottom: 10px;">
+                    <div class="pw_title">
                         기본정보 입력
                     </div>
                     <p class="">

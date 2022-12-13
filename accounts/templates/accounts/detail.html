@@ -5,12 +5,11 @@
 {% block title %}
 내 정보
 {% endblock %}
-<link rel="stylesheet" href="{% static 'css/accountsDetail.css'%}" type="text/css">
-
 {% block style %}
 <style>
-
-
+    a{
+        text-decoration:none;
+    }
 </style>
 
 {% endblock %}
@@ -18,7 +17,7 @@
 {% block content %}
 
 <div class="member-settings-layout__content-inner">
-  <h2 class="member-settings-layout__title">{{user.username}}님의 프로필</h2>    
+  <h2 class="member-settings-layout__title">{{user.username}}님의 프로필</h2>
   <div class="edit">
     <div class="list" style="font-size: 14px;">
       <a class="tab-button" id="link_user_articles" data-bs-toggle="collapse" href="#user_articles" role="button" aria-expanded="false" aria-controls="collapseExample">작성한 글</a>
@@ -30,7 +29,7 @@
     <div>
       <!-- 작성한 글 -->
     <div class="collapse" id="user_articles">
-      <div class="row">
+      <div class="mx-3 row">
         {% for article in articles %}
         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 p-3">
           <a href="{% url 'articles:detail' article.pk %}">
@@ -54,7 +53,7 @@
                         <span class="2">{{ article.user.username }}</span>
                     </a>
                   </div>                
-                  <div class="card-title card-title-text mb-2"><a href="{% url 'articles:detail' article.pk %}">{{ article.title }}</a></div>
+                  <div class="card-title card-title-text mb-2"><a class="text-dark" href="{% url 'articles:detail' article.pk %}">{{ article.title }}</a></div>
 
                   <!-- 좋아요, 댓글, 조회수, 북마크 -->
                   <div class="d-flex justify-content-between align-items-center">
@@ -96,9 +95,9 @@
 
     <!-- 좋아요한 글 -->
     <div class="collapse" id="like_articles">
-      <div class="row">
+      <div class=" mx-3 row">
         {% for article in like_articles %}
-        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 p-3" id="like-{{ article.pk }}">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 p-3" id="like-{{ article.pk }}">
             <a href="{% url 'articles:detail' article.pk %}">
               <div class="card glow">
                 <!-- 첫 번째 이미지를 썸네일로 -->
@@ -112,15 +111,15 @@
                     <!-- 유저 -->
                     <div class="mb-2">
                     <a href="{% url 'accounts:detail' article.user.pk %}" class="text-dark">
-                      {% if article.user.profile.image %}
+                      {% comment %} {% if article.user.profile.image %}
                         <img src="{{ article.user.profile.image.url }}" alt="{{ article.user.profile.image }}" class="rounded-2 border border-1" width="40px">
                       {% else %}
                       <img src="{% static 'images/dummy-image-square.jpg' %}" alt="" class="rounded-2 border border-1" width="40px">
-                      {% endif %}
-                      <span class="ms-2">{{ article.user.username }}</span>
+                      {% endif %} {% endcomment %}
+                      <span class="">{{ article.user.username }}</span>
                     </a>
                   </div>
-                  <h5 class="card-title card-title-text mb-2"><a href="">{{ article.title }}</a></h5>
+                  <div class="card-title card-title-text mb-2"><a class="text-dark" href="{% url 'articles:detail' article.pk %}">{{ article.title }}</a></div>
                   
                   <!-- 좋아요, 댓글, 조회수, 북마크 -->
                   <div class="d-flex justify-content-between align-items-center">
@@ -163,7 +162,7 @@
     <!-- 북마크한 글 -->
     {% if user == request.user %}
       <div class="collapse" id="bookmark_articles">
-        <div class="row">
+        <div class="mx-3 row">
           {% for article in bookmark_articles %}
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 p-3" id="bookmark-{{ article.pk }}">
               <a href="{% url 'articles:detail' article.pk %}">
@@ -187,7 +186,7 @@
                         <span class="ms-2">{{ article.user.username }}</span>
                       </a>
                     </div>
-                    <h5 class="card-title card-title-text mb-2"><a href="">{{ article.title }}</a></h5>
+                    <div class="card-title card-title-text mb-2"><a class="text-dark" href="{% url 'articles:detail' article.pk %}">{{ article.title }}</a></div>
 
                     <!-- 좋아요, 댓글, 조회수, 북마크 -->
                     <div class="d-flex justify-content-between align-items-center">

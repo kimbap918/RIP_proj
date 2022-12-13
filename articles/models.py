@@ -132,8 +132,3 @@ class Comment(models.Model):
     #         return str(time.days) + '일 전'
     #     else:
     #         return False
-
-
-class Grade(models.Model):
-    user = models.CharField(max_length=20)
-    grades = models.CharField(max_length=20)

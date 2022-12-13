@@ -17,29 +17,19 @@
             <div class="first_box-inner">
                 <img src="/static/images/검정로고.png" alt="">
                 <!-- 검색창 -->
-                <form action="{% url 'champions:search' %}" role="search" class="search_box-inner">
-                <div class="search_box">
-                        <input type="search" aria-label="Search" name='name' id="tags" value="" class="" placeholder="🧙🏻‍♂️챔피언명을 입력해주세요.">
-                        <span class="input-group-btn">
-                            <button class="btn btn-secondary clear-btn" type="submit"
-                                style="background-color: black; border-radius: 100%;">
-                                <i class="fa fa-search"></i></button>
-                        </span>
-                    </div>
-                </form>
-                {% comment %} <form method="get" name="search_form" action="{% url 'summoners:result' %}">
+                <form action="{% url 'champions:search' %}" role="search">
                     <div class="search_box">
                         <div class="search_box-inner">
-                            <input type="text" class="" placeholder="🧙🏻‍♂️ 소환사명을 입력해주세요." name="search_text"
-                                value="{{search_text}}" >
+                            <input type="search" aria-label="Search" name='name' id="tags" value="" class="" placeholder="🧙🏻‍♂️챔피언명을 입력해주세요.">
                             <span class="input-group-btn">
                                 <button class="btn btn-secondary clear-btn" type="submit"
                                     style="background-color: black; border-radius: 100%;">
-                                    <i class="fa fa-search"></i></button>
+                                    <i class="fa fa-search"></i>
+                                </button>
                             </span>
-                        </div>         
+                        </div>
                     </div>
-                </form> {% endcomment %}
+                </form>
             </div>
         </div>
     </div>

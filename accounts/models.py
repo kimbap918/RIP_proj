@@ -9,6 +9,8 @@ class User(AbstractUser):
     birthday = models.DateTimeField(default=timezone.now)
     email = models.EmailField(max_length=100)
     agree = models.BooleanField(null=False, default=False)
+    # agree_privacy = models.BooleanField(null=False, default=False)
+    # agree_mail = models.BooleanField(null=False, default=False)
 
 
 # 마이페이지 프로필

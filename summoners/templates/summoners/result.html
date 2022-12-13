@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'homeBase.html' %}
 {% load static %}
 {% load django_bootstrap5 %}
 {% load widget_tweaks %}
@@ -15,122 +15,133 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
         integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
         crossorigin="anonymous"></script>
-    <style>
-        .css-win {
-            display: flex;
-            -webkit-box-align: center;
-            align-items: center;
-            height: 8rem;
-            border-radius: 4px;
-            border-left-width: 0.375rem;
-            border-left-style: solid;
-            border-color: #5383E8;
-            background-color: #27344E;
-            color: #8E8796;
-            min-width: 50rem;
-        }  
-        .css-lose {
-            display: flex;
-            -webkit-box-align: center;
-            align-items: center;
-            height: 8rem;
-            border-radius: 4px;
-            border-left-width: 0.375rem;
-            border-left-style: solid;
-            border-color: #E84057;
-            background-color: #59343B;
-            color: #8E8796;
-            min-width: 50rem;
-        }
-        .css-replay {
-            display: flex;
-            -webkit-box-align: center;
-            align-items: center;
-            height: 8rem;
-            border-radius: 4px;
-            border-left-width: 0.375rem;
-            border-left-style: solid;
-            border-color: #9E9EB0;
-            background-color: #282830;
-            color: #8E8796;
-            min-width: 50rem;
-        }      
-    </style>
-</head>
-<body class="m-0 p-0" style="background-color: #1C1C1F;">
-<div class="container">
-    <div class="row">
-        <div class="col-lg-12 mt-3">
-            <form method="get" name="search_form" action="{% url 'summoners:result' %}">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="소환사명" name="search_text"
-                        value="{{search_text}}">
-                    <span class="input-group-btn">
-                        <button class="btn btn-secondary" type="submit">검색</button>
-                    </span>
-                </div>
-            </form>
-        </div>
-    </div>
-    {% if summoner_exist %}
-    <div class="row" style="margin: 40px; float: none;">
+    <link rel="stylesheet" href="{% static 'css/summoners.css' %}">
+{% block css %}
+<style>
+body {
+    background-color:  #1C1C1F;
+    margin: 0;
+    padding: 0;
+}
 
-        <img style="display: block; margin: 0px; height: 70px; width: 70px;" class="img-thumbnail"
-            src="{% static 'images/profileicon/' %}{{summoners_result.profileIconId}}.png">
-        <span style="padding-left: 0px; font-size: 32px; color: #FFFFFF;">{{ summoners_result.name }}<br>
-            <span style="padding-left: 0px; font-size: 20px; color: #FFFFFF;">LV: {{ summoners_result.level }}</span>
-        </span>
+</style>
 
+{% endblock %}
 
-    </div>
-    <div class="row">
-        <div style="float: none; margin: 0 auto" class="col-5 border border-secondary mb-3">
-            <div class="row">
-                {% if solo_tier %}
-                <div class="col-4">
-                    <img src="{% static 'images/ranked-emblems/' %}{{solo_tier.tier}}.png" width="100%">
-                </div>
-                <div style="color: #FFFFFF;">
-                    리그: {{ solo_tier.rank_type }}<br>
-                    티어: {{ solo_tier.tier }} {{ solo_tier.rank }}<br>
-                    포인트: {{ solo_tier.points }}<br>
-                    전적: <span style="color: #80e840;">{{ solo_tier.wins|add:solo_tier.losses}}</span>전 <span style="color: #5383E8;">{{ solo_tier.wins }}승</span> <span style="color: #E84057;">{{ solo_tier.losses }}</span>패
+    <div class="">
+        <div class="summoners_user_box">
+            <div class="summoners_box summoners_box_search">
+                <form method="get" name="search_form" action="{% url 'summoners:result' %}">
+                    <div class="input-group">
+                        <input style="font-size: 14px;" type="text" class="form-control" placeholder="소환사명" name="search_text"
+                            value="{{search_text}}">
+                        <span class="input-group-btn">
+                            <button class="btn btn-secondary" type="submit">검색</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+            {% if summoner_exist %}
+            <div class="summoners_box">
+                <div class="summoners_thum_info">
+                    <img class="img-thumbnail"
+                        src="{% static 'images/profileicon/' %}{{summoners_result.profileIconId}}.png">
+                    <div class="summoners_info_sub">
+                        <div class="summoners_name">{{ summoners_result.name }}</div>
+                        <div class="summoners_level">LV: {{ summoners_result.level }}</div>
+                    </div>
                 </div>
             </div>
-            {% else %}
-            <div style="color: #FFFFFF;">
-                배치&전적정보없음
-            </div>
-            {% endif %}
         </div>
-
-        <div style="float: none; margin: 0 auto" class="col-5 border border-secondary mb-3">
-            <div class="row">
+        <div class="rank_box">
+            <div class="rank_box_content">
                 {% if team_tier %}
-                <div class="col-4">
-                    <img src="{% static 'images/ranked-emblems/' %}{{team_tier.tier}}.png" width="100%">
+                <div class="rank_title">{{ team_tier.rank_type }}</div>
+                <div class="rank_box_content-inner">
+                    <div class="summoners_thum_info rank_image_bg">
+                        <img src="{% static 'images/ranked-emblems/' %}{{solo_tier.tier}}.png">
+                    </div>
+                    <div class="rank_box_content-inner_sub">
+                        <div class="rank-inner-tp">
+                            <div class="rank-inner-tier">
+                                {{ team_tier.tier }} {{ team_tier.rank }}<br>
+                            </div>
+                            <div class="rank-inner-points">
+                                포인트: {{ team_tier.points }}<br>
+                            </div>
+                        </div>
+                        <div class="rank-inner-win">
+                            <span style="color: #80e840;">{{ team_tier.wins|add:team_tier.losses}}</span>전
+                            <span style="color: #5383E8;">{{ team_tier.wins }}승</span>
+                            <span style="color: #E84057;">{{ team_tier.losses }}</span>패    
+                        </div>
+                    </div>    
+                    {% else %}
+                    <div class="rank_title">
+                        배치&전적정보없음
+                    </div>
+                    {% endif %}
                 </div>
-                <div style="color: #FFFFFF;">
-                    리그: {{ team_tier.rank_type }}<br>
-                    티어: {{ team_tier.tier }} {{ team_tier.rank }}<br>
-                    포인트: {{ team_tier.points }}<br>
-                    전적: <span style="color: #80e840;">{{ team_tier.wins|add:team_tier.losses}}</span>전 <span style="color: #5383E8;">{{ team_tier.wins }}</span>승 <span style="color: #E84057;">{{ team_tier.losses }}</span>패
-                </div>
-                {% else %}
-                <div style="color: #FFFFFF;">
-                    배치&전적정보없음
-                </div>
-                {% endif %}
             </div>
+            <div class="rank_box_content content_solo">
+                {% if solo_tier %}
+                <div class="rank_title">{{ solo_tier.rank_type }}</div>
+                <div class="rank_box_content-inner">
+                    <div class="summoners_thum_info rank_image_bg">
+                        <img src="{% static 'images/ranked-emblems/' %}{{solo_tier.tier}}.png">
+                    </div>
+                    <div class="rank_box_content-inner_sub">
+                        <div class="rank-inner-tp">
+                            <div class="rank-inner-tier">
+                                {{ solo_tier.tier }} {{ solo_tier.rank }}<br>
+                            </div>
+                            <div class="rank-inner-points">
+                                포인트: {{ solo_tier.points }}<br>
+                            </div>
+                        </div>
+                        <div class="rank-inner-win">
+                            <span style="color: #80e840;">{{ solo_tier.wins|add:solo_tier.losses}}</span>전
+                            <span style="color: #5383E8;">{{ solo_tier.wins }}승</span>
+                            <span style="color: #E84057;">{{ solo_tier.losses }}</span>패    
+                        </div>
+                    </div>    
+                    {% else %}
+                    <div class="rank_title">
+                        배치&전적정보없음
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <!-- <div class="rank_box_content" style="margin: 10px 0 0 10px">
+                <div class="rank_box_content-inner">
+                    <div class="rank_box_content-inner">
+                        {% if team_tier %}
+                        <div class="rank_title">{{ team_tier.rank_type }}</div>
+                        <div class="col-4">
+                            <img src="{% static 'images/ranked-emblems/' %}{{team_tier.tier}}.png" width="100%">
+                        </div>
+                        <div>
+                            <div>{{ team_tier.tier }} {{ team_tier.rank }}</div>
+                            <div>포인트: {{ team_tier.points }}</div>
+                            전적: <span style="color: #80e840;">{{ team_tier.wins|add:team_tier.losses}}</span>전 <span style="color: #5383E8;">{{ team_tier.wins }}</span>승 <span style="color: #E84057;">{{ team_tier.losses }}</span>패
+                        </div>
+                        {% else %}
+                        <div class="rank_title">
+                            배치&전적정보없음
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div> -->
         </div>
+        {% else %}
+        사용자가 존재하지않습니다.
+        {% endif %}
     </div>
-    {% else %}
-    사용자가 존재하지않습니다.
-    {% endif %}
-
     {% for games, players in game_list %}
     {% if players.win == True %}
-    <div class="css-win mb-2">
+    <div class="css-win summoners_box per_box">
         {% if players.summonerName == summoners_result.name %}
         <div class="w-20 mx-1" style="width: 3.5rem;">
             <p class="mb-0 ml-3" style="color: #5383E8;">승리</p>
@@ -151,7 +162,7 @@
         </div>
         <div class="w-80">
             <div class="d-flex">
-                <div class="w-80 me-2 mt-2">
+                <div class="w-80 me-2">
                     <div class="d-flex mb-1">
                         <img class="me-1" src="/static/images/champion/{{ players.championName }}.png" alt=""
                             style="border-radius: 100%; width: 50px;">
@@ -199,9 +210,8 @@
                     </div>
                     <div class="mr-2" style="width: 6rem;">
                         <div>
-                            <img src="/static/images/summoners/ap.png" alt="" style="height: 1.8rem; width: 0.666rem; margin-right: -4px;">
-                            <img src="/static/images/summoners/ad.png" alt="" style="height: 1.8rem; width: 0.666rem; margin-right: -4px;">
-                            <img src="/static/images/summoners/trueDamage.png" alt="" style="height: 1.8rem; width: 0.666rem;">                            
+                            <img src="/static/images/summoners/ap.png" alt="" style="height: 1.8rem; width: 1.0rem; border-radius: 0.3125rem; margin-right: -4px;">
+                            <img src="/static/images/summoners/ad.png" alt="" style="height: 1.8rem; width: 1.0rem; border-radius: 0.3125rem;">
                             <span class="mb-0">{{ players.totalDamageDealtToChampions }}</span>
                         </div>
                         <div>
@@ -212,10 +222,7 @@
                             <img src="/static/images/summoners/ad.png" alt="" style="height: 1.8rem; width: 2rem; border-radius: 0.3125rem;">
                             <span class="mb-0">{{ players.physicalDamageDealtToChampions }}</span>
                         </div>
-                        <div>
-                            <img src="/static/images/summoners/trueDamage.png" alt="" style="height: 1.8rem; width: 2rem; border-radius: 0.3125rem;">
-                            <span class="mb-0">{{ players.trueDamageDealtToChampions }}</span>
-                        </div>
+                        <!-- <p class="mb-0">고정 데미지 : {{ players.trueDamageDealtToChampions }}</p> -->
                     </div>
                     <div class="mr-2" style="width: 6rem;">
                         <div>
@@ -233,7 +240,7 @@
         </div>
     </div>
     {% elif players.win == False %}
-    <div class="css-lose mb-2">
+    <div class="css-lose summoners_box per_box">
         {% if players.summonerName == summoners_result.name %}
         <div class="w-20 mx-1" style="width: 3.5rem;">
             <p class="mb-0 ml-3" style="color: #E84057;">패배</p>
@@ -254,7 +261,7 @@
         </div>
         <div class="w-80">
             <div class="d-flex">
-                <div class="w-80 me-2 mt-2">
+                <div class="w-80 me-2">
                     <div class="d-flex mb-1">
                         <img class="me-1" src="/static/images/champion/{{ players.championName }}.png" alt=""
                             style="border-radius: 100%; width: 50px;">
@@ -263,7 +270,7 @@
                                 style="height: 30px;">
                             <img class="me-1" src="/static/images/spell/{{ players.summoner2Id }}.png" alt=""
                                 style="height: 30px;">   
-                        </div> 
+                            </div> 
                         <div class="ml-2">
                             <span style="color: #5383E8;">{{ players.kills }}</span> / <span style="color: #E84057;">{{ players.deaths }}</span> / <span style="color: #80e840;">{{ players.assists }}</span> <br>
                             {{ players.kda }}:1 평점
@@ -302,9 +309,8 @@
                     </div>
                     <div class="mr-2" style="width: 6rem;">
                         <div>
-                            <img src="/static/images/summoners/ap.png" alt="" style="height: 1.8rem; width: 0.666rem; margin-right: -4px;">
-                            <img src="/static/images/summoners/ad.png" alt="" style="height: 1.8rem; width: 0.666rem; margin-right: -4px;">
-                            <img src="/static/images/summoners/trueDamage.png" alt="" style="height: 1.8rem; width: 0.666rem;">                            
+                            <img src="/static/images/summoners/ap.png" alt="" style="height: 1.8rem; width: 1.0rem; border-radius: 0.3125rem; margin-right: -4px;">
+                            <img src="/static/images/summoners/ad.png" alt="" style="height: 1.8rem; width: 1.0rem; border-radius: 0.3125rem;">
                             <span class="mb-0">{{ players.totalDamageDealtToChampions }}</span>
                         </div>
                         <div>
@@ -315,10 +321,7 @@
                             <img src="/static/images/summoners/ad.png" alt="" style="height: 1.8rem; width: 2rem; border-radius: 0.3125rem;">
                             <span class="mb-0">{{ players.physicalDamageDealtToChampions }}</span>
                         </div>
-                        <div>
-                            <img src="/static/images/summoners/trueDamage.png" alt="" style="height: 1.8rem; width: 2rem; border-radius: 0.3125rem;">
-                            <span class="mb-0">{{ players.trueDamageDealtToChampions }}</span>
-                        </div>
+                        <!-- <p class="mb-0">고정 데미지 : {{ players.trueDamageDealtToChampions }}</p> -->
                     </div>
                     <div class="mr-2" style="width: 6rem;">
                         <div>
@@ -339,7 +342,7 @@
     </div>
     {% endif %}    
     {% if games.min <= 4  %}
-    <div class="css-replay mb-2">
+    <div class="css-replay summoners_box per_box">
         {% if players.summonerName == summoners_result.name %}
         <div class="w-20 mx-1" style="width: 3.5rem;">
             <p>다시하기</p>
@@ -360,7 +363,7 @@
         </div>
         <div class="w-80">
             <div class="d-flex">
-                <div class="w-80 me-2 mt-2">
+                <div class="w-80 me-2">
                     <div class="d-flex mb-1">
                         <img class="me-1" src="/static/images/champion/{{ players.championName }}.png" alt=""
                             style="border-radius: 100%; width: 50px;">
@@ -369,7 +372,7 @@
                                 style="height: 30px;">
                             <img class="me-1" src="/static/images/spell/{{ players.summoner2Id }}.png" alt=""
                                 style="height: 30px;">   
-                        </div> 
+                            </div> 
                         <div class="ml-2">
                             <span style="color: #5383E8;">{{ players.kills }}</span> / <span style="color: #E84057;">{{ players.deaths }}</span> / <span style="color: #80e840;">{{ players.assists }}</span> <br>
                             {{ players.kda }}:1 평점
@@ -408,9 +411,8 @@
                     </div>
                     <div class="mr-2" style="width: 6rem;">
                         <div>
-                            <img src="/static/images/summoners/ap.png" alt="" style="height: 1.8rem; width: 0.666rem; margin-right: -4px;">
-                            <img src="/static/images/summoners/ad.png" alt="" style="height: 1.8rem; width: 0.666rem; margin-right: -4px;">
-                            <img src="/static/images/summoners/trueDamage.png" alt="" style="height: 1.8rem; width: 0.666rem;">                            
+                            <img src="/static/images/summoners/ap.png" alt="" style="height: 1.8rem; width: 1.0rem; border-radius: 0.3125rem; margin-right: -4px;">
+                            <img src="/static/images/summoners/ad.png" alt="" style="height: 1.8rem; width: 1.0rem; border-radius: 0.3125rem;">
                             <span class="mb-0">{{ players.totalDamageDealtToChampions }}</span>
                         </div>
                         <div>
@@ -421,10 +423,7 @@
                             <img src="/static/images/summoners/ad.png" alt="" style="height: 1.8rem; width: 2rem; border-radius: 0.3125rem;">
                             <span class="mb-0">{{ players.physicalDamageDealtToChampions }}</span>
                         </div>
-                        <div>
-                            <img src="/static/images/summoners/trueDamage.png" alt="" style="height: 1.8rem; width: 2rem; border-radius: 0.3125rem;">
-                            <span class="mb-0">{{ players.trueDamageDealtToChampions }}</span>
-                        </div>
+                        <!-- <p class="mb-0">고정 데미지 : {{ players.trueDamageDealtToChampions }}</p> -->
                     </div>
                     <div class="mr-2" style="width: 6rem;">
                         <div>
@@ -445,7 +444,7 @@
     </div>     
     {% endif %}
     {% endfor %}
-</div>
-</body>
+
+
 
 {% endblock content %}
