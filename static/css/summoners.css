@@ -164,6 +164,10 @@
 
 
 @media (max-width: 768px){
+    .summoners_box{
+        width: 100%;
+    }
+
     .rank_box {
         margin: 0;
         padding: 0;
