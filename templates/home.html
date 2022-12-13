@@ -3,14 +3,32 @@
 {% load django_bootstrap5 %}
 {% load article_filter %}
 {% load widget_tweaks %}
+{% block style %}
+<link href=  
+"http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+        rel="stylesheet" type="text/css" />  
+{% endblock %}
 {% block content %}
+
+
 <main class="main_box">
     <div>
         <div class="first_box">
             <div class="first_box-inner">
                 <img src="/static/images/검정로고.png" alt="">
                 <!-- 검색창 -->
-                <form method="get" name="search_form" action="{% url 'summoners:result' %}">
+                <form action="{% url 'champions:search' %}" role="search" class="search_box-inner">
+                <div class="search_box">
+                        <input type="search" aria-label="Search" name='name' id="tags" value="" class="" placeholder="🧙🏻‍♂️챔피언명을 입력해주세요.">
+                        <span class="input-group-btn">
+                            <button class="btn btn-secondary clear-btn" type="submit"
+                                style="background-color: black; border-radius: 100%;">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+                {% comment %} <form method="get" name="search_form" action="{% url 'summoners:result' %}">
                     <div class="search_box">
                         <div class="search_box-inner">
                             <input type="text" class="" placeholder="🧙🏻‍♂️ 소환사명을 입력해주세요." name="search_text"
@@ -18,11 +36,12 @@
                             <span class="input-group-btn">
                                 <button class="btn btn-secondary clear-btn" type="submit"
                                     style="background-color: black; border-radius: 100%;">
-                                    <i class="fa fa-search"></i></button>
+                                    <i class="fa fa-search"></i>
+                                </button>
                             </span>
-                        </div>         
+                        </div>        
                     </div>
-                </form>
+                </form> {% endcomment %}
             </div>
         </div>
     </div>
@@ -149,4 +168,26 @@
 {% endfor %} -->
 
 </main>
+
 {% endblock %}
+{% block script %}
+<script src=  
+"https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js">  
+    </script>  
+    
+    <script src=  
+"https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js">  
+    </script>  
+    <script>
+        $( function() {
+            var availableTags = [
+                {% for champion in champions %}
+                    "{{champion.name}}",
+                {% endfor %}
+            ];
+            $( "#tags" ).autocomplete({
+                source: availableTags
+            });
+            } );
+    </script>
+{% endblock script %}

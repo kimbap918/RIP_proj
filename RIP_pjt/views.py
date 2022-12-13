@@ -3,10 +3,11 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse, HttpResponseForbidden
 from articles.models import *
 from accounts.models import *
+from champions.models import *
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
-from django.db.models import Count
+from django.db.models import Count,Q
 from django.core.paginator import Paginator
 
 def main(request):
@@ -31,6 +32,7 @@ def base(request):
 
 
 def home(request):
+    champions = Champ.objects.all()
     # 게시물 최근 순
     lately_a = Article.objects.order_by("-pk")[:10]
     best_a = Article.objects.all().annotate(like_cnt=Count('like_user')).order_by('-like_cnt')[:10]
@@ -41,5 +43,6 @@ def home(request):
     context = {
         "lately_a": lately_a,
         "best_a": best_a,
+        "champions":champions
     }
     return render(request, "home.html", context)
