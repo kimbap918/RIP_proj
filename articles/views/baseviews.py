@@ -35,15 +35,12 @@ def index(request):
             .order_by("-comments")
         )
     elif sort == "3":
-        user = get_user_model().objects.get(pk=request.user.pk)
         article = user.article_set.all()
     # 내가 와드 한 글
     elif sort == "4":
-        user = get_user_model().objects.get(pk=request.user.pk)
         article = user.bookmark_post.all()
     # 내가 좋아요 한 글
     elif sort == "5":
-        user = get_user_model().objects.get(pk=request.user.pk)
         article = user.like_post.all()
     if kw:
         if search_kind == "전체":
@@ -60,6 +57,8 @@ def index(request):
             article = article.filter(
                 Q(user__username__icontains=kw)  # 내용 검색
             ).distinct()
+    if request.user.is_authenticated:
+        user = get_user_model().objects.get(pk=request.user.pk)
     paginator = Paginator(article, 10)
     page_obj = paginator.get_page(page)
     categories = ["자유", "유머", "팬아트", "유저찾기", "유저뉴스", "팁과노하우", "기획", "사건사고"]
