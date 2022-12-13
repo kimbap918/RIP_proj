@@ -79,9 +79,9 @@ def index(request):
             grade = '고인물'
         elif c_count > 2 and a_count > 2:
             grade = '탁한물'
-        elif c_count > 0 and a_count > 0:
+        elif c_count > 2 or a_count > 0:
             grade = '맑은물'
-        elif c_count >= 0 and a_count == 0:
+        elif c_count <= 2 or a_count == 0:
             grade = '신선한물'
 
     context = {
@@ -159,9 +159,9 @@ def category(request, pk):
             grade = '고인물'
         elif c_count > 2 and a_count > 2:
             grade = '탁한물'
-        elif c_count > 0 and a_count > 0:
+        elif c_count > 2 or a_count > 0:
             grade = '맑은물'
-        elif c_count >= 0 and a_count == 0:
+        elif c_count <= 2 or a_count == 0:
             grade = '신선한물'
 
     context = {
