@@ -334,10 +334,10 @@ body {
         </div>
         <div class="edit__tr">
           <div class="edit__th">
-            생성일자
+            생년월일
           </div>
           <div class="edit__td">
-            {{ user.created_at }}
+            {{ user.birthday|date:'Y-m-d' }}
           </div>
         </div>
         
@@ -388,7 +388,7 @@ body {
               </div>
             </div>
           </div>
-          <div class="edit__tr">
+          <!-- <div class="edit__tr">
             <div class="edit__th">
               이메일 수신 동의
             </div>
@@ -404,7 +404,7 @@ body {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </form>
         </div>
       </div>

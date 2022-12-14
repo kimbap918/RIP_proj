@@ -3,7 +3,7 @@
   .list {
   list-style-type: none;
   margin: 0;
-  padding: 20px;
+  padding-left: 55px;
 }
 
 .list::after {
@@ -56,7 +56,7 @@
 }
 
 .member-settings-layout__title_sub {
-  padding: 20px;
+  padding-left: 20px;
 }
 .member-settings-layout_name {
     font-weight: 400;
