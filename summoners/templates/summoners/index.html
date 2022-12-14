@@ -10,17 +10,21 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12" style="margin-top: 25vh; margin-bottom: 30vh;">
-            <div class="d-flex justify-content-center">
-                <img src="/static/images/검정로고.png" alt="" style="width: 50vh;">
+            <div class="summoners_img" style="position: relative;">
+                <img src="/static/images/징크스2.png" alt="">
             </div>
-            <form method="get" name="search_form" action="{% url 'summoners:result' %}">
-                <div class="input-group d-flex justify-content-center mt-4">
-                    <input type="text" class="form-control" placeholder="🧙🏻‍♂️ 소환사명을 입력해주세요." name="search_text"
-                        value="{{search_text}}" style="max-width: 100vh; border-radius: 25px; position: relative;">
-                    <span class="input-group-btn">
-                        <button class="btn btn-secondary clear-btn" type="submit"
-                            style="background-color: black; border-radius: 100%;"><i class="fa fa-search"></i></button>
-                    </span>
+            <form method="get" name="search_form" action="{% url 'summoners:result' %}" class="d-flex justify-content-center">
+                <div class="search_box search_box_summoners">
+                    <div class="search_box-inner">
+                        <input type="text" placeholder="🧙🏻‍♂️ 소환사명을 입력해주세요." name="search_text"
+                            value="{{search_text}}" style="max-width: 100vh; border-radius: 25px; position: relative;">
+                        <span class="input-group-btn">
+                                    <button class="btn btn-secondary clear-btn" type="submit"
+                                        style="background-color: black; border-radius: 100%;">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                        </span>
+                    </div>
                 </div>
             </form>
         </div>

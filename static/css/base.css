@@ -215,6 +215,29 @@ body {
     border-radius: 50px;
 }
 
+.search_box_summoners {
+    width: 70vw !important;
+}
+
+.summoners_img{
+  display: flex;
+  justify-content: center;
+}
+
+.summoners_img img{
+      width: 70vh;
+      margin: 0;
+}
+
+@media (max-width: 768px){
+    .summoners_img img{
+      width: 60vh;
+      padding-left: 15px;
+      margin: 0;
+    }
+}
+
+
 .search_box input{
   border: none;
   outline: none;
