@@ -31,11 +31,18 @@
       {% elif grade  == '고인물' %}
       <img src="/static/images/grade/{{ grade }}.png" alt="">{{ grade }}
       {% elif grade  == '썩은물' %}
-      <img src="/static/images/grade/{{ grade }}.png" alt="">{{ grade }}<
+      <img src="/static/images/grade/{{ grade }}.png" alt="">{{ grade }}
       {% endif %}
     </div>
   </div>
-  <div class="member-settings-layout__title_sub">게시물을 아래에서 확인하세요</div>
+  {% if user.profile %}
+  {% if user.profile.intro %}
+  <div class="member-settings-layout__title_sub ms-4"><p style="font-size:14px;">{{ user.profile.intro }}</p></div>
+  {% endif %}
+  <div class="member-settings-layout__title_sub ms-4"><p style="font-size:14px;">게시물을 아래에서 확인하세요</p></div>
+  {% else %}
+  <div class="member-settings-layout__title_sub ms-4"><p style="font-size:14px;">게시물을 아래에서 확인하세요</div>
+  {% endif %}
   <div class="edit">
     <div class="list" style="font-size: 14px;">
       <a class="tab-button" id="link_user_articles" data-bs-toggle="collapse" href="#user_articles" role="button" aria-expanded="false" aria-controls="collapseExample">작성한 글</a>

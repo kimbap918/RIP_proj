@@ -1,9 +1,11 @@
-# TRIPSTAR 프로젝트
+# RIP.GG 프로젝트
 
 - [RIP github](https://github.com/kimbap918/RIP_proj)
 - [RIP (배포 사이트)](http://ripggbean-env.eba-tprx3bfx.ap-northeast-2.elasticbeanstalk.com/home/)
+  - 약 12.13일로부터 약 한달간 배포예정
 
-## ⭐ RIP
+
+## 🎮R.I.P(rest.in.peace)
 
 ### 서비스 소개
 
@@ -18,6 +20,7 @@
 - 기술 스택
 - 팀원 소개 및 담당 역할
 - 주요 기능 소개
+- erd 구성
 - 화면 구성
 - 프로젝트 후기
 
@@ -30,18 +33,18 @@
 
 - [최준혁](https://github.com/kimbap918): 팀장, Full-stack(main=back-end)
   - **❤**커피요정**❤**
-- [박혜진](): 노션관리, Full-stack(main=front-end)
+- [박혜진](https://github.com/jelly12paw): 노션관리, Full-stack(main=front-end)
   - 👩‍💻데이터요정👩‍💻
-- [김나형](): PPT, Full-stack(main=front-end)
-  - 🎀나헝헝요정🎀
-- [하두연](): PPT, Full-stack(main=back-end)
+- [김나형](https://github.com/na-hyeong9): PPT, Full-stack(main=front-end)
+  - 🎀나헝요정🎀
+- [하두연](https://github.com/hady1024): PPT, Full-stack(main=back-end)
   - 🥺롤요정🥺
 - [최준홍](https://github.com/wnsghd14): 발표자, Full-stack(main=back-end)
   - 🍖갈비요정🍖
 
 ## 🖥️ 주요기능
 
-1. 회원가입(SNS 회원가입)/로그인(소셜로그인),비밀번호찾기
+1. 회원가입(SNS 회원가입)/로그인(소셜로그인), 비밀번호찾기
 2. 유저(게임이용자) 검색 기능(한국 서버 기준)(라이엇 api사용)
 3. 챔피언 정보 페이지 (룬, 아이템, 스킬정보)(크롤링 데이터사용)
 4. 티어 리스트(크롤링 데이터사용)
@@ -69,6 +72,8 @@
 ### Template 설계
 [Template설계](https://www.figma.com/embed?embed_host=notion&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F0An5gf8iRKpZF8Ggzaqj8O%2FUntitled%3Fnode-id%3D0%253A1%26t%3Dzv8V7Qj43ctZ6zAu-0)
 
+![화면 캡처 2022-12-13 231831](README.assets/%ED%99%94%EB%A9%B4%20%EC%BA%A1%EC%B2%98%202022-12-13%20231831.png)
+
 
 ## 화면 구성
 
@@ -76,30 +81,37 @@
 
 ![메인](README.assets/ezgif.com-gif-maker%20(2).gif)
 
-### 홈페이지
+### 홈
 
 ![챔피언검색](README.assets/ezgif.com-gif-maker%20(2)-16709202641027.gif)
 
 
 
-### 챔피언페이지
+### 챔피언
 
 ![챔피언](README.assets/ezgif.com-gif-maker%20(3).gif)
 
-### 소환사페이지
+### 소환사
 
+![ezgif.com-gif-maker (8)](README.assets/ezgif.com-gif-maker%20(8).gif)
 
-
-### 고인페이지
+### 고인
 
 ![고인](README.assets/ezgif.com-gif-maker%20(4).gif)
 
-### 커뮤니티페이지
+### 커뮤니티
 
-### 유저페이지
+![ezgif.com-gif-maker (5)](README.assets/ezgif.com-gif-maker%20(5).gif)
+
+![ezgif.com-gif-maker (6)](README.assets/ezgif.com-gif-maker%20(6).gif)
 
 
-#### 검색결과페이지
+
+### 유저
+
+![ezgif.com-gif-maker (7)](README.assets/ezgif.com-gif-maker%20(7).gif)
+
+
 
 ## 개발 이슈
 
