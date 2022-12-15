@@ -69,6 +69,7 @@
 
 [ERDmodel](![RIP (1)](../RIP%20(1).png)![RIP (1)](README.assets/RIP%20(1).png))
 
+
 ### Template 설계
 [Template설계](https://www.figma.com/embed?embed_host=notion&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F0An5gf8iRKpZF8Ggzaqj8O%2FUntitled%3Fnode-id%3D0%253A1%26t%3Dzv8V7Qj43ctZ6zAu-0)
 
